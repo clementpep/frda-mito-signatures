@@ -45,7 +45,7 @@ tasks:
   - id: T-001
     title: Dataset cards and sample metadata for GSE104288 and GSE145115
     milestone: M1
-    status: in_review
+    status: done
     priority: 1
     kind: data
     goal: >-
@@ -59,6 +59,7 @@ tasks:
       - Age and sex balance between FRDA and control in GSE104288 reported as numbers (not adjectives).
     notes:
       - Do not guess characteristics; if GEO does not provide one, write "not provided".
+    verification: autonomy/verifications/T-001-de7d549.md
 
   - id: T-002
     title: Quality control of both matrices

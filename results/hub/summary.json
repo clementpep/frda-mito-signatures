@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-16T17:50:31+00:00",
-  "commit": "7a081425ffebde066e903df08de57407abab7da4",
+  "generated_at": "2026-10-16T17:58:28+00:00",
+  "commit": "de7d5490d1b8f5d0c9df2faead322a8032c77806",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -16,8 +16,8 @@
   },
   "progress": {
     "total": 20,
-    "done": 0,
-    "in_review": 1,
+    "done": 1,
+    "in_review": 0,
     "ready": 18,
     "changes_requested": 0,
     "blocked": 0,
@@ -29,8 +29,8 @@
       "id": "M1",
       "title": "Credible foundation",
       "goal": "Characterise the two seed datasets and reproduce published results before anything new.",
-      "status": "todo",
-      "tasks_done": 0,
+      "status": "in_progress",
+      "tasks_done": 1,
       "tasks_total": 5
     },
     {
@@ -79,7 +79,7 @@
       "id": "T-001",
       "title": "Dataset cards and sample metadata for GSE104288 and GSE145115",
       "milestone": "M1",
-      "status": "in_review",
+      "status": "done",
       "kind": "data"
     },
     {
@@ -217,7 +217,17 @@
     }
   ],
   "claims": [],
-  "verifications": [],
+  "verifications": [
+    {
+      "task": "T-001",
+      "date": "2026-10-16",
+      "verdict": "PASS",
+      "summary": "P-001 sample metadata and both dataset cards verified against raw SOFT files on fresh data; no blocking finding",
+      "attempt": 1,
+      "acceptance_met": "4/4",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-001-de7d549.md"
+    }
+  ],
   "datasets": [
     {
       "id": "GSE104288",
