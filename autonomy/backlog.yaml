@@ -452,8 +452,8 @@ tasks:
     priority: 1
     kind: infra
     track: infra
-    attempts: 1
-    verification: autonomy/verifications/T-021-8914580.md
+    attempts: 2
+    verification: autonomy/verifications/T-021-d78f70a.md
     goal: >-
       Give the routines the means to work like a PhD student: a verifiable literature memory, a
       registry of research leads with a scoring rubric, effort budgets per track and phase, and a
