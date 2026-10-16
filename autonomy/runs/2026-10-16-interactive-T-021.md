@@ -73,3 +73,31 @@ without weakening what they check (first task is ready; the next one respects de
 7. Still true; this attempt was not reviewed by subagents in the interactive session either.
 
 Checks: `make ci` PASS (53 tests), `make reproduce` PASS.
+
+## Responses to verification (attempt 2 → 3)
+
+### Blocking
+1. Markup false-PASS — fixed at the root: `normalise` no longer strips anything that looks like a tag.
+   Markup is removed on the **source side only** (`markup_to_text`: XML parse of `<body>` with inline
+   elements glued and block elements separated; regex fallback limited to real tags, so "p < 0.05 and
+   q > 0.1" survives). A quote containing markup is rejected ("copy the text only"). Tests:
+   `test_bracketed_invented_span_fails`, `test_literal_angle_brackets_in_source_are_kept`. Online on
+   MED:29125828: real sentence PASS; same sentence with "<prove a cure>" inserted → FAIL.
+2. Window test — rewritten with two PASS reports: window 10 → both tracks in order, 1 → latest, 0 → [],
+   `True` → []. Mutation check: with the guard replaced by `if False:` the test fails; restored.
+
+### Non-blocking
+1. Fixed: shares are computed among budgeted tracks only (`test_unbudgeted_tracks_do_not_dilute_shares`).
+2. Kept as is: the floor is a constraint on the budget the supervisor sets (gate); `pick_next` then honours
+   the budget. Order inside `main` is the task priority (M1 tasks are priority 1–3).
+3. Deferred: richer `novelty_check` content belongs to the claims schema (claims.py rule change → its own
+   task, reviewed as such).
+4. Deferred: `lit-verify` stays online-only by design (gates are offline); the verifier records it in STEP 6b.
+   `abstract_only` cards are honest about their source; the synthesis may weigh them.
+5. Fixed: supervisor S5 forbids editing acceptance/depends_on of existing tasks (replace + RD instead).
+6. Fixed: `bool` rejected as window in gate and `recent_tracks`; `autonomy.status` falls back to 10 on an
+   invalid window instead of crashing. Same-day ordering by id is acceptable (dates are days).
+7. Fixed: slugs sanitised; logs never overwritten (`-2`, `-3`…); network errors reported as problems.
+8. Fixed: PLAN.md wording (committee; "shifted … association only").
+
+Checks: `make ci` PASS (57 tests), `make reproduce` PASS.

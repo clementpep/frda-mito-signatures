@@ -118,7 +118,9 @@ def pick_next(
         return fixes[0], "FIX tasks (data drift, broken main) go before any budget"
     if not budget:
         return ready[0], "priority order (no track budget)"
-    recent = recent_tracks or []
+    # Shares are measured among budgeted tracks only: infra fixes and weekly runs must not
+    # make a budgeted track look on target when it is not.
+    recent = [tr for tr in (recent_tracks or []) if budget.get(tr, 0.0) > 0]
     n = len(recent)
     share = {tr: (recent.count(tr) / n if n else 0.0) for tr in budget}
     tracks = {t.track for t in ready}
@@ -154,7 +156,7 @@ def recent_tracks(backlog: Backlog, root: Path | None = None, window: int = 10) 
     }
     done = [t for t in backlog.tasks if t.status == "done" and t.id in dates]
     done.sort(key=lambda t: (dates[t.id], t.id))
-    if window <= 0:
+    if isinstance(window, bool) or not isinstance(window, int) or window <= 0:
         return []
     return [t.track for t in done[-window:]]
 

@@ -23,6 +23,7 @@ import time
 import unicodedata
 import urllib.parse
 import urllib.request
+import xml.etree.ElementTree as ET
 from pathlib import Path
 from typing import Any
 
@@ -95,7 +96,12 @@ def search(query: str, max_hits: int = 200) -> dict[str, Any]:
 def save_search_log(log: dict[str, Any], slug: str, task: str, root: Path | None = None) -> Path:
     d = (root or paths.ROOT) / "research" / "search-logs"
     d.mkdir(parents=True, exist_ok=True)
+    slug = re.sub(r"[^a-z0-9-]+", "-", slug.lower()).strip("-") or "search"
     path = d / f"{log['date']}-{slug}.json"
+    n = 2
+    while path.exists():  # a search log is evidence: never overwrite one
+        path = d / f"{log['date']}-{slug}-{n}.json"
+        n += 1
     path.write_text(json.dumps({**log, "task": task}, indent=2, ensure_ascii=False) + "\n")
     return path
 
@@ -175,20 +181,71 @@ def add_papers(
 
 
 def normalise(text: str) -> str:
-    text = unicodedata.normalize("NFKC", html.unescape(text))
-    text = re.sub(r"<[^>]+>", " ", text)
+    """Typographic normalisation only. Markup is never stripped here: doing it on the quote side
+    let an invented span written as <...> vanish before matching (T-021 verification)."""
+    text = unicodedata.normalize("NFKC", text)
     text = text.replace("‐", "-").replace("‑", "-").replace("–", "-").replace("—", "-")
     text = text.replace("“", '"').replace("”", '"').replace("’", "'").replace("‘", "'")
     text = re.sub(r"\s+", " ", text)
     return text.strip().lower()
 
 
+# Real markup only (<p>, </italic>, <xref rid="b1">), never prose like "p < 0.05 and q > 0.1".
+TAG = re.compile(r"</?[A-Za-z][\w:.-]*(?:\s+[\w:.-]+(?:\s*=\s*(?:\"[^\"]*\"|'[^']*'))?)*\s*/?>")
+
+
+def markup_to_text(markup: str) -> str:
+    """Source side only: parse XML when possible (entities become literal characters, so a
+    literal '<' in the paper stays a '<'); otherwise remove real tags, then unescape."""
+    try:
+        root = ET.fromstring(f"<root>{markup}</root>")
+    except ET.ParseError:
+        return html.unescape(TAG.sub(" ", markup))
+    parts: list[str] = []
+
+    def walk(el: ET.Element) -> None:
+        if el.text:
+            parts.append(el.text)
+        for child in el:
+            walk(child)
+            if child.tag in BLOCK_TAGS:  # paragraphs, titles, cells: separate; italics: glue
+                parts.append(" ")
+            if child.tail:
+                parts.append(child.tail)
+
+    walk(root)
+    return "".join(parts)
+
+
+BLOCK_TAGS = {
+    "p",
+    "sec",
+    "title",
+    "label",
+    "caption",
+    "fig",
+    "table-wrap",
+    "table",
+    "tr",
+    "td",
+    "th",
+    "list",
+    "list-item",
+    "disp-quote",
+    "abstract",
+    "body",
+    "def-item",
+    "boxed-text",
+    "br",
+}
+
+
 def full_text(pmcid: str) -> str:
-    """Article body only: front matter and reference list would let a quote taken from a
-    cited paper's title, or from another article's abstract, pass as this paper's text."""
+    """Plain text of the article body only: front matter and reference list would let a quote
+    taken from a cited paper's title, or from another article's abstract, pass as this paper's."""
     xml = _get(f"{BASE}/{pmcid}/fullTextXML", as_json=False)
     m = re.search(r"<body[ >].*?</body>", xml, flags=re.S)
-    return m.group(0) if m else ""
+    return markup_to_text(m.group(0)) if m else ""
 
 
 MIN_QUOTE_CHARS = 20
@@ -218,7 +275,11 @@ def verify(paper_ids: list[str] | None = None, root: Path | None = None) -> list
         problems.append("no paper to verify")
         return problems
     for p in targets:
-        rec = fetch_record(p.id)
+        try:
+            rec = fetch_record(p.id)
+        except RuntimeError as exc:
+            problems.append(f"{p.id}: could not be checked ({exc}); re-run lit-verify")
+            continue
         if rec is None:
             problems.append(f"{p.id}: does not exist in Europe PMC")
             continue
@@ -236,16 +297,28 @@ def verify(paper_ids: list[str] | None = None, root: Path | None = None) -> list
             if not p.pmcid or p.pmcid != rec.get("pmcid"):
                 problems.append(f"{path.name}: full_text card without the paper's own pmcid")
                 continue
-            haystack = normalise(full_text(p.pmcid))
+            try:
+                haystack = normalise(full_text(p.pmcid))
+            except RuntimeError as exc:
+                problems.append(f"{path.name}: full text unavailable ({exc}); re-run lit-verify")
+                continue
             if not haystack:
                 problems.append(f"{path.name}: no article body in the full text of {p.pmcid}")
                 continue
         else:
-            haystack = normalise(rec.get("abstractText", "") + " " + rec.get("title", ""))
+            haystack = normalise(
+                markup_to_text(rec.get("abstractText", ""))
+                + " "
+                + markup_to_text(rec.get("title", ""))
+            )
         for i, f in enumerate(card.findings, 1):
             needle = normalise(f.quote).strip(' ".')
             if not quote_is_substantive(needle):
                 problems.append(f"{path.name}: finding {i} quote is not substantive text")
+            elif re.search(r"</?[A-Za-z]", needle):
+                problems.append(
+                    f"{path.name}: finding {i} quote contains markup; copy the text only"
+                )
             elif needle not in haystack:
                 problems.append(
                     f"{path.name}: finding {i} quote not found verbatim in the "

@@ -45,6 +45,8 @@ Record all status changes in one decision `research/decisions/RD-xxx.md` (kind a
 - Add the tasks your decisions require (ids `L-`/`T-`, track set, concrete acceptance criteria),
   re-prioritise, unblock. Reading tasks for new relevant papers from the watch.
 - Never mark a task done, never edit claims, never touch code, gates or results.
+- Never edit the `acceptance` or `depends_on` of an existing task to make it easier or to unblock it;
+  replace the task by a new one with the reason in an RD decision (the verifier compares).
 
 ## S6 — Monthly report (first supervision of a calendar month)
 

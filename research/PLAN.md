@@ -1,12 +1,13 @@
 # Thesis plan
 
-This project is run like a PhD, by autonomous routines, with the owner as thesis director's
-director: they steer, the routines work and check each other.
+This project is run like a PhD by autonomous routines. The owner plays the role of the doctoral
+committee: they steer and decide pivots; the routines do the work and check each other.
 
 ## The research question (phase 1)
 
 1. Which mitochondria-related transcriptomic signatures reproduce across independent FRDA datasets?
-2. Do interventions (starting with A-196 in GSE145115) move these signatures in the expected direction?
+2. Are these signatures shifted in the expected direction after interventions (starting with
+   A-196 in GSE145115)? Association only: a shift in a cell model is not a clinical benefit.
 
 The question can be refined by the weekly supervision (decision `kind: arbitration`). Changing it
 — another disease, another mechanism, another data type — is a **pivot**: decided by the owner

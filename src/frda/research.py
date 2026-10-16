@@ -289,7 +289,7 @@ def problems(root: Path | None = None) -> list[str]:
             if not lo <= v <= hi:
                 out.append(f"plan: budget {tr}={v} outside bounds [{lo}, {hi}]")
         window = plan.get("budget_window", 10)
-        if not isinstance(window, int) or window < 1:
+        if isinstance(window, bool) or not isinstance(window, int) or window < 1:
             out.append(f"plan: budget_window must be an integer >= 1, got {window!r}")
         for tr, floor in (plan.get("track_floor") or {}).items():
             if budget.get(tr, 0.0) < floor:

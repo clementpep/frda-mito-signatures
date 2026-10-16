@@ -76,6 +76,11 @@ def branches(root: Path | None = None) -> list[Branch]:
     return result
 
 
+def _window(plan: dict) -> int:
+    w = plan.get("budget_window", 10)
+    return w if isinstance(w, int) and not isinstance(w, bool) and w > 0 else 10
+
+
 def status(root: Path | None = None) -> dict[str, Any]:
     root = root or paths.ROOT
     cfg = load_yaml(root / "autonomy" / "config.yaml")
@@ -100,7 +105,7 @@ def status(root: Path | None = None) -> dict[str, Any]:
             bl,
             exclude=taken,
             budget=plan.get("track_budget"),
-            recent_tracks=recent_tracks(bl, root, plan.get("budget_window", 10)),
+            recent_tracks=recent_tracks(bl, root, _window(plan)),
         )
         if task:
             next_worker = {

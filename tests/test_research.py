@@ -289,11 +289,75 @@ def test_pick_next_is_deterministic_on_ties():
     assert picks == {"L-001"}  # tie on deficit and priority -> track name order
 
 
-def test_recent_tracks_window_zero_is_empty(tmp_path):
+def _pass_report(root, task, date):
+    d = root / "autonomy" / "verifications"
+    d.mkdir(parents=True, exist_ok=True)
+    (d / f"{task}-abcdef1.md").write_text(
+        f"---\ntask: {task}\nreviewed_sha: abcdef1\nverdict: PASS\ndate: '{date}'\nattempt: 1\n"
+        "summary: s\ngates: {lint: PASS, test: PASS, verify: PASS, reproduce: PASS}\n"
+        "acceptance_met: 1/1\nblocking_findings: 0\n---\n"
+    )
+
+
+def test_recent_tracks_window(tmp_path):
     from frda.backlog import recent_tracks
 
-    bl = _bl([{"id": "T-001", "track": "main", "status": "done"}])
-    assert recent_tracks(bl, tmp_path, window=0) == []
+    bl = _bl(
+        [
+            {"id": "T-001", "track": "main", "status": "done"},
+            {"id": "L-001", "track": "literature", "status": "done"},
+        ]
+    )
+    _pass_report(tmp_path, "T-001", "2026-10-16")
+    _pass_report(tmp_path, "L-001", "2026-10-17")
+    assert recent_tracks(bl, tmp_path, window=10) == ["main", "literature"]
+    assert recent_tracks(bl, tmp_path, window=1) == ["literature"]
+    assert recent_tracks(bl, tmp_path, window=0) == []  # fails if the guard is removed
+    assert recent_tracks(bl, tmp_path, window=True) == []
+
+
+def test_unbudgeted_tracks_do_not_dilute_shares():
+    bl = _bl([{"id": "T-010", "track": "main"}, {"id": "L-002", "track": "literature"}])
+    budget = {"literature": 0.5, "main": 0.5}
+    # 1 main + many infra: among budgeted work, main is 100 % and literature 0 % -> literature.
+    task, _ = pick_next(bl, budget=budget, recent_tracks=["main"] + ["infra"] * 9)
+    assert task.id == "L-002"
+
+
+def test_bracketed_invented_span_fails(tmp_path, monkeypatch):
+    card = CARD.replace(
+        "Frataxin transcript levels were markedly reduced in patient cells.",
+        "Frataxin transcript levels <we proved causation in all patients> were markedly reduced "
+        "in patient cells.",
+    )
+    write(
+        tmp_path,
+        corpus=[paper(status="read", screen_reason="RQ1", card="research/cards/MED_111.md")],
+        cards={"MED_111.md": card},
+    )
+    rec = {
+        "title": "A paper",
+        "abstractText": "Frataxin transcript levels were markedly reduced in patient cells.",
+    }
+    monkeypatch.setattr(literature, "fetch_record", lambda pid: rec)
+    monkeypatch.setattr(literature.time, "sleep", lambda s: None)
+    probs = literature.verify(root=tmp_path)
+    assert probs and all("MED_111" in p for p in probs)
+
+
+def test_literal_angle_brackets_in_source_are_kept():
+    xml = "<body><p>Expression differed (p &lt; 0.05 and q &gt; 0.1) in <italic>FXN</italic>.</p></body>"
+    text = literature.normalise(literature.markup_to_text(xml))
+    assert "(p < 0.05 and q > 0.1) in fxn." in text
+    # malformed XML fallback still keeps prose comparisons
+    assert "p < 0.05 and q > 0.1" in literature.markup_to_text("<p>p < 0.05 and q > 0.1</p><br>")
+
+
+def test_search_logs_are_never_overwritten(tmp_path):
+    log = {"date": "2026-10-20", "query": "q", "hit_count": 0, "retrieved": 0, "results": []}
+    a = literature.save_search_log(log, "RQ1 / test", "L-002", root=tmp_path)
+    b = literature.save_search_log(log, "RQ1 / test", "L-002", root=tmp_path)
+    assert a != b and a.name == "2026-10-20-rq1-test.json" and b.exists()
 
 
 def test_plan_window_floor_and_pivot_checks(tmp_path):
