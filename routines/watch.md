@@ -36,7 +36,7 @@ Run the protocol queries of `research/protocol.md` restricted to the last 8 days
 (`frda lit-search "<query> AND FIRST_PDATE:[<date-8d> TO <today>]" --save watch-<W>-<rq> --task <W>`),
 then `frda lit-add <new ids> --task <W> --found-by <log-stem>` (they enter as `to_screen`; screening
 is a literature task). Append to `docs/literature/watch-log.md`: id, title, one-line relevance. For any paper
-that overlaps a current claim or a candidate question (`docs/literature/landscape.md`), write a
+that overlaps a current claim or a candidate question (`research/synthesis/`, `research/ideas.yaml`), write a
 **novelty alert** in the digest: which claim, what overlaps, consequence (cite it, differentiate,
 or drop).
 

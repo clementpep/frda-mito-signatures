@@ -65,7 +65,7 @@ Aiming for a preprint changes the bar from "useful" to "defensible":
   using commit ancestry as the timestamp).
 - **Discovery / replication separation**: the signature is frozen on the discovery set, then
   tested on datasets never used to build it (M2 → M3).
-- **Novelty discipline**: `docs/literature/` (landscape + weekly watch). A claim is `new` only
+- **Novelty discipline**: `research/` (synthesis, gap analysis, search logs) + weekly watch. A claim is `new` only
   with a novelty-check log; the weekly watch raises *novelty alerts* when a paper overlaps.
 - **Numbers by construction**: the manuscript cannot contain a hand-typed statistic; it renders
   values from verified claim artifacts.

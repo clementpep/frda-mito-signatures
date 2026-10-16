@@ -97,7 +97,7 @@ Launch in parallel:
 - `scientific-reviewer` — give it the task, the diff, the claims, the run.json files, the docs.
   It must check: unit of independence / pseudo-replication, multiple testing, confounders,
   overclaiming and causal wording, preregistration respected, novelty claims against
-  `docs/literature/`, and **every cited published value against the paper itself** (Europe PMC).
+  `research/` (search logs, synthesis, gaps), and **every cited published value against the paper itself** (Europe PMC).
 - `code-auditor` — correctness bugs, silent fallbacks, hard-coded values, label mix-ups between
   samples and groups, leakage between discovery and replication sets, fabricated data paths.
 - For `paper` tasks also `journal-reviewer` — the manuscript as a demanding journal referee would read it.

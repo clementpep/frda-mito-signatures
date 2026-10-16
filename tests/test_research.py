@@ -216,3 +216,104 @@ def test_quote_verification_catches_invented_quotes(tmp_path, monkeypatch):
 
 def test_seed_research_memory_is_valid():
     assert research.problems() == []
+
+
+# --- regression tests for the T-021 verification findings -------------------------------
+
+
+def test_verify_fails_on_unknown_ids_and_empty_target(tmp_path, monkeypatch):
+    write(tmp_path)
+    monkeypatch.setattr(literature, "fetch_record", lambda pid: {"title": "x"})
+    assert any("not in the corpus" in p for p in literature.verify(["MED:99999999"], root=tmp_path))
+    assert any("no paper to verify" in p for p in literature.verify(root=tmp_path))
+
+
+def test_degenerate_quotes_are_rejected():
+    with pytest.raises(ValidationError):
+        research.Finding(statement="s", quote='"......................."', location="Abstract")
+    assert not literature.quote_is_substantive(". . . . . . . . . . . . . . .")
+
+
+def test_full_text_card_requires_the_papers_own_pmcid(tmp_path, monkeypatch):
+    write(
+        tmp_path,
+        corpus=[
+            paper(
+                status="read",
+                screen_reason="RQ1",
+                card="research/cards/MED_111.md",
+                open_access=True,
+                pmcid="PMC999",
+            )
+        ],
+        cards={"MED_111.md": CARD.replace("abstract_only", "full_text")},
+    )
+    monkeypatch.setattr(
+        literature, "fetch_record", lambda pid: {"title": "A paper", "pmcid": "PMC111"}
+    )
+    monkeypatch.setattr(literature.time, "sleep", lambda s: None)
+    probs = literature.verify(root=tmp_path)
+    assert any("pmcid" in p for p in probs)
+
+
+def test_full_text_search_is_limited_to_the_article_body(monkeypatch):
+    xml = (
+        "<article><front>Frataxin transcript levels were markedly reduced in patient cells."
+        "</front><body><p>Nothing relevant here at all.</p></body>"
+        "<back><ref>Another quote from a cited paper title in references.</ref></back></article>"
+    )
+    monkeypatch.setattr(literature, "_get", lambda url, as_json=True: xml)
+    body = literature.full_text("PMC1")
+    assert "Nothing relevant" in body and "Frataxin" not in body and "cited paper" not in body
+
+
+def test_zero_budget_track_never_beats_a_funded_one():
+    bl = _bl(
+        [
+            {"id": "T-010", "track": "main", "priority": 5},
+            {"id": "T-099", "track": "exploration", "priority": 1},
+        ]
+    )
+    budget = {"literature": 0.6, "main": 0.4, "exploration": 0.0}
+    for recent in ([], ["main"] * 10, ["main", "literature"]):
+        assert pick_next(bl, budget=budget, recent_tracks=recent)[0].id == "T-010"
+    only_unfunded = _bl([{"id": "T-099", "track": "exploration"}])
+    task, why = pick_next(only_unfunded, budget=budget, recent_tracks=[])
+    assert task.id == "T-099" and "no budgeted track" in why
+
+
+def test_pick_next_is_deterministic_on_ties():
+    bl = _bl([{"id": "T-010", "track": "main"}, {"id": "L-001", "track": "literature"}])
+    budget = {"literature": 0.5, "main": 0.5}
+    picks = {pick_next(bl, budget=budget, recent_tracks=[])[0].id for _ in range(20)}
+    assert picks == {"L-001"}  # tie on deficit and priority -> track name order
+
+
+def test_recent_tracks_window_zero_is_empty(tmp_path):
+    from frda.backlog import recent_tracks
+
+    bl = _bl([{"id": "T-001", "track": "main", "status": "done"}])
+    assert recent_tracks(bl, tmp_path, window=0) == []
+
+
+def test_plan_window_floor_and_pivot_checks(tmp_path):
+    write(
+        tmp_path,
+        decisions={
+            "RD-002.md": "---\nid: RD-002\ndate: 2026-10-20\nkind: pivot\n"
+            "summary: switch to Parkinson\nneeds_human: false\n---\n"
+        },
+    )
+    (tmp_path / "research" / "plan.yaml").write_text(
+        yaml.safe_dump(
+            {
+                "current_phase": "A",
+                "phases": [{"id": "A"}],
+                "budget_window": 0,
+                "track_floor": {"main": 0.2},
+                "track_budget": {"literature": 0.9, "main": 0.1},
+            }
+        )
+    )
+    probs = " | ".join(research.problems(tmp_path))
+    assert "budget_window" in probs and "below its floor" in probs and "pivot" in probs

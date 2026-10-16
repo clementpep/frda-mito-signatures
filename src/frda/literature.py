@@ -7,7 +7,9 @@
             (full text for open-access papers, abstract otherwise).
 
 An LLM can invent a plausible paper or a plausible quote; this module is how the
-project catches it.
+project catches it. Europe PMC is fetched here rather than through `frda.acquire`: these are
+metadata and article texts checked against the corpus, not datasets with frozen checksums
+(allowlist source `europe-pmc`).
 """
 
 from __future__ import annotations
@@ -103,7 +105,10 @@ def fetch_record(pid: str) -> dict[str, Any] | None:
     q = urllib.parse.quote(f"EXT_ID:{ext} AND SRC:{src}")
     data = _get(f"{BASE}/search?query={q}&format=json&resultType=core")
     res = data.get("resultList", {}).get("result", [])
-    return res[0] if res else None
+    for r in res:  # never trust the first hit blindly: source and id must match
+        if r.get("source") == src and str(r.get("id")) == ext:
+            return r
+    return None
 
 
 def _kind(rec: dict[str, Any]) -> str:
@@ -144,7 +149,7 @@ def add_papers(
     corpus = load_corpus(root)
     known = {p.id for p in corpus.papers}
     known_doi = {p.doi.lower() for p in corpus.papers if p.doi}
-    added = []
+    added: list[str] = []
     for pid in ids:
         if pid in known:
             continue
@@ -158,6 +163,8 @@ def add_papers(
             continue  # same work under another source id (e.g. preprint + article)
         raw["papers"].append(paper.model_dump(exclude_none=True))
         known.add(paper.id)
+        if paper.doi:
+            known_doi.add(paper.doi.lower())
         added.append(paper.id)
         time.sleep(0.2)
     dump_yaml(raw, path)
@@ -177,16 +184,39 @@ def normalise(text: str) -> str:
 
 
 def full_text(pmcid: str) -> str:
-    return _get(f"{BASE}/{pmcid}/fullTextXML", as_json=False)
+    """Article body only: front matter and reference list would let a quote taken from a
+    cited paper's title, or from another article's abstract, pass as this paper's text."""
+    xml = _get(f"{BASE}/{pmcid}/fullTextXML", as_json=False)
+    m = re.search(r"<body[ >].*?</body>", xml, flags=re.S)
+    return m.group(0) if m else ""
+
+
+MIN_QUOTE_CHARS = 20
+
+
+def quote_is_substantive(quote: str) -> bool:
+    return sum(ch.isalnum() for ch in normalise(quote)) >= MIN_QUOTE_CHARS
 
 
 def verify(paper_ids: list[str] | None = None, root: Path | None = None) -> list[str]:
-    """Online audit. Returns problems (empty = all good)."""
+    """Online audit. Returns problems (empty = all good).
+
+    Explicit ids that are not in the corpus, or an empty target list, are problems: an audit
+    that checks nothing must not report PASS.
+    """
     root = root or paths.ROOT
     corpus = load_corpus(root)
     cards = load_cards(root)
-    targets = [p for p in corpus.papers if paper_ids is None or p.id in paper_ids]
     problems: list[str] = []
+    if paper_ids is not None:
+        known = {p.id for p in corpus.papers}
+        problems += [
+            f"{pid}: not in the corpus (nothing to verify)" for pid in paper_ids if pid not in known
+        ]
+    targets = [p for p in corpus.papers if paper_ids is None or p.id in paper_ids]
+    if not targets:
+        problems.append("no paper to verify")
+        return problems
     for p in targets:
         rec = fetch_record(p.id)
         if rec is None:
@@ -197,18 +227,26 @@ def verify(paper_ids: list[str] | None = None, root: Path | None = None) -> list
         ).ratio()
         if ratio < 0.9:
             problems.append(f"{p.id}: recorded title differs from Europe PMC ({ratio:.2f})")
+        if p.pmcid and rec.get("pmcid") and p.pmcid != rec.get("pmcid"):
+            problems.append(f"{p.id}: recorded pmcid {p.pmcid} != Europe PMC {rec.get('pmcid')}")
         if p.id not in cards:
             continue
         path, card = cards[p.id]
         if card.source_text == "full_text":
-            if not p.pmcid:
-                problems.append(f"{p.id}: full_text card but no pmcid")
+            if not p.pmcid or p.pmcid != rec.get("pmcid"):
+                problems.append(f"{path.name}: full_text card without the paper's own pmcid")
                 continue
             haystack = normalise(full_text(p.pmcid))
+            if not haystack:
+                problems.append(f"{path.name}: no article body in the full text of {p.pmcid}")
+                continue
         else:
             haystack = normalise(rec.get("abstractText", "") + " " + rec.get("title", ""))
         for i, f in enumerate(card.findings, 1):
-            if normalise(f.quote).strip(' ".') not in haystack:
+            needle = normalise(f.quote).strip(' ".')
+            if not quote_is_substantive(needle):
+                problems.append(f"{path.name}: finding {i} quote is not substantive text")
+            elif needle not in haystack:
                 problems.append(
                     f"{path.name}: finding {i} quote not found verbatim in the "
                     f"{card.source_text.replace('_', ' ')} ({f.location})"

@@ -93,6 +93,12 @@ class Finding(Strict):
     quote: str = Field(min_length=20, description="Verbatim sentence(s) from the paper.")
     location: str = Field(description="Section / figure / table / abstract.")
 
+    @model_validator(mode="after")
+    def substantive(self) -> Finding:
+        if sum(ch.isalnum() for ch in self.quote) < 20:
+            raise ValueError("quote must contain at least 20 letters or digits")
+        return self
+
 
 class CardMeta(Strict):
     paper: str = Field(pattern=PAPER_ID)
@@ -208,6 +214,8 @@ def load_cards(root: Path | None = None) -> dict[str, tuple[Path, CardMeta]]:
             continue
         meta, _ = read_front_matter(p)
         card = CardMeta.model_validate(meta)
+        if card.paper in out:
+            raise ValueError(f"two cards for {card.paper}: {out[card.paper][0].name}, {p.name}")
         out[card.paper] = (p, card)
     return out
 
@@ -218,6 +226,8 @@ def load_decisions(root: Path | None = None) -> dict[str, tuple[Path, DecisionMe
     for p in sorted(d.glob("RD-*.md")) if d.exists() else []:
         meta, _ = read_front_matter(p)
         dm = DecisionMeta.model_validate(meta)
+        if dm.id in out:
+            raise ValueError(f"two decision files with id {dm.id}")
         out[dm.id] = (p, dm)
     return out
 
@@ -278,6 +288,12 @@ def problems(root: Path | None = None) -> list[str]:
         for tr, v in budget.items():
             if not lo <= v <= hi:
                 out.append(f"plan: budget {tr}={v} outside bounds [{lo}, {hi}]")
+        window = plan.get("budget_window", 10)
+        if not isinstance(window, int) or window < 1:
+            out.append(f"plan: budget_window must be an integer >= 1, got {window!r}")
+        for tr, floor in (plan.get("track_floor") or {}).items():
+            if budget.get(tr, 0.0) < floor:
+                out.append(f"plan: budget {tr}={budget.get(tr, 0.0)} below its floor {floor}")
         phases = {ph["id"] for ph in plan.get("phases", [])}
         if plan.get("current_phase") not in phases:
             out.append(f"plan: current_phase {plan.get('current_phase')} not in phases")
@@ -296,6 +312,8 @@ def problems(root: Path | None = None) -> list[str]:
     if plan and len(active) > plan.get("max_active_ideas", 1):
         out.append(f"ideas: {len(active)} active ideas {active} > max_active_ideas")
     for did, (_, dm) in decisions.items():
+        if dm.kind == "pivot" and not dm.needs_human:
+            out.append(f"{did}: a pivot decision must set needs_human: true (owner's call)")
         for iid in dm.ideas:
             if iid not in iids:
                 out.append(f"{did}: references unknown idea {iid}")

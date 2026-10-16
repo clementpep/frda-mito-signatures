@@ -21,7 +21,7 @@ Check, citing file:line or artifact path for every finding:
    sensitivity analyses for headline claims.
 4. **Claims** — status (reproduced / refuted / new / not_demonstrated) and evidence_level match
    the evidence; limitations honest; no causal, clinical or therapeutic wording; "new" claims
-   backed by a novelty check in `docs/literature/`.
+   backed by a novelty check in `research/` (search logs, synthesis, gaps).
 5. **Citations** — for every `source.published_value`, fetch the paper (Europe PMC REST:
    `https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:<pmid>&resultType=core&format=json`,
    full text via `.../rest/<PMCID>/fullTextXML` when open access) and confirm the value is stated

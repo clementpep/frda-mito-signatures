@@ -99,7 +99,8 @@ bash scripts/push-branch.sh <local-ref> <remote-branch>   # retries on network e
   exploratory and labelled so. Report deviations from a preregistration explicitly.
 - Multiple testing corrected and stated; effect sizes with uncertainty, not only p-values;
   sensitivity analyses for every headline result.
-- Before calling a claim `new`, check it against `docs/literature/` (novelty_check log).
+- Before calling a claim `new`, check it against `research/synthesis/` and a logged targeted search
+  (`novelty_check` → `research/search-logs/*.json` or `research/synthesis/gaps.md`).
 
 ## P7 — Reports
 

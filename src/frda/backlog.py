@@ -122,20 +122,24 @@ def pick_next(
     n = len(recent)
     share = {tr: (recent.count(tr) / n if n else 0.0) for tr in budget}
     tracks = {t.track for t in ready}
-    # Tracks absent from the budget still run (e.g. infra fixes) but only after budgeted ones.
-    scored = sorted(
-        tracks,
+    # A track with no budget (0 % or absent) only runs when no budgeted track has work.
+    funded = sorted(tr for tr in tracks if budget.get(tr, 0.0) > 0)
+    pool = funded or sorted(tracks)
+    chosen = min(
+        pool,
         key=lambda tr: (
-            -(budget.get(tr, -1.0) - share.get(tr, 0.0)),
+            -(budget.get(tr, 0.0) - share.get(tr, 0.0)),
             min(t.priority for t in ready if t.track == tr),
+            tr,
         ),
     )
-    chosen = scored[0]
     task = next(t for t in ready if t.track == chosen)
     deficits = ", ".join(
         f"{tr} {budget[tr]:.0%} target / {share[tr]:.0%} done" for tr in sorted(budget)
     )
-    return task, f"track {chosen} most behind its budget over last {n} tasks ({deficits})"
+    if funded:
+        return task, f"track {chosen} most behind its budget over last {n} tasks ({deficits})"
+    return task, f"no budgeted track has a ready task; unbudgeted track {chosen} ({deficits})"
 
 
 def recent_tracks(backlog: Backlog, root: Path | None = None, window: int = 10) -> list[str]:
@@ -150,6 +154,8 @@ def recent_tracks(backlog: Backlog, root: Path | None = None, window: int = 10) 
     }
     done = [t for t in backlog.tasks if t.status == "done" and t.id in dates]
     done.sort(key=lambda t: (dates[t.id], t.id))
+    if window <= 0:
+        return []
     return [t.track for t in done[-window:]]
 
 

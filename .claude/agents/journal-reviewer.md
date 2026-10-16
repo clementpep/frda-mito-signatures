@@ -8,7 +8,7 @@ Review `paper/manuscript.md` (and `paper/build/manuscript.md` rendered by `frda 
 a rigorous referee. You report; you do not edit.
 
 Assess: is the question clear and worth asking; is the novelty real against
-`docs/literature/landscape.md` and the latest `docs/literature/watch-log.md`; are methods
+`research/synthesis/` (state of the art, gaps) and the latest `docs/literature/watch-log.md`; are methods
 reproducible from the text and the repo; are conclusions proportional to evidence (exploratory vs
 preregistered, n independent units, single cell line caveats); are negative results reported; are
 limitations complete; are figures honest (axes, scales, n shown); is every result tied to a

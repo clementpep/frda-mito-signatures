@@ -4,16 +4,25 @@ from frda.backlog import Backlog, load_backlog, problems
 def test_seed_backlog_valid():
     bl = load_backlog()
     assert problems(bl) == []
+    done = {t.id for t in bl.tasks if t.status == "done"}
+    eligible = [t for t in bl.tasks if t.status == "ready" and set(t.depends_on) <= done]
     first = bl.next_ready()
-    assert first is not None and first.status == "ready"
+    assert first is not None
+    assert first.id == min(eligible, key=lambda t: (t.priority, t.id)).id
 
 
 def test_next_ready_respects_dependencies_and_exclusions():
     bl = load_backlog()
     done = {t.id for t in bl.tasks if t.status == "done"}
     first = bl.next_ready()
+    assert first is not None
     nxt = bl.next_ready(exclude={first.id})
-    assert nxt is not None and nxt.id != first.id and set(nxt.depends_on) <= done
+    assert nxt is not None
+    assert nxt.id != first.id and nxt.status == "ready" and set(nxt.depends_on) <= done
+    blocked = [t for t in bl.tasks if t.status == "ready" and not set(t.depends_on) <= done]
+    assert blocked, "seed backlog should contain tasks waiting on dependencies"
+    excluded_all = {t.id for t in bl.tasks if set(t.depends_on) <= done}
+    assert bl.next_ready(exclude=excluded_all) is None  # never picks a task with open deps
 
 
 def _mini(tasks):

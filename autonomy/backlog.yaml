@@ -14,7 +14,7 @@ milestones:
     title: Discovery
     goal: Map what is already known, widen the public data base, derive a candidate mitochondrial signature.
     exit_criteria:
-      - Literature landscape with explicit novelty gaps (incl. Maddock et al. 2026).
+      - State-of-the-art synthesis and gap analysis with explicit novelty gaps (incl. Maddock et al. 2026).
       - At least two additional independent public FRDA datasets ingested.
       - A frozen candidate signature from the discovery set, with sensitivity analyses.
   - id: M3
@@ -309,12 +309,12 @@ tasks:
     priority: 4
     kind: analysis
     track: main
-    depends_on: [T-004, T-007]
+    depends_on: [T-004, T-006, T-007]
     goal: Derive a candidate mitochondrial signature FRDA vs control and freeze it for replication.
     acceptance:
       - Exploratory analysis at donor level with gene-set statistics; at least three reasonable parametrisations (normalisation, gene-set definition, covariates age/sex) and leave-one-donor-out stability.
       - The frozen signature (genes + direction + scoring rule) written to results/P-010-signature/signature.json and NOT modified afterwards; claims marked exploratory or single_dataset.
-      - Novelty of each candidate claim checked against the T-006 landscape (novelty_check set for `new` claims).
+      - Novelty of each candidate claim checked against research/synthesis/ and a logged targeted search (novelty_check points to research/search-logs/*.json or research/synthesis/gaps.md for `new` claims).
 
   # ---------------------------------------------------------------- M3
   - id: T-011

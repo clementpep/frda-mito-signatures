@@ -39,3 +39,37 @@ without weakening what they check (first task is ready; the next one respects de
 ## Not done in this session
 - Reviewer subagents were not run by the maker here (interactive session); the verifier's
   STEP 7 reviews are therefore the first independent review of this diff.
+
+## Responses to verification (attempt 1 → 2)
+
+### Blocking — all fixed, each with a regression test
+1. `tests/test_backlog.py`: the tautology is gone. `next_ready()` must equal the minimum
+   (priority, id) among ready tasks whose dependencies are done; the exclusion test asserts non-None,
+   dependencies done, and that excluding every dependency-free task yields `None`.
+2. `literature.verify`: explicit ids absent from the corpus are problems; an empty target list is a
+   problem ("no paper to verify"). Online: `frda lit-verify MED:99999999` → FAIL.
+3. Degenerate quotes: `Finding` requires ≥ 20 letters/digits; `verify` re-checks after normalisation
+   (`quote_is_substantive`).
+4. Full-text cards: the recorded pmcid must equal the pmcid Europe PMC returns for the paper; only the
+   `<body>` of the article is searched (front matter and references excluded). Tested offline; online the
+   real Introduction sentence still passes and the invented one fails.
+5. `pick_next`: tracks with budget ≤ 0 (or absent) only run when no funded track has a ready task (reason
+   says so); deterministic tie-break (deficit, priority, track name). Tests for both.
+6. `recent_tracks(window <= 0)` → `[]`; `research.problems` requires `budget_window` integer ≥ 1.
+
+### Non-blocking
+1. Fixed: stale T-006/landscape references (backlog M2 exit criterion and T-010 acceptance, watch.md,
+   procedures.md P6, AUTONOMY.md, docs/literature/README.md, scientific-reviewer and journal-reviewer
+   agents, verifier STEP 7). `T-010` now depends on `T-006`.
+2. Partly fixed: the `research` gate requires `needs_human: true` on `kind: pivot` decisions. Owner
+   acknowledgement for phases C/D or the first active idea stays a procedure rule (monthly report): the
+   owner asked for autonomy; a pivot is the line that needs them.
+3. Fixed: `track_floor: {main: 0.2}` in plan.yaml, enforced by the gate.
+4. Not fixed here: protocol freezing is procedural (L-001 lands the protocol before L-002 can start, via
+   depends_on; amendments section). A hash gate would add little over the dependency + verifier check.
+5. Fixed: `fetch_record` matches source and id; `known_doi` updated within a batch; duplicate card/RD
+   files raise. WIP excluding `W-` is intentional (weekly runs must not be blocked by task WIP).
+6. Documented in `frda.literature` docstring (metadata and article texts, not checksummed datasets).
+7. Still true; this attempt was not reviewed by subagents in the interactive session either.
+
+Checks: `make ci` PASS (53 tests), `make reproduce` PASS.
