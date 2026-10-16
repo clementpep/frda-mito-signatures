@@ -1,0 +1,12 @@
+id: frda-mito-signatures
+title: FRDA mitochondrial signatures
+subtitle: Mitochondrial transcriptomic signatures in Friedreich's ataxia, from public data only
+questions:
+  - Which mitochondria-related transcriptomic signatures reproduce across independent FRDA datasets?
+  - Do the interventions of GSE145115 (A-196, SUV4-20 inhibition) move these signatures in the expected direction?
+target: >-
+  An open preprint with original, preregistered and independently replicated findings, a full
+  reproducibility package and an evidence dossier for FRDA researchers.
+disclaimer: >-
+  Exploratory research on public data. Expression changes are not causal evidence; cell-model
+  responses are not clinical benefit; nothing here is a medical recommendation.

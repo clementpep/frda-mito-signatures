@@ -1,0 +1,19 @@
+# Claims ledger — see src/frda/claims.py for the schema and status vocabulary.
+# Every scientific statement of this project (hub, evidence dossier, manuscript)
+# is rendered from here. The `claims` gate re-evaluates every check on every run.
+#
+# Example (shape only, not a result):
+#   - id: C-001
+#     statement: FXN expression is lower in FRDA than in control fibroblasts (GSE104288).
+#     status: reproduced
+#     evidence_level: single_dataset
+#     datasets: [GSE104288]
+#     task: T-004
+#     artifact: results/P-004-reproduce-gse104288/fxn.json
+#     checks:
+#       - {pointer: /fxn/log2_fc, op: lt, value: 0}
+#       - {pointer: /fxn/padj, op: lt, value: 0.05}
+#     limitations: [Normalised counts only; raw counts not provided on GEO.]
+#     source: {pmid: '29125828', location: 'Fig. X', published_value: '...verbatim...'}
+#     verified_by: autonomy/verifications/T-004-abc1234.md
+claims: []

@@ -1,0 +1,67 @@
+id: GSE104288
+title: >-
+  Comprehensive Analysis of Gene Expression Patterns in Friedreich's Ataxia Fibroblasts by RNA
+  Sequencing Reveals Altered Levels of Protein Synthesis Factors and Solute Carriers
+source: NCBI GEO
+accession: GSE104288
+landing_url: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE104288
+organism: Homo sapiens
+tissue_or_model: primary dermal fibroblasts
+assay: RNA-seq (Illumina HiSeq 2000, GPL11154)
+platform: GPL11154
+publications:
+  - pmid: '29125828'
+    citation: >-
+      Napierala JS et al. Comprehensive analysis of gene expression patterns in Friedreich's ataxia
+      fibroblasts by RNA sequencing reveals altered levels of protein synthesis factors and solute
+      carriers. Dis Model Mech 2017.
+  - pmid: '31665133'
+    citation: Re-uses GSE104288 (listed on the GEO series page; role to be characterised, T-001).
+  - pmid: '32291635'
+    citation: Re-uses GSE104288 (listed on the GEO series page; role to be characterised, T-001).
+  - pmid: '34718736'
+    citation: Re-uses GSE104288 (listed on the GEO series page; role to be characterised, T-001).
+access:
+  level: public
+  terms: Public GEO series, no access control (see allowlist ncbi-geo).
+  reusable_with_llm_assistant: true
+  rationale: >-
+    Gene-level expression matrix aggregated per cell line; no direct identifiers. Sample
+    characteristics (age, sex) are public GEO metadata.
+unit_of_observation: one fibroblast line derived from one individual
+independence_note: >-
+  One column = one individual (GEO overall design: 18 FRDA patients, 17 unaffected controls).
+  Individuals are the independent units. Age/sex/passage are potential confounders to extract
+  from GSM characteristics in T-001.
+known_confounders:
+  - age at biopsy
+  - sex
+  - cell passage number / culture batch
+  - sequencing batch
+groups:
+  - name: FRDA
+    description: Fibroblasts from individuals with Friedreich's ataxia (columns prefixed F).
+    unit: donor
+    independent_units: 18
+    samples: [F130, F156, F188, F203, F281, F3665, F4078, F4192, F4230, F4259, F4497, F4509,
+              F4627, F4654, F4675, F66, F68, F88]
+  - name: control
+    description: Fibroblasts from unaffected individuals (columns prefixed C).
+    unit: donor
+    independent_units: 17
+    samples: [C1650, C2036, C2153, C2169, C21808, C2671, C288, C3348, C3652, C3956, C5879, C7492,
+              C7522, C7525, C8399, C_UF, C_UM]
+files:
+  - name: GSE104288_DESeq_counts.txt.gz
+    url: https://ftp.ncbi.nlm.nih.gov/geo/series/GSE104nnn/GSE104288/suppl/GSE104288_DESeq_counts.txt.gz
+    sha256: 8d497ec78ae6a62a1ad2077b49901d14860da1ca403943c968fc68a39f750d8f
+    size_bytes: 4346455
+    content: Gene x sample expression matrix, 16,531 genes x 35 samples, tab-separated.
+    gene_id_column: gene
+    gene_id_type: symbol
+    values: >-
+      DESeq size-factor-normalised counts (non-integer). Raw integer counts are NOT provided,
+      so count-based models (DESeq2/edgeR) cannot be refitted as published; document this gap.
+notes:
+  - Column-to-group mapping inferred from the F/C prefixes and checked against the overall design
+    (18 + 17). T-001 must confirm it against GSM sample characteristics.

@@ -1,0 +1,16 @@
+# Raw and intermediate data are never committed: they are re-fetched from the
+# manifests (data-manifests/*.yaml), which carry URLs and SHA-256 checksums.
+data/
+!data/README.md
+
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+*.egg-info/
+dist/
+build/
+.DS_Store
+.env

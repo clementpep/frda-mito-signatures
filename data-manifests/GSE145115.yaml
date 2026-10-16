@@ -1,0 +1,84 @@
+id: GSE145115
+title: >-
+  Inhibition of the SUV4-20 H1 histone methyltransferase increases frataxin expression in
+  Friedreich's ataxia patient cells
+source: NCBI GEO
+accession: GSE145115
+landing_url: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE145115
+organism: Homo sapiens
+tissue_or_model: fibroblast cell lines GM04078 (FRDA) and GM03440 (control)
+assay: RNA-seq (GPL20301)
+platform: GPL20301
+publications:
+  - pmid: '33028632'
+    citation: >-
+      Vilema-Enríquez G et al. Inhibition of the SUV4-20 H1 histone methyltransferase increases
+      frataxin expression in Friedreich's ataxia patient cells. J Biol Chem 2020.
+access:
+  level: public
+  terms: Public GEO series, no access control (see allowlist ncbi-geo).
+  reusable_with_llm_assistant: true
+  rationale: Commercial cell lines (Coriell), normalised gene-level matrix, no identifiers.
+unit_of_observation: one culture well of one cell line in one condition
+independence_note: >-
+  Only TWO biological units exist: one FRDA line and one control line. The 3 samples per condition
+  are culture replicates (GEO overall design), not independent individuals. Any FRDA-vs-control
+  contrast here has n = 1 per group and is exploratory by construction; treatment contrasts within
+  GM04078 are valid within-line comparisons only.
+known_confounders:
+  - single donor per genotype (genotype fully confounded with donor background)
+  - DMSO vehicle effect
+  - culture batch
+groups:
+  - name: FRDA_untreated
+    description: GM04078 untreated.
+    unit: cell_line
+    independent_units: 1
+    samples: [GM78unt1, GM78unt2, GM78unt3]
+  - name: FRDA_DMSO
+    description: GM04078 vehicle (DMSO).
+    unit: cell_line
+    independent_units: 1
+    samples: [GM78dmso1, GM78dmso2, GM78dmso3]
+  - name: FRDA_A196_low
+    description: GM04078 + A-196, lowest dose (column tag "1A"; dose units to confirm in paper).
+    unit: cell_line
+    independent_units: 1
+    samples: [GM781A1, GM781A2, GM781A3]
+  - name: FRDA_A196_mid
+    description: GM04078 + A-196, middle dose (column tag "5A").
+    unit: cell_line
+    independent_units: 1
+    samples: [GM785A1, GM785A2, GM785A3]
+  - name: FRDA_A196_high
+    description: GM04078 + A-196, highest dose (column tag "10A").
+    unit: cell_line
+    independent_units: 1
+    samples: [GM7810A1, GM7810A2, GM7810A3]
+  - name: FRDA_SGC2043
+    description: GM04078 + SGC2043, inactive structural analogue (column tag "10S").
+    unit: cell_line
+    independent_units: 1
+    samples: [GM7810S1, GM7810S2, GM7810S3]
+  - name: control_untreated
+    description: GM03440 untreated.
+    unit: cell_line
+    independent_units: 1
+    samples: [GM40unt1, GM40unt2, GM40unt3]
+  - name: control_DMSO
+    description: GM03440 vehicle (DMSO).
+    unit: cell_line
+    independent_units: 1
+    samples: [GM40dmso1, GM40dmso2, GM40dmso3]
+files:
+  - name: GSE145115_counts_all_samples_normalised.txt.gz
+    url: https://ftp.ncbi.nlm.nih.gov/geo/series/GSE145nnn/GSE145115/suppl/GSE145115_counts_all_samples_normalised.txt.gz
+    sha256: 9b19865fddfa8f282fd8aac82b12853ee917788a1e2bc8796bcec3d248c59f83
+    size_bytes: 3118820
+    content: Gene x sample expression matrix, 14,177 genes x 24 samples, tab-separated.
+    gene_id_column: rowname
+    gene_id_type: ensembl_gene_id
+    values: Normalised counts (non-integer); normalisation method to confirm in the paper (T-001).
+notes:
+  - Dose tags 1/5/10 come from column names; GEO says "3 different concentrations". Units and the
+    mapping to published concentrations must be confirmed from PMID 33028632 before any claim.

@@ -1,0 +1,301 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-16T16:58:17+00:00",
+  "commit": "1a3660dd1142c4db9b5ebe9b447a516a8713d76e",
+  "project": {
+    "id": "frda-mito-signatures",
+    "title": "FRDA mitochondrial signatures",
+    "subtitle": "Mitochondrial transcriptomic signatures in Friedreich's ataxia, from public data only",
+    "questions": [
+      "Which mitochondria-related transcriptomic signatures reproduce across independent FRDA datasets?",
+      "Do the interventions of GSE145115 (A-196, SUV4-20 inhibition) move these signatures in the expected direction?"
+    ],
+    "target": "An open preprint with original, preregistered and independently replicated findings, a full reproducibility package and an evidence dossier for FRDA researchers.",
+    "disclaimer": "Exploratory research on public data. Expression changes are not causal evidence; cell-model responses are not clinical benefit; nothing here is a medical recommendation.",
+    "repo_url": "https://github.com/clementpep/frda-mito-signatures"
+  },
+  "progress": {
+    "total": 20,
+    "done": 0,
+    "in_review": 0,
+    "ready": 19,
+    "changes_requested": 0,
+    "blocked": 0,
+    "needs_human": 1,
+    "proposed": 0
+  },
+  "milestones": [
+    {
+      "id": "M1",
+      "title": "Credible foundation",
+      "goal": "Characterise the two seed datasets and reproduce published results before anything new.",
+      "status": "todo",
+      "tasks_done": 0,
+      "tasks_total": 5
+    },
+    {
+      "id": "M2",
+      "title": "Discovery",
+      "goal": "Map what is already known, widen the public data base, derive a candidate mitochondrial signature.",
+      "status": "todo",
+      "tasks_done": 0,
+      "tasks_total": 5
+    },
+    {
+      "id": "M3",
+      "title": "Independent replication",
+      "goal": "Test the frozen signature, as preregistered, in datasets not used to derive it.",
+      "status": "todo",
+      "tasks_done": 0,
+      "tasks_total": 2
+    },
+    {
+      "id": "M4",
+      "title": "Intervention response",
+      "goal": "Test whether interventions move the signature in the preregistered direction.",
+      "status": "todo",
+      "tasks_done": 0,
+      "tasks_total": 2
+    },
+    {
+      "id": "M5",
+      "title": "Hypothesis generation",
+      "goal": "Rank public perturbation signatures that oppose the replicated FRDA signature, as preclinical hypotheses.",
+      "status": "todo",
+      "tasks_done": 0,
+      "tasks_total": 2
+    },
+    {
+      "id": "M6",
+      "title": "Preprint",
+      "goal": "Submit an open preprint with a full reproducibility package.",
+      "status": "todo",
+      "tasks_done": 0,
+      "tasks_total": 4
+    }
+  ],
+  "tasks": [
+    {
+      "id": "T-001",
+      "title": "Dataset cards and sample metadata for GSE104288 and GSE145115",
+      "milestone": "M1",
+      "status": "ready",
+      "kind": "data"
+    },
+    {
+      "id": "T-002",
+      "title": "Quality control of both matrices",
+      "milestone": "M1",
+      "status": "ready",
+      "kind": "qc"
+    },
+    {
+      "id": "T-003",
+      "title": "Extract reproduction targets from the two seed publications",
+      "milestone": "M1",
+      "status": "ready",
+      "kind": "reproduction"
+    },
+    {
+      "id": "T-004",
+      "title": "Reproduce the GSE104288 headline results",
+      "milestone": "M1",
+      "status": "ready",
+      "kind": "reproduction"
+    },
+    {
+      "id": "T-005",
+      "title": "Reproduce the A-196 effect on FXN in GSE145115",
+      "milestone": "M1",
+      "status": "ready",
+      "kind": "reproduction"
+    },
+    {
+      "id": "T-006",
+      "title": "Literature landscape and novelty map",
+      "milestone": "M2",
+      "status": "ready",
+      "kind": "evidence"
+    },
+    {
+      "id": "T-007",
+      "title": "Mitochondrial gene-set resource",
+      "milestone": "M2",
+      "status": "ready",
+      "kind": "data"
+    },
+    {
+      "id": "T-008",
+      "title": "Census of public FRDA transcriptomic datasets",
+      "milestone": "M2",
+      "status": "ready",
+      "kind": "data"
+    },
+    {
+      "id": "T-009",
+      "title": "Ingest the two best replication datasets",
+      "milestone": "M2",
+      "status": "ready",
+      "kind": "data"
+    },
+    {
+      "id": "T-010",
+      "title": "Candidate mitochondrial signature in the discovery set (GSE104288)",
+      "milestone": "M2",
+      "status": "ready",
+      "kind": "analysis"
+    },
+    {
+      "id": "T-011",
+      "title": "Preregister the replication (PR-001)",
+      "milestone": "M3",
+      "status": "ready",
+      "kind": "analysis"
+    },
+    {
+      "id": "T-012",
+      "title": "Confirmatory replication and meta-analysis",
+      "milestone": "M3",
+      "status": "ready",
+      "kind": "analysis"
+    },
+    {
+      "id": "T-013",
+      "title": "Preregister the intervention hypothesis (PR-002)",
+      "milestone": "M4",
+      "status": "ready",
+      "kind": "analysis"
+    },
+    {
+      "id": "T-014",
+      "title": "Intervention response analysis",
+      "milestone": "M4",
+      "status": "ready",
+      "kind": "analysis"
+    },
+    {
+      "id": "T-015",
+      "title": "Feasibility of a connectivity analysis on public perturbation data",
+      "milestone": "M5",
+      "status": "ready",
+      "kind": "data"
+    },
+    {
+      "id": "T-016",
+      "title": "Connectivity analysis — preclinical hypotheses",
+      "milestone": "M5",
+      "status": "ready",
+      "kind": "analysis"
+    },
+    {
+      "id": "T-017",
+      "title": "Manuscript skeleton and figure pipelines",
+      "milestone": "M6",
+      "status": "ready",
+      "kind": "paper"
+    },
+    {
+      "id": "T-018",
+      "title": "Internal peer review round",
+      "milestone": "M6",
+      "status": "ready",
+      "kind": "paper"
+    },
+    {
+      "id": "T-019",
+      "title": "Human sign-off — authorship, expert co-author, submission",
+      "milestone": "M6",
+      "status": "needs_human",
+      "kind": "human"
+    },
+    {
+      "id": "T-020",
+      "title": "One-page brief for FRDA researchers",
+      "milestone": "M6",
+      "status": "ready",
+      "kind": "evidence"
+    }
+  ],
+  "claims": [],
+  "verifications": [],
+  "datasets": [
+    {
+      "id": "GSE104288",
+      "title": "Comprehensive Analysis of Gene Expression Patterns in Friedreich's Ataxia Fibroblasts by RNA Sequencing Reveals Altered Levels of Protein Synthesis Factors and Solute Carriers",
+      "tissue_or_model": "primary dermal fibroblasts",
+      "assay": "RNA-seq (Illumina HiSeq 2000, GPL11154)",
+      "url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE104288",
+      "groups": [
+        {
+          "name": "FRDA",
+          "independent_units": 18,
+          "unit": "donor",
+          "samples": 18
+        },
+        {
+          "name": "control",
+          "independent_units": 17,
+          "unit": "donor",
+          "samples": 17
+        }
+      ]
+    },
+    {
+      "id": "GSE145115",
+      "title": "Inhibition of the SUV4-20 H1 histone methyltransferase increases frataxin expression in Friedreich's ataxia patient cells",
+      "tissue_or_model": "fibroblast cell lines GM04078 (FRDA) and GM03440 (control)",
+      "assay": "RNA-seq (GPL20301)",
+      "url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE145115",
+      "groups": [
+        {
+          "name": "FRDA_untreated",
+          "independent_units": 1,
+          "unit": "cell_line",
+          "samples": 3
+        },
+        {
+          "name": "FRDA_DMSO",
+          "independent_units": 1,
+          "unit": "cell_line",
+          "samples": 3
+        },
+        {
+          "name": "FRDA_A196_low",
+          "independent_units": 1,
+          "unit": "cell_line",
+          "samples": 3
+        },
+        {
+          "name": "FRDA_A196_mid",
+          "independent_units": 1,
+          "unit": "cell_line",
+          "samples": 3
+        },
+        {
+          "name": "FRDA_A196_high",
+          "independent_units": 1,
+          "unit": "cell_line",
+          "samples": 3
+        },
+        {
+          "name": "FRDA_SGC2043",
+          "independent_units": 1,
+          "unit": "cell_line",
+          "samples": 3
+        },
+        {
+          "name": "control_untreated",
+          "independent_units": 1,
+          "unit": "cell_line",
+          "samples": 3
+        },
+        {
+          "name": "control_DMSO",
+          "independent_units": 1,
+          "unit": "cell_line",
+          "samples": 3
+        }
+      ]
+    }
+  ]
+}
