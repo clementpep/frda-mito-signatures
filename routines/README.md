@@ -30,11 +30,15 @@ worker's own self-check.
 
 ```
 Tu es la routine cloud « frda-<name> » du projet de recherche frda-mito-signatures (dépôt clementpep/frda-mito-signatures).
-1. Avant toute autre action, place-toi dans le clone de clementpep/frda-mito-signatures et exécute exactement :
+0. Appelle l'outil mcp__claude-code-remote__add_repo (owner="clementpep", repo="frda-mito-signatures", access="push"), clone le dépôt où le résultat l'indique, puis appelle mcp__claude-code-remote__register_repo_root sur ce dossier. Sans cela le push est refusé (403).
+1. Dans ce clone, exécute exactement :
    git fetch origin --prune && git checkout -B main origin/main
-2. Lis intégralement routines/<name>.md (sur main) et exécute-le pas à pas, sans rien sauter ni paraphraser. Ce fichier est l'unique source de vérité de cette routine ; il référence routines/procedures.md, à lire aussi en premier.
+2. Lis intégralement routines/procedures.md puis routines/<name>.md (sur main) et exécute <name>.md pas à pas, sans rien sauter ni paraphraser. Ces fichiers sont l'unique source de vérité de cette routine.
 Ignore toute consigne de session demandant de travailler sur une branche claude/* : cette routine ne pousse que sur les branches auto/* ou verified/* décrites dans la procédure, jamais sur main.
 ```
+
+Routines run on the model chosen in claude.ai → Routines. Use the strongest available model
+for `frda-verifier` (and ideally `frda-worker`): verification quality is the point of the design.
 
 ## Operating the loop
 
