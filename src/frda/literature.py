@@ -23,7 +23,7 @@ import time
 import unicodedata
 import urllib.parse
 import urllib.request
-import xml.etree.ElementTree as ET
+from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any
 
@@ -181,33 +181,36 @@ def add_papers(
 
 
 def normalise(text: str) -> str:
-    """Typographic normalisation only. Markup is never stripped here: doing it on the quote side
-    let an invented span written as <...> vanish before matching (T-021 verification)."""
+    """Typographic normalisation (Unicode forms, dashes, quotes, whitespace, case)."""
     text = unicodedata.normalize("NFKC", text)
+    text = text.replace("\u2212", "-")  # minus sign
     text = text.replace("‐", "-").replace("‑", "-").replace("–", "-").replace("—", "-")
     text = text.replace("“", '"').replace("”", '"').replace("’", "'").replace("‘", "'")
     text = re.sub(r"\s+", " ", text)
     return text.strip().lower()
 
 
-# Real markup only (<p>, </italic>, <xref rid="b1">), never prose like "p < 0.05 and q > 0.1".
+# ----------------------------------------------------------------------------------------------
+# Verbatim matching (redesigned after T-021 verification, attempts 1-4).
+#
+# A quote is accepted only if its sequence of word tokens appears contiguously inside ONE text
+# block of the paper (a paragraph, a title, a table cell, the abstract, the title).
+#   - Tokens are whole words or whole numbers ("1.5", "2:50,000"), so a quote cannot match half a
+#     word ("rataxin" in "frataxin") or fuse two numbers ("5" + "0" -> "50").
+#   - Block boundaries are structural (separate token lists), not characters: nothing a quote
+#     contains can match or cross them.
+#   - Light punctuation (, . ; : ( ) [ ] quotes ! ?) is ignored when comparing, so a faithful
+#     quote that leaves out a citation marker still matches; signs and operators (- + < > = % ±)
+#     are significant.
+#   - One parser for everything (stdlib HTMLParser: tolerant, case-insensitive, namespace-blind),
+#     so XML full texts and HTML-ish abstracts are read the same way.
+#   - Numeric bibliography markers (<xref ref-type="bibr">1</xref>, "[2]", "3-5") are removed;
+#     author-year citations and figure/table references are prose and kept. Footnotes and
+#     formulas are removed AND end the block, so text around them cannot be joined.
+# ----------------------------------------------------------------------------------------------
+
 TAG = re.compile(r"</?([A-Za-z][\w:.-]*)(?:\s+[\w:.-]+(?:\s*=\s*(?:\"[^\"]*\"|'[^']*'))?)*\s*/?>")
-# Numeric citation markers are not prose: "cells<xref>1</xref>." must read "cells.", so that the
-# natural quote passes and "cells1." does not. Author-year citations ARE prose ("(Campuzano et al.,
-# 1996)") and are kept. Footnotes and formulas are dropped.
 NUMERIC_MARKER = re.compile(r"[\[\(]?\s*\d+(?:\s*[-\u2013,]\s*\d+)*\s*[\]\)]?")
-DROP_TAGS = {"fn", "inline-formula", "disp-formula"}
-DROP_RE = re.compile(
-    r"<(" + "|".join(DROP_TAGS) + r"|xref)\b[^>]*?(?:/>|>(.*?)</\1\s*>)", flags=re.S
-)
-
-
-def _is_numeric_marker(text: str) -> bool:
-    return bool(NUMERIC_MARKER.fullmatch(text.strip()))
-
-
-# Separates paragraphs, titles, cells: a quote cannot straddle two blocks.
-BLOCK_SEP = " \u00b6 "
 BLOCK_TAGS = {
     "p",
     "sec",
@@ -226,71 +229,144 @@ BLOCK_TAGS = {
     "abstract",
     "body",
     "def-item",
+    "def",
+    "term",
+    "kwd",
     "boxed-text",
     "br",
+    "break",
     "article-title",
     "ref",
+    "ref-list",
+    "fn-group",
     "h1",
     "h2",
     "h3",
     "h4",
+    "h5",
+    "h6",
     "li",
+    "ul",
+    "ol",
+    "div",
+    "section",
+    "blockquote",
 }
+CUT_TAGS = {"fn", "inline-formula", "disp-formula", "mml:math", "math", "tex-math"}
+IGNORED_PUNCT = set(",.;:()[]{}\"'!?")
+TOKEN = re.compile(r"\d+(?:[.,:/]\d+)*|\w+|[^\w\s]")
 
 
-def _local(tag: str) -> str:
-    return tag.rsplit("}", 1)[-1].rsplit(":", 1)[-1].lower()
+def _is_numeric_marker(text: str) -> bool:
+    return bool(NUMERIC_MARKER.fullmatch(text.strip()))
 
 
-def markup_to_text(markup: str) -> str:
-    """Source side only. Both paths give the same text: inline markup (italic, sup, sub) is
-    glued ("H<sub>2</sub>O" -> "H2O"), block markup becomes a block separator, citation markers
-    are dropped, entities become literal characters (a literal '<' in the paper stays '<')."""
-    try:
-        root = ET.fromstring(f"<root>{markup}</root>")
-    except ET.ParseError:
+class _Blocks(HTMLParser):
+    """Collect text blocks from XML/HTML markup."""
 
-        def drop(m: re.Match[str]) -> str:
-            inner = TAG.sub("", m.group(2) or "")
-            if m.group(1) == "xref" and not _is_numeric_marker(html.unescape(inner)):
-                return inner
-            return ""
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.blocks: list[str] = []
+        self.current: list[str] = []
+        self.cut_depth = 0
+        self.xref: list[tuple[str | None, list[str]]] = []  # (ref-type, collected text)
 
-        text = DROP_RE.sub(drop, markup)
-        text = TAG.sub(lambda m: BLOCK_SEP if _local(m.group(1)) in BLOCK_TAGS else "", text)
-        return html.unescape(text)
-    parts: list[str] = []
+    def _end_block(self) -> None:
+        text = "".join(self.current).strip()
+        if text:
+            self.blocks.append(text)
+        self.current = []
 
-    def walk(el: ET.Element) -> None:
-        if el.text:
-            parts.append(el.text)
-        for child in el:
-            name = _local(child.tag)
-            numeric_xref = name == "xref" and _is_numeric_marker("".join(child.itertext()))
-            if name not in DROP_TAGS and not numeric_xref:
-                walk(child)
-            if name in BLOCK_TAGS:
-                parts.append(BLOCK_SEP)
-            if child.tail:
-                parts.append(child.tail)
+    def _emit(self, data: str) -> None:
+        if self.xref:
+            self.xref[-1][1].append(data)
+        else:
+            self.current.append(data)
 
-    walk(root)
-    return "".join(parts)
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        if tag in CUT_TAGS:
+            if self.cut_depth == 0:
+                self._end_block()
+            self.cut_depth += 1
+        elif self.cut_depth:
+            return
+        elif tag in BLOCK_TAGS:
+            self._end_block()
+        elif tag == "xref":
+            ref_type = dict(attrs).get("ref-type")
+            self.xref.append((ref_type.lower() if ref_type else None, []))
+
+    def handle_startendtag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        if not self.cut_depth and tag in BLOCK_TAGS:
+            self._end_block()
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag in CUT_TAGS and self.cut_depth:
+            self.cut_depth -= 1
+            return
+        if self.cut_depth:
+            return
+        if tag == "xref" and self.xref:
+            ref_type, parts = self.xref.pop()
+            text = "".join(parts)
+            bibliographic = ref_type in (None, "bibr")
+            # Drop numeric bibliography markers, with a space so neighbours stay separate words.
+            self._emit(" " if bibliographic and _is_numeric_marker(text) else text)
+        elif tag in BLOCK_TAGS:
+            self._end_block()
+
+    def handle_data(self, data: str) -> None:
+        if not self.cut_depth:
+            self._emit(data)
+
+    def close(self) -> None:
+        super().close()
+        while self.xref:  # unclosed xref: keep its text
+            _, parts = self.xref.pop()
+            self._emit("".join(parts))
+        self._end_block()
 
 
-def full_text(pmcid: str) -> str:
-    """Plain text of the article body only: front matter and reference list would let a quote
-    taken from a cited paper's title, or from another article's abstract, pass as this paper's."""
+def significant_tokens(text: str) -> list[str]:
+    return [t for t in TOKEN.findall(normalise(text)) if t not in IGNORED_PUNCT]
+
+
+def text_blocks(markup: str) -> list[list[str]]:
+    """Markup -> list of blocks, each a list of significant tokens."""
+    parser = _Blocks()
+    parser.feed(markup)
+    parser.close()
+    return [toks for b in parser.blocks if (toks := significant_tokens(b))]
+
+
+def quote_found(quote: str, blocks: list[list[str]]) -> bool:
+    needle = significant_tokens(quote)
+    if not needle:
+        return False
+    n = len(needle)
+    first = needle[0]
+    for toks in blocks:
+        for i in range(len(toks) - n + 1):
+            if toks[i] == first and toks[i : i + n] == needle:
+                return True
+    return False
+
+
+def full_text_markup(pmcid: str) -> str:
+    """The article body only: front matter and reference list would let a quote taken from a
+    cited paper's title, or from another article's abstract, pass as this paper's text."""
     xml = _get(f"{BASE}/{pmcid}/fullTextXML", as_json=False)
     m = re.search(r"<body[ >].*?</body>", xml, flags=re.S)
-    return markup_to_text(m.group(0)) if m else ""
+    return m.group(0) if m else ""
 
 
 MIN_QUOTE_CHARS = 20
+MIN_QUOTE_WORDS = 4
 
 
 def quote_is_substantive(quote: str) -> bool:
-    return sum(ch.isalnum() for ch in normalise(quote)) >= MIN_QUOTE_CHARS
+    words = [t for t in significant_tokens(quote) if any(ch.isalpha() for ch in t)]
+    return sum(ch.isalnum() for ch in quote) >= MIN_QUOTE_CHARS and len(words) >= MIN_QUOTE_WORDS
 
 
 def verify(paper_ids: list[str] | None = None, root: Path | None = None) -> list[str]:
@@ -336,29 +412,26 @@ def verify(paper_ids: list[str] | None = None, root: Path | None = None) -> list
                 problems.append(f"{path.name}: full_text card without the paper's own pmcid")
                 continue
             try:
-                haystack = normalise(full_text(p.pmcid))
+                blocks = text_blocks(full_text_markup(p.pmcid))
             except RuntimeError as exc:
                 problems.append(f"{path.name}: full text unavailable ({exc}); re-run lit-verify")
                 continue
-            if not haystack:
+            if not blocks:
                 problems.append(f"{path.name}: no article body in the full text of {p.pmcid}")
                 continue
         else:
             # Abstract and title are separate blocks: a quote cannot straddle them.
-            haystack = normalise(
-                markup_to_text(rec.get("abstractText", ""))
-                + BLOCK_SEP
-                + markup_to_text(rec.get("title", ""))
-            )
+            blocks = text_blocks(rec.get("abstractText", "")) + text_blocks(rec.get("title", ""))
         for i, f in enumerate(card.findings, 1):
-            needle = normalise(f.quote).strip(' ".')
-            if not quote_is_substantive(needle):
-                problems.append(f"{path.name}: finding {i} quote is not substantive text")
-            elif TAG.search(needle):
+            if TAG.search(f.quote):
                 problems.append(
                     f"{path.name}: finding {i} quote contains markup; copy the text only"
                 )
-            elif needle not in haystack:
+            elif any(ord(ch) < 32 and ch not in "\t\n\r" for ch in f.quote):
+                problems.append(f"{path.name}: finding {i} quote contains control characters")
+            elif not quote_is_substantive(f.quote):
+                problems.append(f"{path.name}: finding {i} quote is not substantive text")
+            elif not quote_found(f.quote, blocks):
                 problems.append(
                     f"{path.name}: finding {i} quote not found verbatim in the "
                     f"{card.source_text.replace('_', ' ')} ({f.location})"

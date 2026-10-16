@@ -263,8 +263,10 @@ def test_full_text_search_is_limited_to_the_article_body(monkeypatch):
         "<back><ref>Another quote from a cited paper title in references.</ref></back></article>"
     )
     monkeypatch.setattr(literature, "_get", lambda url, as_json=True: xml)
-    body = literature.full_text("PMC1")
-    assert "Nothing relevant" in body and "Frataxin" not in body and "cited paper" not in body
+    blocks = literature.text_blocks(literature.full_text_markup("PMC1"))
+    assert literature.quote_found("Nothing relevant here at all", blocks)
+    assert not literature.quote_found("Frataxin transcript levels were markedly reduced", blocks)
+    assert not literature.quote_found("Another quote from a cited paper", blocks)
 
 
 def test_zero_budget_track_never_beats_a_funded_one():
@@ -346,11 +348,13 @@ def test_bracketed_invented_span_fails(tmp_path, monkeypatch):
 
 
 def test_literal_angle_brackets_in_source_are_kept():
-    xml = "<body><p>Expression differed (p &lt; 0.05 and q &gt; 0.1) in <italic>FXN</italic>.</p></body>"
-    text = literature.normalise(literature.markup_to_text(xml))
-    assert "(p < 0.05 and q > 0.1) in fxn." in text
-    # malformed XML fallback still keeps prose comparisons
-    assert "p < 0.05 and q > 0.1" in literature.markup_to_text("<p>p < 0.05 and q > 0.1</p><br>")
+    xml = (
+        "<body><p>Expression differed (p &lt; 0.05 and q &gt; 0.1) in <italic>FXN</italic>."
+        "</p></body>"
+    )
+    blocks = literature.text_blocks(xml)
+    assert literature.quote_found("Expression differed (p < 0.05 and q > 0.1) in FXN.", blocks)
+    assert not literature.quote_found("Expression differed (p > 0.05 and q > 0.1) in FXN.", blocks)
 
 
 def test_search_logs_are_never_overwritten(tmp_path):
@@ -393,18 +397,21 @@ XREF_BODY = (
 XLINK_BODY = XREF_BODY.replace('rid="b1"', 'rid="b1" xlink:href="#b1"')  # forces the fallback
 
 
-def test_citation_markers_are_dropped_on_both_paths():
-    for body in (XREF_BODY, XLINK_BODY):
-        text = literature.normalise(literature.markup_to_text(body))
-        assert "frataxin is reduced in fibroblast cells. next sentence here." in text
-        assert "cells1." not in text
-        assert "h2o2 exposure" in text  # sub/sup glued, identically on both paths
+def test_citation_markers_are_dropped_and_namespaces_do_not_matter():
+    for body in (XREF_BODY, XLINK_BODY, XREF_BODY.upper().replace("FRATAXIN", "Frataxin")):
+        blocks = literature.text_blocks(body)
+        assert literature.quote_found(
+            "Frataxin is reduced in fibroblast cells. Next sentence here.", blocks
+        )
+        assert not literature.quote_found("Frataxin is reduced in fibroblast cells1. Next", blocks)
 
 
 def test_quotes_cannot_straddle_blocks():
-    text = literature.normalise(literature.markup_to_text(XREF_BODY))
-    assert "next sentence here. second paragraph" not in text
-    assert "results frataxin" not in text
+    blocks = literature.text_blocks(XREF_BODY)
+    assert not literature.quote_found("Next sentence here. Second paragraph starts", blocks)
+    assert not literature.quote_found("Results Frataxin is reduced in fibroblast", blocks)
+    # the old separator character is just a character: it cannot help a quote cross a block
+    assert not literature.quote_found("fibroblast cells. Next sentence here. \u00b6 Second", blocks)
 
 
 def test_quote_with_citation_number_fails_and_natural_quote_passes(tmp_path, monkeypatch):
@@ -471,8 +478,72 @@ def test_author_year_citations_are_kept_as_prose():
         "et al., 1996</xref>), and caused by deficient frataxin.</p></body>"
     )
     for b in (body, body.replace('rid="c6"', 'rid="c6" xlink:href="#c6"')):
-        text = literature.normalise(literature.markup_to_text(b))
-        assert "(campuzano et al., 1996), and caused by deficient frataxin." in text
+        blocks = literature.text_blocks(b)
+        assert literature.quote_found(
+            "frequency of 1-2:50,000 (Campuzano et al., 1996), and caused by deficient frataxin.",
+            blocks,
+        )
     for marker in ("1", "2,3", "4-6", "[7]", "(8\u201310)"):
         assert literature._is_numeric_marker(marker)
     assert not literature._is_numeric_marker("Campuzano et al., 1996")
+
+
+# --- attempt-4 findings: token matching, cut boundaries, word boundaries -----------------------
+
+
+def test_dropped_footnotes_and_formulas_cannot_fuse_text():
+    blocks = literature.text_blocks(
+        "<body><p>Levels were 5<fn><p>x</p></fn>0 percent higher in patient cells overall.</p>"
+        "<p>Levels of <inline-formula>FXN</inline-formula> were low in all patient lines.</p></body>"
+    )
+    assert not literature.quote_found("Levels were 50 percent higher in patient cells", blocks)
+    assert not literature.quote_found("Levels of were low in all patient lines", blocks)
+    assert literature.quote_found("percent higher in patient cells overall", blocks)
+
+
+def test_whole_words_and_whole_numbers_only():
+    blocks = literature.text_blocks(
+        "<p>Frataxin is reduced in fibroblast cells, but this was not "
+        "significantly different at 1.5 fold in 12 donors.</p>"
+    )
+    assert not literature.quote_found("rataxin is reduced in fibroblast", blocks)
+    assert not literature.quote_found("this was not significant", blocks)
+    assert not literature.quote_found("different at 1 fold in 12 donors", blocks)
+    assert not literature.quote_found("different at 1.5 fold in 2 donors", blocks)
+    assert literature.quote_found("this was not significantly different at 1.5 fold", blocks)
+
+
+def test_figure_references_are_prose_numeric_bib_markers_are_not():
+    blocks = literature.text_blocks(
+        '<p>As shown in Fig. <xref ref-type="fig" rid="f2">2</xref>, frataxin decreased '
+        '<sup><xref ref-type="bibr" rid="b3">3</xref></sup> in all lines.</p>'
+    )
+    assert literature.quote_found("As shown in Fig. 2, frataxin decreased in all lines.", blocks)
+    assert not literature.quote_found("frataxin decreased 3 in all lines", blocks)
+
+
+def test_signs_are_significant_light_punctuation_is_not():
+    blocks = literature.text_blocks("<p>The log2 fold change was -1.2 (95% CI -1.6 to -0.8).</p>")
+    assert literature.quote_found("The log2 fold change was -1.2 (95% CI -1.6 to -0.8)", blocks)
+    assert literature.quote_found("The log2 fold change was \u22121.2", blocks)  # minus sign
+    assert not literature.quote_found("The log2 fold change was 1.2", blocks)
+
+
+def test_short_or_control_quotes_rejected(tmp_path, monkeypatch):
+    assert not literature.quote_is_substantive("FXN 1.5 2.0 3.0 4.0 5.0 6.0 7.0")
+    card = CARD.replace(
+        "Frataxin transcript levels were markedly reduced in patient cells.",
+        "Frataxin transcript levels were \\0 markedly reduced in patient cells.",
+    )
+    write(
+        tmp_path,
+        corpus=[paper(status="read", screen_reason="RQ1", card="research/cards/MED_111.md")],
+        cards={"MED_111.md": card},
+    )
+    rec = {
+        "title": "A paper",
+        "abstractText": "Frataxin transcript levels were markedly reduced in patient cells.",
+    }
+    monkeypatch.setattr(literature, "fetch_record", lambda pid: rec)
+    monkeypatch.setattr(literature.time, "sleep", lambda s: None)
+    assert any("control characters" in p for p in literature.verify(root=tmp_path))

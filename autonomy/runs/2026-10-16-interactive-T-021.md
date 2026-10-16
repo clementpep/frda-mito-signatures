@@ -126,3 +126,26 @@ Note: this is attempt 4; per verifier STEP 8 it escalates to NEEDS_HUMAN unless 
 
 ## Owner decision
 2026-10-16: the owner authorised a 4th verification attempt (recorded in the task `notes`).
+
+## Responses to verification (attempt 4 → proposed attempt 5: redesign, not a patch)
+
+The verifier was right that attempts 2-4 patched symptoms of substring matching on flattened
+text. The verbatim matcher is redesigned (`frda.literature`, section "Verbatim matching"):
+- one parser (stdlib `HTMLParser`: tolerant, case-insensitive, namespace-blind) for full texts and
+  abstracts — no second path to disagree with;
+- the paper becomes a list of **blocks** (paragraph, title, cell, abstract, title) of **tokens**
+  (whole words, whole numbers like `1.5` or `2:50,000`); a quote must match a contiguous token
+  sequence inside one block. Boundaries are structural, so no character in a quote can match or
+  cross them (finding 1); whole tokens give word boundaries (finding 3);
+- footnotes and formulas are cut **and end the block** (finding 2: "5[fn]0" can no longer read
+  "50", "Levels of [formula] were" cannot be joined); numeric bibliography markers are removed
+  with a space; author-year citations and figure/table references are kept as prose
+  (non-blocking: "Fig. 2" no longer rejected); light punctuation ignored, signs significant;
+- `break`, `kwd`, `term`, `def`, `fn-group`… are blocks; attribute values are case-normalised;
+- quotes must contain ≥ 4 words and ≥ 20 letters/digits, no markup, no control characters.
+
+Tests: every reproduction from the attempt-4 report is a test (¶ in a quote, fused number,
+formula join, partial word, truncated word, altered number, sign), plus upper-case markup and
+xlink attributes. Online: PMC5719256 (author-year) and PMC13571518 (numeric [1]) — natural
+quotes found; partial-word, altered-number, glued-marker and substituted-word variants rejected.
+`make ci` PASS (68 tests), `make reproduce` PASS.
