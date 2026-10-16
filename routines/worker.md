@@ -31,6 +31,9 @@ disagree with a finding, do not ignore it: answer it in the run report section
 
 ## STEP 2b — Start a task
 
+`next_for_worker.why` says why this task was chosen (effort track most behind its budget). Copy it
+into the run report. Track `literature` → follow `routines/playbooks/literature.md`.
+
 ```bash
 git checkout -b "$B" origin/main
 uv run --frozen frda task "$T"
@@ -55,7 +58,9 @@ thresholds, expected direction) **before** running them.
 
 - Pipelines follow `pipelines/README.md`; register them; outputs under `results/<P-id>-<slug>/`.
 - Claims go in `evaluation/claims.yaml` (never `verified_by` — the verifier sets it).
-- Documentation under `docs/` (dataset cards, reproductions, literature).
+- Documentation under `docs/` (dataset cards, reproductions); research memory under `research/`
+  (corpus, cards, synthesis). You may add ideas with `status: seed` only; scoring, status changes,
+  budgets and phases belong to the weekly supervision (`routines/supervisor.md`).
 - Literature and published values: Europe PMC REST API (allowlisted), quoted verbatim with location.
 - Respect P5 and P6. You may not touch `src/frda/gates.py`, `src/frda/claims.py`
   (rules), `tests/`, `.github/`, `routines/`, `.claude/`, `Makefile`, `scripts/` unless the task

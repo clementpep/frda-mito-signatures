@@ -41,6 +41,128 @@ milestones:
       - Human sign-off on authorship, expert co-author and submission.
 
 tasks:
+  # ---------------------------------------------------------------- literature programme (phase A)
+  - id: L-001
+    title: Literature review protocol (questions, queries, eligibility) — frozen before searching
+    milestone: M2
+    status: ready
+    priority: 1
+    kind: literature
+    track: literature
+    goal: >-
+      Finalise research/protocol.md like a systematic-review protocol, so that searching and
+      screening are reproducible and not steered by results.
+    acceptance:
+      - One Europe PMC query per review question (RQ1–RQ4), each tested with `frda lit-search` (hit counts recorded in the protocol) and sized to be screenable (or split).
+      - Explicit inclusion/exclusion criteria (years, article types, languages, models) and relevance scale 0–3 definitions.
+      - Reading priority rule and per-run reading cap stated.
+      - Nothing added to the corpus by this task (searching for real is L-002).
+
+  - id: L-002
+    title: Run the protocol searches and build the corpus
+    milestone: M2
+    status: ready
+    priority: 1
+    kind: literature
+    track: literature
+    depends_on: [L-001]
+    goal: Execute the frozen queries, save the search logs, add every hit to the corpus as to_screen.
+    acceptance:
+      - One research/search-logs/*.json per protocol query, produced by `frda lit-search --save`.
+      - Every retrieved hit added with `frda lit-add` (ids resolved by Europe PMC; duplicates by DOI merged); counts per query reported in research/screening.md.
+      - Seed papers added explicitly (MED:29125828 Napierala 2017, MED:33028632 Vilema-Enríquez 2020, and the Maddock et al. 2026 preprint by its Europe PMC id) with found_by "seed".
+      - The `frda lit-verify` audit passes on the added ids (metadata only, no cards yet).
+
+  - id: L-003
+    title: Title/abstract screening of the corpus
+    milestone: M2
+    status: ready
+    priority: 2
+    kind: literature
+    track: literature
+    depends_on: [L-002]
+    goal: Screen every to_screen paper against the protocol criteria.
+    acceptance:
+      - Every to_screen paper moved to excluded or to_read with a screen_reason citing the criterion, a relevance 0–3 and topics; at most 150 per run (split the task if more remain, criteria unchanged).
+      - research/screening.md PRISMA counts match the corpus exactly.
+      - A random sample of 10 decisions per run is listed in the run report for the verifier to re-screen.
+
+  - id: L-004
+    title: Reading batch 1 — seed and core papers
+    milestone: M2
+    status: ready
+    priority: 2
+    kind: literature
+    track: literature
+    depends_on: [L-003]
+    goal: Read the two seed papers, the Maddock et al. 2026 preprint and the most central reviews.
+    acceptance:
+      - ≤ 6 reading cards (research/cards/), each with ≥ 3 findings quoted verbatim with location, limitations, datasets, relevance_to; `frda lit-verify` passes on them.
+      - Corpus status set to read with the card path; leads proposed as seed ideas where warranted.
+
+  - id: L-005
+    title: Reading batch 2 — FRDA transcriptomic studies
+    milestone: M2
+    status: ready
+    priority: 3
+    kind: literature
+    track: literature
+    depends_on: [L-004]
+    goal: Read every relevance ≥ 2 paper on FRDA transcriptomics (models, tissues, datasets).
+    acceptance:
+      - Cards as in L-004, ≤ 6 per run; split into L-005a/b… if more remain (criteria unchanged).
+      - For each paper, the datasets used (accessions) and n in independent units are recorded.
+
+  - id: L-006
+    title: Reading batch 3 — frataxin, Fe-S clusters and mitochondrial mechanisms
+    milestone: M2
+    status: ready
+    priority: 4
+    kind: literature
+    track: literature
+    depends_on: [L-004]
+    goal: Read the relevance ≥ 2 mechanism papers and reviews needed to interpret mitochondrial signatures.
+    acceptance:
+      - Cards as in L-004, ≤ 6 per run, split if needed.
+
+  - id: L-007
+    title: Reading batch 4 — interventions and their molecular readouts
+    milestone: M2
+    status: ready
+    priority: 4
+    kind: literature
+    track: literature
+    depends_on: [L-004]
+    goal: Read papers on interventions with molecular readouts in FRDA models (e.g. NRF2 activation/omaveloxolone, HDAC inhibitors, SUV4-20 inhibition, frataxin restoration).
+    acceptance:
+      - Cards as in L-004, ≤ 6 per run, split if needed; each card states the direction of change of mitochondrial readouts and in which model.
+
+  - id: L-008
+    title: Reading batch 5 — methods for cross-dataset signatures
+    milestone: M2
+    status: ready
+    priority: 5
+    kind: literature
+    track: literature
+    depends_on: [L-003]
+    goal: Read methods papers on transcriptomic meta-analysis, gene-set testing, small-n designs and connectivity mapping.
+    acceptance:
+      - Cards as in L-004, ≤ 6 per run; a short methods note in research/synthesis/methods.md citing them, with the choice it implies for this project.
+
+  - id: L-009
+    title: State-of-the-art synthesis v1
+    milestone: M2
+    status: ready
+    priority: 3
+    kind: literature
+    track: literature
+    depends_on: [L-005, L-006, L-007, L-008]
+    goal: Write chapter 1 (research/synthesis/state-of-the-art.md) from the reading cards only.
+    acceptance:
+      - Every factual sentence cites [@SRC:ID] of a read paper (research gate passes); no citation from memory.
+      - An evidence table (study, model, independent units, finding, dataset) generated from the cards.
+      - Points of disagreement between papers stated explicitly.
+
   # ---------------------------------------------------------------- M1
   - id: T-001
     title: Dataset cards and sample metadata for GSE104288 and GSE145115
@@ -48,6 +170,7 @@ tasks:
     status: done
     priority: 1
     kind: data
+    track: main
     goal: >-
       Extract GSM-level sample characteristics from GEO (SOFT/MINiML via the allowlisted GEO
       endpoints) for both series, confirm the manifest group mapping, and write one dataset card
@@ -67,6 +190,7 @@ tasks:
     status: ready
     priority: 2
     kind: qc
+    track: main
     depends_on: [T-001]
     goal: Detect outliers, batch structure and label errors before any biological analysis.
     acceptance:
@@ -81,6 +205,7 @@ tasks:
     status: ready
     priority: 1
     kind: reproduction
+    track: main
     goal: >-
       Record, with exact location, the published results we will try to reproduce, from Napierala
       2017 (PMID 29125828) and Vilema-Enríquez 2020 (PMID 33028632), read through Europe PMC.
@@ -96,6 +221,7 @@ tasks:
     status: ready
     priority: 2
     kind: reproduction
+    track: main
     depends_on: [T-001, T-002, T-003]
     goal: Re-derive the FXN reduction and the genome-wide DE result of Napierala 2017 and document the gap.
     acceptance:
@@ -110,6 +236,7 @@ tasks:
     status: ready
     priority: 3
     kind: reproduction
+    track: main
     depends_on: [T-001, T-003]
     goal: Re-derive the published FXN increase under A-196 (dose response, vs DMSO and SGC2043).
     acceptance:
@@ -119,19 +246,21 @@ tasks:
 
   # ---------------------------------------------------------------- M2
   - id: T-006
-    title: Literature landscape and novelty map
+    title: Gap analysis and seed research leads
     milestone: M2
     status: ready
     priority: 2
-    kind: evidence
+    kind: literature
+    track: literature
+    depends_on: [L-009]
     goal: >-
-      Establish what is already known about mitochondrial transcriptomic changes in FRDA (models,
-      tissues, datasets), including the 2026 preprint aggregating 23 FRDA datasets (Maddock et
-      al., PMID 41890103), so that any "new" claim is checked against it.
+      From the state-of-the-art synthesis, identify what public FRDA data could still answer, and
+      turn it into seed research leads, each traced to papers and to public data.
     acceptance:
-      - docs/literature/landscape.md with a reproducible search (Europe PMC queries, date, hit counts), an evidence table (study, model, n independent units, finding, dataset id), and a section "gaps we can test with public data".
-      - docs/literature/search-log-YYYY-MM-DD.json saved (queries + returned ids), reusable as novelty_check for future claims.
-      - 3–5 candidate original questions ranked by novelty, feasibility on public data, and interest for FRDA researchers; each states what result would be publishable either way.
+      - research/synthesis/gaps.md lists ≥ 5 gaps, each with the papers that establish it ([@SRC:ID] of read papers) and why it is still open (contradiction, untested model, unanalysed dataset, missing method).
+      - research/ideas.yaml holds ≥ 5 ideas with status seed, each with question, rationale, sources (corpus ids), data (public accessions or "none known"), and a first publishable_if.
+      - The Maddock et al. 2026 preprint (23 FRDA datasets) is explicitly positioned against every idea that touches cross-dataset signatures.
+      - No idea status beyond seed (scoring and arbitration belong to the weekly supervision).
 
   - id: T-007
     title: Mitochondrial gene-set resource
@@ -139,6 +268,7 @@ tasks:
     status: ready
     priority: 3
     kind: data
+    track: main
     goal: Choose and ingest a versioned mitochondrial gene-set resource with clear terms (e.g. MitoCarta3.0, GO:0005739, HGNC OXPHOS groups).
     acceptance:
       - Terms of use of each candidate quoted with URL; chosen resource added to allowlist.yaml with its terms, plus a manifest-like file data-manifests/genesets/*.yaml with url + sha256.
@@ -151,6 +281,7 @@ tasks:
     status: ready
     priority: 3
     kind: data
+    track: main
     depends_on: [T-006]
     goal: Find every public, non-DUA FRDA transcriptomic dataset usable for independent replication.
     acceptance:
@@ -164,6 +295,7 @@ tasks:
     status: ready
     priority: 4
     kind: data
+    track: main
     depends_on: [T-008]
     goal: Add manifests (with checksums), dataset cards and QC for the two top-ranked independent datasets.
     acceptance:
@@ -176,6 +308,7 @@ tasks:
     status: ready
     priority: 4
     kind: analysis
+    track: main
     depends_on: [T-004, T-007]
     goal: Derive a candidate mitochondrial signature FRDA vs control and freeze it for replication.
     acceptance:
@@ -190,6 +323,7 @@ tasks:
     status: ready
     priority: 4
     kind: analysis
+    track: main
     depends_on: [T-009, T-010]
     goal: Write preregistrations/PR-001-*.md before touching the replication datasets with the signature.
     acceptance:
@@ -202,6 +336,7 @@ tasks:
     status: ready
     priority: 5
     kind: analysis
+    track: main
     depends_on: [T-011]
     goal: Execute PR-001 exactly; report the result whatever it is.
     acceptance:
@@ -216,6 +351,7 @@ tasks:
     status: ready
     priority: 5
     kind: analysis
+    track: main
     depends_on: [T-005, T-010]
     goal: State, before looking, the expected direction of A-196 on the frozen signature and the controls.
     acceptance:
@@ -227,6 +363,7 @@ tasks:
     status: ready
     priority: 6
     kind: analysis
+    track: main
     depends_on: [T-013]
     goal: Execute PR-002 on GSE145115 and on any intervention dataset found in T-008.
     acceptance:
@@ -239,6 +376,7 @@ tasks:
     status: ready
     priority: 6
     kind: data
+    track: main
     depends_on: [T-012]
     goal: Assess public perturbation-signature resources (e.g. LINCS L1000 on GEO) for size, terms, cell types, compute within a cloud session.
     acceptance:
@@ -250,6 +388,7 @@ tasks:
     status: ready
     priority: 7
     kind: analysis
+    track: main
     depends_on: [T-015]
     goal: Rank perturbations that oppose the replicated signature, as hypotheses to examine.
     acceptance:
@@ -262,6 +401,7 @@ tasks:
     status: ready
     priority: 5
     kind: paper
+    track: writing
     depends_on: [T-004]
     goal: Start paper/manuscript.md (IMRaD) where every number is a claim token and every result cites a claim.
     acceptance:
@@ -274,6 +414,7 @@ tasks:
     status: ready
     priority: 7
     kind: paper
+    track: writing
     depends_on: [T-012, T-014, T-017]
     goal: Have the manuscript reviewed as a journal would (statistics, overclaiming, missing controls) and address every point.
     acceptance:
@@ -285,6 +426,7 @@ tasks:
     status: needs_human
     priority: 8
     kind: human
+    track: writing
     depends_on: [T-018]
     goal: An accountable human author, ideally an FRDA researcher (FARA / AFAF network), validates and submits (bioRxiv + Zenodo DOI).
     acceptance:
@@ -296,7 +438,28 @@ tasks:
     status: ready
     priority: 6
     kind: evidence
+    track: writing
     depends_on: [T-004, T-005]
     goal: Draft a one-page, plain-language brief (reproduced / new / not demonstrated) to approach an FRDA researcher early.
     acceptance:
       - docs/outreach/brief.md generated from claims only, with limitations; no outreach is sent by the routine.
+
+  # ---------------------------------------------------------------- infra
+  - id: T-021
+    title: Research system — literature corpus, reading cards, ideas, effort arbitration, supervision
+    milestone: M2
+    status: in_review
+    priority: 1
+    kind: infra
+    track: infra
+    goal: >-
+      Give the routines the means to work like a PhD student: a verifiable literature memory, a
+      registry of research leads with a scoring rubric, effort budgets per track and phase, and a
+      weekly supervision that arbitrates (requested by the owner on 2026-10-16).
+    acceptance:
+      - research/ (plan, protocol draft, corpus, cards template, synthesis skeleton, ideas, RD-001) validated by a new `research` gate (offline cross-references) and unit tests.
+      - The `frda lit-search`, `lit-add` and `lit-verify` commands work against Europe PMC; lit-verify rejects a non-existent paper and a quote absent from the text (tested offline with mocks; checked online).
+      - The worker's next task is chosen by track budget (pick_next) and the reason is exposed by `frda autonomy-status`; FIX tasks first.
+      - Procedures updated (playbooks/literature.md, supervisor.md, watch/worker/verifier); the backlog gains the literature programme L-001…L-009 and T-006 becomes the gap analysis.
+      - No existing gate or test weakened; hub summary gains an additive `research` block and task `track`.
+

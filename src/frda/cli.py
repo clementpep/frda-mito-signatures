@@ -122,6 +122,58 @@ def cmd_render_paper(args: argparse.Namespace) -> int:
     return 1 if problems else 0
 
 
+def cmd_lit_search(args: argparse.Namespace) -> int:
+    from frda import literature
+    from frda.research import load_corpus
+
+    log = literature.search(args.query, max_hits=args.max)
+    known = {p.id for p in load_corpus().papers}
+    new = [r for r in log["results"] if r["id"] not in known]
+    print(f"{log['hit_count']} hits, {log['retrieved']} retrieved, {len(new)} not in corpus")
+    for r in new[: args.show]:
+        print(f"  {r['id']:<22} {r['year']}  {r['title'][:90]}")
+    if args.save:
+        path = literature.save_search_log(log, args.save, args.task)
+        print(f"search log: {path.relative_to(paths.ROOT)}")
+    return 0
+
+
+def cmd_lit_add(args: argparse.Namespace) -> int:
+    from frda import literature
+
+    found_by = [args.found_by] if args.found_by else []
+    added = literature.add_papers(args.ids, args.task, found_by)
+    print(f"added {len(added)} paper(s) as to_screen: {', '.join(added) or '-'}")
+    return 0
+
+
+def cmd_lit_verify(args: argparse.Namespace) -> int:
+    from frda import literature
+
+    problems = literature.verify(args.ids or None)
+    for p in problems:
+        print(f"- {p}")
+    print("lit verify: " + ("FAIL" if problems else "PASS"))
+    return 1 if problems else 0
+
+
+def cmd_research_status(args: argparse.Namespace) -> int:
+    from frda import research
+
+    s = research.summary()
+    if args.json:
+        print(json.dumps(s, indent=2, ensure_ascii=False))
+        return 0
+    print(f"phase: {s['phase']}  budget: {s['track_budget']}")
+    print(f"corpus: {s['corpus']}")
+    for i in sorted(s["ideas"], key=lambda x: -(x["priority"] or 0)):
+        print(
+            f"  {i['id']} {i['status']:<10} prio={i['priority']} novelty={i['novelty_check']}  {i['title']}"
+        )
+    print(f"last decision: {s['last_decision']}")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="frda")
     sub = parser.add_subparsers(dest="cmd", required=True)
@@ -161,6 +213,30 @@ def main(argv: list[str] | None = None) -> int:
 
     p = sub.add_parser("render-paper", help="render paper/manuscript.md from verified claims")
     p.set_defaults(func=cmd_render_paper)
+
+    p = sub.add_parser("lit-search", help="Europe PMC search (reproducible, optional log)")
+    p.add_argument("query")
+    p.add_argument("--max", type=int, default=200)
+    p.add_argument("--show", type=int, default=40)
+    p.add_argument("--save", metavar="SLUG", help="write research/search-logs/<date>-<SLUG>.json")
+    p.add_argument("--task", default="interactive")
+    p.set_defaults(func=cmd_lit_search)
+
+    p = sub.add_parser(
+        "lit-add", help="add papers (Europe PMC ids, e.g. MED:29125828) to the corpus"
+    )
+    p.add_argument("ids", nargs="+")
+    p.add_argument("--task", required=True)
+    p.add_argument("--found-by", help="search-log file stem that found them")
+    p.set_defaults(func=cmd_lit_add)
+
+    p = sub.add_parser("lit-verify", help="online audit: papers exist, card quotes are verbatim")
+    p.add_argument("ids", nargs="*", help="paper ids (default: whole corpus)")
+    p.set_defaults(func=cmd_lit_verify)
+
+    p = sub.add_parser("research-status", help="phase, budget, corpus counts, ideas by priority")
+    p.add_argument("--json", action="store_true")
+    p.set_defaults(func=cmd_research_status)
 
     args = parser.parse_args(argv)
     return args.func(args)

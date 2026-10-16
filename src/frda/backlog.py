@@ -21,7 +21,21 @@ TaskStatus = Literal[
     "blocked",
     "needs_human",
 ]
-TaskKind = Literal["data", "qc", "reproduction", "analysis", "evidence", "paper", "infra", "human"]
+TaskKind = Literal[
+    "data",
+    "qc",
+    "reproduction",
+    "analysis",
+    "evidence",
+    "literature",
+    "supervision",
+    "paper",
+    "infra",
+    "human",
+]
+# Effort tracks arbitrated by research/plan.yaml (track_budget). A thesis is not one queue:
+# reading, the main line of analysis, exploration of leads and writing compete for time.
+Track = Literal["literature", "main", "exploration", "writing", "infra"]
 
 
 class Strict(BaseModel):
@@ -36,12 +50,14 @@ class Milestone(Strict):
 
 
 class Task(Strict):
-    id: str = Field(pattern=r"^(T|W|FIX)-[0-9A-Za-z-]+$")
+    id: str = Field(pattern=r"^(T|L|W|R|FIX)-[0-9A-Za-z-]+$")
     title: str
     milestone: str
     status: TaskStatus
     priority: int = Field(ge=1, le=9, description="1 = most urgent")
     kind: TaskKind
+    track: Track = "main"
+    idea: str | None = Field(default=None, description="I-xxx this task serves, if any")
     depends_on: list[str] = Field(default_factory=list)
     goal: str
     acceptance: list[str] = Field(min_length=1)
@@ -71,6 +87,70 @@ class Backlog(Strict):
         ]
         candidates.sort(key=lambda t: (t.priority, t.id))
         return candidates[0] if candidates else None
+
+
+def pick_next(
+    backlog: Backlog,
+    *,
+    exclude: set[str] | None = None,
+    budget: dict[str, float] | None = None,
+    recent_tracks: list[str] | None = None,
+) -> tuple[Task | None, str]:
+    """Choose the next task. Returns (task, reason).
+
+    Among ready tasks whose dependencies are done, take the track furthest below
+    its budget share over the recent window of finished tasks, then the most
+    urgent task of that track. Tracks with nothing ready are skipped, so effort
+    flows to what can actually be done. Without a budget: plain priority order.
+    """
+    exclude = exclude or set()
+    done = {t.id for t in backlog.tasks if t.status == "done"}
+    ready = [
+        t
+        for t in backlog.tasks
+        if t.status == "ready" and t.id not in exclude and set(t.depends_on) <= done
+    ]
+    if not ready:
+        return None, "no ready task with satisfied dependencies"
+    ready.sort(key=lambda t: (t.priority, t.id))
+    fixes = [t for t in ready if t.id.startswith("FIX-")]
+    if fixes:
+        return fixes[0], "FIX tasks (data drift, broken main) go before any budget"
+    if not budget:
+        return ready[0], "priority order (no track budget)"
+    recent = recent_tracks or []
+    n = len(recent)
+    share = {tr: (recent.count(tr) / n if n else 0.0) for tr in budget}
+    tracks = {t.track for t in ready}
+    # Tracks absent from the budget still run (e.g. infra fixes) but only after budgeted ones.
+    scored = sorted(
+        tracks,
+        key=lambda tr: (
+            -(budget.get(tr, -1.0) - share.get(tr, 0.0)),
+            min(t.priority for t in ready if t.track == tr),
+        ),
+    )
+    chosen = scored[0]
+    task = next(t for t in ready if t.track == chosen)
+    deficits = ", ".join(
+        f"{tr} {budget[tr]:.0%} target / {share[tr]:.0%} done" for tr in sorted(budget)
+    )
+    return task, f"track {chosen} most behind its budget over last {n} tasks ({deficits})"
+
+
+def recent_tracks(backlog: Backlog, root: Path | None = None, window: int = 10) -> list[str]:
+    """Tracks of the last `window` finished tasks, ordered by verification date."""
+    from frda.reports import load_reports
+
+    root = root or paths.ROOT
+    dates = {
+        m.task: m.date
+        for _, m in load_reports(root / "autonomy" / "verifications")
+        if m.verdict == "PASS"
+    }
+    done = [t for t in backlog.tasks if t.status == "done" and t.id in dates]
+    done.sort(key=lambda t: (dates[t.id], t.id))
+    return [t.track for t in done[-window:]]
 
 
 def load_backlog(path: Path | None = None) -> Backlog:

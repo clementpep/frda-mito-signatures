@@ -83,7 +83,8 @@ bash scripts/push-branch.sh <local-ref> <remote-branch>   # retries on network e
 5. Never weaken a gate, a test, a tolerance or a forbidden-wording rule to make a check pass.
    If a rule is wrong, say so in the report and escalate; do not change it in the same branch.
 6. A cited published value is quoted verbatim with its location (figure / table / section),
-   from the paper itself (Europe PMC), never from memory.
+   from the paper itself (Europe PMC), never from memory. Papers enter the corpus only via
+   `frda lit-add`; card quotes must pass `frda lit-verify`.
 
 ## P6 — Scientific rules (from the brief and the scoping note)
 

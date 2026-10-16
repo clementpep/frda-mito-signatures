@@ -5,14 +5,15 @@ def test_seed_backlog_valid():
     bl = load_backlog()
     assert problems(bl) == []
     first = bl.next_ready()
-    assert first is not None and first.id in {"T-001", "T-003", "T-006"}
+    assert first is not None and first.status == "ready"
 
 
 def test_next_ready_respects_dependencies_and_exclusions():
     bl = load_backlog()
-    ids_ready_now = {t.id for t in bl.tasks if t.status == "ready" and not t.depends_on}
-    nxt = bl.next_ready(exclude={"T-001"})
-    assert nxt is not None and nxt.id in ids_ready_now and nxt.id != "T-001"
+    done = {t.id for t in bl.tasks if t.status == "done"}
+    first = bl.next_ready()
+    nxt = bl.next_ready(exclude={first.id})
+    assert nxt is not None and nxt.id != first.id and set(nxt.depends_on) <= done
 
 
 def _mini(tasks):

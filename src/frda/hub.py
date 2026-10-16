@@ -15,6 +15,7 @@ from frda.claims import load_ledger
 from frda.gitutil import git
 from frda.manifest import load_all
 from frda.reports import load_reports
+from frda.research import summary as research_summary
 from frda.yamlio import load_yaml
 
 SCHEMA_VERSION = 1
@@ -101,6 +102,7 @@ def build_summary(root: Path | None = None) -> dict[str, Any]:
                 "milestone": t.milestone,
                 "status": t.status,
                 "kind": t.kind,
+                "track": t.track,
             }
             for t in backlog.tasks
         ],
@@ -122,6 +124,7 @@ def build_summary(root: Path | None = None) -> dict[str, Any]:
             for c in ledger.claims
         ],
         "verifications": verifications[:20],
+        "research": research_summary(root),
         "datasets": [
             {
                 "id": m.id,

@@ -15,8 +15,9 @@ from pathlib import Path
 from typing import Any
 
 from frda import paths
-from frda.backlog import load_backlog
+from frda.backlog import load_backlog, pick_next, recent_tracks
 from frda.gitutil import git, is_ancestor
+from frda.research import load_plan
 from frda.yamlio import load_yaml
 
 VERDICT_RE = re.compile(
@@ -83,7 +84,9 @@ def status(root: Path | None = None) -> dict[str, Any]:
     open_auto = [b for b in bs if b.kind == "auto" and b.state != "landed"]
     # A task whose verified/ branch is waiting to land is no longer the worker's.
     active = [b for b in open_auto if b.task not in verified_tasks]
-    wip = [b for b in active if b.task.startswith(("T-", "FIX-")) and b.state != "needs_human"]
+    wip = [
+        b for b in active if b.task.startswith(("T-", "L-", "FIX-")) and b.state != "needs_human"
+    ]
 
     next_worker: dict[str, Any] | None = None
     fix = next((b for b in active if b.state == "changes_requested"), None)
@@ -92,9 +95,21 @@ def status(root: Path | None = None) -> dict[str, Any]:
     elif len(wip) < cfg["wip_limit"]:
         bl = load_backlog(root / "autonomy" / "backlog.yaml")
         taken = {b.task for b in bs if b.state != "landed"}
-        task = bl.next_ready(exclude=taken)
+        plan = load_plan(root)
+        task, reason = pick_next(
+            bl,
+            exclude=taken,
+            budget=plan.get("track_budget"),
+            recent_tracks=recent_tracks(bl, root, plan.get("budget_window", 10)),
+        )
         if task:
-            next_worker = {"action": "start_task", "task": task.id, "branch": f"auto/{task.id}"}
+            next_worker = {
+                "action": "start_task",
+                "task": task.id,
+                "track": task.track,
+                "branch": f"auto/{task.id}",
+                "why": reason,
+            }
 
     pending = [b for b in active if b.state == "needs_verification"]
     next_verifier = (

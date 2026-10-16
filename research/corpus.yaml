@@ -1,0 +1,3 @@
+# Literature corpus — see src/frda/research.py (Paper). Add papers with `frda lit-add`, never by
+# hand-typing metadata: ids are resolved against Europe PMC.
+papers: []

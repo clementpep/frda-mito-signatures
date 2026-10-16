@@ -18,6 +18,17 @@ State lives **only in git**: backlog and statuses in `autonomy/backlog.yaml`, wo
 evidence in `autonomy/runs/` and `autonomy/verifications/`. Any routine can crash at any point
 without corrupting anything; the next run re-derives the situation with `frda autonomy-status`.
 
+## Working like a PhD (research memory and arbitration)
+
+`research/PLAN.md` is the thesis plan. The routines keep a research memory in `research/`: literature
+corpus (every paper screened, with reasons), reading cards with verbatim quotes, a cited
+state-of-the-art synthesis, a registry of research leads scored on a fixed rubric, and dated
+research decisions. Effort is arbitrated between tracks (`literature`, `main`, `exploration`,
+`writing`) by budgets set per phase in `research/plan.yaml`: the worker always takes the track
+most behind its budget (`frda.backlog.pick_next`). The weekly supervision (the thesis director,
+`routines/supervisor.md`) writes the lab notebook, scores and arbitrates leads, moves budgets and
+phases, grooms the backlog, and reports monthly to the owner. Pivots are the owner's call.
+
 ## Task lifecycle
 
 ```
@@ -42,6 +53,7 @@ task builds on verified work.
 | 7 | Robustness probe | verifier | conclusions that flip under one reasonable alternative choice |
 | 8 | Independent reviewers (`scientific-reviewer`, `code-auditor`, `journal-reviewer`) | verifier | pseudo-replication, confounding, overclaiming, wrong citations, label mix-ups, leakage |
 | 9 | Gate-tampering check | verifier | "fixing" a red check by weakening it |
+| 9b | Literature audit (`frda lit-verify`) + re-screening sample | verifier | invented papers, invented or altered quotes, inconsistent screening, synthesis stronger than its sources |
 | 10 | Landing guard | GitHub Actions | self-approval, code sneaked into the verify commit, red gates on clean runners |
 | 11 | Human sign-off | owner | anything published under a name |
 

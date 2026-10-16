@@ -1,0 +1,3 @@
+# Research leads — see src/frda/research.py (Idea) and research/PLAN.md "How leads are found".
+# Anyone may add `status: seed`; only the weekly supervision scores and changes status (via RD-xxx).
+ideas: []
