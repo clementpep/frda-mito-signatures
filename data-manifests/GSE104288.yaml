@@ -64,4 +64,6 @@ files:
       so count-based models (DESeq2/edgeR) cannot be refitted as published; document this gap.
 notes:
   - Column-to-group mapping inferred from the F/C prefixes and checked against the overall design
-    (18 + 17). T-001 must confirm it against GSM sample characteristics.
+    (18 + 17). T-001 (P-001) confirmed it. Each of the 35 columns matches exactly one GSM title and
+    the GSM characteristic "genotype" (Control / Friedreich's ataxia) agrees with the group for all
+    35. GEO provides age (sampling age) but no sex and no passage number.

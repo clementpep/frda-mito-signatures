@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-16T16:58:17+00:00",
-  "commit": "1a3660dd1142c4db9b5ebe9b447a516a8713d76e",
+  "generated_at": "2026-10-16T17:48:58+00:00",
+  "commit": "14fd6825c255f2b07b5cc17bd51ee7a0c059084a",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -17,8 +17,8 @@
   "progress": {
     "total": 20,
     "done": 0,
-    "in_review": 0,
-    "ready": 19,
+    "in_review": 1,
+    "ready": 18,
     "changes_requested": 0,
     "blocked": 0,
     "needs_human": 1,
@@ -79,7 +79,7 @@
       "id": "T-001",
       "title": "Dataset cards and sample metadata for GSE104288 and GSE145115",
       "milestone": "M1",
-      "status": "ready",
+      "status": "in_review",
       "kind": "data"
     },
     {

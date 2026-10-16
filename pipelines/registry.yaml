@@ -7,4 +7,9 @@
 #     command: python pipelines/p001_sample_metadata.py --out {out}
 #     results_dir: results/P-001-sample-metadata
 #     description: GSM sample characteristics for both seed datasets
-pipelines: []
+pipelines:
+  - id: P-001
+    task: T-001
+    command: python pipelines/p001_sample_metadata.py --out {out}
+    results_dir: results/P-001-sample-metadata
+    description: GSM sample characteristics for both seed datasets

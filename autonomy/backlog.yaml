@@ -45,7 +45,7 @@ tasks:
   - id: T-001
     title: Dataset cards and sample metadata for GSE104288 and GSE145115
     milestone: M1
-    status: ready
+    status: in_review
     priority: 1
     kind: data
     goal: >-

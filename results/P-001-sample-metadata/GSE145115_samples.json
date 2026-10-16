@@ -1,0 +1,393 @@
+{
+  "checks": {
+    "mismatches": [],
+    "n_gsm_in_soft": 24,
+    "n_manifest_samples_not_in_matrix": 0,
+    "n_matrix_columns": 24,
+    "n_records": 24,
+    "n_soft_samples_unmatched": 0,
+    "n_unique_gsm": 24
+  },
+  "data_processing": [
+    "Differential gene expression analysis was performed using DESeq2 (version 1.24.0), excluding genes with fewer than 10 counts average across all samples.",
+    "For plotting purposes, a variance-stabilizing transformation was applied using DESeq2, setting the 'bind' parameter to 'FALSE'",
+    "Genome_build: GRCh38",
+    "Pseudoalignment to Ensembl GRCh38 (version 98) cDNA reference using Kallisto (version 0.46.0) with optional parameter: --bias",
+    "Supplementary_files_format_and_content: tab-delimited text files include normalised counts (generated using DESeq2 'counts()' function) for each sample",
+    "Transcript abundance estimates were summarised to gene-level counts using Tximport (version 1.12.3)"
+  ],
+  "dataset": "GSE145115",
+  "samples": [
+    {
+      "cell_line_note": "cell line not given per sample in GEO; inferred from title prefix (GM78=GM04078, GM40=GM03440) and the series overall design",
+      "characteristics": {
+        "cell type": "Primary fibroblasts",
+        "treatment": "DMSO"
+      },
+      "column": "GM78dmso1",
+      "expected_group": "FRDA_DMSO",
+      "growth_protocol": "Fibroblasts lines were obtained from Coriell Institute (USA) and cultured in Minimum Essential Medium (MEM) supplemented with 15% FBS, 1% MEM Non-essential Amino Acid Solution (100X Gibco) and 100 U/ml penicillin/streptomycin.",
+      "gsm": "GSM4306696",
+      "manifest_group": "FRDA_DMSO",
+      "source_name": "Primary fibroblasts",
+      "title": "GM78dmso1",
+      "treatment_protocol": "6 days of compound treatment (A-196/SG2043)"
+    },
+    {
+      "cell_line_note": "cell line not given per sample in GEO; inferred from title prefix (GM78=GM04078, GM40=GM03440) and the series overall design",
+      "characteristics": {
+        "cell type": "Primary fibroblasts",
+        "treatment": "DMSO"
+      },
+      "column": "GM78dmso2",
+      "expected_group": "FRDA_DMSO",
+      "growth_protocol": "Fibroblasts lines were obtained from Coriell Institute (USA) and cultured in Minimum Essential Medium (MEM) supplemented with 15% FBS, 1% MEM Non-essential Amino Acid Solution (100X Gibco) and 100 U/ml penicillin/streptomycin.",
+      "gsm": "GSM4306697",
+      "manifest_group": "FRDA_DMSO",
+      "source_name": "Primary fibroblasts",
+      "title": "GM78dmso2",
+      "treatment_protocol": "6 days of compound treatment (A-196/SG2043)"
+    },
+    {
+      "cell_line_note": "cell line not given per sample in GEO; inferred from title prefix (GM78=GM04078, GM40=GM03440) and the series overall design",
+      "characteristics": {
+        "cell type": "Primary fibroblasts",
+        "treatment": "DMSO"
+      },
+      "column": "GM78dmso3",
+      "expected_group": "FRDA_DMSO",
+      "growth_protocol": "Fibroblasts lines were obtained from Coriell Institute (USA) and cultured in Minimum Essential Medium (MEM) supplemented with 15% FBS, 1% MEM Non-essential Amino Acid Solution (100X Gibco) and 100 U/ml penicillin/streptomycin.",
+      "gsm": "GSM4306698",
+      "manifest_group": "FRDA_DMSO",
+      "source_name": "Primary fibroblasts",
+      "title": "GM78dmso3",
+      "treatment_protocol": "6 days of compound treatment (A-196/SG2043)"
+    },
+    {
+      "cell_line_note": "cell line not given per sample in GEO; inferred from title prefix (GM78=GM04078, GM40=GM03440) and the series overall design",
+      "characteristics": {
+        "cell type": "Primary fibroblasts",
+        "treatment": "10 uM compound A-196"
+      },
+      "column": "GM7810A1",
+      "expected_group": "FRDA_A196_high",
+      "growth_protocol": "Fibroblasts lines were obtained from Coriell Institute (USA) and cultured in Minimum Essential Medium (MEM) supplemented with 15% FBS, 1% MEM Non-essential Amino Acid Solution (100X Gibco) and 100 U/ml penicillin/streptomycin.",
+      "gsm": "GSM4306699",
+      "manifest_group": "FRDA_A196_high",
+      "source_name": "Primary fibroblasts",
+      "title": "GM7810A1",
+      "treatment_protocol": "6 days of compound treatment (A-196/SG2043)"
+    },
+    {
+      "cell_line_note": "cell line not given per sample in GEO; inferred from title prefix (GM78=GM04078, GM40=GM03440) and the series overall design",
+      "characteristics": {
+        "cell type": "Primary fibroblasts",
+        "treatment": "10 uM compound A-196"
+      },
+      "column": "GM7810A2",
+      "expected_group": "FRDA_A196_high",
+      "growth_protocol": "Fibroblasts lines were obtained from Coriell Institute (USA) and cultured in Minimum Essential Medium (MEM) supplemented with 15% FBS, 1% MEM Non-essential Amino Acid Solution (100X Gibco) and 100 U/ml penicillin/streptomycin.",
+      "gsm": "GSM4306700",
+      "manifest_group": "FRDA_A196_high",
+      "source_name": "Primary fibroblasts",
+      "title": "GM7810A2",
+      "treatment_protocol": "6 days of compound treatment (A-196/SG2043)"
+    },
+    {
+      "cell_line_note": "cell line not given per sample in GEO; inferred from title prefix (GM78=GM04078, GM40=GM03440) and the series overall design",
+      "characteristics": {
+        "cell type": "Primary fibroblasts",
+        "treatment": "10 uM compound A-196"
+      },
+      "column": "GM7810A3",
+      "expected_group": "FRDA_A196_high",
+      "growth_protocol": "Fibroblasts lines were obtained from Coriell Institute (USA) and cultured in Minimum Essential Medium (MEM) supplemented with 15% FBS, 1% MEM Non-essential Amino Acid Solution (100X Gibco) and 100 U/ml penicillin/streptomycin.",
+      "gsm": "GSM4306701",
+      "manifest_group": "FRDA_A196_high",
+      "source_name": "Primary fibroblasts",
+      "title": "GM7810A3",
+      "treatment_protocol": "6 days of compound treatment (A-196/SG2043)"
+    },
+    {
+      "cell_line_note": "cell line not given per sample in GEO; inferred from title prefix (GM78=GM04078, GM40=GM03440) and the series overall design",
+      "characteristics": {
+        "cell type": "Primary fibroblasts",
+        "treatment": "10 uM compound SGC2043"
+      },
+      "column": "GM7810S1",
+      "expected_group": "FRDA_SGC2043",
+      "growth_protocol": "Fibroblasts lines were obtained from Coriell Institute (USA) and cultured in Minimum Essential Medium (MEM) supplemented with 15% FBS, 1% MEM Non-essential Amino Acid Solution (100X Gibco) and 100 U/ml penicillin/streptomycin.",
+      "gsm": "GSM4306702",
+      "manifest_group": "FRDA_SGC2043",
+      "source_name": "Primary fibroblasts",
+      "title": "GM7810S1",
+      "treatment_protocol": "6 days of compound treatment (A-196/SG2043)"
+    },
+    {
+      "cell_line_note": "cell line not given per sample in GEO; inferred from title prefix (GM78=GM04078, GM40=GM03440) and the series overall design",
+      "characteristics": {
+        "cell type": "Primary fibroblasts",
+        "treatment": "10 uM compound SGC2043"
+      },
+      "column": "GM7810S2",
+      "expected_group": "FRDA_SGC2043",
+      "growth_protocol": "Fibroblasts lines were obtained from Coriell Institute (USA) and cultured in Minimum Essential Medium (MEM) supplemented with 15% FBS, 1% MEM Non-essential Amino Acid Solution (100X Gibco) and 100 U/ml penicillin/streptomycin.",
+      "gsm": "GSM4306703",
+      "manifest_group": "FRDA_SGC2043",
+      "source_name": "Primary fibroblasts",
+      "title": "GM7810S2",
+      "treatment_protocol": "6 days of compound treatment (A-196/SG2043)"
+    },
+    {
+      "cell_line_note": "cell line not given per sample in GEO; inferred from title prefix (GM78=GM04078, GM40=GM03440) and the series overall design",
+      "characteristics": {
+        "cell type": "Primary fibroblasts",
+        "treatment": "10 uM compound SGC2043"
+      },
+      "column": "GM7810S3",
+      "expected_group": "FRDA_SGC2043",
+      "growth_protocol": "Fibroblasts lines were obtained from Coriell Institute (USA) and cultured in Minimum Essential Medium (MEM) supplemented with 15% FBS, 1% MEM Non-essential Amino Acid Solution (100X Gibco) and 100 U/ml penicillin/streptomycin.",
+      "gsm": "GSM4306704",
+      "manifest_group": "FRDA_SGC2043",
+      "source_name": "Primary fibroblasts",
+      "title": "GM7810S3",
+      "treatment_protocol": "6 days of compound treatment (A-196/SG2043)"
+    },
+    {
+      "cell_line_note": "cell line not given per sample in GEO; inferred from title prefix (GM78=GM04078, GM40=GM03440) and the series overall design",
+      "characteristics": {
+        "cell type": "Primary fibroblasts",
+        "treatment": "untreated"
+      },
+      "column": "GM78unt1",
+      "expected_group": "FRDA_untreated",
+      "growth_protocol": "Fibroblasts lines were obtained from Coriell Institute (USA) and cultured in Minimum Essential Medium (MEM) supplemented with 15% FBS, 1% MEM Non-essential Amino Acid Solution (100X Gibco) and 100 U/ml penicillin/streptomycin.",
+      "gsm": "GSM4306705",
+      "manifest_group": "FRDA_untreated",
+      "source_name": "Primary fibroblasts",
+      "title": "GM78unt1",
+      "treatment_protocol": "6 days of compound treatment (A-196/SG2043)"
+    },
+    {
+      "cell_line_note": "cell line not given per sample in GEO; inferred from title prefix (GM78=GM04078, GM40=GM03440) and the series overall design",
+      "characteristics": {
+        "cell type": "Primary fibroblasts",
+        "treatment": "untreated"
+      },
+      "column": "GM78unt2",
+      "expected_group": "FRDA_untreated",
+      "growth_protocol": "Fibroblasts lines were obtained from Coriell Institute (USA) and cultured in Minimum Essential Medium (MEM) supplemented with 15% FBS, 1% MEM Non-essential Amino Acid Solution (100X Gibco) and 100 U/ml penicillin/streptomycin.",
+      "gsm": "GSM4306706",
+      "manifest_group": "FRDA_untreated",
+      "source_name": "Primary fibroblasts",
+      "title": "GM78unt2",
+      "treatment_protocol": "6 days of compound treatment (A-196/SG2043)"
+    },
+    {
+      "cell_line_note": "cell line not given per sample in GEO; inferred from title prefix (GM78=GM04078, GM40=GM03440) and the series overall design",
+      "characteristics": {
+        "cell type": "Primary fibroblasts",
+        "treatment": "untreated"
+      },
+      "column": "GM78unt3",
+      "expected_group": "FRDA_untreated",
+      "growth_protocol": "Fibroblasts lines were obtained from Coriell Institute (USA) and cultured in Minimum Essential Medium (MEM) supplemented with 15% FBS, 1% MEM Non-essential Amino Acid Solution (100X Gibco) and 100 U/ml penicillin/streptomycin.",
+      "gsm": "GSM4306707",
+      "manifest_group": "FRDA_untreated",
+      "source_name": "Primary fibroblasts",
+      "title": "GM78unt3",
+      "treatment_protocol": "6 days of compound treatment (A-196/SG2043)"
+    },
+    {
+      "cell_line_note": "cell line not given per sample in GEO; inferred from title prefix (GM78=GM04078, GM40=GM03440) and the series overall design",
+      "characteristics": {
+        "cell type": "Primary fibroblasts",
+        "treatment": "1 uM compound A-196"
+      },
+      "column": "GM781A1",
+      "expected_group": "FRDA_A196_low",
+      "growth_protocol": "Fibroblasts lines were obtained from Coriell Institute (USA) and cultured in Minimum Essential Medium (MEM) supplemented with 15% FBS, 1% MEM Non-essential Amino Acid Solution (100X Gibco) and 100 U/ml penicillin/streptomycin.",
+      "gsm": "GSM4306708",
+      "manifest_group": "FRDA_A196_low",
+      "source_name": "Primary fibroblasts",
+      "title": "GM781A1",
+      "treatment_protocol": "6 days of compound treatment (A-196/SG2043)"
+    },
+    {
+      "cell_line_note": "cell line not given per sample in GEO; inferred from title prefix (GM78=GM04078, GM40=GM03440) and the series overall design",
+      "characteristics": {
+        "cell type": "Primary fibroblasts",
+        "treatment": "1 uM compound A-196"
+      },
+      "column": "GM781A2",
+      "expected_group": "FRDA_A196_low",
+      "growth_protocol": "Fibroblasts lines were obtained from Coriell Institute (USA) and cultured in Minimum Essential Medium (MEM) supplemented with 15% FBS, 1% MEM Non-essential Amino Acid Solution (100X Gibco) and 100 U/ml penicillin/streptomycin.",
+      "gsm": "GSM4306709",
+      "manifest_group": "FRDA_A196_low",
+      "source_name": "Primary fibroblasts",
+      "title": "GM781A2",
+      "treatment_protocol": "6 days of compound treatment (A-196/SG2043)"
+    },
+    {
+      "cell_line_note": "cell line not given per sample in GEO; inferred from title prefix (GM78=GM04078, GM40=GM03440) and the series overall design",
+      "characteristics": {
+        "cell type": "Primary fibroblasts",
+        "treatment": "1 uM compound A-196"
+      },
+      "column": "GM781A3",
+      "expected_group": "FRDA_A196_low",
+      "growth_protocol": "Fibroblasts lines were obtained from Coriell Institute (USA) and cultured in Minimum Essential Medium (MEM) supplemented with 15% FBS, 1% MEM Non-essential Amino Acid Solution (100X Gibco) and 100 U/ml penicillin/streptomycin.",
+      "gsm": "GSM4306710",
+      "manifest_group": "FRDA_A196_low",
+      "source_name": "Primary fibroblasts",
+      "title": "GM781A3",
+      "treatment_protocol": "6 days of compound treatment (A-196/SG2043)"
+    },
+    {
+      "cell_line_note": "cell line not given per sample in GEO; inferred from title prefix (GM78=GM04078, GM40=GM03440) and the series overall design",
+      "characteristics": {
+        "cell type": "Primary fibroblasts",
+        "treatment": "5 uM compound A-196"
+      },
+      "column": "GM785A1",
+      "expected_group": "FRDA_A196_mid",
+      "growth_protocol": "Fibroblasts lines were obtained from Coriell Institute (USA) and cultured in Minimum Essential Medium (MEM) supplemented with 15% FBS, 1% MEM Non-essential Amino Acid Solution (100X Gibco) and 100 U/ml penicillin/streptomycin.",
+      "gsm": "GSM4306711",
+      "manifest_group": "FRDA_A196_mid",
+      "source_name": "Primary fibroblasts",
+      "title": "GM785A1",
+      "treatment_protocol": "6 days of compound treatment (A-196/SG2043)"
+    },
+    {
+      "cell_line_note": "cell line not given per sample in GEO; inferred from title prefix (GM78=GM04078, GM40=GM03440) and the series overall design",
+      "characteristics": {
+        "cell type": "Primary fibroblasts",
+        "treatment": "5 uM compound A-196"
+      },
+      "column": "GM785A2",
+      "expected_group": "FRDA_A196_mid",
+      "growth_protocol": "Fibroblasts lines were obtained from Coriell Institute (USA) and cultured in Minimum Essential Medium (MEM) supplemented with 15% FBS, 1% MEM Non-essential Amino Acid Solution (100X Gibco) and 100 U/ml penicillin/streptomycin.",
+      "gsm": "GSM4306712",
+      "manifest_group": "FRDA_A196_mid",
+      "source_name": "Primary fibroblasts",
+      "title": "GM785A2",
+      "treatment_protocol": "6 days of compound treatment (A-196/SG2043)"
+    },
+    {
+      "cell_line_note": "cell line not given per sample in GEO; inferred from title prefix (GM78=GM04078, GM40=GM03440) and the series overall design",
+      "characteristics": {
+        "cell type": "Primary fibroblasts",
+        "treatment": "5 uM compound A-196"
+      },
+      "column": "GM785A3",
+      "expected_group": "FRDA_A196_mid",
+      "growth_protocol": "Fibroblasts lines were obtained from Coriell Institute (USA) and cultured in Minimum Essential Medium (MEM) supplemented with 15% FBS, 1% MEM Non-essential Amino Acid Solution (100X Gibco) and 100 U/ml penicillin/streptomycin.",
+      "gsm": "GSM4306713",
+      "manifest_group": "FRDA_A196_mid",
+      "source_name": "Primary fibroblasts",
+      "title": "GM785A3",
+      "treatment_protocol": "6 days of compound treatment (A-196/SG2043)"
+    },
+    {
+      "cell_line_note": "cell line not given per sample in GEO; inferred from title prefix (GM78=GM04078, GM40=GM03440) and the series overall design",
+      "characteristics": {
+        "cell type": "Primary fibroblasts",
+        "treatment": "untreated"
+      },
+      "column": "GM40unt1",
+      "expected_group": "control_untreated",
+      "growth_protocol": "Fibroblasts lines were obtained from Coriell Institute (USA) and cultured in Minimum Essential Medium (MEM) supplemented with 15% FBS, 1% MEM Non-essential Amino Acid Solution (100X Gibco) and 100 U/ml penicillin/streptomycin.",
+      "gsm": "GSM4306714",
+      "manifest_group": "control_untreated",
+      "source_name": "Primary fibroblasts",
+      "title": "GM40unt1",
+      "treatment_protocol": "6 days of compound treatment (A-196/SG2043)"
+    },
+    {
+      "cell_line_note": "cell line not given per sample in GEO; inferred from title prefix (GM78=GM04078, GM40=GM03440) and the series overall design",
+      "characteristics": {
+        "cell type": "Primary fibroblasts",
+        "treatment": "untreated"
+      },
+      "column": "GM40unt2",
+      "expected_group": "control_untreated",
+      "growth_protocol": "Fibroblasts lines were obtained from Coriell Institute (USA) and cultured in Minimum Essential Medium (MEM) supplemented with 15% FBS, 1% MEM Non-essential Amino Acid Solution (100X Gibco) and 100 U/ml penicillin/streptomycin.",
+      "gsm": "GSM4306715",
+      "manifest_group": "control_untreated",
+      "source_name": "Primary fibroblasts",
+      "title": "GM40unt2",
+      "treatment_protocol": "6 days of compound treatment (A-196/SG2043)"
+    },
+    {
+      "cell_line_note": "cell line not given per sample in GEO; inferred from title prefix (GM78=GM04078, GM40=GM03440) and the series overall design",
+      "characteristics": {
+        "cell type": "Primary fibroblasts",
+        "treatment": "untreated"
+      },
+      "column": "GM40unt3",
+      "expected_group": "control_untreated",
+      "growth_protocol": "Fibroblasts lines were obtained from Coriell Institute (USA) and cultured in Minimum Essential Medium (MEM) supplemented with 15% FBS, 1% MEM Non-essential Amino Acid Solution (100X Gibco) and 100 U/ml penicillin/streptomycin.",
+      "gsm": "GSM4306716",
+      "manifest_group": "control_untreated",
+      "source_name": "Primary fibroblasts",
+      "title": "GM40unt3",
+      "treatment_protocol": "6 days of compound treatment (A-196/SG2043)"
+    },
+    {
+      "cell_line_note": "cell line not given per sample in GEO; inferred from title prefix (GM78=GM04078, GM40=GM03440) and the series overall design",
+      "characteristics": {
+        "cell type": "Primary fibroblasts",
+        "treatment": "DMSO"
+      },
+      "column": "GM40dmso1",
+      "expected_group": "control_DMSO",
+      "growth_protocol": "Fibroblasts lines were obtained from Coriell Institute (USA) and cultured in Minimum Essential Medium (MEM) supplemented with 15% FBS, 1% MEM Non-essential Amino Acid Solution (100X Gibco) and 100 U/ml penicillin/streptomycin.",
+      "gsm": "GSM4306717",
+      "manifest_group": "control_DMSO",
+      "source_name": "Primary fibroblasts",
+      "title": "GM40dmso1",
+      "treatment_protocol": "6 days of compound treatment (A-196/SG2043)"
+    },
+    {
+      "cell_line_note": "cell line not given per sample in GEO; inferred from title prefix (GM78=GM04078, GM40=GM03440) and the series overall design",
+      "characteristics": {
+        "cell type": "Primary fibroblasts",
+        "treatment": "DMSO"
+      },
+      "column": "GM40dmso2",
+      "expected_group": "control_DMSO",
+      "growth_protocol": "Fibroblasts lines were obtained from Coriell Institute (USA) and cultured in Minimum Essential Medium (MEM) supplemented with 15% FBS, 1% MEM Non-essential Amino Acid Solution (100X Gibco) and 100 U/ml penicillin/streptomycin.",
+      "gsm": "GSM4306718",
+      "manifest_group": "control_DMSO",
+      "source_name": "Primary fibroblasts",
+      "title": "GM40dmso2",
+      "treatment_protocol": "6 days of compound treatment (A-196/SG2043)"
+    },
+    {
+      "cell_line_note": "cell line not given per sample in GEO; inferred from title prefix (GM78=GM04078, GM40=GM03440) and the series overall design",
+      "characteristics": {
+        "cell type": "Primary fibroblasts",
+        "treatment": "DMSO"
+      },
+      "column": "GM40dmso3",
+      "expected_group": "control_DMSO",
+      "growth_protocol": "Fibroblasts lines were obtained from Coriell Institute (USA) and cultured in Minimum Essential Medium (MEM) supplemented with 15% FBS, 1% MEM Non-essential Amino Acid Solution (100X Gibco) and 100 U/ml penicillin/streptomycin.",
+      "gsm": "GSM4306719",
+      "manifest_group": "control_DMSO",
+      "source_name": "Primary fibroblasts",
+      "title": "GM40dmso3",
+      "treatment_protocol": "6 days of compound treatment (A-196/SG2043)"
+    }
+  ],
+  "series_overall_design": [
+    "24 samples derived from two cell lines; a Friedrich's ataxia cell line (GM04078) and a healthy control line (GM03440). Untreated, DMSO treated, inactive compound treated and A-196 treated (3 different concentrations) analysed. Three cell culture replicates of each condition included.",
+    "A-196 is the lead compound",
+    "SGC2043 is the inactive structural analogue of A-196"
+  ],
+  "series_platform_id": [
+    "GPL20301"
+  ],
+  "series_pubmed_id": [
+    "33028632"
+  ]
+}
