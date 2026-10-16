@@ -163,6 +163,15 @@ def build_series(dataset: str) -> tuple[dict, dict]:
         "n_manifest_samples_not_in_matrix": len(declared - set(map(str, df.columns))),
         "mismatches": problems,
     }
+    bad = (
+        problems
+        or checks["n_records"] != checks["n_matrix_columns"]
+        or checks["n_unique_gsm"] != checks["n_records"]
+        or checks["n_soft_samples_unmatched"]
+        or checks["n_manifest_samples_not_in_matrix"]
+    )
+    if bad:
+        raise SystemExit(f"{dataset}: metadata reconciliation failed: {checks}")
     out = {
         "dataset": dataset,
         "series_overall_design": series.get("Series_overall_design", []),
@@ -180,7 +189,7 @@ def build_series(dataset: str) -> tuple[dict, dict]:
 def age_balance(records: list[dict]) -> dict:
     groups: dict[str, list[float]] = {}
     for r in records:
-        if isinstance(r["age_years"], float):
+        if r["age_years"] is not None:
             groups.setdefault(r["manifest_group"], []).append(r["age_years"])
     summary = {}
     for g, v in sorted(groups.items()):

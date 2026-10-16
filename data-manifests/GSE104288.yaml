@@ -27,12 +27,12 @@ access:
   reusable_with_llm_assistant: true
   rationale: >-
     Gene-level expression matrix aggregated per cell line; no direct identifiers. Sample
-    characteristics (age, sex) are public GEO metadata.
+    characteristics (age) are public GEO metadata; GEO has no sex field.
 unit_of_observation: one fibroblast line derived from one individual
 independence_note: >-
   One column = one individual (GEO overall design: 18 FRDA patients, 17 unaffected controls).
-  Individuals are the independent units. Age/sex/passage are potential confounders to extract
-  from GSM characteristics in T-001.
+  Individuals are the independent units. Age, sex and passage are potential confounders; GEO gives
+  age only (T-001).
 known_confounders:
   - age at biopsy
   - sex

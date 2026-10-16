@@ -81,7 +81,7 @@ files:
     values: Normalised counts (non-integer), DESeq2 counts() with normalisation per GEO (T-001).
 notes:
   - Dose tags 1/5/10 come from column names; GSM characteristic "treatment" (T-001, P-001) gives
-    1, 5 and 10 uM compound A-196 and 10 uM SGC2043. The mapping of all 24 columns to the groups
-    below agrees with GEO. The cell line is not a GSM field, so it is read from the title prefix
+    1, 5 and 10 uM compound A-196 and 10 uM SGC2043. The treatment of all 24 columns agrees with the groups
+    below (the cell line part is not checkable against GEO). The cell line is not a GSM field, so it is read from the title prefix
     (GM78 for GM04078, GM40 for GM03440) plus the series overall design. Link to the paper's
     concentrations remains to be checked in PMID 33028632 before any claim.
