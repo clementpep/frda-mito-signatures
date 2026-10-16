@@ -123,3 +123,6 @@ Checks: `make ci` PASS (57 tests), `make reproduce` PASS.
 
 Playbook updated with the quoting conventions. `make ci` PASS (63 tests), `make reproduce` PASS.
 Note: this is attempt 4; per verifier STEP 8 it escalates to NEEDS_HUMAN unless the owner allows it.
+
+## Owner decision
+2026-10-16: the owner authorised a 4th verification attempt (recorded in the task `notes`).

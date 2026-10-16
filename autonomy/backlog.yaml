@@ -458,6 +458,8 @@ tasks:
       Give the routines the means to work like a PhD student: a verifiable literature memory, a
       registry of research leads with a scoring rubric, effort budgets per track and phase, and a
       weekly supervision that arbitrates (requested by the owner on 2026-10-16).
+    notes:
+      - "2026-10-16 — owner decision (interactive session): a 4th verification attempt is authorised after 3 CHANGES_REQUESTED. If attempt 4 fails, escalate to NEEDS_HUMAN as usual."
     acceptance:
       - research/ (plan, protocol draft, corpus, cards template, synthesis skeleton, ideas, RD-001) validated by a new `research` gate (offline cross-references) and unit tests.
       - The `frda lit-search`, `lit-add` and `lit-verify` commands work against Europe PMC; lit-verify rejects a non-existent paper and a quote absent from the text (tested offline with mocks; checked online).
