@@ -448,7 +448,7 @@ tasks:
   - id: T-021
     title: Research system — literature corpus, reading cards, ideas, effort arbitration, supervision
     milestone: M2
-    status: changes_requested
+    status: needs_human
     priority: 1
     kind: infra
     track: infra
