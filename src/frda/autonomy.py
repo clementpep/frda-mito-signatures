@@ -78,7 +78,8 @@ def branches(root: Path | None = None) -> list[Branch]:
 
 def _window(plan: dict) -> int:
     w = plan.get("budget_window", 10)
-    return w if isinstance(w, int) and not isinstance(w, bool) and w > 0 else 10
+    # Same rule as the `research` gate: an integer >= 1, nothing coerced (10.0 is invalid).
+    return w if type(w) is int and w > 0 else 10
 
 
 def status(root: Path | None = None) -> dict[str, Any]:

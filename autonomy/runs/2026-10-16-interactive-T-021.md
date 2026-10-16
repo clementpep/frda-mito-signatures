@@ -101,3 +101,25 @@ Checks: `make ci` PASS (53 tests), `make reproduce` PASS.
 8. Fixed: PLAN.md wording (committee; "shifted … association only").
 
 Checks: `make ci` PASS (57 tests), `make reproduce` PASS.
+
+## Responses to verification (attempt 3 → 4)
+
+### Blocking
+1. Citation markers: numeric markers (`1`, `[1]`, `2,3`, `4–6`) are dropped with their content on
+   both paths (XML and regex fallback); author-year citations are kept as prose (the Napierala 2017
+   article uses them: dropping them would reject faithful quotes). Footnotes and formulas dropped.
+   Tests: natural quote PASS / "cells1." FAIL through `verify`; both paths (incl. `xlink:href`,
+   which forces the fallback) give identical text; author-year kept; marker classifier.
+   Online: PMC13571518 (numeric "[1]"): natural prefix found, glued prefix not found; PMC5719256
+   (author-year): natural quote with "(Campuzano et al., 1996)" found.
+
+### Non-blocking
+1. Fixed: both paths agree (inline glued, block → separator, same drop rules); `xlink:href` test.
+2. Fixed: markup check on the quote uses `TAG` ("CD4<CD8" is prose).
+3. Fixed: abstract and title joined with a block separator; straddling quote test.
+4. Fixed: block elements emit a separator (¶) that no quote contains: no quote across paragraphs.
+5. Fixed: `_window` accepts only a true int ≥ 1 (10.0 → default 10, gate flags it).
+6. Unchanged from attempt 2 (answered there).
+
+Playbook updated with the quoting conventions. `make ci` PASS (63 tests), `make reproduce` PASS.
+Note: this is attempt 4; per verifier STEP 8 it escalates to NEEDS_HUMAN unless the owner allows it.

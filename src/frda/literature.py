@@ -191,32 +191,23 @@ def normalise(text: str) -> str:
 
 
 # Real markup only (<p>, </italic>, <xref rid="b1">), never prose like "p < 0.05 and q > 0.1".
-TAG = re.compile(r"</?[A-Za-z][\w:.-]*(?:\s+[\w:.-]+(?:\s*=\s*(?:\"[^\"]*\"|'[^']*'))?)*\s*/?>")
+TAG = re.compile(r"</?([A-Za-z][\w:.-]*)(?:\s+[\w:.-]+(?:\s*=\s*(?:\"[^\"]*\"|'[^']*'))?)*\s*/?>")
+# Numeric citation markers are not prose: "cells<xref>1</xref>." must read "cells.", so that the
+# natural quote passes and "cells1." does not. Author-year citations ARE prose ("(Campuzano et al.,
+# 1996)") and are kept. Footnotes and formulas are dropped.
+NUMERIC_MARKER = re.compile(r"[\[\(]?\s*\d+(?:\s*[-\u2013,]\s*\d+)*\s*[\]\)]?")
+DROP_TAGS = {"fn", "inline-formula", "disp-formula"}
+DROP_RE = re.compile(
+    r"<(" + "|".join(DROP_TAGS) + r"|xref)\b[^>]*?(?:/>|>(.*?)</\1\s*>)", flags=re.S
+)
 
 
-def markup_to_text(markup: str) -> str:
-    """Source side only: parse XML when possible (entities become literal characters, so a
-    literal '<' in the paper stays a '<'); otherwise remove real tags, then unescape."""
-    try:
-        root = ET.fromstring(f"<root>{markup}</root>")
-    except ET.ParseError:
-        return html.unescape(TAG.sub(" ", markup))
-    parts: list[str] = []
-
-    def walk(el: ET.Element) -> None:
-        if el.text:
-            parts.append(el.text)
-        for child in el:
-            walk(child)
-            if child.tag in BLOCK_TAGS:  # paragraphs, titles, cells: separate; italics: glue
-                parts.append(" ")
-            if child.tail:
-                parts.append(child.tail)
-
-    walk(root)
-    return "".join(parts)
+def _is_numeric_marker(text: str) -> bool:
+    return bool(NUMERIC_MARKER.fullmatch(text.strip()))
 
 
+# Separates paragraphs, titles, cells: a quote cannot straddle two blocks.
+BLOCK_SEP = " \u00b6 "
 BLOCK_TAGS = {
     "p",
     "sec",
@@ -237,7 +228,54 @@ BLOCK_TAGS = {
     "def-item",
     "boxed-text",
     "br",
+    "article-title",
+    "ref",
+    "h1",
+    "h2",
+    "h3",
+    "h4",
+    "li",
 }
+
+
+def _local(tag: str) -> str:
+    return tag.rsplit("}", 1)[-1].rsplit(":", 1)[-1].lower()
+
+
+def markup_to_text(markup: str) -> str:
+    """Source side only. Both paths give the same text: inline markup (italic, sup, sub) is
+    glued ("H<sub>2</sub>O" -> "H2O"), block markup becomes a block separator, citation markers
+    are dropped, entities become literal characters (a literal '<' in the paper stays '<')."""
+    try:
+        root = ET.fromstring(f"<root>{markup}</root>")
+    except ET.ParseError:
+
+        def drop(m: re.Match[str]) -> str:
+            inner = TAG.sub("", m.group(2) or "")
+            if m.group(1) == "xref" and not _is_numeric_marker(html.unescape(inner)):
+                return inner
+            return ""
+
+        text = DROP_RE.sub(drop, markup)
+        text = TAG.sub(lambda m: BLOCK_SEP if _local(m.group(1)) in BLOCK_TAGS else "", text)
+        return html.unescape(text)
+    parts: list[str] = []
+
+    def walk(el: ET.Element) -> None:
+        if el.text:
+            parts.append(el.text)
+        for child in el:
+            name = _local(child.tag)
+            numeric_xref = name == "xref" and _is_numeric_marker("".join(child.itertext()))
+            if name not in DROP_TAGS and not numeric_xref:
+                walk(child)
+            if name in BLOCK_TAGS:
+                parts.append(BLOCK_SEP)
+            if child.tail:
+                parts.append(child.tail)
+
+    walk(root)
+    return "".join(parts)
 
 
 def full_text(pmcid: str) -> str:
@@ -306,16 +344,17 @@ def verify(paper_ids: list[str] | None = None, root: Path | None = None) -> list
                 problems.append(f"{path.name}: no article body in the full text of {p.pmcid}")
                 continue
         else:
+            # Abstract and title are separate blocks: a quote cannot straddle them.
             haystack = normalise(
                 markup_to_text(rec.get("abstractText", ""))
-                + " "
+                + BLOCK_SEP
                 + markup_to_text(rec.get("title", ""))
             )
         for i, f in enumerate(card.findings, 1):
             needle = normalise(f.quote).strip(' ".')
             if not quote_is_substantive(needle):
                 problems.append(f"{path.name}: finding {i} quote is not substantive text")
-            elif re.search(r"</?[A-Za-z]", needle):
+            elif TAG.search(needle):
                 problems.append(
                     f"{path.name}: finding {i} quote contains markup; copy the text only"
                 )

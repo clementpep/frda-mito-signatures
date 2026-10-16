@@ -381,3 +381,98 @@ def test_plan_window_floor_and_pivot_checks(tmp_path):
     )
     probs = " | ".join(research.problems(tmp_path))
     assert "budget_window" in probs and "below its floor" in probs and "pivot" in probs
+
+
+# --- attempt-3 findings: citation markers, path agreement, block boundaries -------------------
+
+XREF_BODY = (
+    "<body><sec><title>Results</title><p>Frataxin is reduced in fibroblast cells"
+    '<xref ref-type="bibr" rid="b1">1</xref>. Next sentence here.</p>'
+    "<p>Second paragraph starts with H<sub>2</sub>O<sub>2</sub> exposure.</p></sec></body>"
+)
+XLINK_BODY = XREF_BODY.replace('rid="b1"', 'rid="b1" xlink:href="#b1"')  # forces the fallback
+
+
+def test_citation_markers_are_dropped_on_both_paths():
+    for body in (XREF_BODY, XLINK_BODY):
+        text = literature.normalise(literature.markup_to_text(body))
+        assert "frataxin is reduced in fibroblast cells. next sentence here." in text
+        assert "cells1." not in text
+        assert "h2o2 exposure" in text  # sub/sup glued, identically on both paths
+
+
+def test_quotes_cannot_straddle_blocks():
+    text = literature.normalise(literature.markup_to_text(XREF_BODY))
+    assert "next sentence here. second paragraph" not in text
+    assert "results frataxin" not in text
+
+
+def test_quote_with_citation_number_fails_and_natural_quote_passes(tmp_path, monkeypatch):
+    def card(quote):
+        return CARD.replace("abstract_only", "full_text").replace(
+            "Frataxin transcript levels were markedly reduced in patient cells.", quote
+        )
+
+    monkeypatch.setattr(
+        literature, "fetch_record", lambda pid: {"title": "A paper", "pmcid": "PMC111"}
+    )
+    monkeypatch.setattr(literature, "_get", lambda url, as_json=True: XREF_BODY)
+    monkeypatch.setattr(literature.time, "sleep", lambda s: None)
+    corpus = [
+        paper(
+            status="read",
+            screen_reason="RQ1",
+            card="research/cards/MED_111.md",
+            open_access=True,
+            pmcid="PMC111",
+        )
+    ]
+    write(
+        tmp_path,
+        corpus=corpus,
+        cards={"MED_111.md": card("Frataxin is reduced in fibroblast cells. Next sentence here.")},
+    )
+    assert literature.verify(root=tmp_path) == []
+    write(
+        tmp_path,
+        corpus=corpus,
+        cards={"MED_111.md": card("Frataxin is reduced in fibroblast cells1. Next sentence here.")},
+    )
+    assert any("not found verbatim" in p for p in literature.verify(root=tmp_path))
+
+
+def test_prose_comparisons_in_quotes_are_not_markup():
+    assert not literature.TAG.search("cd4<cd8 t cells were more frequent in patients")
+    assert literature.TAG.search("frataxin <italic>fxn</italic> levels")
+
+
+def test_abstract_and_title_are_separate_blocks(tmp_path, monkeypatch):
+    straddling = CARD.replace(
+        "Frataxin transcript levels were markedly reduced in patient cells.",
+        "markedly reduced in patient cells. A paper about frataxin",
+    )
+    write(
+        tmp_path,
+        corpus=[paper(status="read", screen_reason="RQ1", card="research/cards/MED_111.md")],
+        cards={"MED_111.md": straddling},
+    )
+    rec = {
+        "title": "A paper about frataxin",
+        "abstractText": "Levels were markedly reduced in patient cells.",
+    }
+    monkeypatch.setattr(literature, "fetch_record", lambda pid: rec)
+    monkeypatch.setattr(literature.time, "sleep", lambda s: None)
+    assert any("not found verbatim" in p for p in literature.verify(root=tmp_path))
+
+
+def test_author_year_citations_are_kept_as_prose():
+    body = (
+        '<body><p>Population frequency of 1-2:50,000 (<xref rid="c6" ref-type="bibr">Campuzano '
+        "et al., 1996</xref>), and caused by deficient frataxin.</p></body>"
+    )
+    for b in (body, body.replace('rid="c6"', 'rid="c6" xlink:href="#c6"')):
+        text = literature.normalise(literature.markup_to_text(b))
+        assert "(campuzano et al., 1996), and caused by deficient frataxin." in text
+    for marker in ("1", "2,3", "4-6", "[7]", "(8\u201310)"):
+        assert literature._is_numeric_marker(marker)
+    assert not literature._is_numeric_marker("Campuzano et al., 1996")
