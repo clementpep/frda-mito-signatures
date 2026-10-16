@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-16T20:31:42+00:00",
-  "commit": "b063839c5f6da5ef6ccbf82677b69c1df7c19fca",
+  "generated_at": "2026-10-16T20:36:36+00:00",
+  "commit": "89145801703841150e8ae6a5c0b2f40423818325",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -17,9 +17,9 @@
   "progress": {
     "total": 30,
     "done": 1,
-    "in_review": 1,
+    "in_review": 0,
     "ready": 27,
-    "changes_requested": 0,
+    "changes_requested": 1,
     "blocked": 0,
     "needs_human": 1,
     "proposed": 0
@@ -311,13 +311,22 @@
       "id": "T-021",
       "title": "Research system — literature corpus, reading cards, ideas, effort arbitration, supervision",
       "milestone": "M2",
-      "status": "in_review",
+      "status": "changes_requested",
       "kind": "infra",
       "track": "infra"
     }
   ],
   "claims": [],
   "verifications": [
+    {
+      "task": "T-021",
+      "date": "2026-10-16",
+      "verdict": "CHANGES_REQUESTED",
+      "summary": "Gates green, but lit-verify can false-PASS, pick_next mishandles zero-budget tracks, and a test assertion was weakened.",
+      "attempt": 1,
+      "acceptance_met": "2/5",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-021-8914580.md"
+    },
     {
       "task": "T-001",
       "date": "2026-10-16",

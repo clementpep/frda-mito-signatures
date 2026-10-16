@@ -448,10 +448,12 @@ tasks:
   - id: T-021
     title: Research system — literature corpus, reading cards, ideas, effort arbitration, supervision
     milestone: M2
-    status: in_review
+    status: changes_requested
     priority: 1
     kind: infra
     track: infra
+    attempts: 1
+    verification: autonomy/verifications/T-021-8914580.md
     goal: >-
       Give the routines the means to work like a PhD student: a verifiable literature memory, a
       registry of research leads with a scoring rubric, effort budgets per track and phase, and a
