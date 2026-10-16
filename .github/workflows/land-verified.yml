@@ -1,0 +1,77 @@
+name: land-verified
+
+# Third line of defence. A routine pushes `verified/<TASK>` after an
+# independent verifier session returned PASS. This workflow:
+#   1. checks the branch shape (scripts/check_verified_branch.py): the last
+#      commit is `verify(<TASK>): PASS`, directly on the reviewed `work(<TASK>)`
+#      commit, touching only verification bookkeeping;
+#   2. re-runs every deterministic gate and `make reproduce` on fresh data;
+#   3. merges into main, refreshes results/hub/summary.json, re-runs the gates
+#      on the merged tree, pushes main, deletes auto/<TASK> and verified/<TASK>.
+# Routines never push main themselves.
+on:
+  push:
+    branches: ['verified/**']
+
+permissions:
+  contents: write
+
+concurrency:
+  group: land-main
+  cancel-in-progress: false
+
+jobs:
+  land:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync --frozen --extra dev
+      - name: Branch shape
+        run: uv run --frozen python scripts/check_verified_branch.py "${GITHUB_REF_NAME}"
+      - name: Gates on the verified branch (fresh data)
+        run: |
+          uv run --frozen frda fetch
+          make lint
+          make test
+          uv run --frozen frda verify --require-data
+          make reproduce
+      - name: Merge into main and re-check
+        env:
+          BR: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          TASK="${BR#verified/}"
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git checkout -B main origin/main
+          if ! git merge --no-ff "origin/${BR}" -m "land(${TASK}): merge ${BR} into main"; then
+            conflicts=$(git diff --name-only --diff-filter=U)
+            echo "conflicts: ${conflicts}"
+            if [ "${conflicts}" = "results/hub/summary.json" ]; then
+              git checkout --theirs results/hub/summary.json   # regenerated just below
+              git add results/hub/summary.json
+              git commit --no-edit
+            else
+              echo "::error::merge conflict outside summary.json — the verifier will send ${TASK} back to the worker"
+              exit 1
+            fi
+          fi
+          uv run --frozen frda export-hub
+          git add results/hub/summary.json
+          git diff --cached --quiet || git commit -m "chore(hub): refresh summary after landing ${TASK}"
+          make lint
+          make test
+          uv run --frozen frda verify --require-data
+          make reproduce
+          git push origin main
+          git push origin --delete "${BR}" || true
+          git push origin --delete "auto/${TASK}" || true
+          echo "landed ${TASK} on main at $(git rev-parse --short HEAD)"

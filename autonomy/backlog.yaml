@@ -1,0 +1,301 @@
+version: 1
+# Research programme. The worker routine pulls the highest-priority `ready`
+# task whose dependencies are `done`. Only the verifier moves a task to `done`.
+# Acceptance criteria are what the verifier checks, one by one: keep them
+# concrete and checkable.
+milestones:
+  - id: M1
+    title: Credible foundation
+    goal: Characterise the two seed datasets and reproduce published results before anything new.
+    exit_criteria:
+      - Dataset cards with independent units and confounders for GSE104288 and GSE145115.
+      - At least one published result reproduced (or refuted) per dataset, gap documented.
+  - id: M2
+    title: Discovery
+    goal: Map what is already known, widen the public data base, derive a candidate mitochondrial signature.
+    exit_criteria:
+      - Literature landscape with explicit novelty gaps (incl. Maddock et al. 2026).
+      - At least two additional independent public FRDA datasets ingested.
+      - A frozen candidate signature from the discovery set, with sensitivity analyses.
+  - id: M3
+    title: Independent replication
+    goal: Test the frozen signature, as preregistered, in datasets not used to derive it.
+    exit_criteria:
+      - Preregistration committed before the confirmatory run.
+      - Replication / meta-analysis result, positive or negative, reported as such.
+  - id: M4
+    title: Intervention response
+    goal: Test whether interventions move the signature in the preregistered direction.
+    exit_criteria:
+      - Preregistered intervention analysis executed, with vehicle and inactive-analogue controls.
+  - id: M5
+    title: Hypothesis generation
+    goal: Rank public perturbation signatures that oppose the replicated FRDA signature, as preclinical hypotheses.
+    exit_criteria:
+      - Connectivity analysis with null distribution and negative controls; no therapeutic claim.
+  - id: M6
+    title: Preprint
+    goal: Submit an open preprint with a full reproducibility package.
+    exit_criteria:
+      - Manuscript rendered from verified claims only; internal review addressed.
+      - Human sign-off on authorship, expert co-author and submission.
+
+tasks:
+  # ---------------------------------------------------------------- M1
+  - id: T-001
+    title: Dataset cards and sample metadata for GSE104288 and GSE145115
+    milestone: M1
+    status: ready
+    priority: 1
+    kind: data
+    goal: >-
+      Extract GSM-level sample characteristics from GEO (SOFT/MINiML via the allowlisted GEO
+      endpoints) for both series, confirm the manifest group mapping, and write one dataset card
+      per series.
+    acceptance:
+      - pipelines/p001_sample_metadata.py writes results/P-001-sample-metadata/{GSE104288,GSE145115}_samples.json (one record per matrix column with GSM id, title, every characteristic) plus run.json via frda.provenance.write_run; registered in pipelines/registry.yaml and reproducible (`make reproduce`).
+      - Every matrix column is matched to exactly one GSM; any mismatch with the manifest groups is fixed in the manifest with the evidence quoted in the commit message.
+      - docs/datasets/GSE104288.md and docs/datasets/GSE145115.md filled from the template (unit of independence, n per group, age/sex/passage distributions when available, confounders, normalisation of the provided values, terms of use re-checked with URL).
+      - Age and sex balance between FRDA and control in GSE104288 reported as numbers (not adjectives).
+    notes:
+      - Do not guess characteristics; if GEO does not provide one, write "not provided".
+
+  - id: T-002
+    title: Quality control of both matrices
+    milestone: M1
+    status: ready
+    priority: 2
+    kind: qc
+    depends_on: [T-001]
+    goal: Detect outliers, batch structure and label errors before any biological analysis.
+    acceptance:
+      - pipelines/p002_qc.py writes results/P-002-qc/ (per-sample summary JSON, PCA coordinates, sample-sample correlation, figures as PNG < 300 KB each) and run.json; registered and reproducible.
+      - Sex check — XIST and Y-linked genes (e.g. RPS4Y1, DDX3Y) versus declared sex from T-001; every discordance listed.
+      - Outlier rule stated before looking (e.g. median correlation < Q1 − 3·IQR) and applied; flagged samples listed, none silently removed.
+      - docs/datasets/*.md updated with a QC section and a decision per flagged sample.
+
+  - id: T-003
+    title: Extract reproduction targets from the two seed publications
+    milestone: M1
+    status: ready
+    priority: 1
+    kind: reproduction
+    goal: >-
+      Record, with exact location, the published results we will try to reproduce, from Napierala
+      2017 (PMID 29125828) and Vilema-Enríquez 2020 (PMID 33028632), read through Europe PMC.
+    acceptance:
+      - evaluation/reproduction-targets.yaml lists ≥ 2 targets per paper, each with pmid, location (figure/table/section), verbatim published value, the method and thresholds the authors used, and the dataset/columns needed.
+      - Targets include the FXN difference FRDA vs control (GSE104288) and the A-196 effect on FXN expression (GSE145115), plus one genome-wide result (e.g. number of DE genes at the paper's thresholds or the highlighted gene families).
+      - For each target, the expected gap from method differences (e.g. normalised vs raw counts) is written down BEFORE reproducing.
+      - If the full text is not open access, say so and use only what the abstract/figures legally available state.
+
+  - id: T-004
+    title: Reproduce the GSE104288 headline results
+    milestone: M1
+    status: ready
+    priority: 2
+    kind: reproduction
+    depends_on: [T-001, T-002, T-003]
+    goal: Re-derive the FXN reduction and the genome-wide DE result of Napierala 2017 and document the gap.
+    acceptance:
+      - pipelines/p004_reproduce_gse104288.py writes JSON artifacts + run.json (analysis_kind=reproduction); registered and reproducible.
+      - Claims added to evaluation/claims.yaml with status reproduced or refuted, source (pmid, location, published_value), checks against the artifact, limitations.
+      - docs/reproductions/GSE104288.md reports published vs obtained values side by side, overlap metrics for gene lists (counts, Jaccard, rank correlation of fold changes), and explains each gap.
+      - Statistics at donor level (18 vs 17), multiple-testing correction stated.
+
+  - id: T-005
+    title: Reproduce the A-196 effect on FXN in GSE145115
+    milestone: M1
+    status: ready
+    priority: 3
+    kind: reproduction
+    depends_on: [T-001, T-003]
+    goal: Re-derive the published FXN increase under A-196 (dose response, vs DMSO and SGC2043).
+    acceptance:
+      - pipelines/p005_reproduce_gse145115.py + artifacts + run.json; registered and reproducible.
+      - Claims with evidence_level exploratory (one line per genotype), contrasts within GM04078 only for treatment effects.
+      - docs/reproductions/GSE145115.md — published vs obtained, culture replicates explicitly not treated as independent individuals.
+
+  # ---------------------------------------------------------------- M2
+  - id: T-006
+    title: Literature landscape and novelty map
+    milestone: M2
+    status: ready
+    priority: 2
+    kind: evidence
+    goal: >-
+      Establish what is already known about mitochondrial transcriptomic changes in FRDA (models,
+      tissues, datasets), including the 2026 preprint aggregating 23 FRDA datasets (Maddock et
+      al., PMID 41890103), so that any "new" claim is checked against it.
+    acceptance:
+      - docs/literature/landscape.md with a reproducible search (Europe PMC queries, date, hit counts), an evidence table (study, model, n independent units, finding, dataset id), and a section "gaps we can test with public data".
+      - docs/literature/search-log-YYYY-MM-DD.json saved (queries + returned ids), reusable as novelty_check for future claims.
+      - 3–5 candidate original questions ranked by novelty, feasibility on public data, and interest for FRDA researchers; each states what result would be publishable either way.
+
+  - id: T-007
+    title: Mitochondrial gene-set resource
+    milestone: M2
+    status: ready
+    priority: 3
+    kind: data
+    goal: Choose and ingest a versioned mitochondrial gene-set resource with clear terms (e.g. MitoCarta3.0, GO:0005739, HGNC OXPHOS groups).
+    acceptance:
+      - Terms of use of each candidate quoted with URL; chosen resource added to allowlist.yaml with its terms, plus a manifest-like file data-manifests/genesets/*.yaml with url + sha256.
+      - If terms are unclear or restrictive, the task is set to needs_human with the exact question to ask.
+      - Gene identifier mapping (symbols vs Ensembl for the two matrices) handled with a public versioned mapping; unmapped rate reported.
+
+  - id: T-008
+    title: Census of public FRDA transcriptomic datasets
+    milestone: M2
+    status: ready
+    priority: 3
+    kind: data
+    depends_on: [T-006]
+    goal: Find every public, non-DUA FRDA transcriptomic dataset usable for independent replication.
+    acceptance:
+      - data-manifests/candidates.yaml — accession, model/tissue, assay, n independent units per group, raw counts available, access, publication, independence from GSE104288 donors.
+      - GEO E-utilities queries and date recorded; cross-checked with the dataset list of Maddock et al. 2026 when available.
+      - A ranked shortlist for replication with the reasoning (tissue relevance, n, independence).
+
+  - id: T-009
+    title: Ingest the two best replication datasets
+    milestone: M2
+    status: ready
+    priority: 4
+    kind: data
+    depends_on: [T-008]
+    goal: Add manifests (with checksums), dataset cards and QC for the two top-ranked independent datasets.
+    acceptance:
+      - Two new data-manifests/GSE*.yaml passing the manifests and data_integrity gates.
+      - Dataset cards and QC as in T-001/T-002 (pipelines registered and reproducible).
+
+  - id: T-010
+    title: Candidate mitochondrial signature in the discovery set (GSE104288)
+    milestone: M2
+    status: ready
+    priority: 4
+    kind: analysis
+    depends_on: [T-004, T-007]
+    goal: Derive a candidate mitochondrial signature FRDA vs control and freeze it for replication.
+    acceptance:
+      - Exploratory analysis at donor level with gene-set statistics; at least three reasonable parametrisations (normalisation, gene-set definition, covariates age/sex) and leave-one-donor-out stability.
+      - The frozen signature (genes + direction + scoring rule) written to results/P-010-signature/signature.json and NOT modified afterwards; claims marked exploratory or single_dataset.
+      - Novelty of each candidate claim checked against the T-006 landscape (novelty_check set for `new` claims).
+
+  # ---------------------------------------------------------------- M3
+  - id: T-011
+    title: Preregister the replication (PR-001)
+    milestone: M3
+    status: ready
+    priority: 4
+    kind: analysis
+    depends_on: [T-009, T-010]
+    goal: Write preregistrations/PR-001-*.md before touching the replication datasets with the signature.
+    acceptance:
+      - Front matter complete (hypotheses, primary outcome, expected direction, analysis plan, decision rule incl. what counts as failure to replicate).
+      - Committed alone in its own commit, before any confirmatory result exists.
+
+  - id: T-012
+    title: Confirmatory replication and meta-analysis
+    milestone: M3
+    status: ready
+    priority: 5
+    kind: analysis
+    depends_on: [T-011]
+    goal: Execute PR-001 exactly; report the result whatever it is.
+    acceptance:
+      - run.json with analysis_kind=confirmatory and preregistration=preregistrations/PR-001-*.md; preregistration gate passes.
+      - Random-effects meta-analysis across independent datasets with heterogeneity reported; deviations from PR-001 listed explicitly.
+      - Claims with evidence_level preregistered_confirmed only if the decision rule says so; otherwise not_demonstrated.
+
+  # ---------------------------------------------------------------- M4
+  - id: T-013
+    title: Preregister the intervention hypothesis (PR-002)
+    milestone: M4
+    status: ready
+    priority: 5
+    kind: analysis
+    depends_on: [T-005, T-010]
+    goal: State, before looking, the expected direction of A-196 on the frozen signature and the controls.
+    acceptance:
+      - preregistrations/PR-002-*.md committed alone; vehicle (DMSO) and inactive analogue (SGC2043) as controls; within-line design acknowledged.
+
+  - id: T-014
+    title: Intervention response analysis
+    milestone: M4
+    status: ready
+    priority: 6
+    kind: analysis
+    depends_on: [T-013]
+    goal: Execute PR-002 on GSE145115 and on any intervention dataset found in T-008.
+    acceptance:
+      - Confirmatory run referencing PR-002; dose response; claims exploratory (single line) unless more lines exist.
+
+  # ---------------------------------------------------------------- M5
+  - id: T-015
+    title: Feasibility of a connectivity analysis on public perturbation data
+    milestone: M5
+    status: ready
+    priority: 6
+    kind: data
+    depends_on: [T-012]
+    goal: Assess public perturbation-signature resources (e.g. LINCS L1000 on GEO) for size, terms, cell types, compute within a cloud session.
+    acceptance:
+      - docs/decisions/ ADR with options, terms, sizes, a subsetting plan that fits the session limits, and the null model to use.
+
+  - id: T-016
+    title: Connectivity analysis — preclinical hypotheses
+    milestone: M5
+    status: ready
+    priority: 7
+    kind: analysis
+    depends_on: [T-015]
+    goal: Rank perturbations that oppose the replicated signature, as hypotheses to examine.
+    acceptance:
+      - Permutation null, negative-control signatures, cell-type caveats; output wording "hypothesis", never "candidate drug"; claims gate passes.
+
+  # ---------------------------------------------------------------- M6
+  - id: T-017
+    title: Manuscript skeleton and figure pipelines
+    milestone: M6
+    status: ready
+    priority: 5
+    kind: paper
+    depends_on: [T-004]
+    goal: Start paper/manuscript.md (IMRaD) where every number is a claim token and every result cites a claim.
+    acceptance:
+      - paper/manuscript.md renders with `frda render-paper` without problems; methods section generated from run.json records (packages, versions, parameters).
+      - Figure pipelines registered and reproducible; figures under results/, < 300 KB each.
+
+  - id: T-018
+    title: Internal peer review round
+    milestone: M6
+    status: ready
+    priority: 7
+    kind: paper
+    depends_on: [T-012, T-014, T-017]
+    goal: Have the manuscript reviewed as a journal would (statistics, overclaiming, missing controls) and address every point.
+    acceptance:
+      - docs/review/round-1.md with numbered reviewer points and, for each, the change made or the rebuttal.
+
+  - id: T-019
+    title: Human sign-off — authorship, expert co-author, submission
+    milestone: M6
+    status: needs_human
+    priority: 8
+    kind: human
+    depends_on: [T-018]
+    goal: An accountable human author, ideally an FRDA researcher (FARA / AFAF network), validates and submits (bioRxiv + Zenodo DOI).
+    acceptance:
+      - Done only when the owner records the decision in this task.
+
+  - id: T-020
+    title: One-page brief for FRDA researchers
+    milestone: M6
+    status: ready
+    priority: 6
+    kind: evidence
+    depends_on: [T-004, T-005]
+    goal: Draft a one-page, plain-language brief (reproduced / new / not demonstrated) to approach an FRDA researcher early.
+    acceptance:
+      - docs/outreach/brief.md generated from claims only, with limitations; no outreach is sent by the routine.

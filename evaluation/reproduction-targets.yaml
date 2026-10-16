@@ -1,0 +1,9 @@
+# Published results we try to reproduce (filled by T-003). One entry per target:
+#   - id: RT-001
+#     pmid: '29125828'
+#     location: Figure / table / section
+#     published_value: verbatim
+#     authors_method: tool, normalisation, thresholds
+#     dataset: GSE104288
+#     expected_gap: written BEFORE reproducing
+targets: []

@@ -1,0 +1,38 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          { "type": "command", "command": "bash \"$CLAUDE_PROJECT_DIR\"/scripts/session-start.sh" }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "Bash(make:*)",
+      "Bash(uv:*)",
+      "Bash(bash scripts/routine-setup.sh)",
+      "Bash(bash scripts/push-branch.sh:*)",
+      "Bash(git fetch:*)",
+      "Bash(git checkout:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git rev-parse:*)",
+      "Bash(curl -sS https://www.ebi.ac.uk/europepmc/:*)",
+      "Bash(curl -sS https://eutils.ncbi.nlm.nih.gov/:*)",
+      "WebFetch(domain:www.ebi.ac.uk)",
+      "WebFetch(domain:eutils.ncbi.nlm.nih.gov)",
+      "WebFetch(domain:www.ncbi.nlm.nih.gov)"
+    ],
+    "deny": [
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)",
+      "Bash(git push origin main:*)",
+      "Bash(git push origin HEAD:main:*)"
+    ]
+  }
+}

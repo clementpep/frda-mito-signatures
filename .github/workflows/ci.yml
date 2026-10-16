@@ -1,0 +1,29 @@
+name: ci
+
+# The same gates as the routines, on GitHub's runners, for every branch.
+# verified/** is covered by land-verified.yml. A verifier commit requesting
+# changes is expected to be red, so it is skipped here to avoid noise.
+on:
+  push:
+    branches-ignore: ['verified/**']
+  pull_request:
+
+jobs:
+  gates:
+    if: ${{ !contains(github.event.head_commit.message, 'CHANGES_REQUESTED') && !contains(github.event.head_commit.message, 'NEEDS_HUMAN') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync --frozen --extra dev
+      - run: uv run --frozen frda fetch
+      - run: make lint
+      - run: make test
+      - run: uv run --frozen frda verify --require-data
+      - run: make reproduce

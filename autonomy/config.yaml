@@ -1,0 +1,8 @@
+# Autonomy loop settings (read by `frda autonomy-status` and the routines).
+wip_limit: 1            # auto/T-* branches in flight at once (1 = strictly serial, fewest conflicts)
+max_attempts: 3         # CHANGES_REQUESTED rounds before a task escalates to NEEDS_HUMAN
+verifier_max_branches_per_run: 2
+schedules:              # documentation only — the source of truth is the cloud routine (routines/README.md)
+  worker: "daily 02:47 Europe/Paris"
+  verifier: "daily 06:53 Europe/Paris"
+  watch: "Monday 07:41 Europe/Paris"

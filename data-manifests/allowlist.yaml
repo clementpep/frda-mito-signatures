@@ -1,0 +1,31 @@
+# Sources this project may download from. Anything else is refused by
+# `frda fetch` and by the `manifests` gate. Adding a source is a reviewed
+# change (task + verification), never a side effect of an analysis.
+#
+# Scope (brief, phase 1): public data only. No DUA / controlled-access data,
+# no identifying data, nothing whose terms forbid processing with an AI assistant.
+sources:
+  - id: ncbi-geo
+    name: NCBI Gene Expression Omnibus (supplementary files)
+    url_prefixes:
+      - https://ftp.ncbi.nlm.nih.gov/geo/
+      - https://www.ncbi.nlm.nih.gov/geo/
+    terms_url: https://www.ncbi.nlm.nih.gov/home/about/policies/
+    allowed_use: >-
+      Public series without access control. NCBI's policy states it places no
+      restrictions on the use or distribution of the data it hosts, while
+      submitters may hold rights; cite the series and its publications.
+  - id: ncbi-eutils
+    name: NCBI E-utilities (metadata search only)
+    url_prefixes:
+      - https://eutils.ncbi.nlm.nih.gov/entrez/eutils/
+    terms_url: https://www.ncbi.nlm.nih.gov/books/NBK25497/
+    allowed_use: Metadata queries; at most 3 requests/second without an API key.
+  - id: europe-pmc
+    name: Europe PMC REST API (metadata, open-access full text)
+    url_prefixes:
+      - https://www.ebi.ac.uk/europepmc/webservices/rest/
+    terms_url: https://europepmc.org/developers
+    allowed_use: >-
+      Metadata and abstracts; full text only for articles in the open-access
+      subset, within each article's own licence.
