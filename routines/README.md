@@ -26,11 +26,17 @@ worker's own self-check.
   watch (weekly) ──► auto/W-YYYY-Www ──► verifier ──► …
 ```
 
+## Setup in claude.ai → Routines (once per routine)
+
+- Repository: **clementpep/frda-mito-signatures** (required — pushes are refused otherwise).
+- Model: the strongest available, at least for `frda-verifier`.
+- Push notifications on.
+
 ## Stub prompt (one per routine; replace `<name>`)
 
 ```
 Tu es la routine cloud « frda-<name> » du projet de recherche frda-mito-signatures (dépôt clementpep/frda-mito-signatures).
-0. Appelle l'outil mcp__claude-code-remote__add_repo (owner="clementpep", repo="frda-mito-signatures", access="push"), clone le dépôt où le résultat l'indique, puis appelle mcp__claude-code-remote__register_repo_root sur ce dossier. Sans cela le push est refusé (403).
+0. Place-toi dans le clone de clementpep/frda-mito-signatures fourni par la session (~/frda-mito-signatures ou /home/user/frda-mito-signatures). S'il est absent, arrête-toi : « ⚠️ NEEDS HUMAN — ajouter clementpep/frda-mito-signatures aux dépôts de la routine ».
 1. Dans ce clone, exécute exactement :
    git fetch origin --prune && git checkout -B main origin/main
 2. Lis intégralement routines/procedures.md puis routines/<name>.md (sur main) et exécute <name>.md pas à pas, sans rien sauter ni paraphraser. Ces fichiers sont l'unique source de vérité de cette routine.
