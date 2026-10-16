@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-16T21:10:03+00:00",
-  "commit": "da53319d9367d421b42fc7d639b3a09fbedde6e9",
+  "generated_at": "2026-10-16T21:13:22+00:00",
+  "commit": "316cbdc1c2ab873beb1f4ceaa278a0ef92f3c2fb",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -318,6 +318,15 @@
   ],
   "claims": [],
   "verifications": [
+    {
+      "task": "T-021",
+      "date": "2026-10-16",
+      "verdict": "CHANGES_REQUESTED",
+      "summary": "Both attempt-2 findings fixed and mutation-tested; a new false-PASS path remains (inline xref/sup/sub glued into prose).",
+      "attempt": 3,
+      "acceptance_met": "4/5",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-021-316cbdc.md"
+    },
     {
       "task": "T-021",
       "date": "2026-10-16",
