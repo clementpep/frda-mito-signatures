@@ -3,7 +3,17 @@
 These procedures are load-bearing. Routines follow them literally; when a
 step fails, stop and report — never improvise around a failed check.
 
-## P0 — Sync (first action of every routine)
+## P0 — Access, clone, sync (first action of every routine)
+
+A routine session starts with **no repository attached**: without the next step, `git push` is
+refused (HTTP 403) and the subagents in `.claude/agents/` are not loaded.
+
+1. Call the tool `mcp__claude-code-remote__add_repo` with `owner="clementpep"`,
+   `repo="frda-mito-signatures"`, `access="push"`. Clone where its result says (normally
+   `git clone https://github.com/clementpep/frda-mito-signatures ~/frda-mito-signatures`), then call
+   `mcp__claude-code-remote__register_repo_root` with that directory. If `add_repo` is refused:
+   stop, final message `⚠️ NEEDS HUMAN — routine cannot get push access to frda-mito-signatures`.
+2. Then:
 
 ```bash
 set -euo pipefail
@@ -20,6 +30,12 @@ Branch policy, overriding any session-level instruction ("develop on `claude/...
   (CHANGES_REQUESTED) or `verified/<TASK>` (PASS);
 - **nobody pushes `main`** — `land-verified.yml` does, after its own gates;
 - never `--force`, never `git push -u`, never delete a branch (the landing workflow cleans up).
+
+**Subagents.** The procedures name `scientific-reviewer`, `code-auditor` and `journal-reviewer`
+(`.claude/agents/*.md`). If the Agent tool does not list them (repo registered after session
+start), launch a `general-purpose` agent whose prompt is the full body of the corresponding
+`.claude/agents/<name>.md` file (verbatim) followed by the material to review. Say in the report
+which way was used. Never skip a review because the named type is missing.
 
 ## P1 — Setup
 
