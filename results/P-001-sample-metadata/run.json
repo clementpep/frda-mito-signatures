@@ -1,0 +1,67 @@
+{
+  "pipeline": "P-001",
+  "task": "T-001",
+  "analysis_kind": "qc",
+  "preregistration": null,
+  "code_sha": "7a081425ffebde066e903df08de57407abab7da4",
+  "created_at": "2026-10-16T17:50:31+00:00",
+  "inputs": [
+    {
+      "dataset": "GSE104288",
+      "file": "GSE104288_family.soft.gz",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE104nnn/GSE104288/soft/GSE104288_family.soft.gz",
+      "sha256": "ebcbea0d553d981d38062e66a27fb2baaffef518645afdbc02846284e4e36cb8"
+    },
+    {
+      "dataset": "GSE104288",
+      "file": "GSE104288_DESeq_counts.txt.gz",
+      "sha256": "8d497ec78ae6a62a1ad2077b49901d14860da1ca403943c968fc68a39f750d8f"
+    },
+    {
+      "dataset": "GSE145115",
+      "file": "GSE145115_family.soft.gz",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE145nnn/GSE145115/soft/GSE145115_family.soft.gz",
+      "sha256": "31a4b965090c5e26ca5d0488cb17c9d9c520c336a6f4d435b76c3834f8a8b2b2"
+    },
+    {
+      "dataset": "GSE145115",
+      "file": "GSE145115_counts_all_samples_normalised.txt.gz",
+      "sha256": "9b19865fddfa8f282fd8aac82b12853ee917788a1e2bc8796bcec3d248c59f83"
+    }
+  ],
+  "params": {
+    "match_key": "Sample_title == matrix column",
+    "age_unit": "years (d/365.25)"
+  },
+  "independent_units": {
+    "GSE104288:FRDA": 18,
+    "GSE104288:control": 17,
+    "GSE145115:FRDA_untreated": 1,
+    "GSE145115:FRDA_DMSO": 1,
+    "GSE145115:FRDA_A196_low": 1,
+    "GSE145115:FRDA_A196_mid": 1,
+    "GSE145115:FRDA_A196_high": 1,
+    "GSE145115:FRDA_SGC2043": 1,
+    "GSE145115:control_untreated": 1,
+    "GSE145115:control_DMSO": 1
+  },
+  "environment": {
+    "python": "3.13.16",
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1",
+    "statsmodels": "0.15.0",
+    "matplotlib": "3.11.2",
+    "frda": "0.1.0"
+  },
+  "outputs": [
+    {
+      "path": "GSE104288_samples.json",
+      "sha256": "ffece9dafbad1ace39cbeecd1680ed1af8b22e95330b82801b226f09d9faff44"
+    },
+    {
+      "path": "GSE145115_samples.json",
+      "sha256": "171caed2db6692a35d8d773add40d2dece3d7a531f5e325e6be3a28242143242"
+    }
+  ]
+}

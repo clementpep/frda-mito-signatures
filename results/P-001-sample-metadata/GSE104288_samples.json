@@ -1,0 +1,664 @@
+{
+  "age_sex_balance": {
+    "mannwhitney_p_two_sided": 0.268402,
+    "mannwhitney_u": 187.0,
+    "mean_difference_FRDA_minus_control_years": 6.21879,
+    "note": "descriptive balance check, exploratory; not a confirmatory test",
+    "per_group": {
+      "FRDA": {
+        "max": 70.0,
+        "mean": 36.2778,
+        "median": 34.5,
+        "min": 13.0,
+        "n_with_age": 18,
+        "q1": 28.0,
+        "q3": 46.25,
+        "sd": 14.7281
+      },
+      "control": {
+        "max": 64.0,
+        "mean": 30.059,
+        "median": 27.0,
+        "min": 0.00273785,
+        "n_with_age": 17,
+        "q1": 19.0,
+        "q3": 40.0,
+        "sd": 17.1187
+      }
+    },
+    "sex": {
+      "FRDA": "not provided",
+      "control": "not provided",
+      "note": "GEO gives no sex field; do not guess. Sex can only be inferred from expression (XIST / Y-linked genes) in T-002, and would then be labelled inferred."
+    },
+    "welch_p_two_sided": 0.259134,
+    "welch_t": 1.14909
+  },
+  "checks": {
+    "mismatches": [],
+    "n_gsm_in_soft": 35,
+    "n_manifest_samples_not_in_matrix": 0,
+    "n_matrix_columns": 35,
+    "n_records": 35,
+    "n_soft_samples_unmatched": 0,
+    "n_unique_gsm": 35
+  },
+  "data_processing": [
+    "Basecalling was done by Illumina analysis pipeline CASAVA (version 1.8.2).",
+    "Genes with less than 10 fragments in all the samples were removed, and then the normalized fragment count for each gene was calculated by R/Bioconductor package DESeq (version 1.10.1).",
+    "Genome_build: hg19",
+    "Supplementary_files_format_and_content: The first column is gene symbol. The other columns are normalized expression values (estimated by DESeq) for all the samples.",
+    "The number of fragments in each known gene from RefSeq database (downloaded from UCSC Genome Browser on March 6, 2013) was enumerated using htseq-count from HTSeq package (version 0.5.3p9).",
+    "The reads were mapped to human genome (hg19) by TopHat (version 2.0.7) and Bowtie2 (version 2.1.0)."
+  ],
+  "dataset": "GSE104288",
+  "samples": [
+    {
+      "age_years": 37.0,
+      "characteristics": {
+        "genotype": "Control",
+        "sampling age": "37 y",
+        "tissue": "primary skin fibroblast cells"
+      },
+      "column": "C1650",
+      "expected_group": "control",
+      "growth_protocol": "Primary fibroblast cultures were maintained in DMEM high glucose (Life Technologies) containing 15% fetal bovine serum (Hyclone) and 1% non-essential amino acids (Life Technologies).\u00a0 Cells were passaged by incubating in 0.25% trypsin-EDTA (Life Technologies) for 5 min, and harvested for RNA isolation when they reached ~80-85% confluence.",
+      "gsm": "GSM2794401",
+      "manifest_group": "control",
+      "sex": "not provided",
+      "source_name": "fibroblasts",
+      "title": "C1650",
+      "treatment_protocol": "N/A"
+    },
+    {
+      "age_years": 11.0,
+      "characteristics": {
+        "genotype": "Control",
+        "sampling age": "11 y",
+        "tissue": "primary skin fibroblast cells"
+      },
+      "column": "C2036",
+      "expected_group": "control",
+      "growth_protocol": "Primary fibroblast cultures were maintained in DMEM high glucose (Life Technologies) containing 15% fetal bovine serum (Hyclone) and 1% non-essential amino acids (Life Technologies).\u00a0 Cells were passaged by incubating in 0.25% trypsin-EDTA (Life Technologies) for 5 min, and harvested for RNA isolation when they reached ~80-85% confluence.",
+      "gsm": "GSM2794402",
+      "manifest_group": "control",
+      "sex": "not provided",
+      "source_name": "fibroblasts",
+      "title": "C2036",
+      "treatment_protocol": "N/A"
+    },
+    {
+      "age_years": 40.0,
+      "characteristics": {
+        "genotype": "Control",
+        "sampling age": "40 y",
+        "tissue": "primary skin fibroblast cells"
+      },
+      "column": "C2153",
+      "expected_group": "control",
+      "growth_protocol": "Primary fibroblast cultures were maintained in DMEM high glucose (Life Technologies) containing 15% fetal bovine serum (Hyclone) and 1% non-essential amino acids (Life Technologies).\u00a0 Cells were passaged by incubating in 0.25% trypsin-EDTA (Life Technologies) for 5 min, and harvested for RNA isolation when they reached ~80-85% confluence.",
+      "gsm": "GSM2794403",
+      "manifest_group": "control",
+      "sex": "not provided",
+      "source_name": "fibroblasts",
+      "title": "C2153",
+      "treatment_protocol": "N/A"
+    },
+    {
+      "age_years": 52.0,
+      "characteristics": {
+        "genotype": "Control",
+        "sampling age": "52 y",
+        "tissue": "primary skin fibroblast cells"
+      },
+      "column": "C2169",
+      "expected_group": "control",
+      "growth_protocol": "Primary fibroblast cultures were maintained in DMEM high glucose (Life Technologies) containing 15% fetal bovine serum (Hyclone) and 1% non-essential amino acids (Life Technologies).\u00a0 Cells were passaged by incubating in 0.25% trypsin-EDTA (Life Technologies) for 5 min, and harvested for RNA isolation when they reached ~80-85% confluence.",
+      "gsm": "GSM2794404",
+      "manifest_group": "control",
+      "sex": "not provided",
+      "source_name": "fibroblasts",
+      "title": "C2169",
+      "treatment_protocol": "N/A"
+    },
+    {
+      "age_years": 0.00273785,
+      "characteristics": {
+        "genotype": "Control",
+        "sampling age": "1 d",
+        "tissue": "primary skin fibroblast cells"
+      },
+      "column": "C21808",
+      "expected_group": "control",
+      "growth_protocol": "Primary fibroblast cultures were maintained in DMEM high glucose (Life Technologies) containing 15% fetal bovine serum (Hyclone) and 1% non-essential amino acids (Life Technologies).\u00a0 Cells were passaged by incubating in 0.25% trypsin-EDTA (Life Technologies) for 5 min, and harvested for RNA isolation when they reached ~80-85% confluence.",
+      "gsm": "GSM2794405",
+      "manifest_group": "control",
+      "sex": "not provided",
+      "source_name": "fibroblasts",
+      "title": "C21808",
+      "treatment_protocol": "N/A"
+    },
+    {
+      "age_years": 47.0,
+      "characteristics": {
+        "genotype": "Control",
+        "sampling age": "47 y",
+        "tissue": "primary skin fibroblast cells"
+      },
+      "column": "C2671",
+      "expected_group": "control",
+      "growth_protocol": "Primary fibroblast cultures were maintained in DMEM high glucose (Life Technologies) containing 15% fetal bovine serum (Hyclone) and 1% non-essential amino acids (Life Technologies).\u00a0 Cells were passaged by incubating in 0.25% trypsin-EDTA (Life Technologies) for 5 min, and harvested for RNA isolation when they reached ~80-85% confluence.",
+      "gsm": "GSM2794406",
+      "manifest_group": "control",
+      "sex": "not provided",
+      "source_name": "fibroblasts",
+      "title": "C2671",
+      "treatment_protocol": "N/A"
+    },
+    {
+      "age_years": 64.0,
+      "characteristics": {
+        "genotype": "Control",
+        "sampling age": "64 y",
+        "tissue": "primary skin fibroblast cells"
+      },
+      "column": "C288",
+      "expected_group": "control",
+      "growth_protocol": "Primary fibroblast cultures were maintained in DMEM high glucose (Life Technologies) containing 15% fetal bovine serum (Hyclone) and 1% non-essential amino acids (Life Technologies).\u00a0 Cells were passaged by incubating in 0.25% trypsin-EDTA (Life Technologies) for 5 min, and harvested for RNA isolation when they reached ~80-85% confluence.",
+      "gsm": "GSM2794407",
+      "manifest_group": "control",
+      "sex": "not provided",
+      "source_name": "fibroblasts",
+      "title": "C288",
+      "treatment_protocol": "N/A"
+    },
+    {
+      "age_years": 10.0,
+      "characteristics": {
+        "genotype": "Control",
+        "sampling age": "10 y",
+        "tissue": "primary skin fibroblast cells"
+      },
+      "column": "C3348",
+      "expected_group": "control",
+      "growth_protocol": "Primary fibroblast cultures were maintained in DMEM high glucose (Life Technologies) containing 15% fetal bovine serum (Hyclone) and 1% non-essential amino acids (Life Technologies).\u00a0 Cells were passaged by incubating in 0.25% trypsin-EDTA (Life Technologies) for 5 min, and harvested for RNA isolation when they reached ~80-85% confluence.",
+      "gsm": "GSM2794408",
+      "manifest_group": "control",
+      "sex": "not provided",
+      "source_name": "fibroblasts",
+      "title": "C3348",
+      "treatment_protocol": "N/A"
+    },
+    {
+      "age_years": 24.0,
+      "characteristics": {
+        "genotype": "Control",
+        "sampling age": "24 y",
+        "tissue": "primary skin fibroblast cells"
+      },
+      "column": "C3652",
+      "expected_group": "control",
+      "growth_protocol": "Primary fibroblast cultures were maintained in DMEM high glucose (Life Technologies) containing 15% fetal bovine serum (Hyclone) and 1% non-essential amino acids (Life Technologies).\u00a0 Cells were passaged by incubating in 0.25% trypsin-EDTA (Life Technologies) for 5 min, and harvested for RNA isolation when they reached ~80-85% confluence.",
+      "gsm": "GSM2794409",
+      "manifest_group": "control",
+      "sex": "not provided",
+      "source_name": "fibroblasts",
+      "title": "C3652",
+      "treatment_protocol": "N/A"
+    },
+    {
+      "age_years": 27.0,
+      "characteristics": {
+        "genotype": "Control",
+        "sampling age": "27 y",
+        "tissue": "primary skin fibroblast cells"
+      },
+      "column": "C3956",
+      "expected_group": "control",
+      "growth_protocol": "Primary fibroblast cultures were maintained in DMEM high glucose (Life Technologies) containing 15% fetal bovine serum (Hyclone) and 1% non-essential amino acids (Life Technologies).\u00a0 Cells were passaged by incubating in 0.25% trypsin-EDTA (Life Technologies) for 5 min, and harvested for RNA isolation when they reached ~80-85% confluence.",
+      "gsm": "GSM2794410",
+      "manifest_group": "control",
+      "sex": "not provided",
+      "source_name": "fibroblasts",
+      "title": "C3956",
+      "treatment_protocol": "N/A"
+    },
+    {
+      "age_years": 48.0,
+      "characteristics": {
+        "genotype": "Control",
+        "sampling age": "48 y",
+        "tissue": "primary skin fibroblast cells"
+      },
+      "column": "C5879",
+      "expected_group": "control",
+      "growth_protocol": "Primary fibroblast cultures were maintained in DMEM high glucose (Life Technologies) containing 15% fetal bovine serum (Hyclone) and 1% non-essential amino acids (Life Technologies).\u00a0 Cells were passaged by incubating in 0.25% trypsin-EDTA (Life Technologies) for 5 min, and harvested for RNA isolation when they reached ~80-85% confluence.",
+      "gsm": "GSM2794411",
+      "manifest_group": "control",
+      "sex": "not provided",
+      "source_name": "fibroblasts",
+      "title": "C5879",
+      "treatment_protocol": "N/A"
+    },
+    {
+      "age_years": 17.0,
+      "characteristics": {
+        "genotype": "Control",
+        "sampling age": "17 y",
+        "tissue": "primary skin fibroblast cells"
+      },
+      "column": "C7492",
+      "expected_group": "control",
+      "growth_protocol": "Primary fibroblast cultures were maintained in DMEM high glucose (Life Technologies) containing 15% fetal bovine serum (Hyclone) and 1% non-essential amino acids (Life Technologies).\u00a0 Cells were passaged by incubating in 0.25% trypsin-EDTA (Life Technologies) for 5 min, and harvested for RNA isolation when they reached ~80-85% confluence.",
+      "gsm": "GSM2794412",
+      "manifest_group": "control",
+      "sex": "not provided",
+      "source_name": "fibroblasts",
+      "title": "C7492",
+      "treatment_protocol": "N/A"
+    },
+    {
+      "age_years": 19.0,
+      "characteristics": {
+        "genotype": "Control",
+        "sampling age": "19 y",
+        "tissue": "primary skin fibroblast cells"
+      },
+      "column": "C7522",
+      "expected_group": "control",
+      "growth_protocol": "Primary fibroblast cultures were maintained in DMEM high glucose (Life Technologies) containing 15% fetal bovine serum (Hyclone) and 1% non-essential amino acids (Life Technologies).\u00a0 Cells were passaged by incubating in 0.25% trypsin-EDTA (Life Technologies) for 5 min, and harvested for RNA isolation when they reached ~80-85% confluence.",
+      "gsm": "GSM2794413",
+      "manifest_group": "control",
+      "sex": "not provided",
+      "source_name": "fibroblasts",
+      "title": "C7522",
+      "treatment_protocol": "N/A"
+    },
+    {
+      "age_years": 22.0,
+      "characteristics": {
+        "genotype": "Control",
+        "sampling age": "22 y",
+        "tissue": "primary skin fibroblast cells"
+      },
+      "column": "C7525",
+      "expected_group": "control",
+      "growth_protocol": "Primary fibroblast cultures were maintained in DMEM high glucose (Life Technologies) containing 15% fetal bovine serum (Hyclone) and 1% non-essential amino acids (Life Technologies).\u00a0 Cells were passaged by incubating in 0.25% trypsin-EDTA (Life Technologies) for 5 min, and harvested for RNA isolation when they reached ~80-85% confluence.",
+      "gsm": "GSM2794414",
+      "manifest_group": "control",
+      "sex": "not provided",
+      "source_name": "fibroblasts",
+      "title": "C7525",
+      "treatment_protocol": "N/A"
+    },
+    {
+      "age_years": 19.0,
+      "characteristics": {
+        "genotype": "Control",
+        "sampling age": "19 y",
+        "tissue": "primary skin fibroblast cells"
+      },
+      "column": "C8399",
+      "expected_group": "control",
+      "growth_protocol": "Primary fibroblast cultures were maintained in DMEM high glucose (Life Technologies) containing 15% fetal bovine serum (Hyclone) and 1% non-essential amino acids (Life Technologies).\u00a0 Cells were passaged by incubating in 0.25% trypsin-EDTA (Life Technologies) for 5 min, and harvested for RNA isolation when they reached ~80-85% confluence.",
+      "gsm": "GSM2794415",
+      "manifest_group": "control",
+      "sex": "not provided",
+      "source_name": "fibroblasts",
+      "title": "C8399",
+      "treatment_protocol": "N/A"
+    },
+    {
+      "age_years": 35.0,
+      "characteristics": {
+        "genotype": "Control",
+        "sampling age": "35 y",
+        "tissue": "primary skin fibroblast cells"
+      },
+      "column": "C_UF",
+      "expected_group": "control",
+      "growth_protocol": "Primary fibroblast cultures were maintained in DMEM high glucose (Life Technologies) containing 15% fetal bovine serum (Hyclone) and 1% non-essential amino acids (Life Technologies).\u00a0 Cells were passaged by incubating in 0.25% trypsin-EDTA (Life Technologies) for 5 min, and harvested for RNA isolation when they reached ~80-85% confluence.",
+      "gsm": "GSM2794416",
+      "manifest_group": "control",
+      "sex": "not provided",
+      "source_name": "fibroblasts",
+      "title": "C_UF",
+      "treatment_protocol": "N/A"
+    },
+    {
+      "age_years": 39.0,
+      "characteristics": {
+        "genotype": "Control",
+        "sampling age": "39 y",
+        "tissue": "primary skin fibroblast cells"
+      },
+      "column": "C_UM",
+      "expected_group": "control",
+      "growth_protocol": "Primary fibroblast cultures were maintained in DMEM high glucose (Life Technologies) containing 15% fetal bovine serum (Hyclone) and 1% non-essential amino acids (Life Technologies).\u00a0 Cells were passaged by incubating in 0.25% trypsin-EDTA (Life Technologies) for 5 min, and harvested for RNA isolation when they reached ~80-85% confluence.",
+      "gsm": "GSM2794417",
+      "manifest_group": "control",
+      "sex": "not provided",
+      "source_name": "fibroblasts",
+      "title": "C_UM",
+      "treatment_protocol": "N/A"
+    },
+    {
+      "age_years": 56.0,
+      "characteristics": {
+        "genotype": "Friedreich's ataxia",
+        "sampling age": "56 y",
+        "tissue": "primary skin fibroblast cells"
+      },
+      "column": "F130",
+      "expected_group": "FRDA",
+      "growth_protocol": "Primary fibroblast cultures were maintained in DMEM high glucose (Life Technologies) containing 15% fetal bovine serum (Hyclone) and 1% non-essential amino acids (Life Technologies).\u00a0 Cells were passaged by incubating in 0.25% trypsin-EDTA (Life Technologies) for 5 min, and harvested for RNA isolation when they reached ~80-85% confluence.",
+      "gsm": "GSM2794418",
+      "manifest_group": "FRDA",
+      "sex": "not provided",
+      "source_name": "fibroblasts",
+      "title": "F130",
+      "treatment_protocol": "N/A"
+    },
+    {
+      "age_years": 41.0,
+      "characteristics": {
+        "genotype": "Friedreich's ataxia",
+        "sampling age": "41 y",
+        "tissue": "primary skin fibroblast cells"
+      },
+      "column": "F156",
+      "expected_group": "FRDA",
+      "growth_protocol": "Primary fibroblast cultures were maintained in DMEM high glucose (Life Technologies) containing 15% fetal bovine serum (Hyclone) and 1% non-essential amino acids (Life Technologies).\u00a0 Cells were passaged by incubating in 0.25% trypsin-EDTA (Life Technologies) for 5 min, and harvested for RNA isolation when they reached ~80-85% confluence.",
+      "gsm": "GSM2794419",
+      "manifest_group": "FRDA",
+      "sex": "not provided",
+      "source_name": "fibroblasts",
+      "title": "F156",
+      "treatment_protocol": "N/A"
+    },
+    {
+      "age_years": 47.0,
+      "characteristics": {
+        "genotype": "Friedreich's ataxia",
+        "sampling age": "47 y",
+        "tissue": "primary skin fibroblast cells"
+      },
+      "column": "F188",
+      "expected_group": "FRDA",
+      "growth_protocol": "Primary fibroblast cultures were maintained in DMEM high glucose (Life Technologies) containing 15% fetal bovine serum (Hyclone) and 1% non-essential amino acids (Life Technologies).\u00a0 Cells were passaged by incubating in 0.25% trypsin-EDTA (Life Technologies) for 5 min, and harvested for RNA isolation when they reached ~80-85% confluence.",
+      "gsm": "GSM2794420",
+      "manifest_group": "FRDA",
+      "sex": "not provided",
+      "source_name": "fibroblasts",
+      "title": "F188",
+      "treatment_protocol": "N/A"
+    },
+    {
+      "age_years": 31.0,
+      "characteristics": {
+        "genotype": "Friedreich's ataxia",
+        "sampling age": "31 y",
+        "tissue": "primary skin fibroblast cells"
+      },
+      "column": "F203",
+      "expected_group": "FRDA",
+      "growth_protocol": "Primary fibroblast cultures were maintained in DMEM high glucose (Life Technologies) containing 15% fetal bovine serum (Hyclone) and 1% non-essential amino acids (Life Technologies).\u00a0 Cells were passaged by incubating in 0.25% trypsin-EDTA (Life Technologies) for 5 min, and harvested for RNA isolation when they reached ~80-85% confluence.",
+      "gsm": "GSM2794421",
+      "manifest_group": "FRDA",
+      "sex": "not provided",
+      "source_name": "fibroblasts",
+      "title": "F203",
+      "treatment_protocol": "N/A"
+    },
+    {
+      "age_years": 19.0,
+      "characteristics": {
+        "genotype": "Friedreich's ataxia",
+        "sampling age": "19 y",
+        "tissue": "primary skin fibroblast cells"
+      },
+      "column": "F281",
+      "expected_group": "FRDA",
+      "growth_protocol": "Primary fibroblast cultures were maintained in DMEM high glucose (Life Technologies) containing 15% fetal bovine serum (Hyclone) and 1% non-essential amino acids (Life Technologies).\u00a0 Cells were passaged by incubating in 0.25% trypsin-EDTA (Life Technologies) for 5 min, and harvested for RNA isolation when they reached ~80-85% confluence.",
+      "gsm": "GSM2794422",
+      "manifest_group": "FRDA",
+      "sex": "not provided",
+      "source_name": "fibroblasts",
+      "title": "F281",
+      "treatment_protocol": "N/A"
+    },
+    {
+      "age_years": 13.0,
+      "characteristics": {
+        "genotype": "Friedreich's ataxia",
+        "sampling age": "13 y",
+        "tissue": "primary skin fibroblast cells"
+      },
+      "column": "F3665",
+      "expected_group": "FRDA",
+      "growth_protocol": "Primary fibroblast cultures were maintained in DMEM high glucose (Life Technologies) containing 15% fetal bovine serum (Hyclone) and 1% non-essential amino acids (Life Technologies).\u00a0 Cells were passaged by incubating in 0.25% trypsin-EDTA (Life Technologies) for 5 min, and harvested for RNA isolation when they reached ~80-85% confluence.",
+      "gsm": "GSM2794423",
+      "manifest_group": "FRDA",
+      "sex": "not provided",
+      "source_name": "fibroblasts",
+      "title": "F3665",
+      "treatment_protocol": "N/A"
+    },
+    {
+      "age_years": 30.0,
+      "characteristics": {
+        "genotype": "Friedreich's ataxia",
+        "sampling age": "30 y",
+        "tissue": "primary skin fibroblast cells"
+      },
+      "column": "F4078",
+      "expected_group": "FRDA",
+      "growth_protocol": "Primary fibroblast cultures were maintained in DMEM high glucose (Life Technologies) containing 15% fetal bovine serum (Hyclone) and 1% non-essential amino acids (Life Technologies).\u00a0 Cells were passaged by incubating in 0.25% trypsin-EDTA (Life Technologies) for 5 min, and harvested for RNA isolation when they reached ~80-85% confluence.",
+      "gsm": "GSM2794424",
+      "manifest_group": "FRDA",
+      "sex": "not provided",
+      "source_name": "fibroblasts",
+      "title": "F4078",
+      "treatment_protocol": "N/A"
+    },
+    {
+      "age_years": 33.0,
+      "characteristics": {
+        "genotype": "Friedreich's ataxia",
+        "sampling age": "33 y",
+        "tissue": "primary skin fibroblast cells"
+      },
+      "column": "F4192",
+      "expected_group": "FRDA",
+      "growth_protocol": "Primary fibroblast cultures were maintained in DMEM high glucose (Life Technologies) containing 15% fetal bovine serum (Hyclone) and 1% non-essential amino acids (Life Technologies).\u00a0 Cells were passaged by incubating in 0.25% trypsin-EDTA (Life Technologies) for 5 min, and harvested for RNA isolation when they reached ~80-85% confluence.",
+      "gsm": "GSM2794425",
+      "manifest_group": "FRDA",
+      "sex": "not provided",
+      "source_name": "fibroblasts",
+      "title": "F4192",
+      "treatment_protocol": "N/A"
+    },
+    {
+      "age_years": 28.0,
+      "characteristics": {
+        "genotype": "Friedreich's ataxia",
+        "sampling age": "28 y",
+        "tissue": "primary skin fibroblast cells"
+      },
+      "column": "F4230",
+      "expected_group": "FRDA",
+      "growth_protocol": "Primary fibroblast cultures were maintained in DMEM high glucose (Life Technologies) containing 15% fetal bovine serum (Hyclone) and 1% non-essential amino acids (Life Technologies).\u00a0 Cells were passaged by incubating in 0.25% trypsin-EDTA (Life Technologies) for 5 min, and harvested for RNA isolation when they reached ~80-85% confluence.",
+      "gsm": "GSM2794426",
+      "manifest_group": "FRDA",
+      "sex": "not provided",
+      "source_name": "fibroblasts",
+      "title": "F4230",
+      "treatment_protocol": "N/A"
+    },
+    {
+      "age_years": 37.0,
+      "characteristics": {
+        "genotype": "Friedreich's ataxia",
+        "sampling age": "37 y",
+        "tissue": "primary skin fibroblast cells"
+      },
+      "column": "F4259",
+      "expected_group": "FRDA",
+      "growth_protocol": "Primary fibroblast cultures were maintained in DMEM high glucose (Life Technologies) containing 15% fetal bovine serum (Hyclone) and 1% non-essential amino acids (Life Technologies).\u00a0 Cells were passaged by incubating in 0.25% trypsin-EDTA (Life Technologies) for 5 min, and harvested for RNA isolation when they reached ~80-85% confluence.",
+      "gsm": "GSM2794427",
+      "manifest_group": "FRDA",
+      "sex": "not provided",
+      "source_name": "fibroblasts",
+      "title": "F4259",
+      "treatment_protocol": "N/A"
+    },
+    {
+      "age_years": 44.0,
+      "characteristics": {
+        "genotype": "Friedreich's ataxia",
+        "sampling age": "44 y",
+        "tissue": "primary skin fibroblast cells"
+      },
+      "column": "F4497",
+      "expected_group": "FRDA",
+      "growth_protocol": "Primary fibroblast cultures were maintained in DMEM high glucose (Life Technologies) containing 15% fetal bovine serum (Hyclone) and 1% non-essential amino acids (Life Technologies).\u00a0 Cells were passaged by incubating in 0.25% trypsin-EDTA (Life Technologies) for 5 min, and harvested for RNA isolation when they reached ~80-85% confluence.",
+      "gsm": "GSM2794428",
+      "manifest_group": "FRDA",
+      "sex": "not provided",
+      "source_name": "fibroblasts",
+      "title": "F4497",
+      "treatment_protocol": "N/A"
+    },
+    {
+      "age_years": 36.0,
+      "characteristics": {
+        "genotype": "Friedreich's ataxia",
+        "sampling age": "36 y",
+        "tissue": "primary skin fibroblast cells"
+      },
+      "column": "F4509",
+      "expected_group": "FRDA",
+      "growth_protocol": "Primary fibroblast cultures were maintained in DMEM high glucose (Life Technologies) containing 15% fetal bovine serum (Hyclone) and 1% non-essential amino acids (Life Technologies).\u00a0 Cells were passaged by incubating in 0.25% trypsin-EDTA (Life Technologies) for 5 min, and harvested for RNA isolation when they reached ~80-85% confluence.",
+      "gsm": "GSM2794429",
+      "manifest_group": "FRDA",
+      "sex": "not provided",
+      "source_name": "fibroblasts",
+      "title": "F4509",
+      "treatment_protocol": "N/A"
+    },
+    {
+      "age_years": 50.0,
+      "characteristics": {
+        "genotype": "Friedreich's ataxia",
+        "sampling age": "50 y",
+        "tissue": "primary skin fibroblast cells"
+      },
+      "column": "F4627",
+      "expected_group": "FRDA",
+      "growth_protocol": "Primary fibroblast cultures were maintained in DMEM high glucose (Life Technologies) containing 15% fetal bovine serum (Hyclone) and 1% non-essential amino acids (Life Technologies).\u00a0 Cells were passaged by incubating in 0.25% trypsin-EDTA (Life Technologies) for 5 min, and harvested for RNA isolation when they reached ~80-85% confluence.",
+      "gsm": "GSM2794430",
+      "manifest_group": "FRDA",
+      "sex": "not provided",
+      "source_name": "fibroblasts",
+      "title": "F4627",
+      "treatment_protocol": "N/A"
+    },
+    {
+      "age_years": 19.0,
+      "characteristics": {
+        "genotype": "Friedreich's ataxia",
+        "sampling age": "19 y",
+        "tissue": "primary skin fibroblast cells"
+      },
+      "column": "F4654",
+      "expected_group": "FRDA",
+      "growth_protocol": "Primary fibroblast cultures were maintained in DMEM high glucose (Life Technologies) containing 15% fetal bovine serum (Hyclone) and 1% non-essential amino acids (Life Technologies).\u00a0 Cells were passaged by incubating in 0.25% trypsin-EDTA (Life Technologies) for 5 min, and harvested for RNA isolation when they reached ~80-85% confluence.",
+      "gsm": "GSM2794431",
+      "manifest_group": "FRDA",
+      "sex": "not provided",
+      "source_name": "fibroblasts",
+      "title": "F4654",
+      "treatment_protocol": "N/A"
+    },
+    {
+      "age_years": 28.0,
+      "characteristics": {
+        "genotype": "Friedreich's ataxia",
+        "sampling age": "28 y",
+        "tissue": "primary skin fibroblast cells"
+      },
+      "column": "F4675",
+      "expected_group": "FRDA",
+      "growth_protocol": "Primary fibroblast cultures were maintained in DMEM high glucose (Life Technologies) containing 15% fetal bovine serum (Hyclone) and 1% non-essential amino acids (Life Technologies).\u00a0 Cells were passaged by incubating in 0.25% trypsin-EDTA (Life Technologies) for 5 min, and harvested for RNA isolation when they reached ~80-85% confluence.",
+      "gsm": "GSM2794432",
+      "manifest_group": "FRDA",
+      "sex": "not provided",
+      "source_name": "fibroblasts",
+      "title": "F4675",
+      "treatment_protocol": "N/A"
+    },
+    {
+      "age_years": 70.0,
+      "characteristics": {
+        "genotype": "Friedreich's ataxia",
+        "sampling age": "70 y",
+        "tissue": "primary skin fibroblast cells"
+      },
+      "column": "F66",
+      "expected_group": "FRDA",
+      "growth_protocol": "Primary fibroblast cultures were maintained in DMEM high glucose (Life Technologies) containing 15% fetal bovine serum (Hyclone) and 1% non-essential amino acids (Life Technologies).\u00a0 Cells were passaged by incubating in 0.25% trypsin-EDTA (Life Technologies) for 5 min, and harvested for RNA isolation when they reached ~80-85% confluence.",
+      "gsm": "GSM2794433",
+      "manifest_group": "FRDA",
+      "sex": "not provided",
+      "source_name": "fibroblasts",
+      "title": "F66",
+      "treatment_protocol": "N/A"
+    },
+    {
+      "age_years": 21.0,
+      "characteristics": {
+        "genotype": "Friedreich's ataxia",
+        "sampling age": "21 y",
+        "tissue": "primary skin fibroblast cells"
+      },
+      "column": "F68",
+      "expected_group": "FRDA",
+      "growth_protocol": "Primary fibroblast cultures were maintained in DMEM high glucose (Life Technologies) containing 15% fetal bovine serum (Hyclone) and 1% non-essential amino acids (Life Technologies).\u00a0 Cells were passaged by incubating in 0.25% trypsin-EDTA (Life Technologies) for 5 min, and harvested for RNA isolation when they reached ~80-85% confluence.",
+      "gsm": "GSM2794434",
+      "manifest_group": "FRDA",
+      "sex": "not provided",
+      "source_name": "fibroblasts",
+      "title": "F68",
+      "treatment_protocol": "N/A"
+    },
+    {
+      "age_years": 50.0,
+      "characteristics": {
+        "genotype": "Friedreich's ataxia",
+        "sampling age": "50 y",
+        "tissue": "primary skin fibroblast cells"
+      },
+      "column": "F88",
+      "expected_group": "FRDA",
+      "growth_protocol": "Primary fibroblast cultures were maintained in DMEM high glucose (Life Technologies) containing 15% fetal bovine serum (Hyclone) and 1% non-essential amino acids (Life Technologies).\u00a0 Cells were passaged by incubating in 0.25% trypsin-EDTA (Life Technologies) for 5 min, and harvested for RNA isolation when they reached ~80-85% confluence.",
+      "gsm": "GSM2794435",
+      "manifest_group": "FRDA",
+      "sex": "not provided",
+      "source_name": "fibroblasts",
+      "title": "F88",
+      "treatment_protocol": "N/A"
+    }
+  ],
+  "series_overall_design": [
+    "We used RNA sequencing to profile the transcriptomes of primary fibroblast cell lines derived from 18 FRDA patients and 17 unaffected control individuals. \u00a0"
+  ],
+  "series_platform_id": [
+    "GPL11154"
+  ],
+  "series_pubmed_id": [
+    "29125828",
+    "31665133",
+    "32291635",
+    "34718736"
+  ]
+}
