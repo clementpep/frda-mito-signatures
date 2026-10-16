@@ -5,14 +5,15 @@ step fails, stop and report — never improvise around a failed check.
 
 ## P0 — Access, clone, sync (first action of every routine)
 
-A routine session starts with **no repository attached**: without the next step, `git push` is
-refused (HTTP 403) and the subagents in `.claude/agents/` are not loaded.
+Each routine must have `clementpep/frda-mito-signatures` selected as its repository in
+claude.ai → Routines: a session's repositories are fixed when it starts, and without it `git push`
+is refused (HTTP 403) and `.claude/agents/` is not loaded. Routine sessions cannot attach a
+repository themselves.
 
-1. Call the tool `mcp__claude-code-remote__add_repo` with `owner="clementpep"`,
-   `repo="frda-mito-signatures"`, `access="push"`. Clone where its result says (normally
-   `git clone https://github.com/clementpep/frda-mito-signatures ~/frda-mito-signatures`), then call
-   `mcp__claude-code-remote__register_repo_root` with that directory. If `add_repo` is refused:
-   stop, final message `⚠️ NEEDS HUMAN — routine cannot get push access to frda-mito-signatures`.
+1. Find the clone the session provides (`ls -d ~/frda-mito-signatures /home/user/frda-mito-signatures`)
+   and `cd` into it. No clone → stop, final message
+   `⚠️ NEEDS HUMAN — add clementpep/frda-mito-signatures to this routine's repositories`.
+   Any push refused with 403 later → same message (never work around it).
 2. Then:
 
 ```bash
