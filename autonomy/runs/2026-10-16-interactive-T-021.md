@@ -153,3 +153,28 @@ quotes found; partial-word, altered-number, glued-marker and substituted-word va
 ## Owner decision (attempt 5)
 2026-10-17: the owner authorised a 5th attempt on the redesigned matcher (recorded in the task
 `notes`); task status set back to `in_review`.
+
+## Responses to verification (attempt 5 → proposed attempt 6, pending owner authorisation)
+
+### Blocking
+1. Leading decimal point / attached sign: number tokens now keep them when not glued to a
+   preceding word or number (`.5` ≠ `5`, `-1.2` ≠ `1.2`; `1-2:50,000` unchanged). Tests both ways.
+
+### Non-blocking (all addressed)
+- Mutation coverage: each surviving mutant from the report now fails the suite (checked by
+  re-applying them: block-end events, fused bib marker, all punctuation ignored, split numbers,
+  leading dot, MIN_QUOTE_WORDS=0, cut text kept, untyped xref dropped, no raw-tag rename → all
+  KILLED).
+- Only `ref-type="bibr"` numeric markers are dropped; untyped xrefs are prose.
+- An unclosed xref is flushed at the next block boundary.
+- `alt-text`, `long-desc`, `script`, `style`, `textarea` cut; `<title>`/`<script>`/`<style>`/
+  `<textarea>` renamed before parsing (Python 3.13's HTMLParser reads them as raw text — section
+  titles with italics are now parsed); self-closing cut/graphic tags end the block, other
+  self-closing tags separate words.
+- Split citation ranges ("[1]-[3]") collapse with their separators.
+- Playbook states what lit-verify ignores (case, light punctuation, sub/sup formatting).
+- First `<body>` only: unchanged (no sub-article case found).
+
+Online (two real articles, protocol of the verifier): random 12-token windows accepted 60/60 and
+60/60; one-token mutants accepted 0/60 and 0/60; cross-block splices accepted 0/30 and 0/30.
+`make ci` PASS (76 tests), `make reproduce` PASS.

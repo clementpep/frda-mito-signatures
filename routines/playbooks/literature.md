@@ -23,6 +23,9 @@ Abstract and metadata: `.../rest/search?query=EXT_ID:<id>%20AND%20SRC:<src>&resu
    Leave out numeric citation markers ("cells [1]." → quote "cells" or stop before the marker);
    keep author-year citations as written ("(Campuzano et al., 1996)"); never paste markup, and never
    join two paragraphs, or the abstract and the title, into one quote.
+   `lit-verify` compares whole words and whole numbers inside one paragraph; it ignores case,
+   light punctuation and sub/superscript formatting ("10<sup>6</sup>" reads "106"), so it is a
+   strong but not perfect check: the verifier still reads cited passages itself.
    `frda lit-verify` must pass on every card you write — the verifier re-runs it.
 3. **Screen against the protocol, not against your hopes.** Every decision cites the criterion
    (`screen_reason`). Do not change criteria mid-screening; propose an amendment instead.

@@ -547,3 +547,88 @@ def test_short_or_control_quotes_rejected(tmp_path, monkeypatch):
     monkeypatch.setattr(literature, "fetch_record", lambda pid: rec)
     monkeypatch.setattr(literature.time, "sleep", lambda s: None)
     assert any("control characters" in p for p in literature.verify(root=tmp_path))
+
+
+# --- attempt-5 findings: decimal points, xref typing, and mutation-killing tests ---------------
+
+
+def _found(markup, quote):
+    return literature.quote_found(quote, literature.text_blocks(markup))
+
+
+def test_leading_decimal_point_and_sign_are_part_of_the_number():
+    assert not _found(
+        "<p>levels went up 5 fold in cells here</p>", "levels went up .5 fold in cells"
+    )
+    assert not _found(
+        "<p>levels went up .5 fold in cells here</p>", "levels went up 5 fold in cells"
+    )
+    assert _found("<p>levels went up .5 fold in cells here</p>", "levels went up .5 fold in cells")
+    assert not _found("<p>a change of -1.2 in all donors</p>", "a change of 1.2 in all donors")
+    # ranges and ratios are not mistaken for signed numbers
+    assert _found(
+        "<p>frequency of 1-2:50,000 in the population</p>", "frequency of 1-2:50,000 in the"
+    )
+
+
+def test_numbers_are_not_split_or_joined():
+    src = "<p>expression rose 1.5 fold in treated patient cells</p>"
+    assert _found(src, "expression rose 1.5 fold in treated")
+    assert not _found(src, "expression rose 1 5 fold in treated")
+    assert not _found(src, "expression rose 15 fold in treated")
+
+
+def test_only_bibliography_xrefs_are_dropped():
+    assert not _found(
+        "<p>values of 5<xref>0</xref> were seen in cells</p>", "values of 5 were seen in cells"
+    )
+    assert _found(
+        "<p>values of 5<xref>0</xref> were seen in cells</p>", "values of 50 were seen in cells"
+    )
+    # a dropped bibliography marker keeps its neighbours apart (no "cellshere")
+    src = '<p>in cells<xref ref-type="bibr" rid="b1">1</xref>here today and now</p>'
+    assert _found(src, "in cells here today and now")
+    # a range split across markers leaves nothing behind
+    src = (
+        '<p>was reported before [<xref ref-type="bibr">1</xref>-<xref ref-type="bibr">3</xref>] '
+        "in several cohorts</p>"
+    )
+    assert _found(src, "was reported before in several cohorts")
+
+
+def test_block_end_events_split_text():
+    src = "<sec><p>alpha beta gamma delta</p>tail words here now</sec>"
+    assert not _found(src, "gamma delta tail words")
+    assert _found(src, "tail words here now")
+
+
+def test_operators_are_significant():
+    src = "<p>levels were 20% higher (p = 0.01) with 3 ± 1 copies</p>"
+    assert _found(src, "levels were 20% higher (p = 0.01) with 3 ± 1 copies")
+    for altered in ("levels were 20 higher", "higher (p 0.01) with", "with 3 1 copies"):
+        assert not _found(src, altered)
+
+
+def test_cut_content_is_not_text():
+    src = "<p>Levels of <inline-formula>FXN</inline-formula> were low in all patient lines.</p>"
+    assert not _found(src, "FXN were low in all patient lines")
+    assert not _found(
+        "<p>A figure <alt-text>secret words in the alt text</alt-text> here.</p>",
+        "secret words in the alt text",
+    )
+    # a self-closing cut tag still separates the text around it
+    assert not _found("<p>alpha beta<disp-formula/>gamma delta</p>", "alpha beta gamma delta")
+
+
+def test_quote_needs_four_words():
+    assert not literature.quote_is_substantive("Mitochondrial dysfunction everywhere")
+    assert literature.quote_is_substantive("Mitochondrial dysfunction was everywhere observed")
+
+
+def test_section_titles_with_markup_are_text_and_unclosed_xref_does_not_swallow():
+    src = "<sec><title>Effects of <italic>FXN</italic> silencing</title><p>body text one two</p></sec>"
+    assert _found(src, "Effects of FXN silencing")
+    assert not _found(src, "silencing body text one")
+    src = '<p>first block with <xref ref-type="bibr">open marker never closed</p><p>second block words</p>'
+    assert not _found(src, "never closed second block words")
+    assert _found(src, "second block words")

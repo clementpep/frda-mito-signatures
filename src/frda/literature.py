@@ -252,9 +252,29 @@ BLOCK_TAGS = {
     "section",
     "blockquote",
 }
-CUT_TAGS = {"fn", "inline-formula", "disp-formula", "mml:math", "math", "tex-math"}
+CUT_TAGS = {
+    "fn",
+    "inline-formula",
+    "disp-formula",
+    "mml:math",
+    "math",
+    "tex-math",
+    "alt-text",
+    "long-desc",
+    "x-script",
+    "x-style",
+    "x-textarea",
+}
+BLOCK_TAGS |= {"x-title", "graphic", "inline-graphic", "media", "table-wrap-foot"}
+# HTMLParser reads <title>, <script>, <style>, <textarea> as raw text (inner tags become text);
+# JATS uses <title> for every section heading, so these are renamed before parsing.
+RAW_TEXT_TAGS = re.compile(r"<(/?)(title|script|style|textarea)\b", flags=re.I)
+MARKER = "\ue000"  # placeholder for a dropped numeric citation marker (private-use character)
+MARKER_RUN = re.compile(MARKER + r"(?:[\s,;\-\u2013\[\]()]*" + MARKER + r")*")
 IGNORED_PUNCT = set(",.;:()[]{}\"'!?")
-TOKEN = re.compile(r"\d+(?:[.,:/]\d+)*|\w+|[^\w\s]")
+# Numbers are whole tokens and keep an attached sign or leading decimal point (".5" != "5",
+# "-1.2" != "1.2"), but only when not glued to a preceding word or number ("1-2" stays 1, -, 2).
+TOKEN = re.compile(r"(?<![\w.])[-+]?\.?\d+(?:[.,:/]\d+)*|\d+(?:[.,:/]\d+)*|\w+|[^\w\s]")
 
 
 def _is_numeric_marker(text: str) -> bool:
@@ -271,8 +291,15 @@ class _Blocks(HTMLParser):
         self.cut_depth = 0
         self.xref: list[tuple[str | None, list[str]]] = []  # (ref-type, collected text)
 
+    def _flush_xrefs(self) -> None:
+        # An xref left open by malformed markup must not swallow the following blocks.
+        while self.xref:
+            _, parts = self.xref.pop()
+            self._emit("".join(parts))
+
     def _end_block(self) -> None:
-        text = "".join(self.current).strip()
+        self._flush_xrefs()
+        text = MARKER_RUN.sub(" ", "".join(self.current)).strip()
         if text:
             self.blocks.append(text)
         self.current = []
@@ -297,8 +324,12 @@ class _Blocks(HTMLParser):
             self.xref.append((ref_type.lower() if ref_type else None, []))
 
     def handle_startendtag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
-        if not self.cut_depth and tag in BLOCK_TAGS:
-            self._end_block()
+        if self.cut_depth:
+            return
+        if tag in BLOCK_TAGS or tag in CUT_TAGS:
+            self._end_block()  # a self-closing formula or graphic still separates the text
+        else:
+            self._emit(" ")
 
     def handle_endtag(self, tag: str) -> None:
         if tag in CUT_TAGS and self.cut_depth:
@@ -309,9 +340,9 @@ class _Blocks(HTMLParser):
         if tag == "xref" and self.xref:
             ref_type, parts = self.xref.pop()
             text = "".join(parts)
-            bibliographic = ref_type in (None, "bibr")
-            # Drop numeric bibliography markers, with a space so neighbours stay separate words.
-            self._emit(" " if bibliographic and _is_numeric_marker(text) else text)
+            # Only bibliography markers are dropped; untyped xrefs and figure/table references are
+            # prose. A placeholder keeps neighbours apart; runs like "[1]-[3]" collapse to a space.
+            self._emit(MARKER if ref_type == "bibr" and _is_numeric_marker(text) else text)
         elif tag in BLOCK_TAGS:
             self._end_block()
 
@@ -321,9 +352,6 @@ class _Blocks(HTMLParser):
 
     def close(self) -> None:
         super().close()
-        while self.xref:  # unclosed xref: keep its text
-            _, parts = self.xref.pop()
-            self._emit("".join(parts))
         self._end_block()
 
 
@@ -334,7 +362,7 @@ def significant_tokens(text: str) -> list[str]:
 def text_blocks(markup: str) -> list[list[str]]:
     """Markup -> list of blocks, each a list of significant tokens."""
     parser = _Blocks()
-    parser.feed(markup)
+    parser.feed(RAW_TEXT_TAGS.sub(lambda m: f"<{m.group(1)}x-{m.group(2).lower()}", markup))
     parser.close()
     return [toks for b in parser.blocks if (toks := significant_tokens(b))]
 
