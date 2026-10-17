@@ -666,7 +666,7 @@ tasks:
   - id: T-025
     title: Patients first — reorient the thesis on patient-derived data (owner decision RD-002)
     milestone: M2
-    status: in_review
+    status: changes_requested
     priority: 1
     kind: infra
     track: infra
@@ -678,8 +678,8 @@ tasks:
       - research/PLAN.md, autonomy/project.yaml (hub questions), research/protocol.md (RQ5, before L-001 freezes it) and a dated addendum to docs/PROJECT_BRIEF.md say the same thing.
       - Backlog - M1 and M3 updated; new tasks T-026 to T-030 for the patient blood cohort GSE102008 (data, reproduction targets, QC and reproduction, preregistration, confirmatory run); T-008 and T-010 re-scoped; T-003 priority 1 -> 2 so the main track starts with the patient cohort; every number in the new tasks traceable to the live probe, marked as to be re-derived.
       - No gate, test or rule weakened; the reproduction-first and preregistration rules apply to the new line.
-    attempts: 1
-    verification: autonomy/verifications/T-025-ae89fbd.md
+    attempts: 2
+    verification: autonomy/verifications/T-025-ecbd498.md
 
   - id: FIX-T025
     title: Patient line wording and design follow-ups from the T-025 verification
@@ -693,4 +693,5 @@ tasks:
       - Confounding by age and relatedness (carriers mostly parents) stated with an estimand and age-matched subsets; site x status feasibility and fallback for the held-out split; matrix and normalisation named for T-028; two-sided trend test and pinned gene-set source in T-029; M3 wording says a site split is internal validation.
     notes:
       - "Source autonomy/verifications/T-025-ae89fbd.md, non-blocking list."
+      - "2026-10-17 (T-025 attempt 2 verification, autonomy/verifications/T-025-ecbd498.md) non-blocking: record the paper's own handling of age/sex (removed for collinearity) and batch (ComBat) in T-028/T-029; cell-type composition as covariate or sensitivity in T-029; independence assumption for relatedness as a limitation in PR-003; paper counts 418/228/93 caveat in brief, PLAN, project.yaml; call the ordered trend a status trend, not gene dosage."
       - "2026-10-17 (T-025 attempt 2): all items already written into T-026 (age, relatedness), T-028 (matrix, normalisation), T-029 (estimand, age-matched sensitivity, split feasibility and fallback, two-sided trend, pinned gene-set version), M3 and RD-002 (internal validation). Nothing left unless the verifier finds a gap; can be closed by the supervision."
