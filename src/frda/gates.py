@@ -17,7 +17,7 @@ from typing import Literal
 from pydantic import ValidationError
 
 from frda import backlog as backlog_mod
-from frda import hub, paper, prereg, research
+from frda import hub, news, paper, prereg, research
 from frda.claims import check_claim, load_ledger
 from frda.gitutil import commits_touching, is_ancestor, tracked_files
 from frda.hashing import sha256_file
@@ -257,6 +257,10 @@ def gate_research(ctx: Context) -> GateResult:
         return GateResult("research", "FAIL", [str(exc)])
 
 
+def gate_news(ctx: Context) -> GateResult:
+    return _result("news", news.problems(ctx.root))
+
+
 GATES: list[Callable[[Context], GateResult]] = [
     gate_manifests,
     gate_data_integrity,
@@ -266,6 +270,7 @@ GATES: list[Callable[[Context], GateResult]] = [
     gate_run_records,
     gate_backlog,
     gate_research,
+    gate_news,
     gate_verification_reports,
     gate_hub_summary,
     gate_paper,

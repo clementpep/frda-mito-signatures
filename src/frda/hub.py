@@ -14,6 +14,7 @@ from frda.backlog import load_backlog
 from frda.claims import load_ledger
 from frda.gitutil import git
 from frda.manifest import load_all
+from frda.news import summary as news_summary
 from frda.reports import load_reports
 from frda.research import summary as research_summary
 from frda.yamlio import load_yaml
@@ -125,6 +126,7 @@ def build_summary(root: Path | None = None) -> dict[str, Any]:
         ],
         "verifications": verifications[:20],
         "research": research_summary(root),
+        "news": news_summary(root),
         "datasets": [
             {
                 "id": m.id,

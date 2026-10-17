@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-17T12:50:37+00:00",
-  "commit": "e6020e40dd06c8eb2c449ecd84abc856e4e22773",
+  "generated_at": "2026-10-17T13:05:06+00:00",
+  "commit": "c6ea276009d8200c8375b40199911d5261af0d7d",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -15,9 +15,9 @@
     "repo_url": "https://github.com/clementpep/frda-mito-signatures"
   },
   "progress": {
-    "total": 33,
+    "total": 34,
     "done": 3,
-    "in_review": 0,
+    "in_review": 1,
     "ready": 28,
     "changes_requested": 0,
     "blocked": 0,
@@ -39,7 +39,7 @@
       "goal": "Map what is already known, widen the public data base, derive a candidate mitochondrial signature.",
       "status": "in_progress",
       "tasks_done": 2,
-      "tasks_total": 18
+      "tasks_total": 19
     },
     {
       "id": "M3",
@@ -338,6 +338,14 @@
       "status": "proposed",
       "kind": "infra",
       "track": "infra"
+    },
+    {
+      "id": "T-024",
+      "title": "Plain-language news — verified items, Telegram announcement at landing, hub feed",
+      "milestone": "M2",
+      "status": "in_review",
+      "kind": "infra",
+      "track": "infra"
     }
   ],
   "claims": [],
@@ -446,6 +454,18 @@
       "summary": "Start phase A (state of the art + credible foundation) with a 60/40 literature/main budget."
     }
   },
+  "news": [
+    {
+      "id": "N-20261017-lancement",
+      "date": "2026-10-17",
+      "kind": "project",
+      "title": "Le projet de recherche sur l'ataxie de Friedreich démarre en autonomie",
+      "body": "**Ce qu'on a fait**\nUn projet de recherche ouvert démarre sur l'ataxie de Friedreich, une maladie génétique rare du\nsystème nerveux. Il travaille uniquement à partir de données publiques : des mesures de\nl'activité des gènes dans des cellules de la peau cultivées en laboratoire, chez 18 personnes\nmalades et 17 personnes non malades. Des assistants automatiques font le travail chaque nuit, et\nun second assistant le revérifie chaque matin avant qu'il soit accepté.\n\n**Ce que ça veut dire**\nLa première étape est faite : chaque échantillon des données a été relié à sa description\nofficielle, sans erreur. La suite commence par une bibliographie complète, pour savoir ce qui a\ndéjà été montré, et par la reproduction de résultats déjà publiés.\n\n**Ce que ça ne veut pas dire**\nIl n'y a encore aucun résultat scientifique. Le projet ne cherche pas de traitement et ne donne\naucun conseil médical : il étudie des pistes biologiques, qui devront être confirmées par des\nchercheurs.\n\n**Et ensuite**\nRédiger le protocole de recherche bibliographique, puis lire et résumer les études clés.",
+      "evidence": null,
+      "evidence_plain": null,
+      "claims": []
+    }
+  ],
   "datasets": [
     {
       "id": "GSE104288",

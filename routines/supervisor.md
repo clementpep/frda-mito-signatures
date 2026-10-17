@@ -48,6 +48,12 @@ Record all status changes in one decision `research/decisions/RD-xxx.md` (kind a
 - Never edit the `acceptance` or `depends_on` of an existing task to make it easier or to unblock it;
   replace the task by a new one with the reason in an RD decision (the verifier compares).
 
+## S5b — Weekly chronicle (news)
+
+Write `research/news/N-<YYYYMMDD>-semaine-<W>.md` (`kind: weekly`) following
+`research/news/STYLE.md`: what moved this week in plain French (landed tasks only, never work
+still under review), what blocks, what comes next. Short, honest, no hype; a quiet week says so.
+
 ## S6 — Monthly report (first supervision of a calendar month)
 
 `research/reports/YYYY-MM.md` for the owner, in French: where the thesis stands against the plan,

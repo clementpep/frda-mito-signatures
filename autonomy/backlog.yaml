@@ -522,3 +522,20 @@ tasks:
     acceptance:
       - Each non-blocking finding of the report is fixed or explicitly declined in the run report; no gate or test weakened.
 
+  - id: T-024
+    title: Plain-language news — verified items, Telegram announcement at landing, hub feed
+    milestone: M2
+    status: in_review
+    priority: 1
+    kind: infra
+    track: infra
+    goal: >-
+      Share progress and findings with non-specialists (owner request, 2026-10-17), without ever
+      announcing unverified work or overstating a result.
+    acceptance:
+      - research/news/ with a French style charter (STYLE.md), a template and a `news` gate (schema, id = file name, four mandatory sections, length, forbidden overselling wording in French and English, a finding cites existing claims and an evidence level no stronger than the weakest of them); tests.
+      - Hub summary gains an additive `news` block (latest 20).
+      - land-verified.yml announces on Telegram only the news files ADDED by the landing (scripts/announce_news.py), with credentials from repository secrets FRDA_TELEGRAM_BOT_TOKEN / FRDA_TELEGRAM_CHAT_ID; missing secrets or a Telegram error never fail the landing; tested offline.
+      - Worker (STEP 5b), supervision (S5b, weekly chronicle) and verifier (STEP 6c) procedures cover writing and checking news; no gate or test weakened.
+      - A first `project` news item describes the launch accurately (no result claimed).
+

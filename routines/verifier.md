@@ -91,6 +91,14 @@ the claim must say so in its limitations or be downgraded → blocking if it doe
   decision; budgets in bounds and summing to 1; phase change only if the plan's exit criteria are
   met (check each); no pivot applied (`needs_human` RD only).
 
+## STEP 6c — News items (any branch adding `research/news/N-*.md`)
+
+The `news` gate checks structure, forbidden wording and the evidence ceiling. You check meaning:
+every fact in the item is in a landed task, a claim of this branch or a reading card; numbers are
+explained and correct; "Ce que ça ne veut pas dire" is honest and specific; the tone is
+plain French with no hype; nothing announces work still under review. A misleading or
+overselling item → blocking (it will be sent to people outside the project).
+
 ## STEP 7 — Expert reviews (subagents, fresh context)
 
 Launch in parallel:

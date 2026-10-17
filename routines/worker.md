@@ -79,6 +79,14 @@ thresholds, expected direction) **before** running them.
 4. Re-read each acceptance criterion and mark MET / NOT MET with the evidence path. If one is NOT
    MET and cannot be met, say so — do not hand over a branch pretending otherwise.
 
+## STEP 5b — News for non-specialists
+
+If this task adds or changes claims, or closes a milestone, write one news item
+`research/news/N-<YYYYMMDD>-<slug>.md` from `_TEMPLATE.md`, following `research/news/STYLE.md`
+(plain French, every number explained, honest "Ce que ça ne veut pas dire"; for a `finding`,
+cite the claims and an evidence level no stronger than the weakest of them). It is announced on
+Telegram only after landing. No news for routine infrastructure or data-wrangling steps.
+
 ## STEP 6 — Commit and push
 
 ```bash
