@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-17T10:15:50+00:00",
-  "commit": "af7f2a6eb626b6b92da3f34a846c251dc1c5b6dd",
+  "generated_at": "2026-10-17T11:34:09+00:00",
+  "commit": "d078954c64c88c93da366c12c4052096c4e8f8e7",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -17,11 +17,11 @@
   "progress": {
     "total": 30,
     "done": 1,
-    "in_review": 0,
+    "in_review": 1,
     "ready": 27,
     "changes_requested": 0,
     "blocked": 0,
-    "needs_human": 2,
+    "needs_human": 1,
     "proposed": 0
   },
   "milestones": [
@@ -311,7 +311,7 @@
       "id": "T-021",
       "title": "Research system — literature corpus, reading cards, ideas, effort arbitration, supervision",
       "milestone": "M2",
-      "status": "needs_human",
+      "status": "in_review",
       "kind": "infra",
       "track": "infra"
     }

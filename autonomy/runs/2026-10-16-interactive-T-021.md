@@ -178,3 +178,7 @@ quotes found; partial-word, altered-number, glued-marker and substituted-word va
 Online (two real articles, protocol of the verifier): random 12-token windows accepted 60/60 and
 60/60; one-token mutants accepted 0/60 and 0/60; cross-block splices accepted 0/30 and 0/30.
 `make ci` PASS (76 tests), `make reproduce` PASS.
+
+## Owner decision (attempt 6)
+2026-10-17: the owner authorised a 6th attempt scoped to the attempt-5 findings (task `notes`);
+status set back to `in_review`.
