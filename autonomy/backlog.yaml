@@ -26,7 +26,7 @@ milestones:
       association with gene dosage and clinical measures in patients (RD-002).
     exit_criteria:
       - Preregistrations committed before the confirmatory runs.
-      - Clinical association result (functional stage, GAA1, age at onset, disease duration), positive or negative, reported as such.
+      - Clinical association result (functional stage, GAA1, age at onset, disease duration), positive or negative, reported as such; a held-out split of the same cohort is reported as internal validation, not as independent replication.
       - Replication / meta-analysis result, positive or negative, reported as such.
   - id: M4
     title: Intervention response
@@ -266,11 +266,14 @@ tasks:
       controls, Nachun et al. 2018, PMID 29790959) usable, with every clinical annotation GEO
       provides and its limits written down.
     notes:
+      - "Paper vs GEO (RD-002): Nachun et al. 2018 Table 1 reports 739 subjects - patients 418, carriers 228, controls 93 (2 of 95 controls excluded for low blood frataxin); GEO has 733 GSM - 411 / 228 / 94; the overall design mentions 1299 samples run. Reconcile or report the gap; the frataxin exclusion cannot be applied from GEO."
       - "Facts from a live GEO probe on 2026-10-17 (interactive session), to re-derive and save as artifacts here, not to copy: 733 GSM on GPL10558 (Illumina HT-12); characteristics pidn, sample number, batch, site (CHOP 568 / UCLA 165), rin, status (Patient 411 / Carrier 228 / Control 94), sex, age, onset and duration (407), gaa1 (376), gaa2 (357), functional stage (334); one GSM per pidn. Series overall design: 1299 samples run, 733 used, '4 samples were run twice, but were not intended as technical replicates'. Files: GSE102008_series_matrix.txt.gz (82 MB), suppl GSE102008_non-normalized.txt.gz (400 MB)."
     acceptance:
       - data-manifests/GSE102008.yaml (series matrix and, if used, the non-normalised file) with sha256, terms of use and citation, passing the manifests and data_integrity gates.
       - A registered, reproducible pipeline writes one record per matrix column (GSM, title, every characteristic, parsed numeric fields with units) and run.json; columns match GSMs one to one, mismatches listed.
       - docs/datasets/GSE102008.md — independent unit (individual), n per status, completeness of each clinical field per status, site x status and batch x status tables, age and sex by status, how GEO defines functional stage, onset, duration and GAA1/GAA2 (from the paper or GEO, quoted), the 'run twice' samples identified or stated as not identifiable, and the confounders (site, batch, RIN, and age since carriers are often parents) with how later analyses must handle them.
+      - The paper-vs-GEO count gap (patients 418 vs 411, controls 93 vs 94, 739 subjects vs 733 GSM vs 1299 run) is reconciled from GEO and the paper, or reported as not reconcilable, with its consequence for reproduction.
+      - Age, sex and relatedness by status stated (paper Table 1 - mean age 25 patients / 50 carriers / 37 controls; carriers are mostly parents of patients).
       - Nothing is imputed or guessed; a field GEO does not give is reported missing.
 
   - id: T-027
@@ -284,8 +287,8 @@ tasks:
       Record, with exact location, the published results of PMID 29790959 we will try to
       reproduce, read through Europe PMC (open full text if available, else abstract only).
     acceptance:
-      - evaluation/reproduction-targets.yaml gains >= 2 targets for PMID 29790959 (e.g. number of DE genes patients vs controls at the paper's thresholds, the 27-gene panel and its direction, a correlation with GAA1 or functional stage), each with location, verbatim published value, method and thresholds, and the columns needed.
-      - Expected gap from method differences written down BEFORE reproducing.
+      - evaluation/reproduction-targets.yaml gains >= 3 targets for PMID 29790959 taken from the paper itself (not the GEO summary), each with location, verbatim published value, method and thresholds, and the columns needed - the DE counts (829 patients vs controls, 1078 patients vs carriers, 182 carriers vs controls, at the paper's global FDR), at least one mitochondrial module enrichment (respiratory chain complex, mitochondrial translation), and one association with disease progression or GAA1 if the paper reports it.
+      - Expected gap from method differences (Bayesian model comparison in the paper, cohort counts 418/228/93 vs GEO 411/228/94, frataxin exclusion not applicable) written down BEFORE reproducing.
       - If the full text is not open access, say so and use only what is legally available.
 
   - id: T-028
@@ -299,7 +302,8 @@ tasks:
     goal: Check the blood matrix, then re-derive the published patient-vs-control result and document the gap.
     acceptance:
       - QC first, rule stated before looking - sex check (XIST, RPS4Y1, DDX3Y) against declared sex, outlier rule, PCA coloured by site, batch and status; flagged samples listed, none silently removed.
-      - Reproduction pipeline registered and reproducible (analysis_kind=reproduction); claims reproduced or refuted with source, checks and limitations; statistics on individuals with site, batch, age, sex and RIN handled as the paper did, then as we would.
+      - The matrix used (GEO series matrix or non-normalised file) and the normalisation are stated and justified against the paper's methods.
+      - Reproduction pipeline registered and reproducible (analysis_kind=reproduction); claims reproduced or refuted with source, checks and limitations; statistics on individuals with site, batch, age, sex and RIN handled as the paper did, then as we would; the cohort count gap from T-026 carried into the comparison.
       - docs/reproductions/GSE102008.md — published vs obtained side by side, overlap metrics for gene lists, each gap explained.
 
   - id: T-029
@@ -314,7 +318,9 @@ tasks:
       Fix, before looking at the associations, how mitochondria-related expression in patients'
       blood is tested against gene dosage and clinical measures (RD-002).
     acceptance:
-      - preregistrations/PR-003-*.md committed before any association is computed - a priori mitochondrial gene-set scores from T-007 (no gene chosen from GSE102008 outcomes), primary outcomes (dosage trend controls < carriers < patients; functional stage, GAA1, age at onset, disease duration within patients), covariates (age, sex, site, batch, RIN), models, multiple-testing plan, a held-out split (e.g. by site) and what would count as a negative result.
+      - preregistrations/PR-003-*.md committed before any association is computed - a priori mitochondrial gene-set scores from T-007 with the source and version pinned (e.g. MitoCarta release), no gene chosen from GSE102008 outcomes; primary outcomes (two-sided dosage trend across controls, carriers, patients; functional stage, GAA1, age at onset, disease duration within patients); the estimand and how age is handled given its collinearity with status (carriers older, patients younger), with an age-matched subset as sensitivity; covariates (sex, site, batch, RIN); models; multiple-testing plan; what would count as a negative result.
+      - Held-out validation - a split (e.g. by site) only if every status has enough individuals in both parts (condition stated with numbers from T-026), else a stated fallback (e.g. stratified random split); called internal validation.
+      - Prior evidence - the mitochondrial modules of Nachun et al. 2018 (respiratory chain complex, mitochondrial translation) are listed, and PR-003 states what it adds beyond them.
       - Power or precision expected at the observed n per field (from T-026 completeness), stated.
 
   - id: T-030
@@ -328,7 +334,8 @@ tasks:
     goal: Run PR-003 exactly as preregistered and report the result, positive or negative.
     acceptance:
       - Pipeline registered and reproducible (analysis_kind=confirmatory, preregistration PR-003); deviations from PR-003 listed and justified.
-      - Claims with evidence_level from the held-out result (single_dataset at most for one cohort); association wording only; limitations (blood is not nervous tissue, cross-sectional data, site effects).
+      - Claims with evidence_level from the held-out result (single_dataset at most for one cohort); association wording only; limitations (blood is not nervous tissue, cross-sectional data, site effects, age confounding).
+      - Every claim with status new has a novelty_check against Nachun et al. 2018 (its mitochondrial modules included) and the synthesis.
       - A plain-language news item (finding) if claims are added.
 
   # ---------------------------------------------------------------- M2
@@ -407,6 +414,7 @@ tasks:
       freeze it for replication; check its direction in patient fibroblasts (GSE104288).
     acceptance:
       - Exploratory analysis at individual level with gene-set statistics; at least three reasonable parametrisations (normalisation, gene-set definition, covariates age/sex/batch/RIN) and resampling stability; the held-out part is not opened.
+      - The mitochondrial modules already reported by Nachun et al. 2018 are compared with the candidate signature (overlap, direction) before any novelty is claimed.
       - The frozen signature (genes + direction + scoring rule) written to results/P-010-signature/signature.json and NOT modified afterwards; claims marked exploratory or single_dataset.
       - Novelty of each candidate claim checked against research/synthesis/ and a logged targeted search (novelty_check points to research/search-logs/*.json or research/synthesis/gaps.md for `new` claims).
 
@@ -658,7 +666,7 @@ tasks:
   - id: T-025
     title: Patients first — reorient the thesis on patient-derived data (owner decision RD-002)
     milestone: M2
-    status: changes_requested
+    status: in_review
     priority: 1
     kind: infra
     track: infra
@@ -685,3 +693,4 @@ tasks:
       - Confounding by age and relatedness (carriers mostly parents) stated with an estimand and age-matched subsets; site x status feasibility and fallback for the held-out split; matrix and normalisation named for T-028; two-sided trend test and pinned gene-set source in T-029; M3 wording says a site split is internal validation.
     notes:
       - "Source autonomy/verifications/T-025-ae89fbd.md, non-blocking list."
+      - "2026-10-17 (T-025 attempt 2): all items already written into T-026 (age, relatedness), T-028 (matrix, normalisation), T-029 (estimand, age-matched sensitivity, split feasibility and fallback, two-sided trend, pinned gene-set version), M3 and RD-002 (internal validation). Nothing left unless the verifier finds a gap; can be closed by the supervision."

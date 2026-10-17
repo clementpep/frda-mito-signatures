@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-17T15:31:13+00:00",
-  "commit": "ae89fbd8473c8298855399dd584a64ba85159162",
+  "generated_at": "2026-10-17T15:48:47+00:00",
+  "commit": "4cc73f945d759b7572848d3666a7386fd9e86e2c",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -18,9 +18,9 @@
   "progress": {
     "total": 42,
     "done": 4,
-    "in_review": 0,
+    "in_review": 1,
     "ready": 33,
-    "changes_requested": 1,
+    "changes_requested": 0,
     "blocked": 0,
     "needs_human": 1,
     "proposed": 3
@@ -400,7 +400,7 @@
       "id": "T-025",
       "title": "Patients first — reorient the thesis on patient-derived data (owner decision RD-002)",
       "milestone": "M2",
-      "status": "changes_requested",
+      "status": "in_review",
       "kind": "infra",
       "track": "infra"
     },
