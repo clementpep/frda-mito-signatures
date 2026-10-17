@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-17T13:09:50+00:00",
-  "commit": "03fa31193fde8621bb0fbf3aa4e1e00508e6d2f3",
+  "generated_at": "2026-10-17T13:29:46+00:00",
+  "commit": "f5b6b4f3c7a07befa12f34f3bdfb6ff27b44b5e0",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -17,9 +17,9 @@
   "progress": {
     "total": 34,
     "done": 3,
-    "in_review": 0,
+    "in_review": 1,
     "ready": 28,
-    "changes_requested": 1,
+    "changes_requested": 0,
     "blocked": 0,
     "needs_human": 1,
     "proposed": 1
@@ -343,7 +343,7 @@
       "id": "T-024",
       "title": "Plain-language news — verified items, Telegram announcement at landing, hub feed",
       "milestone": "M2",
-      "status": "changes_requested",
+      "status": "in_review",
       "kind": "infra",
       "track": "infra"
     }
@@ -468,8 +468,8 @@
       "id": "N-20261017-lancement",
       "date": "2026-10-17",
       "kind": "project",
-      "title": "Le projet de recherche sur l'ataxie de Friedreich démarre en autonomie",
-      "body": "**Ce qu'on a fait**\nUn projet de recherche ouvert démarre sur l'ataxie de Friedreich, une maladie génétique rare du\nsystème nerveux. Il travaille uniquement à partir de données publiques : des mesures de\nl'activité des gènes dans des cellules de la peau cultivées en laboratoire, chez 18 personnes\nmalades et 17 personnes non malades. Des assistants automatiques font le travail chaque nuit, et\nun second assistant le revérifie chaque matin avant qu'il soit accepté.\n\n**Ce que ça veut dire**\nLa première étape est faite : chaque échantillon des données a été relié à sa description\nofficielle, sans erreur. La suite commence par une bibliographie complète, pour savoir ce qui a\ndéjà été montré, et par la reproduction de résultats déjà publiés.\n\n**Ce que ça ne veut pas dire**\nIl n'y a encore aucun résultat scientifique. Le projet ne cherche pas de traitement et ne donne\naucun conseil médical : il étudie des pistes biologiques, qui devront être confirmées par des\nchercheurs.\n\n**Et ensuite**\nRédiger le protocole de recherche bibliographique, puis lire et résumer les études clés.",
+      "title": "Lancement d'un projet de recherche ouvert sur l'ataxie de Friedreich",
+      "body": "**Ce qu'on a fait**\nUn projet de recherche ouvert démarre sur l'ataxie de Friedreich, une maladie génétique rare du\nsystème nerveux. Il n'utilise que des données publiques : des mesures de l'activité des gènes\ndans des cellules de la peau cultivées en laboratoire, issues de deux études. La première porte\nsur 35 personnes (18 malades, 17 non malades), une lignée de cellules par personne. La seconde ne\ncompte qu'une lignée malade et une lignée non malade. Des assistants d'intelligence artificielle\nfont le travail ; un autre assistant le revérifie avant qu'il soit accepté, et le responsable du\nprojet valide toute publication.\n\n**Ce que ça veut dire**\nPremière étape faite : chaque colonne des tableaux de données a été reliée à sa fiche\nd'échantillon publique (35 sur 35 dans la première étude ; 24 sur 24 dans la seconde, où chaque\nlignée est cultivée en plusieurs exemplaires et conditions). Dans la première étude, le statut\nmalade ou non malade concorde avec ces fiches. Dans la seconde, le traitement reçu concorde, mais\nla lignée de chaque échantillon se déduit seulement de son nom. Le contrôle de qualité des\ndonnées n'est pas encore fait.\n\n**Ce que ça ne veut pas dire**\nIl n'y a encore aucun résultat scientifique. Le projet ne produit pas de traitement et ne teste\nrien sur des malades ; à terme, il pourra au mieux classer des pistes à examiner en laboratoire.\nLes cellules de la peau ne sont pas des cellules nerveuses, et les effectifs sont petits : la\nseconde étude, avec une seule lignée par groupe, ne permet aucune conclusion sur les malades.\nAucun conseil médical.\n\n**Et ensuite**\nÉcrire le protocole de la recherche bibliographique avant de lancer les recherches, contrôler la\nqualité des deux jeux de données, puis tenter de reproduire les résultats déjà publiés.",
       "evidence": null,
       "evidence_plain": null,
       "claims": []

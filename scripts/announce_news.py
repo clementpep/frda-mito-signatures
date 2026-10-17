@@ -6,7 +6,10 @@ Only news files ADDED to research/news/ between the two commits are sent, so eac
 announced exactly once, and only after it passed verification and the landing gates.
 Telegram credentials come from the environment (repository secrets):
   FRDA_TELEGRAM_BOT_TOKEN, FRDA_TELEGRAM_CHAT_ID  (optional FRDA_NEWS_LINK)
-Missing credentials or a Telegram error never fail the landing: they are reported in the log.
+Missing credentials or a Telegram error never fail the landing: they are reported as
+::warning:: annotations on the workflow run. Delivery is at most once: an item that failed to
+send is not retried by a later landing (it was not added by it); re-send it by hand if needed.
+The token is never printed, not even inside an exception message.
 """
 
 from __future__ import annotations
@@ -42,7 +45,7 @@ def send(token: str, chat_id: str, text: str) -> bool:
     try:
         with urllib.request.urlopen(req, timeout=30) as resp:
             return bool(json.load(resp).get("ok"))
-    except Exception as exc:  # never print the token
+    except Exception as exc:  # the URL holds the token: print the exception type only
         print(f"::warning::Telegram send failed: {type(exc).__name__}")
         return False
 
@@ -56,12 +59,21 @@ def main(before: str, after: str) -> int:
     chat = os.environ.get("FRDA_TELEGRAM_CHAT_ID")
     link = os.environ.get("FRDA_NEWS_LINK") or DEFAULT_LINK
     for path in items:
-        meta, body = load(path)
-        text = render_telegram(meta, body, link)
+        try:
+            meta, body = load(path)
+            text = render_telegram(meta, body, link)
+        except Exception as exc:  # the news gate should have caught it; never block the landing
+            print(
+                f"::warning::{path.name}: unreadable news item ({type(exc).__name__}), not announced"
+            )
+            continue
         if not token or not chat:
             print(f"::warning::{meta.id}: Telegram secrets not set, not announced")
             continue
-        print(f"announce: {meta.id} -> {'sent' if send(token, chat, text) else 'FAILED'}")
+        if send(token, chat, text):
+            print(f"announce: {meta.id} -> sent")
+        else:
+            print(f"::warning::{meta.id}: Telegram send failed, not announced (no retry)")
     return 0
 
 

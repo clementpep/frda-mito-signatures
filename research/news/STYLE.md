@@ -12,11 +12,15 @@ vérification. Une actu qui survend un résultat fait plus de mal que pas d'actu
 2. **Chaque chiffre est expliqué** : ce qu'il mesure, sur combien de personnes ou de lignées.
 3. **Le niveau de preuve est dit honnêtement**, avec les mots du projet (une piste à confirmer
    n'est pas un résultat établi). Une actu `finding` ne peut pas être plus affirmative que le
-   plus faible des résultats (claims) qu'elle cite : la gate `news` le vérifie.
+   plus faible des résultats (claims) qu'elle cite : la gate `news` le vérifie. Toute actu,
+   quel que soit son type, qui affiche un niveau de preuve doit citer les claims qui le portent.
 4. **« Ce que ça ne veut pas dire » est obligatoire** et sérieux : pas de traitement, pas de
    causalité démontrée, limites des modèles cellulaires, taille des échantillons.
 5. **Pas d'emphase** : pas de « percée », « révolution », « espoir pour les patients »,
-   « guérir », « prouve ». Un résultat négatif s'annonce aussi, sur le même ton.
+   « guérir », « prouve », « cause » (et toutes leurs formes : guérira, prouvent, causé…).
+   Seule exception, dans « Ce que ça ne veut pas dire » : la forme niée dans la même
+   proposition (« cela ne prouve pas… », « ce n'est pas un remède »). Un résultat négatif
+   s'annonce aussi, sur le même ton.
 6. **Court** : ≤ 1 800 caractères. Un titre de ≤ 90 caractères qui dit ce qui s'est passé.
 7. **Rien d'inventé** : chaque fait vient d'une tâche terminée, d'un résultat vérifié (claim)
    ou d'une fiche de lecture ; on cite les identifiants dans l'en-tête.

@@ -35,19 +35,27 @@ EVIDENCE_PLAIN = {
     "replicated": "retrouvé dans des données indépendantes",
     "preregistered_confirmed": "confirmé par une analyse annoncée à l'avance",
 }
+# Stems with their inflections (guérira, prouvent, causé...), not single forms.
 FORBIDDEN_FR = [
-    r"\bgu[ée]ri[rste]*\b",
-    r"\bgu[ée]rison\b",
-    r"\brem[èe]de\b",
-    r"\btraitement (?:efficace|miracle)\b",
-    r"\bprouv[eé]e?s?\b",
-    r"\bpreuve que\b",
-    r"\bcause[s]? (?:la|de la|l')\b",
-    r"\bc'est la cause\b",
-    r"\bpercée\b",
-    r"\brévolution(?:naire)?\b",
-    r"\bespoir pour les (?:malades|patients)\b",
+    r"\bgu[ée]ri\w*",  # guérir, guérira, guérissent, guérison
+    r"\bsoign(?:er|e|es|ent|era|eront|erait|é|ée|és|ées)\b",
+    r"\brem[èe]des?\b",
+    r"\bmiracle\w*|\bmiracul\w*",
+    r"\btraitements? (?:efficaces?|prometteurs?)\b",
+    r"\bprouv\w*",  # prouve, prouvent, prouvera, prouvé (not "éprouvé", "approuvé")
+    r"\bpreuves? (?:que|formelles?|définitives?)\b",
+    r"\bcaus(?:e|es|ent|era|eront|erait|ait|aient|é|ée|és|ées|er|al|ale|aux|alité)\b",
+    r"\bprovoqu\w*",
+    r"\bperc[ée]es?\b",
+    r"\br[ée]volution\w*",
+    r"\bespoirs?\b",
+    r"\bavanc[ée]es? (?:majeures?|décisives?|historiques?)\b",
 ]
+# In "Ce que ça ne veut pas dire" a banned word may be negated ("ne prouve pas", "not a cure"):
+# the negation must sit in the same clause, at most this many characters before the word.
+NEGATION_SECTION = "Ce que ça ne veut pas dire"
+NEGATION_RE = re.compile(r"(?:\bne\b|\bn'|\bpas\b|\baucune?\b|\bsans\b|\bni\b|\bnot\b|\bno\b)")
+NEGATION_WINDOW = 30
 MAX_BODY_CHARS = 1800
 ID_RE = r"^N-\d{8}-[a-z0-9-]+$"
 
@@ -100,11 +108,7 @@ def problems(root: Path | None = None) -> list[str]:
                 out.append(f"{name}: missing section **{section}**")
         if len(body) > MAX_BODY_CHARS:
             out.append(f"{name}: {len(body)} characters > {MAX_BODY_CHARS} (keep it short)")
-        text = f"{meta.title}\n{body}"
-        for pattern in [*FORBIDDEN_WORDING, *FORBIDDEN_FR]:
-            m = re.search(pattern, text, flags=re.IGNORECASE)
-            if m:
-                out.append(f"{name}: forbidden wording {m.group(0)!r} (overclaiming)")
+        out += [f"{name}: {p}" for p in wording_problems(meta.title, body)]
         unknown = [c for c in meta.claims if c not in claims]
         out += [f"{name}: claim {c} not in the ledger" for c in unknown]
         if meta.kind == "finding":
@@ -112,8 +116,12 @@ def problems(root: Path | None = None) -> list[str]:
                 out.append(f"{name}: a finding must cite its claims")
             if meta.evidence is None:
                 out.append(f"{name}: a finding must state its evidence level")
+        if meta.evidence is not None:
+            # Any kind that prints a level of evidence (Telegram, hub) must have claims behind it.
+            if not meta.claims:
+                out.append(f"{name}: evidence '{meta.evidence}' stated without any claim behind it")
             known = [claims[c] for c in meta.claims if c in claims]
-            if known and meta.evidence:
+            if known:
                 weakest = min(known, key=lambda c: EVIDENCE_ORDER.index(c.evidence_level))
                 if EVIDENCE_ORDER.index(meta.evidence) > EVIDENCE_ORDER.index(
                     weakest.evidence_level
@@ -122,6 +130,28 @@ def problems(root: Path | None = None) -> list[str]:
                         f"{name}: evidence '{meta.evidence}' is stronger than its weakest claim "
                         f"{weakest.id} ('{weakest.evidence_level}')"
                     )
+    return out
+
+
+def _negated(text: str, start: int) -> bool:
+    before = text[max(0, start - NEGATION_WINDOW) : start]
+    before = re.split(r"[.;:!?,\n]", before)[-1]  # same clause only
+    return NEGATION_RE.search(before.lower()) is not None
+
+
+def wording_problems(title: str, body: str) -> list[str]:
+    """Overselling words, French and English; negated forms are allowed only in the limits section."""
+    out = []
+    parts = [(title, False)]
+    for chunk in re.split(r"(?m)^(?=\*\*)", body):
+        parts.append((chunk, chunk.startswith(f"**{NEGATION_SECTION}**")))
+    for text, negation_ok in parts:
+        for pattern in [*FORBIDDEN_WORDING, *FORBIDDEN_FR]:
+            for m in re.finditer(pattern, text, flags=re.IGNORECASE):
+                if negation_ok and _negated(text, m.start()):
+                    continue
+                out.append(f"forbidden wording {m.group(0)!r} (overclaiming)")
+                break
     return out
 
 
