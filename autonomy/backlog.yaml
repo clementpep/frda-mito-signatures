@@ -448,7 +448,7 @@ tasks:
   - id: T-021
     title: Research system — literature corpus, reading cards, ideas, effort arbitration, supervision
     milestone: M2
-    status: needs_human
+    status: in_review
     priority: 1
     kind: infra
     track: infra
@@ -460,6 +460,7 @@ tasks:
       weekly supervision that arbitrates (requested by the owner on 2026-10-16).
     notes:
       - "2026-10-16 — owner decision (interactive session): a 4th verification attempt is authorised after 3 CHANGES_REQUESTED. If attempt 4 fails, escalate to NEEDS_HUMAN as usual."
+      - "2026-10-17 — owner decision (interactive session): after the attempt-4 NEEDS_HUMAN, a 5th attempt is authorised, scoped to the redesign of verbatim matching proposed by the verifier. If attempt 5 fails, escalate to NEEDS_HUMAN."
     acceptance:
       - research/ (plan, protocol draft, corpus, cards template, synthesis skeleton, ideas, RD-001) validated by a new `research` gate (offline cross-references) and unit tests.
       - The `frda lit-search`, `lit-add` and `lit-verify` commands work against Europe PMC; lit-verify rejects a non-existent paper and a quote absent from the text (tested offline with mocks; checked online).
