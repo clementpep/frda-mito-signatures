@@ -9,6 +9,10 @@ amendments appended at the bottom with date and reason; earlier text is not edit
 - RQ2. Which interventions have published molecular (transcriptomic or mitochondrial) readouts in
   FRDA models, and what moved?
 - RQ3. Which public datasets exist, what were they used for, and what has not been done with them?
+- RQ5. Which molecular measurements in patients (blood, plasma, muscle, other accessible
+  tissues) have been studied as FRDA biomarkers, and how did they relate to clinical measures
+  (FARS/mFARS, SARA, functional stage, GAA repeat length, age at onset, disease duration,
+  cardiomyopathy, diabetes)? Patient-derived evidence is prioritised (RD-002).
 - RQ4. Which methods are appropriate for cross-dataset meta-analysis and gene-set testing on
   normalised matrices with few independent units?
 

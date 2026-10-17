@@ -1,53 +1,54 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-17T14:24:36+00:00",
-  "commit": "3a788a068925129d675d469635f25bfbe10baf02",
+  "generated_at": "2026-10-17T16:14:16+00:00",
+  "commit": "69ea23e52dced43e5ba46abb9c23ae5552713fb1",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
     "subtitle": "Mitochondrial transcriptomic signatures in Friedreich's ataxia, from public data only",
     "questions": [
-      "Which mitochondria-related transcriptomic signatures reproduce across independent FRDA datasets?",
-      "Do the interventions of GSE145115 (A-196, SUV4-20 inhibition) move these signatures in the expected direction?"
+      "In the blood of FRDA patients, mitochondrial gene modules were reported to be lower with higher disability (Nachun et al. 2018). Does this hold with predefined mitochondrial gene sets, across controls, carriers and patients, and with GAA repeat length, age at onset and disease duration?",
+      "Does it replicate in independent patient cohorts and tissues, and is it consistent with patient fibroblasts?",
+      "Supporting evidence — do interventions in cell models (A-196 in GSE145115) move these signatures in the expected direction?"
     ],
     "target": "An open preprint with original, preregistered and independently replicated findings, a full reproducibility package and an evidence dossier for FRDA researchers.",
     "disclaimer": "Exploratory research on public data. Expression changes are not causal evidence; cell-model responses are not clinical benefit; nothing here is a medical recommendation.",
     "repo_url": "https://github.com/clementpep/frda-mito-signatures"
   },
   "progress": {
-    "total": 35,
-    "done": 4,
+    "total": 42,
+    "done": 5,
     "in_review": 0,
-    "ready": 28,
+    "ready": 33,
     "changes_requested": 0,
     "blocked": 0,
     "needs_human": 1,
-    "proposed": 2
+    "proposed": 3
   },
   "milestones": [
     {
       "id": "M1",
       "title": "Credible foundation",
-      "goal": "Characterise the two seed datasets and reproduce published results before anything new.",
+      "goal": "Characterise the seed datasets and the patient blood cohort GSE102008 (RD-002, patients first) and reproduce published results before anything new.",
       "status": "in_progress",
       "tasks_done": 1,
-      "tasks_total": 5
+      "tasks_total": 9
     },
     {
       "id": "M2",
       "title": "Discovery",
       "goal": "Map what is already known, widen the public data base, derive a candidate mitochondrial signature.",
       "status": "in_progress",
-      "tasks_done": 3,
-      "tasks_total": 20
+      "tasks_done": 4,
+      "tasks_total": 21
     },
     {
       "id": "M3",
-      "title": "Independent replication",
-      "goal": "Test the frozen signature, as preregistered, in datasets not used to derive it.",
+      "title": "Independent replication and clinical association",
+      "goal": "Test, as preregistered, the frozen signature in datasets not used to derive it, and its association with status (controls, carriers, patients) and clinical measures in patients (RD-002).",
       "status": "todo",
       "tasks_done": 0,
-      "tasks_total": 2
+      "tasks_total": 4
     },
     {
       "id": "M4",
@@ -188,6 +189,46 @@
       "track": "main"
     },
     {
+      "id": "T-026",
+      "title": "Patient blood cohort GSE102008 — manifest, sample metadata, dataset card",
+      "milestone": "M1",
+      "status": "ready",
+      "kind": "data",
+      "track": "main"
+    },
+    {
+      "id": "T-027",
+      "title": "Extract reproduction targets from Nachun et al. 2018 (GSE102008)",
+      "milestone": "M1",
+      "status": "ready",
+      "kind": "reproduction",
+      "track": "main"
+    },
+    {
+      "id": "T-028",
+      "title": "QC and reproduction of the GSE102008 headline results",
+      "milestone": "M1",
+      "status": "ready",
+      "kind": "reproduction",
+      "track": "main"
+    },
+    {
+      "id": "T-029",
+      "title": "Preregister the clinical association analysis (PR-003)",
+      "milestone": "M3",
+      "status": "ready",
+      "kind": "analysis",
+      "track": "main"
+    },
+    {
+      "id": "T-030",
+      "title": "Clinical association analysis (confirmatory run of PR-003)",
+      "milestone": "M3",
+      "status": "ready",
+      "kind": "analysis",
+      "track": "main"
+    },
+    {
       "id": "T-006",
       "title": "Gap analysis and seed research leads",
       "milestone": "M2",
@@ -205,7 +246,7 @@
     },
     {
       "id": "T-008",
-      "title": "Census of public FRDA transcriptomic datasets",
+      "title": "Census of public FRDA datasets — patient-derived first",
       "milestone": "M2",
       "status": "ready",
       "kind": "data",
@@ -221,7 +262,7 @@
     },
     {
       "id": "T-010",
-      "title": "Candidate mitochondrial signature in the discovery set (GSE104288)",
+      "title": "Candidate mitochondrial signature in the discovery set (GSE102008 blood, one site)",
       "milestone": "M2",
       "status": "ready",
       "kind": "analysis",
@@ -354,10 +395,53 @@
       "status": "proposed",
       "kind": "infra",
       "track": "infra"
+    },
+    {
+      "id": "T-025",
+      "title": "Patients first — reorient the thesis on patient-derived data (owner decision RD-002)",
+      "milestone": "M2",
+      "status": "done",
+      "kind": "infra",
+      "track": "infra"
+    },
+    {
+      "id": "FIX-T025",
+      "title": "Patient line wording and design follow-ups from the T-025 verification",
+      "milestone": "M1",
+      "status": "proposed",
+      "kind": "infra",
+      "track": "main"
     }
   ],
   "claims": [],
   "verifications": [
+    {
+      "task": "T-025",
+      "date": "2026-10-17",
+      "verdict": "PASS",
+      "summary": "Blocking finding of attempt 2 fixed; FDS-network mitochondrial-term modules recorded as prior evidence, quotes verbatim against PMC6097013, no surviving overstatement of novelty.",
+      "attempt": 3,
+      "acceptance_met": "4/4",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-025-69ea23e.md"
+    },
+    {
+      "task": "T-025",
+      "date": "2026-10-17",
+      "verdict": "CHANGES_REQUESTED",
+      "summary": "GEO facts exact, but a \"27-gene panel\" is attributed to the paper, mitochondrial prior evidence is omitted, and cohort counts are not reconciled; RD-002 also needs owner landing.",
+      "attempt": 1,
+      "acceptance_met": "3/4",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-025-ae89fbd.md"
+    },
+    {
+      "task": "T-025",
+      "date": "2026-10-17",
+      "verdict": "CHANGES_REQUESTED",
+      "summary": "B1-B3 of attempt 1 fixed and exact, but RD-002 says the paper does not test mitochondrial association with clinical measures in patients; the paper does (FDS network).",
+      "attempt": 2,
+      "acceptance_met": "3/4",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-025-ecbd498.md"
+    },
     {
       "task": "T-024",
       "date": "2026-10-17",
@@ -493,9 +577,9 @@
     },
     "ideas": [],
     "last_decision": {
-      "id": "RD-001",
-      "date": "2026-10-16",
-      "summary": "Start phase A (state of the art + credible foundation) with a 60/40 literature/main budget."
+      "id": "RD-002",
+      "date": "2026-10-17",
+      "summary": "Patient-first — the main line analyses data from patients with clinical annotations (blood cohort GSE102008 first); cell models become supporting evidence."
     }
   },
   "news": [

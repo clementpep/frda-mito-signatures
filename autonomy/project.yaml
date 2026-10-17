@@ -2,8 +2,9 @@ id: frda-mito-signatures
 title: FRDA mitochondrial signatures
 subtitle: Mitochondrial transcriptomic signatures in Friedreich's ataxia, from public data only
 questions:
-  - Which mitochondria-related transcriptomic signatures reproduce across independent FRDA datasets?
-  - Do the interventions of GSE145115 (A-196, SUV4-20 inhibition) move these signatures in the expected direction?
+  - In the blood of FRDA patients, mitochondrial gene modules were reported to be lower with higher disability (Nachun et al. 2018). Does this hold with predefined mitochondrial gene sets, across controls, carriers and patients, and with GAA repeat length, age at onset and disease duration?
+  - Does it replicate in independent patient cohorts and tissues, and is it consistent with patient fibroblasts?
+  - Supporting evidence — do interventions in cell models (A-196 in GSE145115) move these signatures in the expected direction?
 target: >-
   An open preprint with original, preregistered and independently replicated findings, a full
   reproducibility package and an evidence dossier for FRDA researchers.

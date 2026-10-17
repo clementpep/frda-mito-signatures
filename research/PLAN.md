@@ -5,9 +5,19 @@ committee: they steer and decide pivots; the routines do the work and check each
 
 ## The research question (phase 1)
 
-1. Which mitochondria-related transcriptomic signatures reproduce across independent FRDA datasets?
-2. Are these signatures shifted in the expected direction after interventions (starting with
-   A-196 in GSE145115)? Association only: a shift in a cell model is not a clinical benefit.
+**Patients first** (owner decision RD-002, 2026-10-17): the main line analyses data obtained from
+patients, with their clinical annotations; cell models support it, they do not replace it.
+
+1. In the blood of FRDA patients (GSE102008: 411 patients, 228 carriers, 94 controls in GEO; the
+   paper reports 418 / 228 / 93), Nachun et al. 2018 already reported mitochondrial co-expression
+   modules associated with functional disability. Does this hold with a priori mitochondrial
+   gene sets, across status groups (a status trend), with GAA repeat length, age at onset and
+   disease duration, after adjusting for blood cell composition? Association only.
+2. Does it replicate in independent patient cohorts (other blood series, muscle biopsies) — the
+   main original contribution expected — and is it consistent with patient fibroblasts
+   (GSE104288)?
+3. Supporting: are these signatures shifted after interventions in cell models (A-196 in
+   GSE145115)? A shift in a cell model is not a clinical benefit.
 
 The question can be refined by the weekly supervision (decision `kind: arbitration`). Changing it
 — another disease, another mechanism, another data type — is a **pivot**: decided by the owner
