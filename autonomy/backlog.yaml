@@ -525,11 +525,12 @@ tasks:
   - id: T-024
     title: Plain-language news — verified items, Telegram announcement at landing, hub feed
     milestone: M2
-    status: in_review
+    status: done
     priority: 1
     kind: infra
     track: infra
-    attempts: 3
+    attempts: 4
+    verification: autonomy/verifications/T-024-6d29f3c.md
     notes:
       - "2026-10-17 — owner decision (interactive session): after the attempt-3 NEEDS_HUMAN, a 4th attempt is authorised, scoped to blocking 1-2 of autonomy/verifications/T-024-d2e8d3f.md (gate hardening, re-check before sending). Extra banned words chosen by the owner: confirmé / efficace (and confirmed, effective, efficacy), prometteur / hope (and promising, hopeful); not 'traitement' (needed for 'le projet ne produit pas de traitement'), no further list. If attempt 4 fails, escalate to NEEDS_HUMAN."
       - "2026-10-17 (T-024 attempt 4): English inflections (cured, curing, proven, proved, caused, causation, healed...) and 'preuve(s)' alone are refused; text is NFKC-normalised with Cf characters removed and checked as raw markdown, Telegram plain text and markup-free text; announce_news.py re-runs wording_problems before sending. Every new protection was mutation-checked (each mutant fails a test)."
@@ -548,3 +549,16 @@ tasks:
       - Worker (STEP 5b), supervision (S5b, weekly chronicle) and verifier (STEP 6c) procedures cover writing and checking news; no gate or test weakened.
       - A first `project` news item describes the launch accurately (no result claimed).
 
+  - id: FIX-024a
+    title: News wording gate — obfuscation bypasses and launch-item caveats (follow-up of T-024)
+    milestone: M2
+    status: proposed
+    priority: 3
+    kind: infra
+    track: infra
+    notes:
+      - "From autonomy/verifications/T-024-6d29f3c.md non-blocking findings 1-4: homoglyphs / U+034F / HTML entities / inline HTML / backslash escapes bypass wording_problems; adverb gap in 'est responsable de'; non-finding kinds only covered by the verifier (document it); age/sex caveat in the launch item; section check on comment-stripped body; render_telegram truncation; --diff-filter=A."
+    goal: Close the remaining obfuscation bypasses of the news wording gate without weakening any rule.
+    acceptance:
+      - Each bypass listed in the notes is refused by wording_problems, with a test on each input.
+      - No existing gate, test or forbidden-wording rule weakened.

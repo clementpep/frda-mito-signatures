@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-17T14:20:15+00:00",
-  "commit": "a896f832164a71f201c5996e5d88112f031e1cdf",
+  "generated_at": "2026-10-17T14:24:03+00:00",
+  "commit": "6d29f3cd67ad1251b705d501405239d39a03f856",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -15,14 +15,14 @@
     "repo_url": "https://github.com/clementpep/frda-mito-signatures"
   },
   "progress": {
-    "total": 34,
-    "done": 3,
-    "in_review": 1,
+    "total": 35,
+    "done": 4,
+    "in_review": 0,
     "ready": 28,
     "changes_requested": 0,
     "blocked": 0,
     "needs_human": 1,
-    "proposed": 1
+    "proposed": 2
   },
   "milestones": [
     {
@@ -38,8 +38,8 @@
       "title": "Discovery",
       "goal": "Map what is already known, widen the public data base, derive a candidate mitochondrial signature.",
       "status": "in_progress",
-      "tasks_done": 2,
-      "tasks_total": 19
+      "tasks_done": 3,
+      "tasks_total": 20
     },
     {
       "id": "M3",
@@ -343,7 +343,15 @@
       "id": "T-024",
       "title": "Plain-language news — verified items, Telegram announcement at landing, hub feed",
       "milestone": "M2",
-      "status": "in_review",
+      "status": "done",
+      "kind": "infra",
+      "track": "infra"
+    },
+    {
+      "id": "FIX-024a",
+      "title": "News wording gate — obfuscation bypasses and launch-item caveats (follow-up of T-024)",
+      "milestone": "M2",
+      "status": "proposed",
       "kind": "infra",
       "track": "infra"
     }
@@ -367,6 +375,15 @@
       "attempt": 2,
       "acceptance_met": "4/5",
       "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-024-2be79de.md"
+    },
+    {
+      "task": "T-024",
+      "date": "2026-10-17",
+      "verdict": "PASS",
+      "summary": "blockers 1-2 of attempt 3 fixed (inflected stems, NFKC/Cf, markup variants, re-check before send); no gate weakened; residual obfuscation bypasses are non-blocking",
+      "attempt": 4,
+      "acceptance_met": "5/5",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-024-6d29f3c.md"
     },
     {
       "task": "T-024",
