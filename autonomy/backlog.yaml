@@ -6,9 +6,11 @@ version: 1
 milestones:
   - id: M1
     title: Credible foundation
-    goal: Characterise the two seed datasets and reproduce published results before anything new.
+    goal: >-
+      Characterise the seed datasets and the patient blood cohort GSE102008 (RD-002, patients
+      first) and reproduce published results before anything new.
     exit_criteria:
-      - Dataset cards with independent units and confounders for GSE104288 and GSE145115.
+      - Dataset cards with independent units and confounders for GSE104288, GSE145115 and GSE102008.
       - At least one published result reproduced (or refuted) per dataset, gap documented.
   - id: M2
     title: Discovery
@@ -18,10 +20,13 @@ milestones:
       - At least two additional independent public FRDA datasets ingested.
       - A frozen candidate signature from the discovery set, with sensitivity analyses.
   - id: M3
-    title: Independent replication
-    goal: Test the frozen signature, as preregistered, in datasets not used to derive it.
+    title: Independent replication and clinical association
+    goal: >-
+      Test, as preregistered, the frozen signature in datasets not used to derive it, and its
+      association with gene dosage and clinical measures in patients (RD-002).
     exit_criteria:
-      - Preregistration committed before the confirmatory run.
+      - Preregistrations committed before the confirmatory runs.
+      - Clinical association result (functional stage, GAA1, age at onset, disease duration), positive or negative, reported as such.
       - Replication / meta-analysis result, positive or negative, reported as such.
   - id: M4
     title: Intervention response
@@ -57,6 +62,8 @@ tasks:
       - Explicit inclusion/exclusion criteria (years, article types, languages, models) and relevance scale 0–3 definitions.
       - Reading priority rule and per-run reading cap stated.
       - Nothing added to the corpus by this task (searching for real is L-002).
+    notes:
+      - "2026-10-17 (RD-002, owner decision): RQ5 added to the draft protocol — biomarkers measured in patients and their relation to clinical measures. Give it its own query; patient-derived evidence is prioritised in the reading order."
 
   - id: L-002
     title: Run the protocol searches and build the corpus
@@ -203,7 +210,7 @@ tasks:
     title: Extract reproduction targets from the two seed publications
     milestone: M1
     status: ready
-    priority: 1
+    priority: 2  # RD-002: the patient line (T-026, T-027) goes first
     kind: reproduction
     track: main
     goal: >-
@@ -246,6 +253,84 @@ tasks:
       - Claims with evidence_level exploratory (one line per genotype), contrasts within GM04078 only for treatment effects.
       - docs/reproductions/GSE145115.md — published vs obtained, culture replicates explicitly not treated as independent individuals.
 
+  # ---------------------------------------------------------------- M1, patient line (RD-002)
+  - id: T-026
+    title: Patient blood cohort GSE102008 — manifest, sample metadata, dataset card
+    milestone: M1
+    status: ready
+    priority: 1
+    kind: data
+    track: main
+    goal: >-
+      Make the largest public FRDA patient cohort (whole blood, 411 patients, 228 carriers, 94
+      controls, Nachun et al. 2018, PMID 29790959) usable, with every clinical annotation GEO
+      provides and its limits written down.
+    notes:
+      - "Facts from a live GEO probe on 2026-10-17 (interactive session), to re-derive and save as artifacts here, not to copy: 733 GSM on GPL10558 (Illumina HT-12); characteristics pidn, sample number, batch, site (CHOP 568 / UCLA 165), rin, status (Patient 411 / Carrier 228 / Control 94), sex, age, onset and duration (407), gaa1 (376), gaa2 (357), functional stage (334); one GSM per pidn. Series overall design: 1299 samples run, 733 used, '4 samples were run twice, but were not intended as technical replicates'. Files: GSE102008_series_matrix.txt.gz (82 MB), suppl GSE102008_non-normalized.txt.gz (400 MB)."
+    acceptance:
+      - data-manifests/GSE102008.yaml (series matrix and, if used, the non-normalised file) with sha256, terms of use and citation, passing the manifests and data_integrity gates.
+      - A registered, reproducible pipeline writes one record per matrix column (GSM, title, every characteristic, parsed numeric fields with units) and run.json; columns match GSMs one to one, mismatches listed.
+      - docs/datasets/GSE102008.md — independent unit (individual), n per status, completeness of each clinical field per status, site x status and batch x status tables, age and sex by status, how GEO defines functional stage, onset, duration and GAA1/GAA2 (from the paper or GEO, quoted), the 'run twice' samples identified or stated as not identifiable, and the confounders (site, batch, RIN, and age since carriers are often parents) with how later analyses must handle them.
+      - Nothing is imputed or guessed; a field GEO does not give is reported missing.
+
+  - id: T-027
+    title: Extract reproduction targets from Nachun et al. 2018 (GSE102008)
+    milestone: M1
+    status: ready
+    priority: 1
+    kind: reproduction
+    track: main
+    goal: >-
+      Record, with exact location, the published results of PMID 29790959 we will try to
+      reproduce, read through Europe PMC (open full text if available, else abstract only).
+    acceptance:
+      - evaluation/reproduction-targets.yaml gains >= 2 targets for PMID 29790959 (e.g. number of DE genes patients vs controls at the paper's thresholds, the 27-gene panel and its direction, a correlation with GAA1 or functional stage), each with location, verbatim published value, method and thresholds, and the columns needed.
+      - Expected gap from method differences written down BEFORE reproducing.
+      - If the full text is not open access, say so and use only what is legally available.
+
+  - id: T-028
+    title: QC and reproduction of the GSE102008 headline results
+    milestone: M1
+    status: ready
+    priority: 2
+    kind: reproduction
+    track: main
+    depends_on: [T-026, T-027]
+    goal: Check the blood matrix, then re-derive the published patient-vs-control result and document the gap.
+    acceptance:
+      - QC first, rule stated before looking - sex check (XIST, RPS4Y1, DDX3Y) against declared sex, outlier rule, PCA coloured by site, batch and status; flagged samples listed, none silently removed.
+      - Reproduction pipeline registered and reproducible (analysis_kind=reproduction); claims reproduced or refuted with source, checks and limitations; statistics on individuals with site, batch, age, sex and RIN handled as the paper did, then as we would.
+      - docs/reproductions/GSE102008.md — published vs obtained side by side, overlap metrics for gene lists, each gap explained.
+
+  - id: T-029
+    title: Preregister the clinical association analysis (PR-003)
+    milestone: M3
+    status: ready
+    priority: 2
+    kind: analysis
+    track: main
+    depends_on: [T-007, T-028]
+    goal: >-
+      Fix, before looking at the associations, how mitochondria-related expression in patients'
+      blood is tested against gene dosage and clinical measures (RD-002).
+    acceptance:
+      - preregistrations/PR-003-*.md committed before any association is computed - a priori mitochondrial gene-set scores from T-007 (no gene chosen from GSE102008 outcomes), primary outcomes (dosage trend controls < carriers < patients; functional stage, GAA1, age at onset, disease duration within patients), covariates (age, sex, site, batch, RIN), models, multiple-testing plan, a held-out split (e.g. by site) and what would count as a negative result.
+      - Power or precision expected at the observed n per field (from T-026 completeness), stated.
+
+  - id: T-030
+    title: Clinical association analysis (confirmatory run of PR-003)
+    milestone: M3
+    status: ready
+    priority: 2
+    kind: analysis
+    track: main
+    depends_on: [T-029]
+    goal: Run PR-003 exactly as preregistered and report the result, positive or negative.
+    acceptance:
+      - Pipeline registered and reproducible (analysis_kind=confirmatory, preregistration PR-003); deviations from PR-003 listed and justified.
+      - Claims with evidence_level from the held-out result (single_dataset at most for one cohort); association wording only; limitations (blood is not nervous tissue, cross-sectional data, site effects).
+      - A plain-language news item (finding) if claims are added.
+
   # ---------------------------------------------------------------- M2
   - id: T-006
     title: Gap analysis and seed research leads
@@ -278,16 +363,20 @@ tasks:
       - Gene identifier mapping (symbols vs Ensembl for the two matrices) handled with a public versioned mapping; unmapped rate reported.
 
   - id: T-008
-    title: Census of public FRDA transcriptomic datasets
+    title: Census of public FRDA datasets — patient-derived first
     milestone: M2
     status: ready
-    priority: 3
+    priority: 2
     kind: data
     track: main
-    depends_on: [T-006]
-    goal: Find every public, non-DUA FRDA transcriptomic dataset usable for independent replication.
+    goal: >-
+      Find every public, non-DUA FRDA dataset usable for independent replication, patient-derived
+      material (blood, plasma, muscle, post-mortem tissue) first and with its clinical annotations
+      (RD-002); cell models after.
+    notes:
+      - "2026-10-17 (RD-002): a live GEO probe listed, among others, GSE30933 (PBMCs, 108 samples: FRDA, carriers, normal, with ex vivo treatments), GSE243874 (PBMCs, onset groups EOG/IOG/LOG and controls, 16), GSE226646 (skeletal muscle biopsies, FRDA and healthy, rhuEPO, 20), GSE105052 (plasma miRNA, GAA, cardiopathy, diabetes, neuropathy, 42), GSE200907 (SIRT6 genotype, 20). To re-derive here with saved queries, not to copy. Also look beyond GEO (ArrayExpress/BioStudies, PRIDE, MetaboLights) and at posted results of FRDA trials on ClinicalTrials.gov (aggregate patient data; terms to check and allowlist before use)."
     acceptance:
-      - data-manifests/candidates.yaml — accession, model/tissue, assay, n independent units per group, raw counts available, access, publication, independence from GSE104288 donors.
+      - data-manifests/candidates.yaml — accession, material (patient tissue or cell model), assay, n independent individuals per group, clinical annotations available (and completeness), raw data available, access, publication, overlap with GSE102008 or GSE104288 individuals.
       - GEO E-utilities queries and date recorded; cross-checked with the dataset list of Maddock et al. 2026 when available.
       - A ranked shortlist for replication with the reasoning (tissue relevance, n, independence).
 
@@ -305,16 +394,19 @@ tasks:
       - Dataset cards and QC as in T-001/T-002 (pipelines registered and reproducible).
 
   - id: T-010
-    title: Candidate mitochondrial signature in the discovery set (GSE104288)
+    title: Candidate mitochondrial signature in the discovery set (GSE102008 blood, one site)
     milestone: M2
     status: ready
     priority: 4
     kind: analysis
     track: main
-    depends_on: [T-004, T-006, T-007]
-    goal: Derive a candidate mitochondrial signature FRDA vs control and freeze it for replication.
+    depends_on: [T-028, T-006, T-007]
+    goal: >-
+      Derive a candidate mitochondrial signature patients vs controls in patients' blood
+      (RD-002), on a discovery part of GSE102008 (e.g. one site) leaving the rest untouched, and
+      freeze it for replication; check its direction in patient fibroblasts (GSE104288).
     acceptance:
-      - Exploratory analysis at donor level with gene-set statistics; at least three reasonable parametrisations (normalisation, gene-set definition, covariates age/sex) and leave-one-donor-out stability.
+      - Exploratory analysis at individual level with gene-set statistics; at least three reasonable parametrisations (normalisation, gene-set definition, covariates age/sex/batch/RIN) and resampling stability; the held-out part is not opened.
       - The frozen signature (genes + direction + scoring rule) written to results/P-010-signature/signature.json and NOT modified afterwards; claims marked exploratory or single_dataset.
       - Novelty of each candidate claim checked against research/synthesis/ and a logged targeted search (novelty_check points to research/search-logs/*.json or research/synthesis/gaps.md for `new` claims).
 
@@ -562,3 +654,20 @@ tasks:
     acceptance:
       - Each bypass listed in the notes is refused by wording_problems, with a test on each input.
       - No existing gate, test or forbidden-wording rule weakened.
+
+  - id: T-025
+    title: Patients first — reorient the thesis on patient-derived data (owner decision RD-002)
+    milestone: M2
+    status: in_review
+    priority: 1
+    kind: infra
+    track: infra
+    goal: >-
+      Owner request (2026-10-17): make the work useful to the FRDA community by properly
+      analysing data from patients with clinical annotations, not only hypotheses on cell models.
+    acceptance:
+      - research/decisions/RD-002.md (kind pivot, needs_human true, decided by the owner) states the facts it relies on, the new main question, what stays out of scope (DUA registries) and the consequences.
+      - research/PLAN.md, autonomy/project.yaml (hub questions), research/protocol.md (RQ5, before L-001 freezes it) and a dated addendum to docs/PROJECT_BRIEF.md say the same thing.
+      - Backlog - M1 and M3 updated; new tasks T-026 to T-030 for the patient blood cohort GSE102008 (data, reproduction targets, QC and reproduction, preregistration, confirmatory run); T-008 and T-010 re-scoped; T-003 priority 1 -> 2 so the main track starts with the patient cohort; every number in the new tasks traceable to the live probe, marked as to be re-derived.
+      - No gate, test or rule weakened; the reproduction-first and preregistration rules apply to the new line.
+

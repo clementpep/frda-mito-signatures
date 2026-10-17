@@ -37,3 +37,14 @@ La phase 1 répond à une seule question, en deux temps.
 - Données sous accès restreint (DUA)
 - Interface web, agents LLM, graphe de preuves
 - Single-cell
+
+## Mise à jour du périmètre — 17 octobre 2026 (décision du propriétaire, RD-002)
+
+Le travail doit être utile à la communauté : la ligne principale analyse des **données issues de
+patients** avec leurs annotations cliniques (en premier, la cohorte sanguine GSE102008 : 411
+patients, 228 porteurs, 94 témoins, avec stade fonctionnel, longueur des répétitions GAA, âge de
+début et durée de la maladie). Les modèles cellulaires (fibroblastes, GSE145115) deviennent des
+données d'appui. Les règles ne changent pas : données publiques sans DUA, reproduction avant
+toute nouveauté, préenregistrement, statistiques sur des individus. Les registres cliniques
+individuels (FACOMS, EFACTS) restent hors périmètre faute d'accès public. Détails :
+`research/decisions/RD-002.md`.
