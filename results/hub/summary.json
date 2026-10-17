@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-17T13:05:06+00:00",
-  "commit": "c6ea276009d8200c8375b40199911d5261af0d7d",
+  "generated_at": "2026-10-17T13:09:50+00:00",
+  "commit": "03fa31193fde8621bb0fbf3aa4e1e00508e6d2f3",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -17,9 +17,9 @@
   "progress": {
     "total": 34,
     "done": 3,
-    "in_review": 1,
+    "in_review": 0,
     "ready": 28,
-    "changes_requested": 0,
+    "changes_requested": 1,
     "blocked": 0,
     "needs_human": 1,
     "proposed": 1
@@ -343,13 +343,22 @@
       "id": "T-024",
       "title": "Plain-language news — verified items, Telegram announcement at landing, hub feed",
       "milestone": "M2",
-      "status": "in_review",
+      "status": "changes_requested",
       "kind": "infra",
       "track": "infra"
     }
   ],
   "claims": [],
   "verifications": [
+    {
+      "task": "T-024",
+      "date": "2026-10-17",
+      "verdict": "CHANGES_REQUESTED",
+      "summary": "gates pass, but the launch news item overstates scope and two gate holes let overselling reach outsiders",
+      "attempt": 1,
+      "acceptance_met": "3/5",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-024-03fa311.md"
+    },
     {
       "task": "T-022",
       "date": "2026-10-17",

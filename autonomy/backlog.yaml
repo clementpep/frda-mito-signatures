@@ -525,10 +525,13 @@ tasks:
   - id: T-024
     title: Plain-language news — verified items, Telegram announcement at landing, hub feed
     milestone: M2
-    status: in_review
+    status: changes_requested
     priority: 1
     kind: infra
     track: infra
+    attempts: 1
+    notes:
+      - "From autonomy/verifications/T-024-03fa311.md (attempt 1, non-blocking): (a) N-20261017-lancement 'Et ensuite' and 'La suite commence par' disagree with the backlog order (L-001/L-002.., T-002 QC, T-003) and 'bibliographie complète' overstates; say 'IA' and that the owner signs off; (b) land-verified.yml: '|| true' hides non-Telegram script errors (use continue-on-error or per-item try/except) and a failed send is only a log line, not a ::warning::; delivery is at-most-once, say so; (c) the wording check fires on negations ('ne prouve pas') inside 'Ce que ça ne veut pas dire'; (d) tests: add a two-claim case with different levels (min vs max), a per-phrase overselling test, and a mocked urlopen sent-path test asserting the token never reaches stdout; (e) document the news block in docs/HUB_CONTRACT.md; (f) STYLE.md 'Rien d'inventé': add a check that numbers in non-finding items cite a task or dataset id."
     goal: >-
       Share progress and findings with non-specialists (owner request, 2026-10-17), without ever
       announcing unverified work or overstating a result.
