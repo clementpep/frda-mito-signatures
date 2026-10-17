@@ -149,3 +149,7 @@ formula join, partial word, truncated word, altered number, sign), plus upper-ca
 xlink attributes. Online: PMC5719256 (author-year) and PMC13571518 (numeric [1]) — natural
 quotes found; partial-word, altered-number, glued-marker and substituted-word variants rejected.
 `make ci` PASS (68 tests), `make reproduce` PASS.
+
+## Owner decision (attempt 5)
+2026-10-17: the owner authorised a 5th attempt on the redesigned matcher (recorded in the task
+`notes`); task status set back to `in_review`.
