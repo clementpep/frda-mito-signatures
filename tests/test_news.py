@@ -138,9 +138,22 @@ OVERSELLING = [
     "un espoir",
     "une avancée majeure",
     "soigner la maladie",
+    "une thérapie",
+    "un effet thérapeutique",
+    "un nouveau médicament",
+    "cela démontre",
+    "c'est démontré",
+    "l'étude établit",
+    "un résultat validé",
+    "un résultat répliqué",
+    "le gène est responsable de la baisse",
+    "cela entraîne une baisse",
     "this proves it",
     "a cure",
     "it causes",
+    "a new therapy",
+    "a breakthrough",
+    "this demonstrates",
 ]
 
 
@@ -151,7 +164,17 @@ def test_each_overselling_form_is_refused(tmp_path, phrase):
     assert any("forbidden wording" in p for p in news.problems(tmp_path)), phrase
 
 
-@pytest.mark.parametrize("phrase", ["une approche éprouvée", "approuvé", "soigneusement"])
+@pytest.mark.parametrize(
+    "phrase",
+    [
+        "une approche éprouvée",
+        "approuvé",
+        "soigneusement",
+        "une démonstration à venir",
+        "le responsable du projet valide la publication",
+        "une validation à venir",
+    ],
+)
 def test_innocent_words_pass(tmp_path, phrase):
     ledger(tmp_path)
     item(tmp_path, body=BODY.replace("Vérifier dans", phrase + ". Vérifier dans"))
@@ -164,26 +187,38 @@ LIMITS = "**Ce que ça ne veut pas dire**\n"
 @pytest.mark.parametrize(
     "phrase",
     [
+        # Affirmed despite a nearby negation: must never pass.
+        "Pas de preuve mais cela prouve le mécanisme",
+        "Il n'y a pas de doute que ça guérit",
+        "Ce n'est pas tout : cela prouve le mécanisme",
+        "Pas de doute, une percée",
+        "Sans hésiter, un remède",
+        "No doubt this is a cure",
+        # Negated: refused too (no exception, the limits are written without banned words).
         "Cela ne prouve pas de mécanisme",
-        "Ce n'est pas un remède",
+        "Ce n’est pas un remède",
         "Il n'y a aucune guérison",
         "This is not a cure",
     ],
 )
-def test_negated_word_is_allowed_only_in_the_limits_section(tmp_path, phrase):
+def test_banned_words_are_refused_even_near_a_negation(tmp_path, phrase):
     ledger(tmp_path)
-    limits = BODY.replace(LIMITS, LIMITS + phrase + ". ")
-    item(tmp_path, body=limits)
-    assert news.problems(tmp_path) == [], phrase
-    item(tmp_path, body=BODY.replace("Vérifier dans", phrase + ". Vérifier dans"))
+    item(tmp_path, body=BODY.replace(LIMITS, LIMITS + phrase + ". "))
     assert any("forbidden wording" in p for p in news.problems(tmp_path)), phrase
 
 
-def test_negation_does_not_carry_across_clauses(tmp_path):
+def test_decomposed_accents_do_not_bypass_the_stems(tmp_path):
     ledger(tmp_path)
-    for phrase in ["Ce n'est pas tout : cela prouve le mécanisme", "Pas de doute, une percée"]:
-        item(tmp_path, body=BODY.replace(LIMITS, LIMITS + phrase + ". "))
-        assert any("forbidden wording" in p for p in news.problems(tmp_path)), phrase
+    decomposed = "cela gue\u0301rit et c'est de\u0301montre\u0301"
+    item(tmp_path, body=BODY.replace("Vérifier dans", decomposed + ". Vérifier dans"))
+    probs = " | ".join(news.problems(tmp_path))
+    assert "'guérit'" in probs and "'démontré'" in probs
+
+
+def test_each_banned_word_is_reported_once(tmp_path):
+    ledger(tmp_path)
+    item(tmp_path, body=BODY.replace("Vérifier dans", "Le gène cause la baisse. Vérifier dans"))
+    assert sum("'cause'" in p for p in news.problems(tmp_path)) == 1
 
 
 def test_overselling_in_the_title_is_refused(tmp_path):

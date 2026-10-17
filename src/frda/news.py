@@ -11,6 +11,7 @@ and refuses clinical or causal wording in French and English.
 from __future__ import annotations
 
 import re
+import unicodedata
 from pathlib import Path
 from typing import Literal
 
@@ -35,27 +36,36 @@ EVIDENCE_PLAIN = {
     "replicated": "retrouvé dans des données indépendantes",
     "preregistered_confirmed": "confirmé par une analyse annoncée à l'avance",
 }
-# Stems with their inflections (guérira, prouvent, causé...), not single forms.
+# Stems with their inflections (guérira, prouvent, causé...), not single forms. They are refused
+# everywhere, negated or not: "ne prouve pas" and "pas de doute, ça prouve" cannot be told apart
+# reliably, so the limits section is written without them ("ce n'est pas une démonstration").
 FORBIDDEN_FR = [
     r"\bgu[ée]ri\w*",  # guérir, guérira, guérissent, guérison
     r"\bsoign(?:er|e|es|ent|era|eront|erait|é|ée|és|ées)\b",
     r"\brem[èe]des?\b",
     r"\bmiracle\w*|\bmiracul\w*",
+    r"\bth[ée]rap\w*",  # thérapie, thérapeutique
+    r"\bm[ée]dicament\w*",
     r"\btraitements? (?:efficaces?|prometteurs?)\b",
     r"\bprouv\w*",  # prouve, prouvent, prouvera, prouvé (not "éprouvé", "approuvé")
     r"\bpreuves? (?:que|formelles?|définitives?)\b",
+    r"\bd[ée]montr\w*",  # démontre, démontré (not "démonstration")
+    r"\b[ée]tabli(?:t|ssent|ra|ront|e|es|s)?\b",
+    r"\bvalidé(?:e|s|es)?\b",  # validé (not "valide", "validation")
+    r"\br[ée]pliqué(?:e|s|es)?\b",
     r"\bcaus(?:e|es|ent|era|eront|erait|ait|aient|é|ée|és|ées|er|al|ale|aux|alité)\b",
     r"\bprovoqu\w*",
+    r"\bentra[îi]n\w*",
+    r"\b(?:est|sont|serait|seraient|soit|soient) responsables? (?:de|du|des|d')",  # not "le responsable du projet"
     r"\bperc[ée]es?\b",
     r"\br[ée]volution\w*",
     r"\bespoirs?\b",
     r"\bavanc[ée]es? (?:majeures?|décisives?|historiques?)\b",
+    # English, beyond the claims list
+    r"\btherap\w*",
+    r"\bbreakthroughs?\b",
+    r"\bdemonstrat(?:e|es|ed)\b",
 ]
-# In "Ce que ça ne veut pas dire" a banned word may be negated ("ne prouve pas", "not a cure"):
-# the negation must sit in the same clause, at most this many characters before the word.
-NEGATION_SECTION = "Ce que ça ne veut pas dire"
-NEGATION_RE = re.compile(r"(?:\bne\b|\bn'|\bpas\b|\baucune?\b|\bsans\b|\bni\b|\bnot\b|\bno\b)")
-NEGATION_WINDOW = 30
 MAX_BODY_CHARS = 1800
 ID_RE = r"^N-\d{8}-[a-z0-9-]+$"
 
@@ -133,26 +143,15 @@ def problems(root: Path | None = None) -> list[str]:
     return out
 
 
-def _negated(text: str, start: int) -> bool:
-    before = text[max(0, start - NEGATION_WINDOW) : start]
-    before = re.split(r"[.;:!?,\n]", before)[-1]  # same clause only
-    return NEGATION_RE.search(before.lower()) is not None
-
-
 def wording_problems(title: str, body: str) -> list[str]:
-    """Overselling words, French and English; negated forms are allowed only in the limits section."""
-    out = []
-    parts = [(title, False)]
-    for chunk in re.split(r"(?m)^(?=\*\*)", body):
-        parts.append((chunk, chunk.startswith(f"**{NEGATION_SECTION}**")))
-    for text, negation_ok in parts:
-        for pattern in [*FORBIDDEN_WORDING, *FORBIDDEN_FR]:
-            for m in re.finditer(pattern, text, flags=re.IGNORECASE):
-                if negation_ok and _negated(text, m.start()):
-                    continue
-                out.append(f"forbidden wording {m.group(0)!r} (overclaiming)")
-                break
-    return out
+    """Overselling words, French and English, after Unicode NFC normalisation (a decomposed
+    "gue\u0301rit" must not slip past the accented stems). One report per distinct word."""
+    text = unicodedata.normalize("NFC", f"{title}\n{body}")
+    found: dict[str, None] = {}
+    for pattern in [*FORBIDDEN_WORDING, *FORBIDDEN_FR]:
+        for m in re.finditer(pattern, text, flags=re.IGNORECASE):
+            found.setdefault(m.group(0).lower(), None)
+    return [f"forbidden wording {w!r} (overclaiming)" for w in found]
 
 
 def plain(body: str) -> str:

@@ -17,10 +17,12 @@ vérification. Une actu qui survend un résultat fait plus de mal que pas d'actu
 4. **« Ce que ça ne veut pas dire » est obligatoire** et sérieux : pas de traitement, pas de
    causalité démontrée, limites des modèles cellulaires, taille des échantillons.
 5. **Pas d'emphase** : pas de « percée », « révolution », « espoir pour les patients »,
-   « guérir », « prouve », « cause » (et toutes leurs formes : guérira, prouvent, causé…).
-   Seule exception, dans « Ce que ça ne veut pas dire » : la forme niée dans la même
-   proposition (« cela ne prouve pas… », « ce n'est pas un remède »). Un résultat négatif
-   s'annonce aussi, sur le même ton.
+   « guérir », « prouve », « cause », « démontre », « thérapie », « médicament » (et toutes
+   leurs formes : guérira, prouvent, causé…). Ces mots sont refusés **partout, même à la forme
+   négative** : la gate ne sait pas distinguer « cela ne prouve pas » de « pas de doute, cela
+   prouve ». Dans « Ce que ça ne veut pas dire », on écrit donc sans eux : « ce n'est pas une
+   démonstration », « on ne sait pas lequel agit sur l'autre », « le projet ne produit pas de
+   traitement ». Un résultat négatif s'annonce aussi, sur le même ton.
 6. **Court** : ≤ 1 800 caractères. Un titre de ≤ 90 caractères qui dit ce qui s'est passé.
 7. **Rien d'inventé** : chaque fait vient d'une tâche terminée, d'un résultat vérifié (claim)
    ou d'une fiche de lecture ; on cite les identifiants dans l'en-tête.

@@ -46,3 +46,19 @@ Owner request: news on progress and findings, popularised, in the hub and on Tel
   "Ce que ça ne veut pas dire"; tested inside and outside that section and across clauses.
 - Non-blocking (a)-(e) addressed, (f) declined: see the T-024 notes in the backlog.
 - Checks: `make ci` 137 passed, verify PASS (news PASS); `make reproduce` PASS.
+
+## Attempt 3 (after autonomy/verifications/T-024-2be79de.md, CHANGES_REQUESTED, 2 blocking)
+
+- B1: the negation exception is removed rather than refined. A regex cannot reliably tell
+  "ne prouve pas" from "pas de preuve mais cela prouve", so every banned word is refused in every
+  section; STYLE.md rule 5 gives wording for the limits section without them. The verifier's
+  inputs ("Pas de preuve mais cela prouve…", "Il n'y a pas de doute que ça guérit", ’ apostrophe,
+  English "No doubt this is a cure") are regression tests. Stricter than before: nothing weakened.
+- B2: title and body are NFC-normalised before matching (test with decomposed accents). New
+  stems: thérap*, médicament*, démontr*, établi(t…), validé, répliqué, "est/sont… responsable de",
+  entraîn*, therap*, breakthrough(s), demonstrate(s/d); one test per form, and innocent forms
+  (démonstration, valide, validation, "le responsable du projet valide…", éprouvée, approuvé,
+  soigneusement) pass. Each distinct banned word is reported once.
+- Not changed here (outside T-024's scope, noted in the backlog): NFC in `claims.check_claim`.
+- The launch item is unchanged (the verifier found it accurate) and passes the stricter gate.
+- Checks: `make ci` 160 passed, verify PASS; `make reproduce` PASS.
