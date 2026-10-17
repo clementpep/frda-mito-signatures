@@ -3,8 +3,12 @@
 - `search`  reproducible query → search log (research/search-logs/) + candidate ids
 - `add`     append papers to the corpus as `to_screen`, with metadata from Europe PMC
 - `verify`  online audit used by the verifier: every paper exists with the recorded
-            title, and every quote of a reading card appears verbatim in the paper
-            (full text for open-access papers, abstract otherwise).
+            title, and every quote of a reading card appears in the paper as the same
+            sequence of words and numbers within one block (full text for open-access papers,
+            abstract otherwise). Best-effort by design: case, light punctuation and
+            sub/superscript formatting are ignored, and only quotes and titles are checked
+            (not the paraphrase, location or published values) — the verifier reads those.
+- `citations` citation chasing via OpenAlex, resolved to Europe PMC ids.
 
 An LLM can invent a plausible paper or a plausible quote; this module is how the
 project catches it. Europe PMC is fetched here rather than through `frda.acquire`: these are
@@ -18,6 +22,7 @@ import datetime as dt
 import difflib
 import html
 import json
+import os
 import re
 import time
 import unicodedata
@@ -46,7 +51,8 @@ def _get(url: str, *, as_json: bool = True, retries: int = 3) -> Any:
         except Exception as exc:  # network: retry, then surface the error
             last = exc
             time.sleep(1.5 * (attempt + 1))
-    raise RuntimeError(f"Europe PMC request failed: {url}: {last}")
+    safe = re.sub(r"(api_key=)[^&]+", r"\1***", url)
+    raise RuntimeError(f"request failed: {safe}: {last}")
 
 
 def pid_of(rec: dict) -> str:
@@ -362,6 +368,7 @@ def significant_tokens(text: str) -> list[str]:
 def text_blocks(markup: str) -> list[list[str]]:
     """Markup -> list of blocks, each a list of significant tokens."""
     parser = _Blocks()
+    markup = markup.replace(MARKER, " ")  # a literal U+E000 in the paper is not a citation marker
     parser.feed(RAW_TEXT_TAGS.sub(lambda m: f"<{m.group(1)}x-{m.group(2).lower()}", markup))
     parser.close()
     return [toks for b in parser.blocks if (toks := significant_tokens(b))]
@@ -466,6 +473,108 @@ def verify(paper_ids: list[str] | None = None, root: Path | None = None) -> list
                 )
         time.sleep(0.2)
     return problems
+
+
+# ---------------------------------------------------------------------------------------------
+# Citation chasing (OpenAlex, CC0). A thesis bibliography is built backwards (what a core paper
+# cites) and forwards (who cites it, e.g. who re-used GSE104288). OpenAlex works are resolved
+# to Europe PMC ids so they enter the corpus through `add_papers` like any other hit.
+# ---------------------------------------------------------------------------------------------
+
+OPENALEX = "https://api.openalex.org"
+MAILTO = "frda-mito-signatures@users.noreply.github.com"
+
+
+def _openalex(path: str, params: dict[str, str]) -> Any:
+    params = {**params, "mailto": MAILTO}
+    key = os.environ.get("OPENALEX_API_KEY")  # environment secret; never logged or committed
+    if key:
+        params["api_key"] = key
+    return _get(f"{OPENALEX}/{path}?{urllib.parse.urlencode(params)}")
+
+
+def _openalex_work_id(paper: Paper) -> str:
+    src, ext = paper.id.split(":", 1)
+    if src == "MED":
+        ref = f"pmid:{ext}"
+    elif paper.doi:
+        ref = f"doi:{paper.doi}"
+    else:
+        raise RuntimeError(f"{paper.id}: no PMID or DOI to find it in OpenAlex")
+    work = _openalex(f"works/{ref}", {"select": "id"})
+    return str(work["id"]).rsplit("/", 1)[-1]
+
+
+def _epmc_id(work: dict[str, Any]) -> str | None:
+    ids = work.get("ids") or {}
+    if ids.get("pmid"):
+        return "MED:" + str(ids["pmid"]).rstrip("/").rsplit("/", 1)[-1]
+    doi = (ids.get("doi") or "").replace("https://doi.org/", "")
+    if doi:
+        q = urllib.parse.quote(f'DOI:"{doi}"')
+        res = _get(f"{BASE}/search?query={q}&format=json&resultType=lite")
+        hits = res.get("resultList", {}).get("result", [])
+        if hits:
+            return pid_of(hits[0])
+    return None
+
+
+def citations(pid: str, direction: str, max_hits: int = 500, root: Path | None = None) -> dict:
+    """Works citing (`cited-by`) or cited by (`references`) a corpus paper, resolved to Europe
+    PMC ids. Returns a log dict like `search` (kind "citations"); unresolved works are listed,
+    never guessed."""
+    if direction not in {"cited-by", "references"}:
+        raise ValueError("direction must be cited-by or references")
+    paper = load_corpus(root).get(pid)
+    if paper is None:
+        raise RuntimeError(f"{pid}: add it to the corpus first (frda lit-add)")
+    wid = _openalex_work_id(paper)
+    select = "id,ids,display_name,publication_year"
+    works: list[dict[str, Any]] = []
+    if direction == "cited-by":
+        cursor = "*"
+        while cursor and len(works) < max_hits:
+            page = _openalex(
+                "works",
+                {"filter": f"cites:{wid}", "per-page": "200", "cursor": cursor, "select": select},
+            )
+            works += page.get("results", [])
+            cursor = (page.get("meta") or {}).get("next_cursor")
+            if not page.get("results"):
+                break
+    else:
+        refs = _openalex(f"works/{wid}", {"select": "referenced_works"}).get("referenced_works", [])
+        refs = [r.rsplit("/", 1)[-1] for r in refs][:max_hits]
+        for i in range(0, len(refs), 50):
+            page = _openalex(
+                "works",
+                {
+                    "filter": "openalex_id:" + "|".join(refs[i : i + 50]),
+                    "per-page": "50",
+                    "select": select,
+                },
+            )
+            works += page.get("results", [])
+    results, unresolved = [], []
+    for w in works:
+        epmc = _epmc_id(w)
+        entry = {
+            "openalex": str(w.get("id", "")).rsplit("/", 1)[-1],
+            "title": w.get("display_name") or "",
+            "year": w.get("publication_year"),
+        }
+        (results if epmc else unresolved).append({**entry, "id": epmc} if epmc else entry)
+        time.sleep(0.1)
+    return {
+        "kind": "citations",
+        "source": "openalex",
+        "query": f"{direction} {pid} (OpenAlex {wid})",
+        "date": dt.date.today().isoformat(),
+        "hit_count": len(works),
+        "retrieved": len(results),
+        "results": results,
+        "unresolved": unresolved,
+    }
 
 
 def card_path(pid: str, root: Path | None = None) -> Path:

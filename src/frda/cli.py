@@ -138,6 +138,25 @@ def cmd_lit_search(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_lit_citations(args: argparse.Namespace) -> int:
+    from frda import literature
+    from frda.research import load_corpus
+
+    log = literature.citations(args.paper, args.direction, max_hits=args.max)
+    known = {p.id for p in load_corpus().papers}
+    new = [r for r in log["results"] if r["id"] not in known]
+    print(
+        f"{log['hit_count']} works via OpenAlex, {log['retrieved']} resolved to Europe PMC, "
+        f"{len(log['unresolved'])} unresolved, {len(new)} not in corpus"
+    )
+    for r in new[: args.show]:
+        print(f"  {r['id']:<22} {r['year']}  {r['title'][:90]}")
+    if args.save:
+        path = literature.save_search_log(log, args.save, args.task)
+        print(f"citation log: {path.relative_to(paths.ROOT)}")
+    return 0
+
+
 def cmd_lit_add(args: argparse.Namespace) -> int:
     from frda import literature
 
@@ -221,6 +240,17 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--save", metavar="SLUG", help="write research/search-logs/<date>-<SLUG>.json")
     p.add_argument("--task", default="interactive")
     p.set_defaults(func=cmd_lit_search)
+
+    p = sub.add_parser(
+        "lit-citations", help="citation chasing via OpenAlex (cited-by / references)"
+    )
+    p.add_argument("paper", help="corpus id, e.g. MED:29125828")
+    p.add_argument("--direction", choices=["cited-by", "references"], default="cited-by")
+    p.add_argument("--max", type=int, default=500)
+    p.add_argument("--show", type=int, default=40)
+    p.add_argument("--save", metavar="SLUG")
+    p.add_argument("--task", default="interactive")
+    p.set_defaults(func=cmd_lit_citations)
 
     p = sub.add_parser(
         "lit-add", help="add papers (Europe PMC ids, e.g. MED:29125828) to the corpus"

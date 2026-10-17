@@ -1,6 +1,9 @@
 """Research memory and arbitration: the rules that make the bibliography and the
 choice of leads auditable."""
 
+import json
+import urllib.parse
+
 import pytest
 import yaml
 from pydantic import ValidationError
@@ -632,3 +635,102 @@ def test_section_titles_with_markup_are_text_and_unclosed_xref_does_not_swallow(
     src = '<p>first block with <xref ref-type="bibr">open marker never closed</p><p>second block words</p>'
     assert not _found(src, "never closed second block words")
     assert _found(src, "second block words")
+
+
+# --- T-022: citation chasing, secrets, manifest column maps -----------------------------------
+
+
+def test_citations_resolve_to_europe_pmc_and_never_guess(tmp_path, monkeypatch):
+    write(tmp_path, corpus=[paper(pid="MED:111")])
+    calls = []
+
+    def fake_get(url, as_json=True, retries=3):
+        calls.append(url)
+        if "/works/pmid:111" in url:
+            return {"id": "https://openalex.org/W1"}
+        if "filter=cites" in url:
+            return {
+                "meta": {"next_cursor": None},
+                "results": [
+                    {
+                        "id": "https://openalex.org/W2",
+                        "ids": {"pmid": "https://pubmed.ncbi.nlm.nih.gov/222"},
+                        "display_name": "Citing with PMID",
+                        "publication_year": 2020,
+                    },
+                    {
+                        "id": "https://openalex.org/W3",
+                        "ids": {"doi": "https://doi.org/10.1/x"},
+                        "display_name": "Citing with DOI",
+                        "publication_year": 2021,
+                    },
+                    {
+                        "id": "https://openalex.org/W4",
+                        "ids": {},
+                        "display_name": "No identifiers",
+                        "publication_year": 2022,
+                    },
+                ],
+            }
+        if "europepmc" in url and "DOI" in urllib.parse.unquote(url):
+            return {"resultList": {"result": [{"source": "PPR", "id": "PPR9"}]}}
+        raise AssertionError(url)
+
+    monkeypatch.setattr(literature, "_get", fake_get)
+    monkeypatch.setattr(literature.time, "sleep", lambda s: None)
+    monkeypatch.setenv("OPENALEX_API_KEY", "secret-key-123")
+    log = literature.citations("MED:111", "cited-by", root=tmp_path)
+    assert [r["id"] for r in log["results"]] == ["MED:222", "PPR:PPR9"]
+    assert [u["openalex"] for u in log["unresolved"]] == ["W4"]
+    assert "secret-key-123" not in json.dumps(log)
+    assert all("mailto=" in c for c in calls if "openalex" in c)
+
+
+def test_request_errors_redact_the_api_key(monkeypatch):
+    def boom(*a, **k):
+        raise OSError("network down")
+
+    monkeypatch.setattr(literature.urllib.request, "urlopen", boom)
+    monkeypatch.setattr(literature.time, "sleep", lambda s: None)
+    with pytest.raises(RuntimeError) as exc:
+        literature._get("https://api.openalex.org/works?filter=x&api_key=supersecret&mailto=m")
+    assert "supersecret" not in str(exc.value) and "api_key=***" in str(exc.value)
+
+
+def test_literal_marker_character_in_source_is_not_a_citation():
+    src = "<p>values of 5 were seen in cells today</p>"
+    assert not literature.quote_found(
+        "values of 5 were seen in cells",
+        literature.text_blocks("<p>values of 50 were seen in cells today</p>"),
+    )
+    assert literature.quote_found("were seen in cells today", literature.text_blocks(src))
+
+
+def test_manifest_column_map_and_comment_lines(tmp_path):
+    from frda.io import check_columns, read_manifest_file
+    from frda.manifest import Manifest, load_all
+
+    m = {x.id: x for x in load_all()}["GSE104288"].model_dump()
+    samples = [s for g in m["groups"] for s in g["samples"]]
+    runs = {f"SRR{i:03d}": s for i, s in enumerate(samples)}
+    body = "##annotation=G026\n##date=2021\ngene_id\t" + "\t".join(runs) + "\n"
+    body += "ENSG1\t" + "\t".join("7" for _ in runs) + "\n"
+    f = tmp_path / "counts.tsv"
+    f.write_text(body)
+    m["files"].append(
+        {
+            **m["files"][0],
+            "name": "counts.tsv",
+            "gene_id_column": "gene_id",
+            "gene_id_type": "ensembl_gene_id",
+            "column_map": runs,
+            "comment_prefix": "##",
+        }
+    )
+    manifest = Manifest.model_validate(m)
+    df = read_manifest_file(f, manifest.file("counts.tsv"))
+    assert list(df.index) == ["ENSG1"] and check_columns(df, manifest) == []
+    broken = dict(list(runs.items())[1:])  # one run left unmapped -> reported
+    manifest.file("counts.tsv").column_map = broken
+    df = read_manifest_file(f, manifest.file("counts.tsv"))
+    assert any("not assigned to any group" in p for p in check_columns(df, manifest))

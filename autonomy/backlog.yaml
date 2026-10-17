@@ -224,6 +224,8 @@ tasks:
     track: main
     depends_on: [T-001, T-002, T-003]
     goal: Re-derive the FXN reduction and the genome-wide DE result of Napierala 2017 and document the gap.
+    notes:
+      - "2026-10-17 (T-022): raw, uniformly re-processed gene counts for GSE104288 exist in recount3 (SRP118922, 35 runs, gene_sums G026; coverage sums, to convert to read counts). If T-023 allowlists recount3, prefer them for a count-model reproduction and compare with the normalised GEO matrix; manifests support run->sample `column_map` (ENA: run accession -> GSM -> sample title)."
     acceptance:
       - pipelines/p004_reproduce_gse104288.py writes JSON artifacts + run.json (analysis_kind=reproduction); registered and reproducible.
       - Claims added to evaluation/claims.yaml with status reproduced or refuted, source (pmid, location, published_value), checks against the artifact, limitations.
@@ -468,4 +470,38 @@ tasks:
       - The worker's next task is chosen by track budget (pick_next) and the reason is exposed by `frda autonomy-status`; FIX tasks first.
       - Procedures updated (playbooks/literature.md, supervisor.md, watch/worker/verifier); the backlog gains the literature programme L-001…L-009 and T-006 becomes the gap analysis.
       - No existing gate or test weakened; hub summary gains an additive `research` block and task `track`.
+
+  - id: T-022
+    title: Wider sources — OpenAlex citation chasing, manifest column maps, verifier follow-up loop
+    milestone: M2
+    status: in_review
+    priority: 1
+    kind: infra
+    track: infra
+    goal: >-
+      Use the owner's OpenAlex key for citation chasing (who cites / what is cited), let manifests
+      describe matrices whose columns are run accessions (recount3-style), and make sure
+      non-blocking verifier findings become backlog follow-ups instead of being lost.
+    acceptance:
+      - OpenAlex added to the allowlist with its terms quoted (CC0) and URL; the key is read only from the OPENALEX_API_KEY environment secret, never logged, and redacted from errors (tests).
+      - The `frda lit-citations` command resolves OpenAlex works to Europe PMC ids, lists unresolved works without guessing, and writes a search log; tested offline (mocks) and online on MED:29125828.
+      - Manifests support `column_map` and `comment_prefix`; `frda.io` and the data_integrity gate use them (test); existing manifests unchanged.
+      - verifier.md requires non-blocking findings worth acting on to be recorded as a proposed follow-up task; playbook documents citation chasing; procedures add the secrets rule.
+      - T-021 follow-ups addressed where small (literal U+E000 in source, wording of lit-verify scope in docstring and card template); no gate or test weakened.
+
+  - id: T-023
+    title: Verify terms and allowlist further public sources (MyGene.info, Crossref, Unpaywall, Open Targets, ENA, recount3)
+    milestone: M2
+    status: ready
+    priority: 2
+    kind: data
+    track: main
+    goal: >-
+      Each source useful to the project is allowlisted only after its terms of use are read and
+      quoted; recount3 raw counts for GSE104288 are declared in its manifest if allowed.
+    acceptance:
+      - For each candidate source, the terms page is fetched and the relevant sentence quoted with URL and date in data-manifests/allowlist.yaml; a source whose terms cannot be read or restrict this use is NOT added and the reason is recorded in docs/decisions/.
+      - Semantic Scholar is assessed against its API License Agreement (accept or reject with the clause quoted).
+      - If recount3 is allowlisted, the GSE104288 manifest gains the recount3 gene_sums file (sha256 recorded) with a run->sample column_map built from ENA run metadata (run accession -> GSM -> sample title), and the data_integrity gate passes on it; the values field states that they are coverage sums.
+      - Gene identifier mapping (symbols <-> Ensembl) via an allowlisted, versioned source is documented for T-007.
 

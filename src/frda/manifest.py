@@ -41,6 +41,14 @@ class ManifestFile(Strict):
     gene_id_column: str
     gene_id_type: Literal["symbol", "ensembl_gene_id"]
     values: str = Field(description="Exact nature of the values (raw counts, normalised...).")
+    column_map: dict[str, str] = Field(
+        default_factory=dict,
+        description="File column -> manifest sample name, when the file uses other ids "
+        "(e.g. SRA run accessions). Must cover every sample column of the file.",
+    )
+    comment_prefix: str | None = Field(
+        default=None, description="Leading metadata lines starting with this prefix are skipped."
+    )
 
     @field_validator("url")
     @classmethod

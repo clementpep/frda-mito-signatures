@@ -71,9 +71,8 @@ def gate_manifests(ctx: Context) -> GateResult:
 
 
 def gate_data_integrity(ctx: Context) -> GateResult:
-    import pandas as pd
 
-    from frda.io import check_columns  # pandas import kept lazy
+    from frda.io import check_columns, read_manifest_file  # pandas import kept lazy
 
     problems: list[str] = []
     missing: list[str] = []
@@ -86,8 +85,8 @@ def gate_data_integrity(ctx: Context) -> GateResult:
             if f.sha256 and sha256_file(path) != f.sha256:
                 problems.append(f"{m.id}/{f.name}: sha256 mismatch with manifest")
                 continue
-            header = pd.read_csv(path, sep="\t", index_col=f.gene_id_column, nrows=2)
-            problems += check_columns(header, m)
+            header = read_manifest_file(path, f, nrows=2)
+            problems += [f"{f.name}: {p}" for p in check_columns(header, m)]
     if missing and ctx.require_data:
         problems += missing
     if missing and not problems:

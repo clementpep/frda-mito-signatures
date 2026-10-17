@@ -116,6 +116,11 @@ Verdict rules:
 
 Write `autonomy/verifications/<T>-<sha7 of REVIEWED>.md` (template below).
 
+Non-blocking findings worth acting on are not left in the report only: in the same verify commit,
+add them to `autonomy/backlog.yaml` as one follow-up task (`status: proposed`, id `T-xxx` or
+`FIX-xxx`, track of the work, `notes` citing the report) — or append them to the `notes` of an
+existing open task they belong to. The weekly supervision decides whether they become `ready`.
+
 **PASS:**
 ```bash
 # on top of REVIEWED, change only: the report, autonomy/backlog.yaml (task -> done,

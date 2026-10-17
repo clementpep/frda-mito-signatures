@@ -4,12 +4,43 @@ ad-hoc regex in a pipeline."""
 
 from __future__ import annotations
 
+import gzip
 from pathlib import Path
 
 import pandas as pd
 
 from frda.acquire import raw_path
-from frda.manifest import Manifest, load_manifest
+from frda.manifest import Manifest, ManifestFile, load_manifest
+
+
+def _leading_comment_lines(path: Path, prefix: str | None) -> int:
+    if not prefix:
+        return 0
+    opener = gzip.open if path.suffix == ".gz" else open
+    n = 0
+    with opener(path, "rt", encoding="utf-8") as fh:
+        for line in fh:
+            if not line.startswith(prefix):
+                break
+            n += 1
+    return n
+
+
+def read_manifest_file(path: Path, f: ManifestFile, nrows: int | None = None) -> pd.DataFrame:
+    """Read a declared matrix: skip metadata lines, index by gene id, rename columns to the
+    manifest's sample names (column_map). Unmapped columns are kept as-is (and then reported
+    by `check_columns`)."""
+    df = pd.read_csv(
+        path,
+        sep="\t",
+        index_col=f.gene_id_column,
+        skiprows=_leading_comment_lines(path, f.comment_prefix),
+        nrows=nrows,
+    )
+    df.index = df.index.astype(str)
+    if f.column_map:
+        df = df.rename(columns=f.column_map)
+    return df
 
 
 def load_matrix(dataset_id: str, file_name: str | None = None, raw_dir: Path | None = None):
@@ -19,9 +50,7 @@ def load_matrix(dataset_id: str, file_name: str | None = None, raw_dir: Path | N
     path = raw_path(m, f, raw_dir)
     if not path.exists():
         raise FileNotFoundError(f"{path} missing: run `make fetch` first")
-    df = pd.read_csv(path, sep="\t", index_col=f.gene_id_column)
-    df.index = df.index.astype(str)
-    return df, m
+    return read_manifest_file(path, f), m
 
 
 def group_columns(manifest: Manifest, group: str) -> list[str]:
