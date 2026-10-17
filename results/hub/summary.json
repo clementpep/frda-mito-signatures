@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-17T11:34:09+00:00",
-  "commit": "d078954c64c88c93da366c12c4052096c4e8f8e7",
+  "generated_at": "2026-10-17T11:39:54+00:00",
+  "commit": "ca94e6303066d1d297da21e195b06cf02b69da8a",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -16,8 +16,8 @@
   },
   "progress": {
     "total": 30,
-    "done": 1,
-    "in_review": 1,
+    "done": 2,
+    "in_review": 0,
     "ready": 27,
     "changes_requested": 0,
     "blocked": 0,
@@ -37,8 +37,8 @@
       "id": "M2",
       "title": "Discovery",
       "goal": "Map what is already known, widen the public data base, derive a candidate mitochondrial signature.",
-      "status": "todo",
-      "tasks_done": 0,
+      "status": "in_progress",
+      "tasks_done": 1,
       "tasks_total": 15
     },
     {
@@ -311,7 +311,7 @@
       "id": "T-021",
       "title": "Research system — literature corpus, reading cards, ideas, effort arbitration, supervision",
       "milestone": "M2",
-      "status": "in_review",
+      "status": "done",
       "kind": "infra",
       "track": "infra"
     }
@@ -326,6 +326,15 @@
       "attempt": 5,
       "acceptance_met": "4/5",
       "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-021-9d8aaf8.md"
+    },
+    {
+      "task": "T-021",
+      "date": "2026-10-17",
+      "verdict": "PASS",
+      "summary": "Attempt-5 blocking finding (leading decimal point) fixed and tested in both directions; remaining gaps are documented best-effort limits, non-blocking.",
+      "attempt": 6,
+      "acceptance_met": "5/5",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-021-ca94e63.md"
     },
     {
       "task": "T-021",
