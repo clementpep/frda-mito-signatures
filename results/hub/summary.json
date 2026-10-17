@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-17T13:29:46+00:00",
-  "commit": "f5b6b4f3c7a07befa12f34f3bdfb6ff27b44b5e0",
+  "generated_at": "2026-10-17T13:34:09+00:00",
+  "commit": "2be79deca28e01747c7c7b046e452cebebb296b3",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -17,9 +17,9 @@
   "progress": {
     "total": 34,
     "done": 3,
-    "in_review": 1,
+    "in_review": 0,
     "ready": 28,
-    "changes_requested": 0,
+    "changes_requested": 1,
     "blocked": 0,
     "needs_human": 1,
     "proposed": 1
@@ -343,7 +343,7 @@
       "id": "T-024",
       "title": "Plain-language news — verified items, Telegram announcement at landing, hub feed",
       "milestone": "M2",
-      "status": "in_review",
+      "status": "changes_requested",
       "kind": "infra",
       "track": "infra"
     }
@@ -358,6 +358,15 @@
       "attempt": 1,
       "acceptance_met": "3/5",
       "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-024-03fa311.md"
+    },
+    {
+      "task": "T-024",
+      "date": "2026-10-17",
+      "verdict": "CHANGES_REQUESTED",
+      "summary": "launch item and evidence ceiling fixed, but the overselling gate still lets affirmative overselling through (negation window, missing stems, NFC)",
+      "attempt": 2,
+      "acceptance_met": "4/5",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-024-2be79de.md"
     },
     {
       "task": "T-022",
