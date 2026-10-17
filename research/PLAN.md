@@ -8,12 +8,14 @@ committee: they steer and decide pivots; the routines do the work and check each
 **Patients first** (owner decision RD-002, 2026-10-17): the main line analyses data obtained from
 patients, with their clinical annotations; cell models support it, they do not replace it.
 
-1. Is a mitochondria-related expression signature present in the blood of FRDA patients
-   (GSE102008: 411 patients, 228 carriers, 94 controls), does it follow gene dosage (controls,
-   carriers, patients), and is it associated with clinical measures (functional stage, GAA repeat
-   length, age at onset, disease duration)? Association only.
-2. Does it replicate in independent patient cohorts (other blood series, muscle biopsies), and
-   is it consistent with patient fibroblasts (GSE104288)?
+1. In the blood of FRDA patients (GSE102008: 411 patients, 228 carriers, 94 controls in GEO; the
+   paper reports 418 / 228 / 93), Nachun et al. 2018 already reported mitochondrial co-expression
+   modules associated with functional disability. Does this hold with a priori mitochondrial
+   gene sets, across status groups (a status trend), with GAA repeat length, age at onset and
+   disease duration, after adjusting for blood cell composition? Association only.
+2. Does it replicate in independent patient cohorts (other blood series, muscle biopsies) — the
+   main original contribution expected — and is it consistent with patient fibroblasts
+   (GSE104288)?
 3. Supporting: are these signatures shifted after interventions in cell models (A-196 in
    GSE145115)? A shift in a cell model is not a clinical benefit.
 

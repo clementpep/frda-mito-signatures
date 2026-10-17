@@ -23,7 +23,7 @@ milestones:
     title: Independent replication and clinical association
     goal: >-
       Test, as preregistered, the frozen signature in datasets not used to derive it, and its
-      association with gene dosage and clinical measures in patients (RD-002).
+      association with status (controls, carriers, patients) and clinical measures in patients (RD-002).
     exit_criteria:
       - Preregistrations committed before the confirmatory runs.
       - Clinical association result (functional stage, GAA1, age at onset, disease duration), positive or negative, reported as such; a held-out split of the same cohort is reported as internal validation, not as independent replication.
@@ -287,7 +287,7 @@ tasks:
       Record, with exact location, the published results of PMID 29790959 we will try to
       reproduce, read through Europe PMC (open full text if available, else abstract only).
     acceptance:
-      - evaluation/reproduction-targets.yaml gains >= 3 targets for PMID 29790959 taken from the paper itself (not the GEO summary), each with location, verbatim published value, method and thresholds, and the columns needed - the DE counts (829 patients vs controls, 1078 patients vs carriers, 182 carriers vs controls, at the paper's global FDR), at least one mitochondrial module enrichment (respiratory chain complex, mitochondrial translation), and one association with disease progression or GAA1 if the paper reports it.
+      - evaluation/reproduction-targets.yaml gains >= 4 targets for PMID 29790959 taken from the paper itself (not the GEO summary), each with location, verbatim published value, method and thresholds, and the columns needed - the DE counts (829 patients vs controls, 1078 patients vs carriers, 182 carriers vs controls, at the paper's global FDR); the FDS-network mitochondrial modules with their FDS association (yellow - coeff. -0.0093, log BF 3.01, respiratory chain complex; red - coeff. -0.0077, log BF 1.91, mitochondrial translation); the transcript counts associated with FDS, GAA1 and duration (1508, 280, 13).
       - Expected gap from method differences (Bayesian model comparison in the paper, cohort counts 418/228/93 vs GEO 411/228/94, frataxin exclusion not applicable) written down BEFORE reproducing.
       - If the full text is not open access, say so and use only what is legally available.
 
@@ -303,7 +303,7 @@ tasks:
     acceptance:
       - QC first, rule stated before looking - sex check (XIST, RPS4Y1, DDX3Y) against declared sex, outlier rule, PCA coloured by site, batch and status; flagged samples listed, none silently removed.
       - The matrix used (GEO series matrix or non-normalised file) and the normalisation are stated and justified against the paper's methods.
-      - Reproduction pipeline registered and reproducible (analysis_kind=reproduction); claims reproduced or refuted with source, checks and limitations; statistics on individuals with site, batch, age, sex and RIN handled as the paper did, then as we would; the cohort count gap from T-026 carried into the comparison.
+      - Reproduction pipeline registered and reproducible (analysis_kind=reproduction); claims reproduced or refuted with source, checks and limitations; statistics on individuals with covariates handled as the paper did (its methods - age and other collinear variables regressed out before the phenotype regressions, ComBat for batch in the networks only; quoted with location), then as we would; the cohort count gap from T-026 carried into the comparison.
       - docs/reproductions/GSE102008.md — published vs obtained side by side, overlap metrics for gene lists, each gap explained.
 
   - id: T-029
@@ -316,11 +316,12 @@ tasks:
     depends_on: [T-007, T-028]
     goal: >-
       Fix, before looking at the associations, how mitochondria-related expression in patients'
-      blood is tested against gene dosage and clinical measures (RD-002).
+      blood is tested against status and clinical measures (RD-002).
     acceptance:
-      - preregistrations/PR-003-*.md committed before any association is computed - a priori mitochondrial gene-set scores from T-007 with the source and version pinned (e.g. MitoCarta release), no gene chosen from GSE102008 outcomes; primary outcomes (two-sided dosage trend across controls, carriers, patients; functional stage, GAA1, age at onset, disease duration within patients); the estimand and how age is handled given its collinearity with status (carriers older, patients younger), with an age-matched subset as sensitivity; covariates (sex, site, batch, RIN); models; multiple-testing plan; what would count as a negative result.
+      - preregistrations/PR-003-*.md committed before any association is computed - a priori mitochondrial gene-set scores from T-007 with the source and version pinned (e.g. MitoCarta release), no gene chosen from GSE102008 outcomes; primary outcomes (two-sided status trend across controls, carriers, patients - an ordering assumption, frataxin level being the actual dose; functional stage as a replication of the published module association; GAA1, age at onset, disease duration within patients as extensions); the estimand and how age is handled given its collinearity with status (carriers older, patients younger), with an age-matched subset as sensitivity; covariates (sex, site, batch, RIN); models; multiple-testing plan; what would count as a negative result.
       - Held-out validation - a split (e.g. by site) only if every status has enough individuals in both parts (condition stated with numbers from T-026), else a stated fallback (e.g. stratified random split); called internal validation.
-      - Prior evidence - the mitochondrial modules of Nachun et al. 2018 (respiratory chain complex, mitochondrial translation) are listed, and PR-003 states what it adds beyond them.
+      - Prior evidence - the FDS-associated mitochondrial modules of Nachun et al. 2018 (yellow, respiratory chain complex; red, mitochondrial translation) are listed with their coefficients, the FDS analysis is framed as a replication with a priori gene sets, and PR-003 states what it adds beyond them.
+      - Blood cell-type composition (the paper's top signal is neutrophil degranulation) as a covariate or a preregistered sensitivity analysis; independence of individuals stated as an assumption (carriers are mostly patients' parents and GEO has no family identifiers).
       - Power or precision expected at the observed n per field (from T-026 completeness), stated.
 
   - id: T-030
@@ -334,7 +335,7 @@ tasks:
     goal: Run PR-003 exactly as preregistered and report the result, positive or negative.
     acceptance:
       - Pipeline registered and reproducible (analysis_kind=confirmatory, preregistration PR-003); deviations from PR-003 listed and justified.
-      - Claims with evidence_level from the held-out result (single_dataset at most for one cohort); association wording only; limitations (blood is not nervous tissue, cross-sectional data, site effects, age confounding).
+      - Claims with evidence_level from the held-out result (single_dataset at most for one cohort); association wording only; limitations (blood is not nervous tissue, cross-sectional data, site effects, age confounding); the FDS result reported as reproduced or refuted relative to Nachun et al. 2018, never as new.
       - Every claim with status new has a novelty_check against Nachun et al. 2018 (its mitochondrial modules included) and the synthesis.
       - A plain-language news item (finding) if claims are added.
 
@@ -666,7 +667,7 @@ tasks:
   - id: T-025
     title: Patients first — reorient the thesis on patient-derived data (owner decision RD-002)
     milestone: M2
-    status: changes_requested
+    status: in_review
     priority: 1
     kind: infra
     track: infra
@@ -694,4 +695,5 @@ tasks:
     notes:
       - "Source autonomy/verifications/T-025-ae89fbd.md, non-blocking list."
       - "2026-10-17 (T-025 attempt 2 verification, autonomy/verifications/T-025-ecbd498.md) non-blocking: record the paper's own handling of age/sex (removed for collinearity) and batch (ComBat) in T-028/T-029; cell-type composition as covariate or sensitivity in T-029; independence assumption for relatedness as a limitation in PR-003; paper counts 418/228/93 caveat in brief, PLAN, project.yaml; call the ordered trend a status trend, not gene dosage."
+      - "2026-10-17 (T-025 attempt 3): the ecbd498 non-blocking items are written into T-028 (paper's covariate handling, quoted with location), T-029 (cell-type composition, independence assumption, status trend wording), PLAN, brief and project.yaml (paper counts 418/228/93)."
       - "2026-10-17 (T-025 attempt 2): all items already written into T-026 (age, relatedness), T-028 (matrix, normalisation), T-029 (estimand, age-matched sensitivity, split feasibility and fallback, two-sided trend, pinned gene-set version), M3 and RD-002 (internal validation). Nothing left unless the verifier finds a gap; can be closed by the supervision."

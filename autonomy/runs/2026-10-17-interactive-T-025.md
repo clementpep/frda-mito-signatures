@@ -42,3 +42,18 @@ Re-read of the full text (Europe PMC PMC6097013, fullTextXML, 2026-10-17), quote
   `depends_on: [T-006]` from T-008 is intended: a dataset census does not need the gap analysis,
   and the patient line needs it early.
 - Wording aligned: the probe is not saved as an artifact here; T-026 and T-008 re-derive and save it.
+
+## Attempt 3 (after autonomy/verifications/T-025-ecbd498.md, CHANGES_REQUESTED, 1 blocking)
+
+Checked in the full text (PMC6097013): in the patients-only FDS network, "the yellow module
+(coeff. = −0.0093, log BF = 3.01, pp = 1.0) and the red module (coeff. = −0.0077, log BF = 1.91,
+pp = 1.0)" are associated with FDS (global FDR = 1.0 × 10⁻⁴); 1508 / 280 / 13 transcripts are
+associated with FDS / GAA1 / duration; age, collinear, was regressed out first; ComBat used for
+the networks.
+- RD-002 now states this, and the contribution is narrowed to what is untested: independent
+  replication, a priori gene sets, the status trend, GAA1 / onset / duration on mitochondrial
+  sets, robustness to blood cell composition. PLAN, project.yaml and the brief say the same and
+  give the paper's counts next to GEO's.
+- T-027 targets the FDS-network modules (coefficients, log BF) and the 1508 / 280 / 13 counts;
+  T-029 frames FDS as a replication; T-030 reports it as reproduced or refuted, never as new.
+- Non-blocking items written into T-028 and T-029; "gene dosage" replaced by "status trend".
