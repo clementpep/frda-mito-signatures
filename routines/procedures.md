@@ -85,6 +85,8 @@ bash scripts/push-branch.sh <local-ref> <remote-branch>   # retries on network e
 6. A cited published value is quoted verbatim with its location (figure / table / section),
    from the paper itself (Europe PMC), never from memory. Papers enter the corpus only via
    `frda lit-add`; card quotes must pass `frda lit-verify`.
+7. Secrets (e.g. `OPENALEX_API_KEY`) come only from environment secrets: never print, log,
+   commit or paste them; tools read them from the environment and redact them from errors.
 
 ## P6 — Scientific rules (from the brief and the scoping note)
 

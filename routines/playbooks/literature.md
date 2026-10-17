@@ -7,6 +7,8 @@ How a worker does bibliography like a careful PhD student. Read with `routines/p
 ```bash
 uv run --frozen frda lit-search "<query>" --save <slug> --task <TASK>   # reproducible search + log
 uv run --frozen frda lit-add MED:12345678 PPR:PPR123 --task <TASK> --found-by <log-stem>
+uv run --frozen frda lit-citations MED:12345678 --direction cited-by --save <slug> --task <TASK>
+uv run --frozen frda lit-citations MED:12345678 --direction references --save <slug> --task <TASK>
 uv run --frozen frda lit-verify MED:12345678 ...     # papers exist, titles match, quotes verbatim
 uv run --frozen frda research-status                 # corpus counts, ideas, budget, phase
 ```
@@ -33,6 +35,14 @@ Abstract and metadata: `.../rest/search?query=EXT_ID:<id>%20AND%20SRC:<src>&resu
    remain, split the task (`L-005` → `L-005a`, `L-005b`), criteria unchanged.
 5. **Read critically.** Each card states the independent units actually used, the model's
    relevance to human FRDA, what the paper does *not* show, and its limitations.
+
+## Citation chasing (snowballing)
+
+For every core paper (relevance 3) and every dataset paper: `lit-citations` backwards
+(`references`) and forwards (`cited-by`, e.g. who re-used GSE104288), saved as a log; resolved ids
+go through `lit-add --found-by <log-stem>` and are screened like search hits. Unresolved works
+are listed in the run report, never added by guess. OpenAlex reads `OPENALEX_API_KEY` from the
+environment; without it, the shared quota can be exhausted — report it, do not work around it.
 
 ## Screening a batch
 

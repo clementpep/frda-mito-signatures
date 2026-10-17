@@ -1,6 +1,9 @@
 """Research memory and arbitration: the rules that make the bibliography and the
 choice of leads auditable."""
 
+import json
+import urllib.parse
+
 import pytest
 import yaml
 from pydantic import ValidationError
@@ -632,3 +635,182 @@ def test_section_titles_with_markup_are_text_and_unclosed_xref_does_not_swallow(
     src = '<p>first block with <xref ref-type="bibr">open marker never closed</p><p>second block words</p>'
     assert not _found(src, "never closed second block words")
     assert _found(src, "second block words")
+
+
+# --- T-022: citation chasing, secrets, manifest column maps -----------------------------------
+
+
+def test_citations_resolve_to_europe_pmc_and_never_guess(tmp_path, monkeypatch):
+    write(tmp_path, corpus=[paper(pid="MED:111")])
+    calls = []
+
+    def fake_get(url, as_json=True, retries=3):
+        calls.append(url)
+        if "/works/pmid:111" in url:
+            return {"id": "https://openalex.org/W1"}
+        if "filter=cites" in url:
+            return {
+                "meta": {"next_cursor": None},
+                "results": [
+                    {
+                        "id": "https://openalex.org/W2",
+                        "ids": {"pmid": "https://pubmed.ncbi.nlm.nih.gov/222"},
+                        "display_name": "Citing with PMID",
+                        "publication_year": 2020,
+                    },
+                    {
+                        "id": "https://openalex.org/W3",
+                        "ids": {"doi": "https://doi.org/10.1/x"},
+                        "display_name": "Citing with DOI",
+                        "publication_year": 2021,
+                    },
+                    {
+                        "id": "https://openalex.org/W4",
+                        "ids": {},
+                        "display_name": "No identifiers",
+                        "publication_year": 2022,
+                    },
+                ],
+            }
+        if "europepmc" in url and "DOI" in urllib.parse.unquote(url):
+            return {
+                "resultList": {
+                    "result": [
+                        {
+                            "source": "MED",
+                            "id": "999",
+                            "doi": "10.9/other",
+                        },  # wrong DOI: never taken
+                        {"source": "PPR", "id": "PPR9", "doi": "10.1/X"},
+                    ]
+                }
+            }
+        raise AssertionError(url)
+
+    monkeypatch.setattr(literature, "_get", fake_get)
+    monkeypatch.setattr(literature.time, "sleep", lambda s: None)
+    monkeypatch.setenv("OPENALEX_API_KEY", "secret-key-123")
+    log = literature.citations("MED:111", "cited-by", root=tmp_path)
+    assert [r["id"] for r in log["results"]] == ["MED:222", "PPR:PPR9"]
+    assert [u["openalex"] for u in log["unresolved"]] == ["W4"]
+    assert "secret-key-123" not in json.dumps(log)
+    assert all("mailto=" in c for c in calls if "openalex" in c)
+
+
+def test_request_errors_redact_the_api_key(monkeypatch):
+    def boom(*a, **k):
+        raise OSError("network down")
+
+    monkeypatch.setattr(literature.urllib.request, "urlopen", boom)
+    monkeypatch.setattr(literature.time, "sleep", lambda s: None)
+    with pytest.raises(RuntimeError) as exc:
+        literature._get("https://api.openalex.org/works?filter=x&api_key=supersecret&mailto=m")
+    assert "supersecret" not in str(exc.value) and "api_key=***" in str(exc.value)
+
+
+def test_literal_marker_character_in_source_is_not_a_citation():
+    src = "<p>values of 5 were seen in cells today</p>"
+    assert not literature.quote_found(
+        "values of 5 were seen in cells",
+        literature.text_blocks("<p>values of 50 were seen in cells today</p>"),
+    )
+    assert literature.quote_found("were seen in cells today", literature.text_blocks(src))
+
+
+def test_manifest_column_map_and_comment_lines(tmp_path):
+    from frda.io import check_columns, read_manifest_file
+    from frda.manifest import Manifest, load_all
+
+    m = {x.id: x for x in load_all()}["GSE104288"].model_dump()
+    samples = [s for g in m["groups"] for s in g["samples"]]
+    runs = {f"SRR{i:03d}": s for i, s in enumerate(samples)}
+    body = "##annotation=G026\n##date=2021\ngene_id\t" + "\t".join(runs) + "\n"
+    body += "ENSG1\t" + "\t".join("7" for _ in runs) + "\n"
+    f = tmp_path / "counts.tsv"
+    f.write_text(body)
+    m["files"].append(
+        {
+            **m["files"][0],
+            "name": "counts.tsv",
+            "gene_id_column": "gene_id",
+            "gene_id_type": "ensembl_gene_id",
+            "column_map": runs,
+            "comment_prefix": "##",
+        }
+    )
+    manifest = Manifest.model_validate(m)
+    df = read_manifest_file(f, manifest.file("counts.tsv"))
+    assert list(df.index) == ["ENSG1"] and check_columns(df, manifest) == []
+    # stricter since the T-022 verification: an incomplete map is an error, not a warning
+    broken = dict(list(runs.items())[1:])  # one run left unmapped
+    manifest.file("counts.tsv").column_map = broken
+    with pytest.raises(ValueError, match="not covered by column_map"):
+        read_manifest_file(f, manifest.file("counts.tsv"))
+
+
+def test_column_map_is_validated(tmp_path):
+    from frda.io import read_manifest_file
+    from frda.manifest import ManifestFile
+
+    base = dict(
+        name="c.tsv",
+        url="https://ftp.ncbi.nlm.nih.gov/geo/x",
+        content="c",
+        gene_id_column="gene_id",
+        gene_id_type="ensembl_gene_id",
+        values="v",
+    )
+    with pytest.raises(ValidationError, match="same sample"):
+        ManifestFile.model_validate({**base, "column_map": {"SRR1": "F130", "SRR2": "F130"}})
+    with pytest.raises(ValidationError, match="at least 2"):
+        ManifestFile.model_validate({**base, "comment_prefix": "#"})
+    f = tmp_path / "c.tsv"
+    f.write_text("gene_id\tSRR1\tSRR2\nENSG1\t1\t2\n")
+    with pytest.raises(ValueError, match="absent from the file header"):
+        read_manifest_file(
+            f,
+            ManifestFile.model_validate(
+                {**base, "column_map": {"SRR1": "F130", "SRR2": "F156", "SRR9": "F188"}}
+            ),
+        )
+    f.write_text("gene_id\tF130\tF130\nENSG1\t1\t2\n")  # duplicated header without a map
+    with pytest.raises(ValueError, match="duplicated sample columns"):
+        read_manifest_file(f, ManifestFile.model_validate(base))
+
+
+def test_check_columns_reports_duplicates():
+    import pandas as pd
+
+    from frda.io import check_columns
+    from frda.manifest import load_all
+
+    m = {x.id: x for x in load_all()}["GSE104288"]
+    samples = [s for g in m.groups for s in g.samples]
+    df = pd.DataFrame([[1] * (len(samples) + 1)], columns=[*samples, samples[0]])
+    assert any("appears 2 times" in p for p in check_columns(df, m))
+
+
+def test_citation_log_flags_truncation(tmp_path, monkeypatch):
+    write(tmp_path, corpus=[paper(pid="MED:111")])
+
+    def fake_get(url, as_json=True, retries=3):
+        if "/works/pmid:111" in url:
+            return {"id": "https://openalex.org/W1"}
+        return {
+            "meta": {"count": 300, "next_cursor": "abc"},
+            "results": [
+                {
+                    "id": f"https://openalex.org/W{i}",
+                    "ids": {"pmid": f"https://pubmed.ncbi.nlm.nih.gov/{i}"},
+                    "display_name": f"w{i}",
+                    "publication_year": 2020,
+                }
+                for i in range(200)
+            ],
+        }
+
+    monkeypatch.setattr(literature, "_get", fake_get)
+    monkeypatch.setattr(literature.time, "sleep", lambda s: None)
+    log = literature.citations("MED:111", "cited-by", max_hits=150, root=tmp_path)
+    assert log["hit_count"] == 300 and log["examined"] == 150 and log["truncated"] is True
+    assert len(log["results"]) == 150

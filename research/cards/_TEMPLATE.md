@@ -9,7 +9,7 @@ independent_units: e.g. 18 FRDA / 17 controls (donors)
 methods: e.g. RNA-seq, DESeq2, FDR < 0.05, |log2FC| > 1
 findings:
   - statement: Our one-sentence paraphrase.
-    quote: "Exact sentence(s) copied from the paper, checked by `frda lit-verify`."
+    quote: "Exact sentence(s) copied from the paper (word sequence checked by `frda lit-verify`)."
     location: Results, Fig. 2B
 limitations:
   - What limits the conclusions (n, design, confounders, model relevance).

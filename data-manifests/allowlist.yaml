@@ -29,3 +29,12 @@ sources:
     allowed_use: >-
       Metadata and abstracts; full text only for articles in the open-access
       subset, within each article's own licence.
+  - id: openalex
+    name: OpenAlex (scholarly works, citations; metadata only)
+    url_prefixes:
+      - https://api.openalex.org/
+    terms_url: https://github.com/ourresearch/openalex-docs/blob/main/README.md
+    allowed_use: >-
+      Checked 2026-10-17: "Our complete dataset is free under the CC0 license, which allows for
+      transparency and reuse." Used for citation chasing; papers still enter the corpus through
+      Europe PMC ids. API key (if any) only from the OPENALEX_API_KEY environment secret.
