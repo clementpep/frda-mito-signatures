@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-17T09:52:40+00:00",
-  "commit": "b6db1d096724041dfd54fa3ab736ffe9015911b8",
+  "generated_at": "2026-10-17T10:00:35+00:00",
+  "commit": "9d8aaf8d56f4a4ba4b5cee84b040f8739d210c44",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -17,11 +17,11 @@
   "progress": {
     "total": 30,
     "done": 1,
-    "in_review": 1,
+    "in_review": 0,
     "ready": 27,
     "changes_requested": 0,
     "blocked": 0,
-    "needs_human": 1,
+    "needs_human": 2,
     "proposed": 0
   },
   "milestones": [
@@ -311,13 +311,22 @@
       "id": "T-021",
       "title": "Research system — literature corpus, reading cards, ideas, effort arbitration, supervision",
       "milestone": "M2",
-      "status": "in_review",
+      "status": "needs_human",
       "kind": "infra",
       "track": "infra"
     }
   ],
   "claims": [],
   "verifications": [
+    {
+      "task": "T-021",
+      "date": "2026-10-17",
+      "verdict": "NEEDS_HUMAN",
+      "summary": "Redesign closes all three attempt-4 findings, but a leading decimal point is ignored (\".5\" == \"5\", a 10x change passes lit-verify); owner-authorised last attempt.",
+      "attempt": 5,
+      "acceptance_met": "4/5",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-021-9d8aaf8.md"
+    },
     {
       "task": "T-021",
       "date": "2026-10-16",
