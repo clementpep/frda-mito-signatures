@@ -474,7 +474,7 @@ tasks:
   - id: T-022
     title: Wider sources — OpenAlex citation chasing, manifest column maps, verifier follow-up loop
     milestone: M2
-    status: changes_requested
+    status: done
     priority: 1
     kind: infra
     track: infra
@@ -489,7 +489,7 @@ tasks:
       - verifier.md requires non-blocking findings worth acting on to be recorded as a proposed follow-up task; playbook documents citation chasing; procedures add the secrets rule.
       - T-021 follow-ups addressed where small (literal U+E000 in source, wording of lit-verify scope in docstring and card template); no gate or test weakened.
     attempts: 1
-    verification: autonomy/verifications/T-022-835d2ad.md
+    verification: autonomy/verifications/T-022-056e96a.md
 
   - id: T-023
     title: Verify terms and allowlist further public sources (MyGene.info, Crossref, Unpaywall, Open Targets, ENA, recount3)
@@ -518,6 +518,7 @@ tasks:
     notes:
       - "2026-10-17 (T-022 attempt 2): already addressed — citation log records OpenAlex meta.count, examined, truncated and trims to max_hits; DOI resolution requires the hit DOI to match; resolved ids deduplicated; DOI prefix normalised; comment_prefix >= 2 characters; gates.py blank line/comment. Remaining: key as header instead of query parameter (if OpenAlex supports it)."
       - "From autonomy/verifications/T-022-835d2ad.md: record meta.count and truncated in citation logs; check DOI of Europe PMC hit and dedupe; normalise DOI; comment_prefix >= 2 chars; gates.py blank line/comment; mark recount3 figures unverified in T-004 note; consider API key in header."
+      - "From autonomy/verifications/T-022-056e96a.md (attempt 2, non-blocking): (a) io.raw_header is not pandas' parser — quoted duplicate header cells and a blank line after comment lines can hide a duplicated column when no column_map is set (the data_integrity gate still catches it via check_columns; load_matrix alone does not): parse with csv.reader after skipping blank lines and call check_columns inside read_manifest_file; (b) read the header with utf-8-sig (BOM + column_map gives a misleading error); (c) a data row longer than the header raises KeyError, which the gate does not catch: catch it and report; (d) _epmc_id strips only 'https://doi.org/' — reuse the regex of _openalex_work_id; (e) run report: mark the ENA/recount3/Crossref/MyGene probe figures as unsaved and unverified; (f) allowlist terms_url for OpenAlex points to a data-licence README, not API terms: read API terms in T-023; (g) T-023: require the run->GSM->title map to be built from saved ENA metadata with its sha256."
     acceptance:
       - Each non-blocking finding of the report is fixed or explicitly declined in the run report; no gate or test weakened.
 
