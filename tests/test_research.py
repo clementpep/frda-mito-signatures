@@ -673,7 +673,18 @@ def test_citations_resolve_to_europe_pmc_and_never_guess(tmp_path, monkeypatch):
                 ],
             }
         if "europepmc" in url and "DOI" in urllib.parse.unquote(url):
-            return {"resultList": {"result": [{"source": "PPR", "id": "PPR9"}]}}
+            return {
+                "resultList": {
+                    "result": [
+                        {
+                            "source": "MED",
+                            "id": "999",
+                            "doi": "10.9/other",
+                        },  # wrong DOI: never taken
+                        {"source": "PPR", "id": "PPR9", "doi": "10.1/X"},
+                    ]
+                }
+            }
         raise AssertionError(url)
 
     monkeypatch.setattr(literature, "_get", fake_get)
@@ -730,7 +741,76 @@ def test_manifest_column_map_and_comment_lines(tmp_path):
     manifest = Manifest.model_validate(m)
     df = read_manifest_file(f, manifest.file("counts.tsv"))
     assert list(df.index) == ["ENSG1"] and check_columns(df, manifest) == []
-    broken = dict(list(runs.items())[1:])  # one run left unmapped -> reported
+    # stricter since the T-022 verification: an incomplete map is an error, not a warning
+    broken = dict(list(runs.items())[1:])  # one run left unmapped
     manifest.file("counts.tsv").column_map = broken
-    df = read_manifest_file(f, manifest.file("counts.tsv"))
-    assert any("not assigned to any group" in p for p in check_columns(df, manifest))
+    with pytest.raises(ValueError, match="not covered by column_map"):
+        read_manifest_file(f, manifest.file("counts.tsv"))
+
+
+def test_column_map_is_validated(tmp_path):
+    from frda.io import read_manifest_file
+    from frda.manifest import ManifestFile
+
+    base = dict(
+        name="c.tsv",
+        url="https://ftp.ncbi.nlm.nih.gov/geo/x",
+        content="c",
+        gene_id_column="gene_id",
+        gene_id_type="ensembl_gene_id",
+        values="v",
+    )
+    with pytest.raises(ValidationError, match="same sample"):
+        ManifestFile.model_validate({**base, "column_map": {"SRR1": "F130", "SRR2": "F130"}})
+    with pytest.raises(ValidationError, match="at least 2"):
+        ManifestFile.model_validate({**base, "comment_prefix": "#"})
+    f = tmp_path / "c.tsv"
+    f.write_text("gene_id\tSRR1\tSRR2\nENSG1\t1\t2\n")
+    with pytest.raises(ValueError, match="absent from the file header"):
+        read_manifest_file(
+            f,
+            ManifestFile.model_validate(
+                {**base, "column_map": {"SRR1": "F130", "SRR2": "F156", "SRR9": "F188"}}
+            ),
+        )
+    f.write_text("gene_id\tF130\tF130\nENSG1\t1\t2\n")  # duplicated header without a map
+    with pytest.raises(ValueError, match="duplicated sample columns"):
+        read_manifest_file(f, ManifestFile.model_validate(base))
+
+
+def test_check_columns_reports_duplicates():
+    import pandas as pd
+
+    from frda.io import check_columns
+    from frda.manifest import load_all
+
+    m = {x.id: x for x in load_all()}["GSE104288"]
+    samples = [s for g in m.groups for s in g.samples]
+    df = pd.DataFrame([[1] * (len(samples) + 1)], columns=[*samples, samples[0]])
+    assert any("appears 2 times" in p for p in check_columns(df, m))
+
+
+def test_citation_log_flags_truncation(tmp_path, monkeypatch):
+    write(tmp_path, corpus=[paper(pid="MED:111")])
+
+    def fake_get(url, as_json=True, retries=3):
+        if "/works/pmid:111" in url:
+            return {"id": "https://openalex.org/W1"}
+        return {
+            "meta": {"count": 300, "next_cursor": "abc"},
+            "results": [
+                {
+                    "id": f"https://openalex.org/W{i}",
+                    "ids": {"pmid": f"https://pubmed.ncbi.nlm.nih.gov/{i}"},
+                    "display_name": f"w{i}",
+                    "publication_year": 2020,
+                }
+                for i in range(200)
+            ],
+        }
+
+    monkeypatch.setattr(literature, "_get", fake_get)
+    monkeypatch.setattr(literature.time, "sleep", lambda s: None)
+    log = literature.citations("MED:111", "cited-by", max_hits=150, root=tmp_path)
+    assert log["hit_count"] == 300 and log["examined"] == 150 and log["truncated"] is True
+    assert len(log["results"]) == 150

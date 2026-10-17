@@ -50,6 +50,22 @@ class ManifestFile(Strict):
         default=None, description="Leading metadata lines starting with this prefix are skipped."
     )
 
+    @field_validator("column_map")
+    @classmethod
+    def unique_targets(cls, v: dict[str, str]) -> dict[str, str]:
+        targets = list(v.values())
+        dupes = sorted({t for t in targets if targets.count(t) > 1})
+        if dupes:
+            raise ValueError(f"column_map maps several columns onto the same sample: {dupes}")
+        return v
+
+    @field_validator("comment_prefix")
+    @classmethod
+    def long_enough_prefix(cls, v: str | None) -> str | None:
+        if v is not None and len(v) < 2:
+            raise ValueError("comment_prefix must be at least 2 characters (e.g. '##')")
+        return v
+
     @field_validator("url")
     @classmethod
     def https_only(cls, v: str) -> str:

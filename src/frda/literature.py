@@ -498,7 +498,7 @@ def _openalex_work_id(paper: Paper) -> str:
     if src == "MED":
         ref = f"pmid:{ext}"
     elif paper.doi:
-        ref = f"doi:{paper.doi}"
+        ref = "doi:" + re.sub(r"^https?://(dx\.)?doi\.org/", "", paper.doi, flags=re.I)
     else:
         raise RuntimeError(f"{paper.id}: no PMID or DOI to find it in OpenAlex")
     work = _openalex(f"works/{ref}", {"select": "id"})
@@ -514,8 +514,9 @@ def _epmc_id(work: dict[str, Any]) -> str | None:
         q = urllib.parse.quote(f'DOI:"{doi}"')
         res = _get(f"{BASE}/search?query={q}&format=json&resultType=lite")
         hits = res.get("resultList", {}).get("result", [])
-        if hits:
-            return pid_of(hits[0])
+        for hit in hits:  # the hit must carry the same DOI, never just the first result
+            if (hit.get("doi") or "").lower() == doi.lower():
+                return pid_of(hit)
     return None
 
 
@@ -531,6 +532,7 @@ def citations(pid: str, direction: str, max_hits: int = 500, root: Path | None =
     wid = _openalex_work_id(paper)
     select = "id,ids,display_name,publication_year"
     works: list[dict[str, Any]] = []
+    total: int | None = None
     if direction == "cited-by":
         cursor = "*"
         while cursor and len(works) < max_hits:
@@ -539,12 +541,15 @@ def citations(pid: str, direction: str, max_hits: int = 500, root: Path | None =
                 {"filter": f"cites:{wid}", "per-page": "200", "cursor": cursor, "select": select},
             )
             works += page.get("results", [])
+            total = (page.get("meta") or {}).get("count", total)
             cursor = (page.get("meta") or {}).get("next_cursor")
             if not page.get("results"):
                 break
     else:
         refs = _openalex(f"works/{wid}", {"select": "referenced_works"}).get("referenced_works", [])
-        refs = [r.rsplit("/", 1)[-1] for r in refs][:max_hits]
+        refs = [r.rsplit("/", 1)[-1] for r in refs]
+        total = len(refs)
+        refs = refs[:max_hits]
         for i in range(0, len(refs), 50):
             page = _openalex(
                 "works",
@@ -555,7 +560,10 @@ def citations(pid: str, direction: str, max_hits: int = 500, root: Path | None =
                 },
             )
             works += page.get("results", [])
-    results, unresolved = [], []
+    works = works[:max_hits]
+    results: list[dict[str, Any]] = []
+    unresolved: list[dict[str, Any]] = []
+    seen: set[str] = set()
     for w in works:
         epmc = _epmc_id(w)
         entry = {
@@ -563,14 +571,22 @@ def citations(pid: str, direction: str, max_hits: int = 500, root: Path | None =
             "title": w.get("display_name") or "",
             "year": w.get("publication_year"),
         }
-        (results if epmc else unresolved).append({**entry, "id": epmc} if epmc else entry)
+        if epmc and epmc in seen:
+            continue  # two OpenAlex works resolving to the same paper
+        if epmc:
+            seen.add(epmc)
+            results.append({**entry, "id": epmc})
+        else:
+            unresolved.append(entry)
         time.sleep(0.1)
     return {
         "kind": "citations",
         "source": "openalex",
         "query": f"{direction} {pid} (OpenAlex {wid})",
         "date": dt.date.today().isoformat(),
-        "hit_count": len(works),
+        "hit_count": total if total is not None else len(works),
+        "examined": len(works),
+        "truncated": total is not None and total > len(works),
         "retrieved": len(results),
         "results": results,
         "unresolved": unresolved,

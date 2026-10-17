@@ -36,3 +36,24 @@ T-023 (terms first, then allowlist). KEGG avoided (redistribution limits).
 - `make ci` PASS (80 tests), `make reproduce` PASS.
 - Online in a scratch copy: `lit-citations MED:29125828 --direction cited-by` → 49 works,
   44 resolved, 5 unresolved; `--direction references` → 65 works, 65 resolved; no key in logs.
+
+## Responses to verification (attempt 1 → 2)
+
+### Blocking
+1. `column_map` validated at three levels: `ManifestFile` rejects maps sending two columns to the
+   same sample and `comment_prefix` shorter than 2 characters; `read_manifest_file` reads the raw
+   header (pandas silently renames duplicates to `X.1`) and raises on map keys absent from the
+   header, on header columns the map does not cover, and on duplicated columns before or after
+   mapping; `check_columns` reports duplicated names. The data_integrity gate turns those errors
+   into problems. Tests for each case; the earlier incomplete-map test now expects the error
+   (stricter, not weaker).
+
+### Non-blocking (also recorded in FIX-022a notes)
+- Citation log: `hit_count` = OpenAlex meta.count (cited-by) or reference count, plus `examined`
+  and `truncated`; works trimmed to `max_hits` (test).
+- DOI resolution takes only a Europe PMC hit whose DOI matches (test with a wrong-DOI first hit);
+  resolved ids deduplicated; DOI prefix normalised before the OpenAlex lookup.
+- gates.py cosmetic fixed. T-004 note marks the recount3 figures as unverified probe results.
+- Key as header: not changed (OpenAlex documents the query parameter); redaction stays tested.
+
+`make ci` PASS (83 tests), `make reproduce` PASS.
