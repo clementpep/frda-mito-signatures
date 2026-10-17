@@ -152,6 +152,25 @@ OVERSELLING = [
     "a cure",
     "it causes",
     "a new therapy",
+    "the cells were cured",
+    "curing the disease",
+    "it is proven",
+    "this proved it",
+    "it caused the drop",
+    "a causation",
+    "une preuve",
+    "des preuves solides",
+    "un résultat confirmé",
+    "les données confirment",
+    "une approche efficace",
+    "son efficacité",
+    "un résultat prometteur",
+    "une piste prometteuse",
+    "a promising lead",
+    "new hope",
+    "hopefully soon",
+    "confirmed in cells",
+    "an effective approach",
     "a breakthrough",
     "this demonstrates",
 ]
@@ -173,6 +192,11 @@ def test_each_overselling_form_is_refused(tmp_path, phrase):
         "une démonstration à venir",
         "le responsable du projet valide la publication",
         "une validation à venir",
+        "une piste à confirmer",
+        "secure",
+        "to improve",
+        "its provenance",
+        "curious",
     ],
 )
 def test_innocent_words_pass(tmp_path, phrase):
@@ -213,6 +237,23 @@ def test_decomposed_accents_do_not_bypass_the_stems(tmp_path):
     item(tmp_path, body=BODY.replace("Vérifier dans", decomposed + ". Vérifier dans"))
     probs = " | ".join(news.problems(tmp_path))
     assert "'guérit'" in probs and "'démontré'" in probs
+
+
+@pytest.mark.parametrize(
+    "hidden, word",
+    [
+        ("cela gu**é**rit", "guérit"),
+        ("this is [pro](https://example.org)ven", "proven"),
+        ("cela gu\u200bérit", "guérit"),  # zero-width space
+        ("c'est prou\u00advé", "prouvé"),  # soft hyphen
+        ("c'est \uff50\uff52\uff4f\uff55\uff56é", "prouvé"),  # full-width letters
+        ("une _percée_", "percée"),
+    ],
+)
+def test_markup_and_invisible_characters_do_not_hide_a_banned_word(tmp_path, hidden, word):
+    ledger(tmp_path)
+    item(tmp_path, body=BODY.replace("Vérifier dans", hidden + ". Vérifier dans"))
+    assert any(f"'{word}'" in p for p in news.problems(tmp_path)), hidden
 
 
 def test_each_banned_word_is_reported_once(tmp_path):
@@ -309,6 +350,25 @@ def test_announce_sends_and_never_prints_the_token(tmp_path, monkeypatch, capsys
     assert announce_news.main("a", "b") == 0
     out = capsys.readouterr().out
     assert "::warning::" in out and "not announced" in out and "SECRET" not in out
+
+
+def test_announce_refuses_an_overselling_item_even_if_it_landed(tmp_path, monkeypatch, capsys):
+    sys.path.insert(0, str(REPO / "scripts"))
+    import announce_news
+
+    ledger(tmp_path)
+    item(tmp_path, body=BODY.replace("Vérifier dans", "Une percée. Vérifier dans"))
+    path = tmp_path / "research/news/N-20261020-fxn.md"
+    monkeypatch.setattr(announce_news, "added_news", lambda before, after: [path])
+    monkeypatch.setenv("FRDA_TELEGRAM_BOT_TOKEN", "123:SECRET-TOKEN")
+    monkeypatch.setenv("FRDA_TELEGRAM_CHAT_ID", "42")
+
+    def must_not_send(req, timeout):
+        raise AssertionError("an overselling item was sent")
+
+    monkeypatch.setattr(announce_news.urllib.request, "urlopen", must_not_send)
+    assert announce_news.main("a", "b") == 0
+    assert "overselling wording, not announced" in capsys.readouterr().out
 
 
 def test_announce_survives_an_unreadable_item(tmp_path, monkeypatch, capsys):

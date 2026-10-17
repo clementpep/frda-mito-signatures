@@ -46,9 +46,11 @@ FORBIDDEN_FR = [
     r"\bmiracle\w*|\bmiracul\w*",
     r"\bth[ée]rap\w*",  # thérapie, thérapeutique
     r"\bm[ée]dicament\w*",
-    r"\btraitements? (?:efficaces?|prometteurs?)\b",
+    r"\befficac\w*",  # efficace, efficacité (owner decision 2026-10-17)
+    r"\bprometteu\w*",  # prometteur, prometteuse (owner decision 2026-10-17)
+    r"\bconfirm(?:e|es|ent|é|ée|és|ées|era|eront|erait)\b",  # not "à confirmer"
     r"\bprouv\w*",  # prouve, prouvent, prouvera, prouvé (not "éprouvé", "approuvé")
-    r"\bpreuves? (?:que|formelles?|définitives?)\b",
+    r"\bpreuves?\b",
     r"\bd[ée]montr\w*",  # démontre, démontré (not "démonstration")
     r"\b[ée]tabli(?:t|ssent|ra|ront|e|es|s)?\b",
     r"\bvalidé(?:e|s|es)?\b",  # validé (not "valide", "validation")
@@ -61,10 +63,19 @@ FORBIDDEN_FR = [
     r"\br[ée]volution\w*",
     r"\bespoirs?\b",
     r"\bavanc[ée]es? (?:majeures?|décisives?|historiques?)\b",
-    # English, beyond the claims list
+    # English: the claims list covers base forms only (cure, proves, causes), not inflections
+    r"\bcur(?:e|es|ed|ing|ative)\b",
+    r"\bheal(?:s|ed|ing)?\b",
+    r"\bprov(?:e|es|ed|en|ing)\b",
+    r"\bproof\b",
+    r"\bcaus(?:e|es|ed|ing|al|ally|ation|ality)\b",
     r"\btherap\w*",
     r"\bbreakthroughs?\b",
-    r"\bdemonstrat(?:e|es|ed)\b",
+    r"\bdemonstrat(?:e|es|ed|ing)\b",
+    r"\bconfirm(?:s|ed|ing)?\b",
+    r"\beffective(?:ness)?\b|\befficacy\b",
+    r"\bpromising\b",
+    r"\bhop(?:e|es|ed|eful|efully)\b",  # owner decision 2026-10-17
 ]
 MAX_BODY_CHARS = 1800
 ID_RE = r"^N-\d{8}-[a-z0-9-]+$"
@@ -143,14 +154,29 @@ def problems(root: Path | None = None) -> list[str]:
     return out
 
 
+def _normalise(text: str) -> str:
+    """NFKC (composed accents, compatibility forms such as full-width letters or ligatures), with
+    invisible format characters (zero-width space/joiner, soft hyphen: category Cf) removed."""
+    text = unicodedata.normalize("NFKC", text)
+    return "".join(ch for ch in text if unicodedata.category(ch) != "Cf")
+
+
+def _variants(text: str) -> list[str]:
+    """What a reader may see: the raw markdown, the Telegram text (plain), and the text with all
+    markup removed, so that "gu**é**rit" or "[pro](x)ven" cannot hide a banned word."""
+    bare = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", text)
+    bare = re.sub(r"[*_`~]", "", bare)
+    return [text, plain(text), bare]
+
+
 def wording_problems(title: str, body: str) -> list[str]:
-    """Overselling words, French and English, after Unicode NFC normalisation (a decomposed
-    "gue\u0301rit" must not slip past the accented stems). One report per distinct word."""
-    text = unicodedata.normalize("NFC", f"{title}\n{body}")
+    """Overselling words, French and English, on every variant of the normalised text.
+    One report per distinct word."""
     found: dict[str, None] = {}
-    for pattern in [*FORBIDDEN_WORDING, *FORBIDDEN_FR]:
-        for m in re.finditer(pattern, text, flags=re.IGNORECASE):
-            found.setdefault(m.group(0).lower(), None)
+    for text in _variants(_normalise(f"{title}\n{body}")):
+        for pattern in [*FORBIDDEN_WORDING, *FORBIDDEN_FR]:
+            for m in re.finditer(pattern, text, flags=re.IGNORECASE):
+                found.setdefault(m.group(0).lower(), None)
     return [f"forbidden wording {w!r} (overclaiming)" for w in found]
 
 

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-17T13:56:00+00:00",
-  "commit": "d2e8d3f5ba86d594a8a5e4a507ca1b7680d190ea",
+  "generated_at": "2026-10-17T14:20:15+00:00",
+  "commit": "a896f832164a71f201c5996e5d88112f031e1cdf",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -17,11 +17,11 @@
   "progress": {
     "total": 34,
     "done": 3,
-    "in_review": 0,
+    "in_review": 1,
     "ready": 28,
     "changes_requested": 0,
     "blocked": 0,
-    "needs_human": 2,
+    "needs_human": 1,
     "proposed": 1
   },
   "milestones": [
@@ -343,7 +343,7 @@
       "id": "T-024",
       "title": "Plain-language news — verified items, Telegram announcement at landing, hub feed",
       "milestone": "M2",
-      "status": "needs_human",
+      "status": "in_review",
       "kind": "infra",
       "track": "infra"
     }

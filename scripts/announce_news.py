@@ -21,7 +21,7 @@ import sys
 import urllib.request
 from pathlib import Path
 
-from frda.news import DEFAULT_LINK, load, render_telegram
+from frda.news import DEFAULT_LINK, load, render_telegram, wording_problems
 
 
 def added_news(before: str, after: str) -> list[Path]:
@@ -66,6 +66,9 @@ def main(before: str, after: str) -> int:
             print(
                 f"::warning::{path.name}: unreadable news item ({type(exc).__name__}), not announced"
             )
+            continue
+        if wording_problems(meta.title, body):  # second line of defence, after the news gate
+            print(f"::warning::{meta.id}: overselling wording, not announced")
             continue
         if not token or not chat:
             print(f"::warning::{meta.id}: Telegram secrets not set, not announced")

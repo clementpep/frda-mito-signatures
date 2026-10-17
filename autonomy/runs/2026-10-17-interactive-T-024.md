@@ -62,3 +62,21 @@ Owner request: news on progress and findings, popularised, in the hub and on Tel
 - Not changed here (outside T-024's scope, noted in the backlog): NFC in `claims.check_claim`.
 - The launch item is unchanged (the verifier found it accurate) and passes the stricter gate.
 - Checks: `make ci` 160 passed, verify PASS; `make reproduce` PASS.
+
+## Attempt 4 (owner-authorised, after autonomy/verifications/T-024-d2e8d3f.md, NEEDS_HUMAN)
+
+- Owner decision recorded in the T-024 notes (4th attempt; extra words confirmé/efficace,
+  prometteur/hope).
+- Blocking 1: English stems with inflections (cur(e|es|ed|ing|ative), heal(s|ed|ing),
+  prov(e|es|ed|en|ing), proof, caus(e|es|ed|ing|al|ally|ation|ality), demonstrat*, confirm*,
+  effective/efficacy, promising, hope*) and French "preuve(s)" alone, confirm(é…), efficac*,
+  prometteu*. One test per form; innocent forms ("à confirmer", secure, improve, provenance,
+  curious, démonstration, valide) pass.
+- Blocking 2: `wording_problems` normalises with NFKC, removes category Cf characters (zero-width,
+  soft hyphen) and matches the raw markdown, the Telegram text (`plain`) and a markup-free
+  version. `scripts/announce_news.py` re-runs it before any send and skips the item with a
+  ::warning::. Tests for bold inside a word, a split link, zero-width space, soft hyphen,
+  full-width letters, underscores; and for the announce refusal.
+- Mutation check: replacing NFKC by NFC, keeping Cf characters, matching the raw text only, or
+  skipping the pre-send check each makes a test fail.
+- Checks: `make ci` 191 passed, verify PASS; `make reproduce` PASS.
