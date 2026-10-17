@@ -52,6 +52,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin main
           git checkout -B main origin/main
+          echo "BEFORE_LANDING=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
           if ! git merge --no-ff "origin/${BR}" -m "land(${TASK}): merge ${BR} into main"; then
             conflicts=$(git diff --name-only --diff-filter=U)
             echo "conflicts: ${conflicts}"
@@ -75,3 +76,12 @@ jobs:
           git push origin --delete "${BR}" || true
           git push origin --delete "auto/${TASK}" || true
           echo "landed ${TASK} on main at $(git rev-parse --short HEAD)"
+      - name: Announce news that just landed (Telegram)
+        # Only items added by this landing; secrets optional; a failure here is shown as a
+        # failed step and warnings but never undoes or blocks the landing (it already happened).
+        continue-on-error: true
+        env:
+          FRDA_TELEGRAM_BOT_TOKEN: ${{ secrets.FRDA_TELEGRAM_BOT_TOKEN }}
+          FRDA_TELEGRAM_CHAT_ID: ${{ secrets.FRDA_TELEGRAM_CHAT_ID }}
+          FRDA_NEWS_LINK: ${{ vars.FRDA_NEWS_LINK }}
+        run: uv run --frozen python scripts/announce_news.py "$BEFORE_LANDING" "$(git rev-parse HEAD)"

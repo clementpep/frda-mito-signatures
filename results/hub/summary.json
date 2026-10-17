@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-17T12:50:37+00:00",
-  "commit": "e6020e40dd06c8eb2c449ecd84abc856e4e22773",
+  "generated_at": "2026-10-17T14:24:03+00:00",
+  "commit": "6d29f3cd67ad1251b705d501405239d39a03f856",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -15,14 +15,14 @@
     "repo_url": "https://github.com/clementpep/frda-mito-signatures"
   },
   "progress": {
-    "total": 33,
-    "done": 3,
+    "total": 35,
+    "done": 4,
     "in_review": 0,
     "ready": 28,
     "changes_requested": 0,
     "blocked": 0,
     "needs_human": 1,
-    "proposed": 1
+    "proposed": 2
   },
   "milestones": [
     {
@@ -38,8 +38,8 @@
       "title": "Discovery",
       "goal": "Map what is already known, widen the public data base, derive a candidate mitochondrial signature.",
       "status": "in_progress",
-      "tasks_done": 2,
-      "tasks_total": 18
+      "tasks_done": 3,
+      "tasks_total": 20
     },
     {
       "id": "M3",
@@ -338,10 +338,62 @@
       "status": "proposed",
       "kind": "infra",
       "track": "infra"
+    },
+    {
+      "id": "T-024",
+      "title": "Plain-language news — verified items, Telegram announcement at landing, hub feed",
+      "milestone": "M2",
+      "status": "done",
+      "kind": "infra",
+      "track": "infra"
+    },
+    {
+      "id": "FIX-024a",
+      "title": "News wording gate — obfuscation bypasses and launch-item caveats (follow-up of T-024)",
+      "milestone": "M2",
+      "status": "proposed",
+      "kind": "infra",
+      "track": "infra"
     }
   ],
   "claims": [],
   "verifications": [
+    {
+      "task": "T-024",
+      "date": "2026-10-17",
+      "verdict": "CHANGES_REQUESTED",
+      "summary": "gates pass, but the launch news item overstates scope and two gate holes let overselling reach outsiders",
+      "attempt": 1,
+      "acceptance_met": "3/5",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-024-03fa311.md"
+    },
+    {
+      "task": "T-024",
+      "date": "2026-10-17",
+      "verdict": "CHANGES_REQUESTED",
+      "summary": "launch item and evidence ceiling fixed, but the overselling gate still lets affirmative overselling through (negation window, missing stems, NFC)",
+      "attempt": 2,
+      "acceptance_met": "4/5",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-024-2be79de.md"
+    },
+    {
+      "task": "T-024",
+      "date": "2026-10-17",
+      "verdict": "PASS",
+      "summary": "blockers 1-2 of attempt 3 fixed (inflected stems, NFKC/Cf, markup variants, re-check before send); no gate weakened; residual obfuscation bypasses are non-blocking",
+      "attempt": 4,
+      "acceptance_met": "5/5",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-024-6d29f3c.md"
+    },
+    {
+      "task": "T-024",
+      "date": "2026-10-17",
+      "verdict": "NEEDS_HUMAN",
+      "summary": "attempt-2 blockers B1/B2 fixed and gates green, but the wording gate still passes inflected core stems (cured, proven, it caused, preuve) and markup/Unicode bypasses; attempt limit reached",
+      "attempt": 3,
+      "acceptance_met": "4/5",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-024-d2e8d3f.md"
+    },
     {
       "task": "T-022",
       "date": "2026-10-17",
@@ -446,6 +498,18 @@
       "summary": "Start phase A (state of the art + credible foundation) with a 60/40 literature/main budget."
     }
   },
+  "news": [
+    {
+      "id": "N-20261017-lancement",
+      "date": "2026-10-17",
+      "kind": "project",
+      "title": "Lancement d'un projet de recherche ouvert sur l'ataxie de Friedreich",
+      "body": "**Ce qu'on a fait**\nUn projet de recherche ouvert démarre sur l'ataxie de Friedreich, une maladie génétique rare du\nsystème nerveux. Il n'utilise que des données publiques : des mesures de l'activité des gènes\ndans des cellules de la peau cultivées en laboratoire, issues de deux études. La première porte\nsur 35 personnes (18 malades, 17 non malades), une lignée de cellules par personne. La seconde ne\ncompte qu'une lignée malade et une lignée non malade. Des assistants d'intelligence artificielle\nfont le travail ; un autre assistant le revérifie avant qu'il soit accepté, et le responsable du\nprojet valide toute publication.\n\n**Ce que ça veut dire**\nPremière étape faite : chaque colonne des tableaux de données a été reliée à sa fiche\nd'échantillon publique (35 sur 35 dans la première étude ; 24 sur 24 dans la seconde, où chaque\nlignée est cultivée en plusieurs exemplaires et conditions). Dans la première étude, le statut\nmalade ou non malade concorde avec ces fiches. Dans la seconde, le traitement reçu concorde, mais\nla lignée de chaque échantillon se déduit seulement de son nom. Le contrôle de qualité des\ndonnées n'est pas encore fait.\n\n**Ce que ça ne veut pas dire**\nIl n'y a encore aucun résultat scientifique. Le projet ne produit pas de traitement et ne teste\nrien sur des malades ; à terme, il pourra au mieux classer des pistes à examiner en laboratoire.\nLes cellules de la peau ne sont pas des cellules nerveuses, et les effectifs sont petits : la\nseconde étude, avec une seule lignée par groupe, ne permet aucune conclusion sur les malades.\nAucun conseil médical.\n\n**Et ensuite**\nÉcrire le protocole de la recherche bibliographique avant de lancer les recherches, contrôler la\nqualité des deux jeux de données, puis tenter de reproduire les résultats déjà publiés.",
+      "evidence": null,
+      "evidence_plain": null,
+      "claims": []
+    }
+  ],
   "datasets": [
     {
       "id": "GSE104288",

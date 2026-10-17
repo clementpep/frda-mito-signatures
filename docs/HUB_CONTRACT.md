@@ -19,13 +19,22 @@ Rules:
   "project": { "id", "title", "subtitle", "questions": [str], "target", "disclaimer", "repo_url" },
   "progress": { "total", "done", "in_review", "ready", "changes_requested", "blocked", "needs_human", "proposed" },
   "milestones": [ { "id", "title", "goal", "status": "todo|in_progress|done", "tasks_done", "tasks_total" } ],
-  "tasks": [ { "id", "title", "milestone", "status", "kind" } ],
+  "tasks": [ { "id", "title", "milestone", "status", "kind", "track" } ],
   "claims": [ { "id", "statement", "status": "reproduced|refuted|new|not_demonstrated",
                 "evidence_level": "exploratory|single_dataset|replicated|preregistered_confirmed",
                 "datasets": [str], "limitations": [str], "verified": bool,
                 "source": { "pmid", "doi", "location" } | null } ],
   "verifications": [ { "task", "date", "verdict": "PASS|CHANGES_REQUESTED|NEEDS_HUMAN",
                        "summary", "attempt", "acceptance_met", "report_url" } ],
+  "research": { "phase": "A|B|C|D", "track_budget": { "<track>": number },
+                "corpus": { "total", "to_screen", "excluded", "to_read", "read" },
+                "ideas": [ { "id", "title", "status", "novelty_check", "priority": number | null } ],
+                "last_decision": { "id", "date", "summary" } | null },
+  // Plain-language news (research/news/, French), latest 20, newest first. `body` is
+  // markdown-lite: **section titles** and [text](url) links only.
+  "news": [ { "id", "date", "kind": "finding|milestone|weekly|literature|decision|project",
+              "title", "body", "evidence": "<evidence_level>" | null,
+              "evidence_plain": str | null, "claims": [str] } ],
   "datasets": [ { "id", "title", "tissue_or_model", "assay", "url",
                   "groups": [ { "name", "independent_units", "unit", "samples" } ] } ]
 }
