@@ -474,7 +474,7 @@ tasks:
   - id: T-022
     title: Wider sources — OpenAlex citation chasing, manifest column maps, verifier follow-up loop
     milestone: M2
-    status: in_review
+    status: changes_requested
     priority: 1
     kind: infra
     track: infra
@@ -488,6 +488,8 @@ tasks:
       - Manifests support `column_map` and `comment_prefix`; `frda.io` and the data_integrity gate use them (test); existing manifests unchanged.
       - verifier.md requires non-blocking findings worth acting on to be recorded as a proposed follow-up task; playbook documents citation chasing; procedures add the secrets rule.
       - T-021 follow-ups addressed where small (literal U+E000 in source, wording of lit-verify scope in docstring and card template); no gate or test weakened.
+    attempts: 1
+    verification: autonomy/verifications/T-022-835d2ad.md
 
   - id: T-023
     title: Verify terms and allowlist further public sources (MyGene.info, Crossref, Unpaywall, Open Targets, ENA, recount3)
@@ -504,4 +506,17 @@ tasks:
       - Semantic Scholar is assessed against its API License Agreement (accept or reject with the clause quoted).
       - If recount3 is allowlisted, the GSE104288 manifest gains the recount3 gene_sums file (sha256 recorded) with a run->sample column_map built from ENA run metadata (run accession -> GSM -> sample title), and the data_integrity gate passes on it; the values field states that they are coverage sums.
       - Gene identifier mapping (symbols <-> Ensembl) via an allowlisted, versioned source is documented for T-007.
+
+  - id: FIX-022a
+    title: T-022 non-blocking follow-ups (citation log truncation, DOI match, comment_prefix, notes)
+    milestone: M2
+    status: proposed
+    priority: 3
+    kind: infra
+    track: infra
+    goal: Address the non-blocking findings of autonomy/verifications/T-022-835d2ad.md.
+    notes:
+      - "From autonomy/verifications/T-022-835d2ad.md: record meta.count and truncated in citation logs; check DOI of Europe PMC hit and dedupe; normalise DOI; comment_prefix >= 2 chars; gates.py blank line/comment; mark recount3 figures unverified in T-004 note; consider API key in header."
+    acceptance:
+      - Each non-blocking finding of the report is fixed or explicitly declined in the run report; no gate or test weakened.
 

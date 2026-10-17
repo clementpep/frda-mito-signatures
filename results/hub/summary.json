@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-17T12:27:39+00:00",
-  "commit": "24a2ed2b79baaa4680770b894927c893b1da8dcd",
+  "generated_at": "2026-10-17T12:31:24+00:00",
+  "commit": "835d2adab057b2fbc7e9ed10a224208de225c98e",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -15,14 +15,14 @@
     "repo_url": "https://github.com/clementpep/frda-mito-signatures"
   },
   "progress": {
-    "total": 32,
+    "total": 33,
     "done": 2,
-    "in_review": 1,
+    "in_review": 0,
     "ready": 28,
-    "changes_requested": 0,
+    "changes_requested": 1,
     "blocked": 0,
     "needs_human": 1,
-    "proposed": 0
+    "proposed": 1
   },
   "milestones": [
     {
@@ -39,7 +39,7 @@
       "goal": "Map what is already known, widen the public data base, derive a candidate mitochondrial signature.",
       "status": "in_progress",
       "tasks_done": 1,
-      "tasks_total": 17
+      "tasks_total": 18
     },
     {
       "id": "M3",
@@ -319,7 +319,7 @@
       "id": "T-022",
       "title": "Wider sources — OpenAlex citation chasing, manifest column maps, verifier follow-up loop",
       "milestone": "M2",
-      "status": "in_review",
+      "status": "changes_requested",
       "kind": "infra",
       "track": "infra"
     },
@@ -330,10 +330,27 @@
       "status": "ready",
       "kind": "data",
       "track": "main"
+    },
+    {
+      "id": "FIX-022a",
+      "title": "T-022 non-blocking follow-ups (citation log truncation, DOI match, comment_prefix, notes)",
+      "milestone": "M2",
+      "status": "proposed",
+      "kind": "infra",
+      "track": "infra"
     }
   ],
   "claims": [],
   "verifications": [
+    {
+      "task": "T-022",
+      "date": "2026-10-17",
+      "verdict": "CHANGES_REQUESTED",
+      "summary": "Gates green and OpenAlex path works, but column_map is not validated (duplicate targets can pass the data_integrity gate silently).",
+      "attempt": 1,
+      "acceptance_met": "4/5",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-022-835d2ad.md"
+    },
     {
       "task": "T-021",
       "date": "2026-10-17",
