@@ -52,6 +52,8 @@ the phase scope. In your verify commit you may promote in-scope `proposed` tasks
 - Committed outputs edited by hand (the `run_records` gate catches sha mismatches; also look for
   results without a registered pipeline).
 - A task split (STEP 2b of the worker): every original acceptance criterion still present, unsoftened.
+- Outside a weekly `W-*` branch: any idea status beyond `seed`, any change to
+  `research/plan.yaml` or `research/decisions/` → **blocking** (supervision only).
 
 ## STEP 4 — Deterministic gates (P2) on fresh data
 
@@ -76,13 +78,26 @@ Also try to break the result: one reasonable alternative choice (e.g. a differen
 normalisation, removing one influential donor, adding sex as covariate). If the conclusion flips,
 the claim must say so in its limitations or be downgraded → blocking if it does not.
 
+## STEP 6b — Literature work (any branch touching `research/`)
+
+- `uv run --frozen frda lit-verify <every paper id added or carded on the branch>` must PASS:
+  each paper exists in Europe PMC with the recorded title, each card quote is verbatim in the text.
+- Re-screen yourself the 10 sampled screening decisions of the run report (and 5 more you pick at
+  random): disagreement on more than 2 of 15 → blocking (criteria not applied consistently).
+- For each card, read the paper section cited for 2 findings: the paraphrase must say what the quote
+  says, no stronger. Overstatement → blocking.
+- Synthesis: every sentence you sample (≥ 10) is supported by the cited card.
+- Supervision (W branches): every score rationale cites corpus papers; every status change has an RD
+  decision; budgets in bounds and summing to 1; phase change only if the plan's exit criteria are
+  met (check each); no pivot applied (`needs_human` RD only).
+
 ## STEP 7 — Expert reviews (subagents, fresh context)
 
 Launch in parallel:
 - `scientific-reviewer` — give it the task, the diff, the claims, the run.json files, the docs.
   It must check: unit of independence / pseudo-replication, multiple testing, confounders,
   overclaiming and causal wording, preregistration respected, novelty claims against
-  `docs/literature/`, and **every cited published value against the paper itself** (Europe PMC).
+  `research/` (search logs, synthesis, gaps), and **every cited published value against the paper itself** (Europe PMC).
 - `code-auditor` — correctness bugs, silent fallbacks, hard-coded values, label mix-ups between
   samples and groups, leakage between discovery and replication sets, fabricated data paths.
 - For `paper` tasks also `journal-reviewer` — the manuscript as a demanding journal referee would read it.

@@ -1,4 +1,7 @@
-# Routine `frda-watch` — weekly data, literature and novelty watch + digest
+# Routine `frda-watch` — weekly watch, digest and supervision
+
+The weekly run has two parts on one branch: the watch (steps 0–5 below), then the supervision
+(`routines/supervisor.md`, S1–S6), then the hand-over (step 6).
 
 Read `routines/procedures.md` first. Task id for this run: `W-<ISO year>-W<ISO week>`
 (e.g. `W-2026-W43`), branch `auto/<that id>`.
@@ -29,9 +32,11 @@ it to `data-manifests/candidates.yaml` with what the summary states (no guessing
 
 ## STEP 3 — New literature and novelty risk
 
-Europe PMC REST search for the week (FRDA AND (transcriptom* OR RNA-seq OR mitochondri*)), and
-preprints. Append to `docs/literature/watch-log.md`: id, title, one-line relevance. For any paper
-that overlaps a current claim or a candidate question (`docs/literature/landscape.md`), write a
+Run the protocol queries of `research/protocol.md` restricted to the last 8 days
+(`frda lit-search "<query> AND FIRST_PDATE:[<date-8d> TO <today>]" --save watch-<W>-<rq> --task <W>`),
+then `frda lit-add <new ids> --task <W> --found-by <log-stem>` (they enter as `to_screen`; screening
+is a literature task). Append to `docs/literature/watch-log.md`: id, title, one-line relevance. For any paper
+that overlaps a current claim or a candidate question (`research/synthesis/`, `research/ideas.yaml`), write a
 **novelty alert** in the digest: which claim, what overlaps, consequence (cite it, differentiate,
 or drop).
 
@@ -50,11 +55,17 @@ New work suggested by steps 1–3 is added to `autonomy/backlog.yaml` as `status
 - milestone progress and the next 3 tasks the worker will take.
 Numbers and links only; no hype.
 
+## STEP 5b — Supervision
+
+Execute `routines/supervisor.md` S1–S6 now, on this branch.
+
 ## STEP 6 — Commit, push, final message
 
 ```bash
 make hub && uv run --frozen frda verify --require-data
-git add -A && git commit -m "work($W): weekly watch and digest"
+git add -A && git commit -m "work($W): weekly watch, digest and supervision"
 bash scripts/push-branch.sh HEAD "auto/$W"
 ```
-Final message: `✅ frda-watch — <W>: <n> new datasets, <n> papers, <n> alerts`.
+Final message: `✅ frda-watch — <W>: <n> papers, <n> datasets, <n> alerts; RD-xxx: <one line>`
+(or `⚠️ NEEDS HUMAN — <the pivot question>` when the supervision asks for a pivot; mention the
+monthly report when one was written).

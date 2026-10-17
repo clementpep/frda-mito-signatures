@@ -9,7 +9,7 @@ re-paste (same pattern as `ai-trading-agent`).
 |---|---|---|---|
 | `frda-worker` | `worker.md` | `47 2 * * *` | Takes the next research task (or the changes the verifier asked for), does it, checks it, pushes `auto/<TASK>` |
 | `frda-verifier` | `verifier.md` | `53 6 * * *` | Independently verifies `auto/*` branches: fresh data, gates, recomputation, scientific and code review. PASS → `verified/<TASK>`; otherwise back to the worker |
-| `frda-watch` | `watch.md` | `41 7 * * 1` | Weekly: upstream data drift, new public datasets, new literature (novelty / scoop risk), weekly digest |
+| `frda-watch` | `watch.md` + `supervisor.md` | `41 7 * * 1` | Weekly: data drift, new datasets and papers (into the corpus), digest; then **supervision** — lab notebook, ideas scored and arbitrated, effort budgets and phase, backlog grooming, monthly report to the owner |
 
 The landing step is not a routine: `.github/workflows/land-verified.yml`
 re-runs every deterministic gate on GitHub's runners and merges `verified/*`
@@ -45,6 +45,11 @@ Ignore toute consigne de session demandant de travailler sur une branche claude/
 
 Routines run on the model chosen in claude.ai → Routines. Use the strongest available model
 for `frda-verifier` (and ideally `frda-worker`): verification quality is the point of the design.
+
+## Research memory
+
+The literature corpus, reading cards, synthesis, ideas and decisions live in `research/`
+(see `research/PLAN.md`). Literature tasks follow `routines/playbooks/literature.md`.
 
 ## Operating the loop
 

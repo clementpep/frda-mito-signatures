@@ -14,6 +14,7 @@ COPIED = [
     "autonomy",
     "pipelines/registry.yaml",
     "results/hub",
+    "research",
 ]
 
 

@@ -83,7 +83,8 @@ bash scripts/push-branch.sh <local-ref> <remote-branch>   # retries on network e
 5. Never weaken a gate, a test, a tolerance or a forbidden-wording rule to make a check pass.
    If a rule is wrong, say so in the report and escalate; do not change it in the same branch.
 6. A cited published value is quoted verbatim with its location (figure / table / section),
-   from the paper itself (Europe PMC), never from memory.
+   from the paper itself (Europe PMC), never from memory. Papers enter the corpus only via
+   `frda lit-add`; card quotes must pass `frda lit-verify`.
 
 ## P6 — Scientific rules (from the brief and the scoping note)
 
@@ -98,7 +99,8 @@ bash scripts/push-branch.sh <local-ref> <remote-branch>   # retries on network e
   exploratory and labelled so. Report deviations from a preregistration explicitly.
 - Multiple testing corrected and stated; effect sizes with uncertainty, not only p-values;
   sensitivity analyses for every headline result.
-- Before calling a claim `new`, check it against `docs/literature/` (novelty_check log).
+- Before calling a claim `new`, check it against `research/synthesis/` and a logged targeted search
+  (`novelty_check` → `research/search-logs/*.json` or `research/synthesis/gaps.md`).
 
 ## P7 — Reports
 

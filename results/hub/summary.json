@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-16T17:58:59+00:00",
-  "commit": "3ade0ecb7be552bbc77f41e8b6f16be10edc6417",
+  "generated_at": "2026-10-17T11:39:54+00:00",
+  "commit": "ca94e6303066d1d297da21e195b06cf02b69da8a",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -15,10 +15,10 @@
     "repo_url": "https://github.com/clementpep/frda-mito-signatures"
   },
   "progress": {
-    "total": 20,
-    "done": 1,
+    "total": 30,
+    "done": 2,
     "in_review": 0,
-    "ready": 18,
+    "ready": 27,
     "changes_requested": 0,
     "blocked": 0,
     "needs_human": 1,
@@ -37,9 +37,9 @@
       "id": "M2",
       "title": "Discovery",
       "goal": "Map what is already known, widen the public data base, derive a candidate mitochondrial signature.",
-      "status": "todo",
-      "tasks_done": 0,
-      "tasks_total": 5
+      "status": "in_progress",
+      "tasks_done": 1,
+      "tasks_total": 15
     },
     {
       "id": "M3",
@@ -76,148 +76,302 @@
   ],
   "tasks": [
     {
+      "id": "L-001",
+      "title": "Literature review protocol (questions, queries, eligibility) — frozen before searching",
+      "milestone": "M2",
+      "status": "ready",
+      "kind": "literature",
+      "track": "literature"
+    },
+    {
+      "id": "L-002",
+      "title": "Run the protocol searches and build the corpus",
+      "milestone": "M2",
+      "status": "ready",
+      "kind": "literature",
+      "track": "literature"
+    },
+    {
+      "id": "L-003",
+      "title": "Title/abstract screening of the corpus",
+      "milestone": "M2",
+      "status": "ready",
+      "kind": "literature",
+      "track": "literature"
+    },
+    {
+      "id": "L-004",
+      "title": "Reading batch 1 — seed and core papers",
+      "milestone": "M2",
+      "status": "ready",
+      "kind": "literature",
+      "track": "literature"
+    },
+    {
+      "id": "L-005",
+      "title": "Reading batch 2 — FRDA transcriptomic studies",
+      "milestone": "M2",
+      "status": "ready",
+      "kind": "literature",
+      "track": "literature"
+    },
+    {
+      "id": "L-006",
+      "title": "Reading batch 3 — frataxin, Fe-S clusters and mitochondrial mechanisms",
+      "milestone": "M2",
+      "status": "ready",
+      "kind": "literature",
+      "track": "literature"
+    },
+    {
+      "id": "L-007",
+      "title": "Reading batch 4 — interventions and their molecular readouts",
+      "milestone": "M2",
+      "status": "ready",
+      "kind": "literature",
+      "track": "literature"
+    },
+    {
+      "id": "L-008",
+      "title": "Reading batch 5 — methods for cross-dataset signatures",
+      "milestone": "M2",
+      "status": "ready",
+      "kind": "literature",
+      "track": "literature"
+    },
+    {
+      "id": "L-009",
+      "title": "State-of-the-art synthesis v1",
+      "milestone": "M2",
+      "status": "ready",
+      "kind": "literature",
+      "track": "literature"
+    },
+    {
       "id": "T-001",
       "title": "Dataset cards and sample metadata for GSE104288 and GSE145115",
       "milestone": "M1",
       "status": "done",
-      "kind": "data"
+      "kind": "data",
+      "track": "main"
     },
     {
       "id": "T-002",
       "title": "Quality control of both matrices",
       "milestone": "M1",
       "status": "ready",
-      "kind": "qc"
+      "kind": "qc",
+      "track": "main"
     },
     {
       "id": "T-003",
       "title": "Extract reproduction targets from the two seed publications",
       "milestone": "M1",
       "status": "ready",
-      "kind": "reproduction"
+      "kind": "reproduction",
+      "track": "main"
     },
     {
       "id": "T-004",
       "title": "Reproduce the GSE104288 headline results",
       "milestone": "M1",
       "status": "ready",
-      "kind": "reproduction"
+      "kind": "reproduction",
+      "track": "main"
     },
     {
       "id": "T-005",
       "title": "Reproduce the A-196 effect on FXN in GSE145115",
       "milestone": "M1",
       "status": "ready",
-      "kind": "reproduction"
+      "kind": "reproduction",
+      "track": "main"
     },
     {
       "id": "T-006",
-      "title": "Literature landscape and novelty map",
+      "title": "Gap analysis and seed research leads",
       "milestone": "M2",
       "status": "ready",
-      "kind": "evidence"
+      "kind": "literature",
+      "track": "literature"
     },
     {
       "id": "T-007",
       "title": "Mitochondrial gene-set resource",
       "milestone": "M2",
       "status": "ready",
-      "kind": "data"
+      "kind": "data",
+      "track": "main"
     },
     {
       "id": "T-008",
       "title": "Census of public FRDA transcriptomic datasets",
       "milestone": "M2",
       "status": "ready",
-      "kind": "data"
+      "kind": "data",
+      "track": "main"
     },
     {
       "id": "T-009",
       "title": "Ingest the two best replication datasets",
       "milestone": "M2",
       "status": "ready",
-      "kind": "data"
+      "kind": "data",
+      "track": "main"
     },
     {
       "id": "T-010",
       "title": "Candidate mitochondrial signature in the discovery set (GSE104288)",
       "milestone": "M2",
       "status": "ready",
-      "kind": "analysis"
+      "kind": "analysis",
+      "track": "main"
     },
     {
       "id": "T-011",
       "title": "Preregister the replication (PR-001)",
       "milestone": "M3",
       "status": "ready",
-      "kind": "analysis"
+      "kind": "analysis",
+      "track": "main"
     },
     {
       "id": "T-012",
       "title": "Confirmatory replication and meta-analysis",
       "milestone": "M3",
       "status": "ready",
-      "kind": "analysis"
+      "kind": "analysis",
+      "track": "main"
     },
     {
       "id": "T-013",
       "title": "Preregister the intervention hypothesis (PR-002)",
       "milestone": "M4",
       "status": "ready",
-      "kind": "analysis"
+      "kind": "analysis",
+      "track": "main"
     },
     {
       "id": "T-014",
       "title": "Intervention response analysis",
       "milestone": "M4",
       "status": "ready",
-      "kind": "analysis"
+      "kind": "analysis",
+      "track": "main"
     },
     {
       "id": "T-015",
       "title": "Feasibility of a connectivity analysis on public perturbation data",
       "milestone": "M5",
       "status": "ready",
-      "kind": "data"
+      "kind": "data",
+      "track": "main"
     },
     {
       "id": "T-016",
       "title": "Connectivity analysis — preclinical hypotheses",
       "milestone": "M5",
       "status": "ready",
-      "kind": "analysis"
+      "kind": "analysis",
+      "track": "main"
     },
     {
       "id": "T-017",
       "title": "Manuscript skeleton and figure pipelines",
       "milestone": "M6",
       "status": "ready",
-      "kind": "paper"
+      "kind": "paper",
+      "track": "writing"
     },
     {
       "id": "T-018",
       "title": "Internal peer review round",
       "milestone": "M6",
       "status": "ready",
-      "kind": "paper"
+      "kind": "paper",
+      "track": "writing"
     },
     {
       "id": "T-019",
       "title": "Human sign-off — authorship, expert co-author, submission",
       "milestone": "M6",
       "status": "needs_human",
-      "kind": "human"
+      "kind": "human",
+      "track": "writing"
     },
     {
       "id": "T-020",
       "title": "One-page brief for FRDA researchers",
       "milestone": "M6",
       "status": "ready",
-      "kind": "evidence"
+      "kind": "evidence",
+      "track": "writing"
+    },
+    {
+      "id": "T-021",
+      "title": "Research system — literature corpus, reading cards, ideas, effort arbitration, supervision",
+      "milestone": "M2",
+      "status": "done",
+      "kind": "infra",
+      "track": "infra"
     }
   ],
   "claims": [],
   "verifications": [
+    {
+      "task": "T-021",
+      "date": "2026-10-17",
+      "verdict": "NEEDS_HUMAN",
+      "summary": "Redesign closes all three attempt-4 findings, but a leading decimal point is ignored (\".5\" == \"5\", a 10x change passes lit-verify); owner-authorised last attempt.",
+      "attempt": 5,
+      "acceptance_met": "4/5",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-021-9d8aaf8.md"
+    },
+    {
+      "task": "T-021",
+      "date": "2026-10-17",
+      "verdict": "PASS",
+      "summary": "Attempt-5 blocking finding (leading decimal point) fixed and tested in both directions; remaining gaps are documented best-effort limits, non-blocking.",
+      "attempt": 6,
+      "acceptance_met": "5/5",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-021-ca94e63.md"
+    },
+    {
+      "task": "T-021",
+      "date": "2026-10-16",
+      "verdict": "CHANGES_REQUESTED",
+      "summary": "Both attempt-2 findings fixed and mutation-tested; a new false-PASS path remains (inline xref/sup/sub glued into prose).",
+      "attempt": 3,
+      "acceptance_met": "4/5",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-021-316cbdc.md"
+    },
+    {
+      "task": "T-021",
+      "date": "2026-10-16",
+      "verdict": "NEEDS_HUMAN",
+      "summary": "Attempt-3 finding fixed, but lit-verify still accepts quotes that are not contiguous in the paper (3 reproduced paths); owner-authorised last attempt failed.",
+      "attempt": 4,
+      "acceptance_met": "4/5",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-021-61283e6.md"
+    },
+    {
+      "task": "T-021",
+      "date": "2026-10-16",
+      "verdict": "CHANGES_REQUESTED",
+      "summary": "Gates green, but lit-verify can false-PASS, pick_next mishandles zero-budget tracks, and a test assertion was weakened.",
+      "attempt": 1,
+      "acceptance_met": "2/5",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-021-8914580.md"
+    },
+    {
+      "task": "T-021",
+      "date": "2026-10-16",
+      "verdict": "CHANGES_REQUESTED",
+      "summary": "Five of six earlier findings fixed; quote check still has a false-PASS path (angle brackets) and the window=0 regression test is tautological.",
+      "attempt": 2,
+      "acceptance_met": "4/5",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-021-d78f70a.md"
+    },
     {
       "task": "T-001",
       "date": "2026-10-16",
@@ -228,6 +382,28 @@
       "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-001-de7d549.md"
     }
   ],
+  "research": {
+    "phase": "A",
+    "track_budget": {
+      "literature": 0.6,
+      "main": 0.4,
+      "exploration": 0.0,
+      "writing": 0.0
+    },
+    "corpus": {
+      "total": 0,
+      "to_screen": 0,
+      "excluded": 0,
+      "to_read": 0,
+      "read": 0
+    },
+    "ideas": [],
+    "last_decision": {
+      "id": "RD-001",
+      "date": "2026-10-16",
+      "summary": "Start phase A (state of the art + credible foundation) with a 60/40 literature/main budget."
+    }
+  },
   "datasets": [
     {
       "id": "GSE104288",

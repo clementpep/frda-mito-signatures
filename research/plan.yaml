@@ -1,0 +1,40 @@
+# Thesis plan — machine-readable part (prose: research/PLAN.md).
+# The worker picks the next task in the track furthest below its budget share,
+# measured over the last `budget_window` finished tasks (frda.backlog.pick_next).
+# Only the weekly supervision changes this file, through an RD-xxx decision.
+current_phase: A
+budget_window: 10
+budget_bounds: [0.0, 0.8]
+track_floor: {main: 0.2}   # the main line never starves (M1 reproductions, then the active idea)
+max_active_ideas: 1          # one main line at a time; others wait as candidates
+track_budget:
+  literature: 0.6
+  main: 0.4
+  exploration: 0.0
+  writing: 0.0
+phases:
+  - id: A
+    title: State of the art and credible foundation
+    default_budget: {literature: 0.6, main: 0.4, exploration: 0.0, writing: 0.0}
+    exit_criteria:
+      - Review protocol executed; every search hit screened with a reason.
+      - Core and all relevance-3 papers read, with verified reading cards.
+      - State-of-the-art synthesis v1 landed, every statement cited.
+      - M1 reproductions done (published FRDA results reproduced or refuted).
+      - At least five seed ideas, each traced to papers and public data.
+  - id: B
+    title: Research question and leads
+    default_budget: {literature: 0.3, main: 0.5, exploration: 0.2, writing: 0.0}
+    exit_criteria:
+      - Ideas scored; one idea active with a scoping study; novelty check done against the corpus.
+      - Owner informed of the chosen main question (monthly report).
+  - id: C
+    title: Contribution
+    default_budget: {literature: 0.15, main: 0.55, exploration: 0.2, writing: 0.1}
+    exit_criteria:
+      - Preregistered replication and intervention analyses executed (M3, M4).
+  - id: D
+    title: Writing and submission
+    default_budget: {literature: 0.1, main: 0.3, exploration: 0.1, writing: 0.5}
+    exit_criteria:
+      - Manuscript rendered from verified claims; internal review addressed; owner sign-off (T-019).

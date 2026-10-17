@@ -10,7 +10,8 @@ preregistered, independently replicated findings. Most of the work is done by th
 routines (`routines/`); a human owner steers through the backlog and signs off on publication.
 
 Read before working: `docs/PROJECT_BRIEF.md` (scope), `routines/procedures.md` (rules P0–P8),
-`docs/AUTONOMY.md` (the loop), `autonomy/backlog.yaml` (what to do next).
+`docs/AUTONOMY.md` (the loop), `research/PLAN.md` (the thesis plan: phases, effort tracks,
+how ideas are arbitrated), `autonomy/backlog.yaml` (what to do next).
 
 ## Commands
 
@@ -24,6 +25,10 @@ make reproduce      # re-run registered pipelines, compare output hashes
 make hub            # regenerate results/hub/summary.json (do it before every commit)
 make status         # auto/* and verified/* branch states
 uv run --frozen frda task T-004              # print one task
+uv run --frozen frda research-status         # phase, budgets, corpus, ideas
+uv run --frozen frda lit-search "<q>" --save slug --task L-002   # Europe PMC, logged
+uv run --frozen frda lit-add MED:29125828 --task L-002            # corpus (resolved ids only)
+uv run --frozen frda lit-verify               # papers exist, card quotes verbatim (online)
 ```
 
 ## Non-negotiable rules
