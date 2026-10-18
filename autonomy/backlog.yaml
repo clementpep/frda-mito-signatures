@@ -50,7 +50,7 @@ tasks:
   - id: L-001
     title: Literature review protocol (questions, queries, eligibility) — frozen before searching
     milestone: M2
-    status: ready
+    status: in_review
     priority: 1
     kind: literature
     track: literature

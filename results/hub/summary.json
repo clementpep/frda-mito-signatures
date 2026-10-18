@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-17T16:14:47+00:00",
-  "commit": "66d3d33dda44ed022b024355cec7bb537d93ad4c",
+  "generated_at": "2026-10-18T00:52:22+00:00",
+  "commit": "07e789f7403579ae3a8a8275fca29dea677a874f",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -18,8 +18,8 @@
   "progress": {
     "total": 42,
     "done": 5,
-    "in_review": 0,
-    "ready": 33,
+    "in_review": 1,
+    "ready": 32,
     "changes_requested": 0,
     "blocked": 0,
     "needs_human": 1,
@@ -80,7 +80,7 @@
       "id": "L-001",
       "title": "Literature review protocol (questions, queries, eligibility) — frozen before searching",
       "milestone": "M2",
-      "status": "ready",
+      "status": "in_review",
       "kind": "literature",
       "track": "literature"
     },
