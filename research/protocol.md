@@ -1,6 +1,6 @@
-# Literature review protocol (frozen by task L-001, 2026-10-18)
+# Literature review protocol (written by task L-001, 2026-10-18; frozen once L-001 has landed)
 
-Like a preregistration, the protocol is written before searching. Since L-001 landed, changes are
+Like a preregistration, the protocol is written before searching. Once L-001 has landed, changes are
 amendments appended at the bottom with date and reason; earlier text is not edited.
 
 ## Review questions
@@ -18,7 +18,7 @@ amendments appended at the bottom with date and reason; earlier text is not edit
 
 ## Sources
 Europe PMC (includes PubMed and preprints), via `frda lit-search`; search logs saved under
-`research/search-logs/`. Citation chasing (references of core papers) allowed and logged.
+`research/search-logs/`. Citation chasing (references and cited-by of core papers) allowed and logged.
 
 ## Queries
 Written and size-tested on 2026-10-18 (task L-001) with `frda lit-search "<query>" --max 1 --show 0`
@@ -42,7 +42,13 @@ Shared building blocks (written out in full in each query below, so each is copy
 | Q5a | RQ5 (blood-type fluids) | `(TITLE_ABS:Friedreich* OR TITLE_ABS:FRDA OR TITLE_ABS:frataxin OR TITLE_ABS:FXN) AND (TITLE_ABS:biomarker* OR TITLE_ABS:blood OR TITLE_ABS:plasma OR TITLE_ABS:serum OR TITLE_ABS:PBMC* OR TITLE_ABS:miRNA* OR TITLE_ABS:microRNA*) AND (TITLE_ABS:FARS OR TITLE_ABS:mFARS OR TITLE_ABS:SARA OR TITLE_ABS:GAA OR TITLE_ABS:clinical OR TITLE_ABS:"disease duration" OR TITLE_ABS:"age at onset" OR TITLE_ABS:cardiomyopathy OR TITLE_ABS:patients) AND PUB_YEAR:[2005 TO 2026] AND LANG:eng AND (SRC:MED OR SRC:PPR)` | 299 |
 | Q5b | RQ5 (other accessible tissues, imaging) | `(TITLE_ABS:Friedreich* OR TITLE_ABS:FRDA OR TITLE_ABS:frataxin OR TITLE_ABS:FXN) AND (TITLE_ABS:muscle OR TITLE_ABS:biops* OR TITLE_ABS:"cerebrospinal fluid" OR TITLE_ABS:saliva OR TITLE_ABS:buccal OR TITLE_ABS:neurofilament OR TITLE_ABS:MRI OR TITLE_ABS:imaging) AND (TITLE_ABS:FARS OR TITLE_ABS:mFARS OR TITLE_ABS:SARA OR TITLE_ABS:GAA OR TITLE_ABS:clinical OR TITLE_ABS:"disease duration" OR TITLE_ABS:"age at onset" OR TITLE_ABS:cardiomyopathy OR TITLE_ABS:patients) AND PUB_YEAR:[2005 TO 2026] AND LANG:eng AND (SRC:MED OR SRC:PPR)` | 293 |
 
-(`CL` inside Q5a/Q5b is the clinical-measure block, spelled out in the query text.) RQ5 has two
+`CL` (clinical-measure block, written out in full inside Q5a/Q5b) = `(TITLE_ABS:FARS OR TITLE_ABS:mFARS OR TITLE_ABS:SARA OR TITLE_ABS:GAA OR TITLE_ABS:clinical OR TITLE_ABS:"disease duration" OR TITLE_ABS:"age at onset" OR TITLE_ABS:cardiomyopathy OR TITLE_ABS:patients)`.
+
+Known scope limits, accepted before searching (not result-driven): Q5 has no term for diabetes,
+functional stage, lymphocytes, leukocytes, fibroblasts, proteomics or metabolomics (a probe
+with those terms adds about 127 hits, partly overlapping); Q1 has no `RNAseq`, `single-cell` or
+`expression profil*`. Papers of these kinds are expected to be reached by Q1/Q5 on other terms and by
+citation chasing; an amendment may add terms after L-002 if the recall check against core papers shows a gap. RQ5 has two
 queries (Q5a, Q5b) so that each stays readable; RQ4 is the only query without `FR`, because
 methods papers are rarely FRDA-specific; its hits are screened only for method relevance.
 
@@ -112,10 +118,12 @@ assistant are never ingested from a paper, whatever its relevance (P5.2).
 - 1 — Context only: FRDA molecular or biomarker topic, but no reusable data, result or method for
   this project (background, narrow single-gene studies, non-mammalian models).
 - 2 — Informs the project: transcriptomic or mitochondrial findings in FRDA models or patients,
-  intervention readouts, patient biomarkers with clinical measures, applicable methods.
+  intervention readouts, other patient biomarkers, applicable methods.
 - 3 — Core: reports or re-uses a public FRDA dataset (GSE104288, GSE145115, GSE102008, other
   patient cohorts), reports a mitochondrial signature or module in FRDA, or directly bears on a
-  registered claim or task (seed papers; Nachun 2018; Maddock 2026).
+  registered claim or task; a patient-cohort study relating molecular measures to clinical measures
+  (functional stage, GAA length, onset, duration) also scores 3 (RD-002). The seed papers are added
+  with `found_by: seed` but are scored by these criteria like any record.
 
 ## Screening
 Title/abstract screening of every hit; each decision recorded in `research/corpus.yaml`
@@ -128,12 +136,14 @@ needed change is an amendment below.
 Priority rule, in this order:
 1. relevance 3, then relevance 2;
 2. within a relevance level, **patient-derived evidence first** (RD-002: blood, PBMC, muscle,
-   plasma/serum cohorts with clinical measures), then dataset papers, then animal and cell-model
+   plasma/serum cohorts with clinical measures; such cohorts reach relevance 3, see scale), then dataset papers, then animal and cell-model
    papers;
 3. then the more recent paper first, ties broken by smaller PMID/PPR id.
 
 One card per paper (`research/cards/_TEMPLATE.md`), quotes verbatim with location;
-`source_text: abstract_only` when the full text is not open access. Per-run cap: **6 cards**
+`source_text: abstract_only` when the full text is not open access. Reviews (capped at relevance 2) may be read in the first batch when they are the most
+cited background of the core papers; this is the one exception to rule 1, and L-004 names them.
+Per-run cap: **6 cards**
 (as `routines/playbooks/literature.md`). Relevance 1 papers are not read.
 
 ## Synthesis
