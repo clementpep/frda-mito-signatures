@@ -46,7 +46,7 @@ Shared building blocks (written out in full in each query below, so each is copy
 
 Known scope limits, accepted before searching (not result-driven): Q5 has no term for diabetes,
 functional stage, lymphocytes, leukocytes, fibroblasts, proteomics or metabolomics (a probe
-with those terms adds about 127 hits, partly overlapping); Q1 has no `RNAseq`, `single-cell` or
+with those terms adds further, partly overlapping hits; not logged); Q1 has no `RNAseq`, `single-cell` or
 `expression profil*`. Papers of these kinds are expected to be reached by Q1/Q5 on other terms and by
 citation chasing; an amendment may add terms after L-002 if the recall check against core papers shows a gap. RQ5 has two
 queries (Q5a, Q5b) so that each stays readable; RQ4 is the only query without `FR`, because
