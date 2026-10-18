@@ -50,7 +50,7 @@ tasks:
   - id: L-001
     title: Literature review protocol (questions, queries, eligibility) — frozen before searching
     milestone: M2
-    status: in_review
+    status: done
     priority: 1
     kind: literature
     track: literature
@@ -64,6 +64,22 @@ tasks:
       - Nothing added to the corpus by this task (searching for real is L-002).
     notes:
       - "2026-10-17 (RD-002, owner decision): RQ5 added to the draft protocol — biomarkers measured in patients and their relation to clinical measures. Give it its own query; patient-derived evidence is prioritised in the reading order."
+    verification: autonomy/verifications/L-001-85c1208.md
+
+  - id: FIX-L001a
+    title: Protocol recall gaps and wording to settle before the L-002 searches
+    milestone: M2
+    status: proposed
+    priority: 1
+    kind: literature
+    track: literature
+    goal: Carry the non-blocking findings of the L-001 verification into an amendment of research/protocol.md, before L-002 runs the searches.
+    acceptance:
+      - Amendment (dated, appended; earlier text untouched) recording that Q2 returns 0 hits for seed MED:33028632 (its abstract says "expression", not "gene expression"/"transcript*"), and either extending Q2 with tested terms or stating the recall gap and the citation-chasing fallback.
+      - Amendment stating one rule for non-mammalian models (I4 cap 2 vs scale level 1), an objective test for "directly bears on a registered claim or task", a definition of "most cited" for reviews, and the source of the 65 pre-2005 hits count (query string).
+      - Amendment stating the Q3 recall limit (no accession-number hits for GSE104288/GSE145115/GSE102008 in title/abstract) and the Q4 pre-split (149 hits vs cap 150).
+    notes:
+      - "Source autonomy/verifications/L-001-85c1208.md, non-blocking list. Optional for the supervision: Q5c (diabetes, functional stage, proteomics, metabolomics, lymphocytes, fibroblasts; about 338 hits unwindowed) since RQ5 names diabetes and functional stage; RQ5 listed before RQ4 and acceptance text says RQ1-RQ4."
 
   - id: L-002
     title: Run the protocol searches and build the corpus
