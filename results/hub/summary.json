@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-17T16:14:47+00:00",
-  "commit": "66d3d33dda44ed022b024355cec7bb537d93ad4c",
+  "generated_at": "2026-10-18T04:57:34+00:00",
+  "commit": "85c12088d542ea4e0887ec9f4ed0b7f9705f605d",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -16,14 +16,14 @@
     "repo_url": "https://github.com/clementpep/frda-mito-signatures"
   },
   "progress": {
-    "total": 42,
-    "done": 5,
+    "total": 43,
+    "done": 6,
     "in_review": 0,
-    "ready": 33,
+    "ready": 32,
     "changes_requested": 0,
     "blocked": 0,
     "needs_human": 1,
-    "proposed": 3
+    "proposed": 4
   },
   "milestones": [
     {
@@ -39,8 +39,8 @@
       "title": "Discovery",
       "goal": "Map what is already known, widen the public data base, derive a candidate mitochondrial signature.",
       "status": "in_progress",
-      "tasks_done": 4,
-      "tasks_total": 21
+      "tasks_done": 5,
+      "tasks_total": 22
     },
     {
       "id": "M3",
@@ -80,7 +80,15 @@
       "id": "L-001",
       "title": "Literature review protocol (questions, queries, eligibility) — frozen before searching",
       "milestone": "M2",
-      "status": "ready",
+      "status": "done",
+      "kind": "literature",
+      "track": "literature"
+    },
+    {
+      "id": "FIX-L001a",
+      "title": "Protocol recall gaps and wording to settle before the L-002 searches",
+      "milestone": "M2",
+      "status": "proposed",
       "kind": "literature",
       "track": "literature"
     },
@@ -415,6 +423,15 @@
   ],
   "claims": [],
   "verifications": [
+    {
+      "task": "L-001",
+      "date": "2026-10-18",
+      "verdict": "PASS",
+      "summary": "Protocol queries, window counts and seed claims re-verified live against Europe PMC; nothing added to the corpus; no blocking finding",
+      "attempt": 1,
+      "acceptance_met": "4/4",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/L-001-85c1208.md"
+    },
     {
       "task": "T-025",
       "date": "2026-10-17",
