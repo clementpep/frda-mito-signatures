@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-18T04:58:10+00:00",
-  "commit": "a4f3a3c48a919ec3a4f3e2c9f86670695bd085eb",
+  "generated_at": "2026-10-19T05:43:43+00:00",
+  "commit": "3c90ac81c6429e5579e62b9faf95b124b5aa783f",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -600,6 +600,16 @@
     }
   },
   "news": [
+    {
+      "id": "N-20261019-semaine-w2026-w43",
+      "date": "2026-10-19",
+      "kind": "weekly",
+      "title": "Semaine calme, le protocole de recherche est prêt et le tri des articles commence",
+      "body": "**Ce qu'on a fait**\nLe protocole de la recherche bibliographique a été accepté après vérification : il fixe à\nl'avance les questions posées, les requêtes et les critères de tri des articles. Cinq autres\ntâches de mise en place ont aussi été acceptées. La veille de la semaine n'a trouvé aucun nouvel\narticle ni aucun nouveau jeu de données public sur l'ataxie de Friedreich, et les deux jeux de\ndonnées déjà utilisés n'ont pas changé.\n\n**Ce que ça veut dire**\nLe tri des articles (tâche L-002) a été lancé mais une vérification a demandé une correction : il\nn'est pas encore accepté. La bibliothèque du projet contient donc 0 article trié à ce jour.\n\n**Ce que ça ne veut pas dire**\nIl n'y a toujours aucun résultat scientifique et aucune piste n'est retenue. Une semaine sans\nnouvel article ne dit rien sur l'état de la recherche : c'est un constat de calendrier. Le projet\nne produit pas de traitement. Aucun conseil médical.\n\n**Et ensuite**\nCorriger puis faire accepter le tri des articles, puis lire les articles les plus utiles.",
+      "evidence": null,
+      "evidence_plain": null,
+      "claims": []
+    },
     {
       "id": "N-20261017-lancement",
       "date": "2026-10-17",
