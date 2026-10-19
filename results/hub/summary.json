@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-19T01:18:41+00:00",
-  "commit": "3c90ac81c6429e5579e62b9faf95b124b5aa783f",
+  "generated_at": "2026-10-19T05:06:38+00:00",
+  "commit": "bd88fc584c6b9d34e63999022cfa38efddc1a7ce",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -16,14 +16,14 @@
     "repo_url": "https://github.com/clementpep/frda-mito-signatures"
   },
   "progress": {
-    "total": 43,
+    "total": 44,
     "done": 6,
-    "in_review": 1,
+    "in_review": 0,
     "ready": 31,
-    "changes_requested": 0,
+    "changes_requested": 1,
     "blocked": 0,
     "needs_human": 1,
-    "proposed": 4
+    "proposed": 5
   },
   "milestones": [
     {
@@ -40,7 +40,7 @@
       "goal": "Map what is already known, widen the public data base, derive a candidate mitochondrial signature.",
       "status": "in_progress",
       "tasks_done": 5,
-      "tasks_total": 22
+      "tasks_total": 23
     },
     {
       "id": "M3",
@@ -96,7 +96,7 @@
       "id": "L-002",
       "title": "Run the protocol searches and build the corpus",
       "milestone": "M2",
-      "status": "in_review",
+      "status": "changes_requested",
       "kind": "literature",
       "track": "literature"
     },
@@ -419,10 +419,27 @@
       "status": "proposed",
       "kind": "infra",
       "track": "main"
+    },
+    {
+      "id": "FIX-L002a",
+      "title": "lit-verify title comparison must normalise Europe PMC markup and entities",
+      "milestone": "M2",
+      "status": "proposed",
+      "kind": "infra",
+      "track": "literature"
     }
   ],
   "claims": [],
   "verifications": [
+    {
+      "task": "L-002",
+      "date": "2026-10-19",
+      "verdict": "CHANGES_REQUESTED",
+      "summary": "Searches, logs and corpus are consistent (20/20 counts recomputed), but acceptance criterion 4 (lit-verify passes) is NOT MET",
+      "attempt": 1,
+      "acceptance_met": "3/4",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/L-002-bd88fc5.md"
+    },
     {
       "task": "L-001",
       "date": "2026-10-18",

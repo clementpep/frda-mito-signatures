@@ -84,7 +84,7 @@ tasks:
   - id: L-002
     title: Run the protocol searches and build the corpus
     milestone: M2
-    status: in_review
+    status: changes_requested
     priority: 1
     kind: literature
     track: literature
@@ -95,6 +95,8 @@ tasks:
       - Every retrieved hit added with `frda lit-add` (ids resolved by Europe PMC; duplicates by DOI merged); counts per query reported in research/screening.md.
       - Seed papers added explicitly (MED:29125828 Napierala 2017, MED:33028632 Vilema-Enríquez 2020, and the Maddock et al. 2026 preprint by its Europe PMC id) with found_by "seed".
       - The `frda lit-verify` audit passes on the added ids (metadata only, no cards yet).
+    attempts: 1
+    verification: autonomy/verifications/L-002-bd88fc5.md
 
   - id: L-003
     title: Title/abstract screening of the corpus
@@ -714,3 +716,17 @@ tasks:
       - "2026-10-17 (T-025 attempt 3): the ecbd498 non-blocking items are written into T-028 (paper's covariate handling, quoted with location), T-029 (cell-type composition, independence assumption, status trend wording), PLAN, brief and project.yaml (paper counts 418/228/93)."
       - "2026-10-17 (T-025 attempt 2): all items already written into T-026 (age, relatedness), T-028 (matrix, normalisation), T-029 (estimand, age-matched sensitivity, split feasibility and fallback, two-sided trend, pinned gene-set version), M3 and RD-002 (internal validation). Nothing left unless the verifier finds a gap; can be closed by the supervision."
       - "2026-10-17 (T-025 attempt 3 verification, autonomy/verifications/T-025-69ea23e.md) non-blocking: the yellow module is enriched first for rRNA processing (44 genes, log BF 2.98) and second for the respiratory chain complex (20 genes, 1.89); the paper does not call either module mitochondrial. T-027 targets must quote both terms and RD-002/PLAN/project.yaml/T-010/T-029 should say modules enriched for mitochondrial terms. The claim that the paper's GAA1/duration analyses were not run on mitochondrial sets is an absence: word it as no report found, pending the novelty check."
+
+  - id: FIX-L002a
+    title: lit-verify title comparison must normalise Europe PMC markup and entities
+    milestone: M2
+    status: proposed
+    priority: 1
+    kind: infra
+    track: literature
+    goal: Make `frda lit-verify` compare titles after HTML-unescaping and tag-stripping on both sides, so L-002's acceptance criterion 4 can be met without editing corpus titles by hand.
+    acceptance:
+      - Normalisation (html.unescape, strip <i>/<sup>/<sub>) applied to recorded and Europe PMC titles before the similarity test; threshold 0.9 unchanged; a test covers MED:40919203, MED:32249386, MED:42383006 style titles and a test that a genuinely different title still fails.
+      - Full-corpus `frda lit-verify` passes (1277 ids).
+    notes:
+      - "Source autonomy/verifications/L-002-bd88fc5.md, blocking finding 1. L-002 depends on this landing first. Non-blocking there: protocol amendment for LANG:eng vs SRC:PPR (49 preprint hits for 2024-2026 lost) needs an owner/supervisor decision before L-003."
