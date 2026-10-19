@@ -84,7 +84,7 @@ tasks:
   - id: L-002
     title: Run the protocol searches and build the corpus
     milestone: M2
-    status: ready
+    status: in_review
     priority: 1
     kind: literature
     track: literature
