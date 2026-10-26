@@ -1,0 +1,25 @@
+{
+  "query": "(TITLE_ABS:Friedreich* OR TITLE_ABS:FRDA OR TITLE_ABS:frataxin OR TITLE_ABS:FXN) AND (TITLE_ABS:transcript* OR TITLE_ABS:\"RNA-seq\" OR TITLE_ABS:\"RNA sequencing\" OR TITLE_ABS:\"gene expression\" OR TITLE_ABS:microarray OR TITLE_ABS:\"differentially expressed\") AND PUB_YEAR:[2005 TO 2026] AND SRC:PPR AND FIRST_PDATE:[2026-10-11 TO 2026-10-26]",
+  "date": "2026-10-26",
+  "hit_count": 2,
+  "retrieved": 2,
+  "results": [
+    {
+      "id": "PPR:PPR1338733",
+      "title": "Autonomic neurons are intrinsically hyperexcitable in a Friedreich ataxia iPSC model",
+      "year": 2026,
+      "first_author": "Lees JG",
+      "journal": null,
+      "open_access": false
+    },
+    {
+      "id": "PPR:PPR1344364",
+      "title": "Friedreich Ataxia iPSC-derived microglia display an interferon-responsive, antigen-presenting, and inflammasome-associated state with lysosomal biology and extracellular matrix abnormalities",
+      "year": 2026,
+      "first_author": "Tang YM",
+      "journal": null,
+      "open_access": false
+    }
+  ],
+  "task": "W-2026-W44"
+}

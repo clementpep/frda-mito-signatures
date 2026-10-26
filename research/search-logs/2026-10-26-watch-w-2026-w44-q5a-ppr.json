@@ -1,0 +1,17 @@
+{
+  "query": "(TITLE_ABS:Friedreich* OR TITLE_ABS:FRDA OR TITLE_ABS:frataxin OR TITLE_ABS:FXN) AND (TITLE_ABS:biomarker* OR TITLE_ABS:blood OR TITLE_ABS:plasma OR TITLE_ABS:serum OR TITLE_ABS:PBMC* OR TITLE_ABS:miRNA* OR TITLE_ABS:microRNA*) AND (TITLE_ABS:FARS OR TITLE_ABS:mFARS OR TITLE_ABS:SARA OR TITLE_ABS:GAA OR TITLE_ABS:clinical OR TITLE_ABS:\"disease duration\" OR TITLE_ABS:\"age at onset\" OR TITLE_ABS:cardiomyopathy OR TITLE_ABS:patients) AND PUB_YEAR:[2005 TO 2026] AND SRC:PPR AND FIRST_PDATE:[2026-10-11 TO 2026-10-26]",
+  "date": "2026-10-26",
+  "hit_count": 1,
+  "retrieved": 1,
+  "results": [
+    {
+      "id": "PPR:PPR1338733",
+      "title": "Autonomic neurons are intrinsically hyperexcitable in a Friedreich ataxia iPSC model",
+      "year": 2026,
+      "first_author": "Lees JG",
+      "journal": null,
+      "open_access": false
+    }
+  ],
+  "task": "W-2026-W44"
+}

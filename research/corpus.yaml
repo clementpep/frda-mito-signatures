@@ -1,3 +1,88 @@
-# Literature corpus — see src/frda/research.py (Paper). Add papers with `frda lit-add`, never by
-# hand-typing metadata: ids are resolved against Europe PMC.
-papers: []
+papers:
+- id: MED:42878077
+  title: Edited HSPCs rescue frataxin deficiency and inflammation-driven multisystemic pathology in Friedreich's
+    ataxia mice.
+  year: 2026
+  journal: The Journal of clinical investigation
+  first_author: Sivakumar A
+  doi: 10.1172/jci209546
+  pmcid: PMC13668640
+  kind: primary
+  open_access: true
+  added: '2026-10-26'
+  added_by: W-2026-W44
+  found_by:
+  - 2026-10-26-watch-w-2026-w44-q2
+  status: to_screen
+  topics: []
+- id: MED:42887212
+  title: Glial-specific mitochondrial failure and redox imbalance contribute to regional vulnerability
+    in Friedreich's ataxia.
+  year: 2026
+  journal: Redox biology
+  first_author: Sanz-Alcázar A
+  doi: 10.1016/j.redox.2026.104437
+  kind: primary
+  open_access: false
+  added: '2026-10-26'
+  added_by: W-2026-W44
+  found_by:
+  - 2026-10-26-watch-w-2026-w44-q2
+  status: to_screen
+  topics: []
+- id: MED:42921272
+  title: 'Neurodegenerative Diseases: Epidemiology, Risk Factors, Classification, Pathophysiology, Clinical
+    Features, Diagnosis, and Therapeutic Strategies.'
+  year: 2026
+  journal: MedComm
+  first_author: He Z
+  doi: 10.1002/mco2.71090
+  kind: review
+  open_access: false
+  added: '2026-10-26'
+  added_by: W-2026-W44
+  found_by:
+  - 2026-10-26-watch-w-2026-w44-q2
+  status: to_screen
+  topics: []
+- id: MED:42909834
+  title: 'Ataxia Therapeutics: A Comprehensive Overview of the Clinical Development Pipeline.'
+  year: 2026
+  journal: Pharmaceutical medicine
+  first_author: Cappella M
+  doi: 10.1007/s40290-026-00640-y
+  kind: review
+  open_access: false
+  added: '2026-10-26'
+  added_by: W-2026-W44
+  found_by:
+  - 2026-10-26-watch-w-2026-w44-q5a
+  status: to_screen
+  topics: []
+- id: PPR:PPR1338733
+  title: Autonomic neurons are intrinsically hyperexcitable in a Friedreich ataxia iPSC model
+  year: 2026
+  first_author: Lees JG
+  doi: 10.64898/2026.10.06.757136
+  kind: preprint
+  open_access: false
+  added: '2026-10-26'
+  added_by: W-2026-W44
+  found_by:
+  - 2026-10-26-watch-w-2026-w44-q1-ppr
+  status: to_screen
+  topics: []
+- id: PPR:PPR1344364
+  title: Friedreich Ataxia iPSC-derived microglia display an interferon-responsive, antigen-presenting,
+    and inflammasome-associated state with lysosomal biology and extracellular matrix abnormalities
+  year: 2026
+  first_author: Tang YM
+  doi: 10.21203/rs.3.rs-11037120/v1
+  kind: preprint
+  open_access: false
+  added: '2026-10-26'
+  added_by: W-2026-W44
+  found_by:
+  - 2026-10-26-watch-w-2026-w44-q1-ppr
+  status: to_screen
+  topics: []

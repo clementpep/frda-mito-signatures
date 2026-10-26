@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-18T04:58:10+00:00",
-  "commit": "a4f3a3c48a919ec3a4f3e2c9f86670695bd085eb",
+  "generated_at": "2026-10-26T06:43:58+00:00",
+  "commit": "3c90ac81c6429e5579e62b9faf95b124b5aa783f",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -16,14 +16,14 @@
     "repo_url": "https://github.com/clementpep/frda-mito-signatures"
   },
   "progress": {
-    "total": 43,
+    "total": 44,
     "done": 6,
     "in_review": 0,
     "ready": 32,
     "changes_requested": 0,
     "blocked": 0,
     "needs_human": 1,
-    "proposed": 4
+    "proposed": 5
   },
   "milestones": [
     {
@@ -40,7 +40,7 @@
       "goal": "Map what is already known, widen the public data base, derive a candidate mitochondrial signature.",
       "status": "in_progress",
       "tasks_done": 5,
-      "tasks_total": 22
+      "tasks_total": 23
     },
     {
       "id": "M3",
@@ -419,6 +419,14 @@
       "status": "proposed",
       "kind": "infra",
       "track": "main"
+    },
+    {
+      "id": "FIX-watch-lag",
+      "title": "Weekly watch window must tolerate Europe PMC index lag",
+      "milestone": "M2",
+      "status": "proposed",
+      "kind": "infra",
+      "track": "literature"
     }
   ],
   "claims": [],
@@ -586,8 +594,8 @@
       "writing": 0.0
     },
     "corpus": {
-      "total": 0,
-      "to_screen": 0,
+      "total": 6,
+      "to_screen": 6,
       "excluded": 0,
       "to_read": 0,
       "read": 0
@@ -600,6 +608,16 @@
     }
   },
   "news": [
+    {
+      "id": "N-20261026-semaine-w2026-w44",
+      "date": "2026-10-26",
+      "kind": "weekly",
+      "title": "Semaine 44 - six nouveaux articles repérés, rien de terminé cette semaine",
+      "body": "**Ce qu'on a fait**\nRien n'a été accepté cette semaine : aucune tâche terminée et vérifiée. La veille hebdomadaire a\ncontrôlé que les deux jeux de données de départ n'ont pas changé en ligne (aucun changement) et\ncherché de nouvelles séries de données publiques sur l'ataxie de Friedreich (aucune). Elle a aussi\nrepéré six articles récents (quatre publiés, deux versions préliminaires pas encore relues par des\npairs), notés à trier : des travaux sur des modèles de souris et de cellules, et deux revues\ngénérales. Seuls les titres ont été lus.\n\n**Ce que ça veut dire**\nCes six articles sont des pistes de lecture, pas des résultats. Dire s'ils comptent pour le projet\nest l'étape de tri, qui n'a pas encore commencé. La semaine précédente avait annoncé zéro article ;\nc'était inexact, car la base européenne d'articles met parfois plusieurs jours à les indexer. La\nfenêtre de recherche a donc été élargie à 15 jours.\n\n**Ce que ça ne veut pas dire**\nIl n'y a toujours aucun résultat scientifique. Ces articles ne changent rien à ce que le projet\naffirme (une seule observation à ce jour, sur des cellules de peau cultivées). Le projet ne produit\npas de traitement. Aucun conseil médical.\n\n**Et ensuite**\nCe qui bloque : la constitution de la liste d'articles (L-002) attend une correction demandée par le\nvérificateur. Ensuite viendront le tri des articles, puis les données de patients (sang) décidées\npar le responsable du projet.",
+      "evidence": null,
+      "evidence_plain": null,
+      "claims": []
+    },
     {
       "id": "N-20261017-lancement",
       "date": "2026-10-17",
