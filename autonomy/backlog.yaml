@@ -729,3 +729,4 @@ tasks:
       - routines/watch.md states that the protocol queries carry LANG:eng AND (SRC:MED OR SRC:PPR) and that the preprint arm is reported separately (SRC:PPR without LANG:eng) until the open protocol amendment on LANG:eng is decided.
     notes:
       - "Source autonomy/verifications/W-2026-W43-8e5d9fa.md (branch auto/W-2026-W43, CHANGES_REQUESTED): Q2 over 2026-10-11..2026-10-19 logged 0 on the run day; a re-run the next day returned 2 (firstIndexDate 2026-10-19). W-2026-W44 applied the 15-day window by hand (2026-10-11..2026-10-26) and a separate preprint arm; the routine files were not edited (routines/ is outside a watch run's remit)."
+      - "2026-10-27 (W-2026-W44 verification, autonomy/verifications/W-2026-W44-63c7531.md, CHANGES_REQUESTED): the watch must save its GEO probe as a log and not assert claims that do not exist; protocol amendment on LANG:eng is not filed (protocol.md: none yet)."
