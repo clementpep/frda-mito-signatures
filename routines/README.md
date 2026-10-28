@@ -23,6 +23,8 @@ worker's own self-check.
   worker ──► auto/T-xxx ──► verifier ──PASS──► verified/T-xxx ──► land-verified.yml ──► main ──► hub
     ▲                         │                                   (gates + reproduce)         (summary.json)
     └──── CHANGES_REQUESTED ──┘ (≤ 3 rounds, then NEEDS_HUMAN → push notification)
+    fix needs code → verifier writes FIX-… → worker parks auto/T (blocked), does auto/FIX-…, resumes T (P9)
+  Push notifications only for a trouvaille 🔬 or a NEW owner decision ⚠️ (procedures P8).
   watch (weekly) ──► auto/W-YYYY-Www ──► verifier ──► …
 ```
 

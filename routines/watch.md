@@ -32,7 +32,8 @@ it to `data-manifests/candidates.yaml` with what the summary states (no guessing
 
 ## STEP 3 — New literature and novelty risk
 
-Run the protocol queries of `research/protocol.md` restricted to the last 8 days
+Run the protocol queries of `research/protocol.md`, **both arms** (PubMed arm and preprint arm,
+amendment A1), restricted to the last 8 days
 (`frda lit-search "<query> AND FIRST_PDATE:[<date-8d> TO <today>]" --save watch-<W>-<rq> --task <W>`),
 then `frda lit-add <new ids> --task <W> --found-by <log-stem>` (they enter as `to_screen`; screening
 is a literature task). Append to `docs/literature/watch-log.md`: id, title, one-line relevance. For any paper
@@ -52,7 +53,10 @@ New work suggested by steps 1–3 is added to `autonomy/backlog.yaml` as `status
 - verification verdicts of the week (from `autonomy/verifications/`), attempts, open NEEDS_HUMAN;
 - claims added / changed, by status (reproduced / refuted / new / not_demonstrated);
 - drift, new datasets, novelty alerts;
-- milestone progress and the next 3 tasks the worker will take.
+- milestone progress and the next 3 tasks the worker will take;
+- **Owner decisions pending**: one list, each with its id (RD / task), the question in one line and
+  the date it was first asked. Mark `NEW` the ones absent from the previous digest's list; parked
+  branches (`blocked`) are listed with their prerequisite, not as owner decisions.
 Numbers and links only; no hype.
 
 ## STEP 5b — Supervision
@@ -69,3 +73,8 @@ bash scripts/push-branch.sh HEAD "auto/$W"
 Final message: `✅ frda-watch — <W>: <n> papers, <n> datasets, <n> alerts; RD-xxx: <one line>`
 (or `⚠️ NEEDS HUMAN — <the pivot question>` when the supervision asks for a pivot; mention the
 monthly report when one was written).
+
+Notification (P8): push **only** if this week has a trouvaille (≥ 1 novelty alert, ≥ 1 new dataset
+candidate, or ≥ 1 new paper directly concerning a claim, idea or research question) — first line
+`🔬 frda-watch — <W>: <the finding>` — or a `NEW` owner decision. Otherwise the run is silent,
+including a week with papers that are only `to_screen` background.

@@ -63,7 +63,9 @@ uv run --frozen frda verify --require-data
 ```
 Commit message conventions (parsed by `frda autonomy-status` and the landing workflow):
 - worker / watch: `work(<TASK>): <what changed>` — the **last** commit of a branch handed to the verifier;
-- verifier: `verify(<TASK>): PASS|CHANGES_REQUESTED|NEEDS_HUMAN — <one line>`.
+- verifier: `verify(<TASK>): PASS|CHANGES_REQUESTED|NEEDS_HUMAN — <one line>`;
+- worker: `blocked(<TASK>): needs <FIX-ID>` — an empty commit parking a branch on a prerequisite
+  (P9). The branch then frees the WIP slot until `<FIX-ID>` is `done` on main.
 
 ## P4 — Push
 
@@ -111,11 +113,58 @@ bash scripts/push-branch.sh <local-ref> <remote-branch>   # retries on network e
 Reports are evidence: commands actually run, numbers actually obtained, paths. No adjectives
 where a number exists.
 
-## P8 — Final message (what the owner receives as a push notification)
+## P8 — Final message and notifications
 
-First line, exactly one of:
+The owner wants to be alerted **only when there is something to see or to decide, once**.
+The final message is always written (it is the run's record); a **push notification**
+(`PushNotification` tool, `status: proactive`) is sent only in the cases below. Everything else —
+handed to verification, changes requested, nothing to do, a branch parked on a prerequisite, a
+prerequisite started — is silent: the weekly digest reports it.
+
+Push when, and only when:
+1. **Trouvaille** — prefix `🔬`:
+   - watch: ≥ 1 novelty alert, or ≥ 1 new public dataset candidate, or ≥ 1 new paper whose
+     one-line relevance names a current claim, idea or research question as directly concerned;
+   - verifier: PASS of a task that adds or changes a claim, closes a milestone, or carries a
+     `finding` news item (the result reaches `main` once the landing workflow runs).
+2. **New decision for the owner** — prefix `⚠️ NEEDS HUMAN`, only in the run that **creates** it:
+   - a verifier `NEEDS_HUMAN` verdict (committed once, so notified once);
+   - `main` red in the verifier's health check (STEP 9) — every run while it lasts: it is an outage;
+   - a landing blocked: only when the `verified/*` branch's last commit is between 2 h and 26 h
+     old (first detection), never again for the same branch;
+   - a pivot asked by the supervision, or a decision that is **not** already listed under
+     "Owner decisions pending" in the previous digest.
+   Decisions already pending (RD with `needs_human: true`, tasks `needs_human`, open questions of
+   the monthly report) are **never** re-notified: they stay listed in each weekly digest.
+3. A routine that cannot run at all (P0 403, P1 setup failure) — `⚠️ NEEDS HUMAN`, every run.
+
+A push carries the same text as the final message's first line plus ≤ 3 bullets, in French.
+Never push "nothing found", "handed to verification" or a repeat of a known blocker.
+
+First line of the final message, exactly one of:
 - `✅ <routine> — <TASK>: <outcome in ≤ 12 words>`
 - `🔁 <routine> — <TASK>: changes requested (<n> blocking)`
 - `💤 <routine> — nothing to do (<reason>)`
 - `⚠️ NEEDS HUMAN — <TASK>: <the decision needed, as a question>`
+- `🔬 <routine> — <TASK>: <the finding in ≤ 12 words>` (a trouvaille, pushed)
+- `⏸️ frda-worker — <TASK>: parked on <FIX-ID>, <what was done instead>` (silent)
 Then ≤ 5 bullet lines with paths to the report(s). French is fine for the message.
+
+## P9 — Autonomy before escalation
+
+A blocker that the loop can remove itself is not a question for the owner.
+
+- **Prerequisite fix.** When the verifier's blocking finding on task `T` names a `FIX-*` task as a
+  prerequisite (it wrote it, `status: proposed`, kind `infra` or `data`, on `T`'s branch backlog),
+  the worker parks `T` (`blocked(T): needs FIX-…`) and does the `FIX-*` task itself on
+  `auto/FIX-…` (`start_dependency`), promoting it from `proposed` by copying it **verbatim** —
+  goal and acceptance unchanged — into the backlog of that branch. The verifier verifies it like any
+  task, and in addition checks that it is the named prerequisite, copied verbatim, and that it does
+  not loosen any gate, test, tolerance or wording rule (P5.5): auto-promotion never covers that.
+  When it lands, `T` comes back to the worker with `merge_main: true`.
+- **Never auto-promoted**: scientific scope (research questions, inclusion criteria, data sources),
+  pivots, terms of use, authorship and publication (T-019), budgets and phase outside
+  `budget_bounds`, anything a rule above reserves to the owner. These stay `needs_human` / pending
+  decisions, listed in the digest, notified once (P8).
+- **Do not stop on one blocked branch.** After parking, re-run `frda autonomy-status` and take the
+  next action in the same run (at most one park and one piece of work per run).
