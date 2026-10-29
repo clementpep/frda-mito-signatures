@@ -718,7 +718,7 @@ tasks:
   - id: FIX-L002a
     title: lit-verify title comparison must normalise Europe PMC markup and entities
     milestone: M2
-    status: in_review
+    status: done
     priority: 1
     kind: infra
     track: literature
@@ -729,3 +729,19 @@ tasks:
     notes:
       - "Source autonomy/verifications/L-002-bd88fc5.md, blocking finding 1. L-002 depends on this landing first. Non-blocking there: protocol amendment for LANG:eng vs SRC:PPR (49 preprint hits for 2024-2026 lost) needs an owner/supervisor decision before L-003."
       - "2026-10-28: auto-promoted (procedures P9, owner-approved in an interactive session) to unblock L-002; entry copied verbatim from origin/auto/L-002 (1f431a9), only status and this note changed."
+    verification: autonomy/verifications/FIX-L002a-818a968.md
+
+  - id: FIX-L002b
+    title: lit-verify title check hardening (empty titles, tag regex, tighter test)
+    milestone: M2
+    status: proposed
+    priority: 2
+    kind: infra
+    track: literature
+    goal: Make the title comparison fail on an empty or tag-only title on either side, anchor the tag regex, and add tests that would catch a loosened threshold.
+    acceptance:
+      - verify() reports a problem when title_text of either side is empty; a test covers it.
+      - TITLE_TAG only matches real tags (name followed by whitespace or > ), a test shows "x<i and y>j" keeps its text.
+      - A test where only the tagged word differs (near-threshold) still fails.
+    notes:
+      - "Source autonomy/verifications/FIX-L002a-818a968.md, non-blocking findings 1-3. Also: the FIX-L002a promotion note cites procedures P9, which is not in routines/procedures.md on main (only on origin/claude/frda-routines-autonomy-alerts-xmbkw1); owner to land P9 or reword."
