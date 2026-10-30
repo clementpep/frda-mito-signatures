@@ -84,7 +84,7 @@ tasks:
   - id: L-002
     title: Run the protocol searches and build the corpus
     milestone: M2
-    status: changes_requested
+    status: done
     priority: 1
     kind: literature
     track: literature
@@ -96,7 +96,7 @@ tasks:
       - Seed papers added explicitly (MED:29125828 Napierala 2017, MED:33028632 Vilema-Enríquez 2020, and the Maddock et al. 2026 preprint by its Europe PMC id) with found_by "seed".
       - The `frda lit-verify` audit passes on the added ids (metadata only, no cards yet).
     attempts: 1
-    verification: autonomy/verifications/L-002-bd88fc5.md
+    verification: autonomy/verifications/L-002-678c32c.md
 
   - id: L-003
     title: Title/abstract screening of the corpus
@@ -747,3 +747,17 @@ tasks:
       - A test where only the tagged word differs (near-threshold) still fails.
     notes:
       - "Source autonomy/verifications/FIX-L002a-818a968.md, non-blocking findings 1-3. Also: the FIX-L002a promotion note cites procedures P9, which is not in routines/procedures.md on main (only on origin/claude/frda-routines-autonomy-alerts-xmbkw1); owner to land P9 or reword."
+
+  - id: FIX-L002c
+    title: Protocol amendment decision for the preprint arm (LANG:eng vs SRC:PPR)
+    milestone: M2
+    status: proposed
+    priority: 1
+    kind: literature
+    track: literature
+    goal: Decide, and if accepted record in protocol.md Amendments, how preprints are covered (e.g. drop LANG:eng for SRC:PPR) before L-003 screening.
+    acceptance:
+      - Owner/supervisor decision recorded as an RD decision.
+      - If amended, the preprint search is run, logged and added to the corpus as to_screen with the full year range re-queried.
+    notes:
+      - "Source autonomy/verifications/L-002-678c32c.md, non-blocking 1: SRC:PPR 2024-2026 returns 62 hits without LANG:eng and 0 with it (2026-10-30). Also: note that seeds hide query provenance; 10 records have no DOI."

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-30T01:59:00+00:00",
-  "commit": "1f431a9d7fd30bec1392cd13322e78b3134b6dee",
+  "generated_at": "2026-10-30T06:19:56+00:00",
+  "commit": "678c32c4cd1bc12c67b6c7c50dc410b358d6cbc9",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -16,14 +16,14 @@
     "repo_url": "https://github.com/clementpep/frda-mito-signatures"
   },
   "progress": {
-    "total": 45,
-    "done": 7,
+    "total": 46,
+    "done": 8,
     "in_review": 0,
     "ready": 31,
-    "changes_requested": 1,
+    "changes_requested": 0,
     "blocked": 0,
     "needs_human": 1,
-    "proposed": 5
+    "proposed": 6
   },
   "milestones": [
     {
@@ -39,8 +39,8 @@
       "title": "Discovery",
       "goal": "Map what is already known, widen the public data base, derive a candidate mitochondrial signature.",
       "status": "in_progress",
-      "tasks_done": 6,
-      "tasks_total": 24
+      "tasks_done": 7,
+      "tasks_total": 25
     },
     {
       "id": "M3",
@@ -96,7 +96,7 @@
       "id": "L-002",
       "title": "Run the protocol searches and build the corpus",
       "milestone": "M2",
-      "status": "changes_requested",
+      "status": "done",
       "kind": "literature",
       "track": "literature"
     },
@@ -435,10 +435,27 @@
       "status": "proposed",
       "kind": "infra",
       "track": "literature"
+    },
+    {
+      "id": "FIX-L002c",
+      "title": "Protocol amendment decision for the preprint arm (LANG:eng vs SRC:PPR)",
+      "milestone": "M2",
+      "status": "proposed",
+      "kind": "literature",
+      "track": "literature"
     }
   ],
   "claims": [],
   "verifications": [
+    {
+      "task": "L-002",
+      "date": "2026-10-30",
+      "verdict": "PASS",
+      "summary": "Corpus (1277) and 20 search logs consistent; FIX-L002a on main makes the full-corpus lit-verify PASS; criterion 4 now MET",
+      "attempt": 2,
+      "acceptance_met": "4/4",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/L-002-678c32c.md"
+    },
     {
       "task": "FIX-L002a",
       "date": "2026-10-29",
