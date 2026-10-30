@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-19T05:06:38+00:00",
-  "commit": "bd88fc584c6b9d34e63999022cfa38efddc1a7ce",
+  "generated_at": "2026-10-30T01:59:00+00:00",
+  "commit": "1f431a9d7fd30bec1392cd13322e78b3134b6dee",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -16,8 +16,8 @@
     "repo_url": "https://github.com/clementpep/frda-mito-signatures"
   },
   "progress": {
-    "total": 44,
-    "done": 6,
+    "total": 45,
+    "done": 7,
     "in_review": 0,
     "ready": 31,
     "changes_requested": 1,
@@ -39,8 +39,8 @@
       "title": "Discovery",
       "goal": "Map what is already known, widen the public data base, derive a candidate mitochondrial signature.",
       "status": "in_progress",
-      "tasks_done": 5,
-      "tasks_total": 23
+      "tasks_done": 6,
+      "tasks_total": 24
     },
     {
       "id": "M3",
@@ -424,6 +424,14 @@
       "id": "FIX-L002a",
       "title": "lit-verify title comparison must normalise Europe PMC markup and entities",
       "milestone": "M2",
+      "status": "done",
+      "kind": "infra",
+      "track": "literature"
+    },
+    {
+      "id": "FIX-L002b",
+      "title": "lit-verify title check hardening (empty titles, tag regex, tighter test)",
+      "milestone": "M2",
       "status": "proposed",
       "kind": "infra",
       "track": "literature"
@@ -431,6 +439,15 @@
   ],
   "claims": [],
   "verifications": [
+    {
+      "task": "FIX-L002a",
+      "date": "2026-10-29",
+      "verdict": "PASS",
+      "summary": "lit-verify title normalisation correct, threshold unchanged, full-corpus lit-verify re-run PASS (1277 ids); 3 non-blocking hardening items",
+      "attempt": 1,
+      "acceptance_met": "2/2",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/FIX-L002a-818a968.md"
+    },
     {
       "task": "L-002",
       "date": "2026-10-19",
