@@ -140,3 +140,23 @@ def test_blocked_branch_frees_the_worker_until_its_prerequisite_lands(sandbox, t
         "merge_main": True,
     }
     assert st["blocked"] == []  # resumed: no longer reported as parked
+
+
+def test_verified_branch_is_superseded_when_auto_moves_on(sandbox, tmp_path_factory):
+    clone_with_remote(sandbox, tmp_path_factory.mktemp("remote"))
+    git(sandbox, "checkout", "-q", "-b", "auto/W-2026-W43")
+    commit(sandbox, "work(W-2026-W43): watch")
+    commit(sandbox, "verify(W-2026-W43): PASS — ok", "g.txt")
+    git(sandbox, "push", "-q", "origin", "HEAD:refs/heads/verified/W-2026-W43")
+    git(sandbox, "push", "-q", "origin", "HEAD~1:refs/heads/auto/W-2026-W43")
+    git(sandbox, "fetch", "-q", "origin")
+    assert status(sandbox)["landing_pending"] == ["verified/W-2026-W43"]
+
+    # The landing could not run; the PASS commit is kept and main is merged in, re-handed.
+    commit(sandbox, "work(W-2026-W43): merge main for landing", "h.txt")
+    git(sandbox, "push", "-q", "origin", "HEAD:refs/heads/auto/W-2026-W43")
+    git(sandbox, "fetch", "-q", "origin")
+    st = status(sandbox)
+    assert st["landing_pending"] == []
+    assert "verified/W-2026-W43" in st["stale_landed"]
+    assert st["next_for_verifier"]["task"] == "W-2026-W43"

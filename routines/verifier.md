@@ -23,6 +23,8 @@ uv run --frozen frda autonomy-status --json > /tmp/status.json
   Note them for the final message (`⚠️ NEEDS HUMAN — landing blocked: check Actions on <branch>`);
   push only on first detection (last commit < 26 h old, P8).
 - `blocked` branches are parked by the worker on a prerequisite (P9): nothing to verify there.
+- `superseded` `verified/*` branches (their `auto/*` moved past them, listed in `stale_landed`) will
+  never land: ignore them; the newer `auto/*` head is what you verify.
 - `next_for_verifier` is `None` → run the **main health check** (STEP 9) and stop.
 - Otherwise verify `next_for_verifier` (T, B, head). After finishing, re-run status and verify the
   next one, up to `verifier_max_branches_per_run` (autonomy/config.yaml).

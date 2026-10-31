@@ -27,8 +27,11 @@ python3 -c "import json;print(json.load(open('/tmp/status.json'))['next_for_work
 git checkout -B "$B" "origin/$B"
 ls -t autonomy/verifications/"$T"-*.md | head -1   # the latest report: read ALL of it
 ```
+- Always `git merge --no-edit origin/main` first (a branch cut before a tooling fix lands with
+  its own old code: W-2026-W43 could not land on 2026-10-31 because of it); conflicts in
+  `results/hub/summary.json` → take main's and `make hub`.
 - `merge_main: true`, or a blocking finding names a `FIX-*` prerequisite that is already `done`
-  on main → `git merge --no-edit origin/main` first (the prerequisite's fix is on
+  on main → the merge above brings it (the prerequisite's fix is on
   main). In `autonomy/backlog.yaml` keep main's entry for the prerequisite (`done`). Then re-read
   `research/protocol.md` "Amendments": an amendment dated after the branch was cut applies to
   this task's re-hand-over (say how in the run report).
