@@ -1,0 +1,577 @@
+{
+  "query": "(TITLE_ABS:Friedreich* OR TITLE_ABS:FRDA OR TITLE_ABS:frataxin OR TITLE_ABS:FXN) AND (TITLE_ABS:biomarker* OR TITLE_ABS:blood OR TITLE_ABS:plasma OR TITLE_ABS:serum OR TITLE_ABS:PBMC* OR TITLE_ABS:miRNA* OR TITLE_ABS:microRNA*) AND (TITLE_ABS:FARS OR TITLE_ABS:mFARS OR TITLE_ABS:SARA OR TITLE_ABS:GAA OR TITLE_ABS:clinical OR TITLE_ABS:\"disease duration\" OR TITLE_ABS:\"age at onset\" OR TITLE_ABS:cardiomyopathy OR TITLE_ABS:patients) AND PUB_YEAR:[2024 TO 2026] AND LANG:eng AND (SRC:MED OR SRC:PPR)",
+  "date": "2026-10-19",
+  "hit_count": 71,
+  "retrieved": 71,
+  "results": [
+    {
+      "id": "MED:42849276",
+      "title": "Reduction of interleukin-6 levels in patients with Friedreich's Ataxia treated with omaveloxolone.",
+      "year": 2026,
+      "first_author": "Di Stefano V",
+      "journal": "J Neurol Sci",
+      "open_access": false
+    },
+    {
+      "id": "MED:41954755",
+      "title": "Longitudinal analysis shows GAA1 length and baseline clinical status as robust predictors of progression in Friedreich ataxia.",
+      "year": 2026,
+      "first_author": "Manrique L",
+      "journal": "J Neurol",
+      "open_access": true
+    },
+    {
+      "id": "MED:41865460",
+      "title": "Generation of Friedreich's ataxia induced pluripotent stem cells carrying the FXN c.165 + 5G&gt;C splicing mutation.",
+      "year": 2026,
+      "first_author": "Yameogo P",
+      "journal": "Stem Cell Res",
+      "open_access": true
+    },
+    {
+      "id": "MED:42253100",
+      "title": "Assessing airway clearance dysfunction in Friedreich's ataxia: A focus on peak cough flow.",
+      "year": 2026,
+      "first_author": "Smith BK",
+      "journal": "J Neuromuscul Dis",
+      "open_access": true
+    },
+    {
+      "id": "MED:42143837",
+      "title": "Neurophysiological assessment of disease severity in Friedreich's Ataxia: a study of brainstem auditory and visual evoked potentials.",
+      "year": 2026,
+      "first_author": "Maccora S",
+      "journal": "Clin Neurophysiol",
+      "open_access": false
+    },
+    {
+      "id": "MED:41176519",
+      "title": "Early experience on omaveloxolone in adult patients with Friedreich's ataxia: a real-world observational study.",
+      "year": 2025,
+      "first_author": "Lima SM",
+      "journal": "J Neurol",
+      "open_access": true
+    },
+    {
+      "id": "MED:42295329",
+      "title": "Epigenetic reactivation in Friedreich's ataxia from benzamides to gene‑targeted chimeras.",
+      "year": 2026,
+      "first_author": "Ansari FU",
+      "journal": "Expert Opin Drug Discov",
+      "open_access": false
+    },
+    {
+      "id": "MED:40994821",
+      "title": "Impact of age on neurofilament light chain in Friedreich ataxia: a 1-year longitudinal study.",
+      "year": 2025,
+      "first_author": "Petrillo S",
+      "journal": "Brain Commun",
+      "open_access": true
+    },
+    {
+      "id": "MED:42439571",
+      "title": "Stem Cell Transplantation in Friedreich Ataxia: Cure for Leukemia but No Effect on Neurological Progression.",
+      "year": 2026,
+      "first_author": "Gitman A",
+      "journal": "Ann Clin Transl Neurol",
+      "open_access": true
+    },
+    {
+      "id": "MED:42307907",
+      "title": "AAVrh.10hFXN Gene Therapy for the Cardiomyopathy of Friedreich Ataxia: A Nonrandomized Clinical Trial.",
+      "year": 2026,
+      "first_author": "Crystal RG",
+      "journal": "JAMA Cardiol",
+      "open_access": true
+    },
+    {
+      "id": "MED:42128889",
+      "title": "Validation of circulating miR-323a-3p and miR-625-3p to classify hypertrophic cardiomyopathy in Friedreich's ataxia.",
+      "year": 2026,
+      "first_author": "Ibáñez-Cabellos JS",
+      "journal": "Sci Rep",
+      "open_access": true
+    },
+    {
+      "id": "MED:41919005",
+      "title": "Peripheral frataxin levels govern long-term clinical progression in Friedreich ataxia.",
+      "year": 2026,
+      "first_author": "Rummey C",
+      "journal": "BMJ Neurol Open",
+      "open_access": true
+    },
+    {
+      "id": "MED:39468362",
+      "title": "At-home wearable-based monitoring predicts clinical measures and biological biomarkers of disease severity in Friedreich's Ataxia.",
+      "year": 2024,
+      "first_author": "Mishra RK",
+      "journal": "Commun Med (Lond)",
+      "open_access": true
+    },
+    {
+      "id": "MED:42802091",
+      "title": "Multimodal Magnetic Resonance Imaging and Machine Learning Uncovers Distinct Progression Patterns in Friedreich Ataxia.",
+      "year": 2026,
+      "first_author": "Saha S",
+      "journal": "Mov Disord",
+      "open_access": false
+    },
+    {
+      "id": "MED:39688804",
+      "title": "Plasma miRNAs Correlate with Structural Brain and Cardiac Damage in Friedreich's Ataxia.",
+      "year": 2024,
+      "first_author": "Peluzzo TM",
+      "journal": "Cerebellum",
+      "open_access": false
+    },
+    {
+      "id": "MED:39810753",
+      "title": "Friedreich Ataxia: An (Almost) 30-Year History After Gene Discovery.",
+      "year": 2025,
+      "first_author": "Pandolfo M.",
+      "journal": "Neurol Genet",
+      "open_access": true
+    },
+    {
+      "id": "MED:42149296",
+      "title": "FXN predicts poor prognosis in colon adenocarcinoma and correlates with immune cell infiltration.",
+      "year": 2026,
+      "first_author": "Sun M",
+      "journal": "Clin Transl Oncol",
+      "open_access": true
+    },
+    {
+      "id": "MED:38484450",
+      "title": "Generation and characterization of iPSC lines from Friedreich's ataxia patient (FRDA) with GAA.TTC repeat expansion in the Frataxin (FXN) gene's first intron (IGIBi016-A) and a non-FRDA healthy control individual (IGIBi017-A).",
+      "year": 2024,
+      "first_author": "Ahmad I",
+      "journal": "Stem Cell Res",
+      "open_access": false
+    },
+    {
+      "id": "MED:38063871",
+      "title": "Frataxin analysis using triple quadrupole mass spectrometry: application to a large heterogeneous clinical cohort.",
+      "year": 2024,
+      "first_author": "Lynch DR",
+      "journal": "J Neurol",
+      "open_access": false
+    },
+    {
+      "id": "MED:42803824",
+      "title": "CTCF-FXN regulatory axis plays critical roles in clinical assessments and disease progression of primary open-angle glaucoma.",
+      "year": 2026,
+      "first_author": "Cai D",
+      "journal": "J Mol Med (Berl)",
+      "open_access": true
+    },
+    {
+      "id": "MED:40399385",
+      "title": "Predictive machine learning and multimodal data to develop highly sensitive, composite biomarkers of disease progression in Friedreich ataxia.",
+      "year": 2025,
+      "first_author": "Saha S",
+      "journal": "Sci Rep",
+      "open_access": true
+    },
+    {
+      "id": "MED:40406806",
+      "title": "Sulforaphane Targets Multiple Pathological Processes in Friedreich Ataxia Patient-Induced Pluripotent Stem Cell-Derived Sensory Neurons.",
+      "year": 2025,
+      "first_author": "Yang W",
+      "journal": "Antioxid Redox Signal",
+      "open_access": false
+    },
+    {
+      "id": "MED:41865610",
+      "title": "Myo-inositol elevation as an in vivo marker of reactive gliosis in pediatric Friedreich ataxia: evidence from HERMES-edited MR spectroscopy.",
+      "year": 2026,
+      "first_author": "Gaetz W",
+      "journal": "Neuroimage Clin",
+      "open_access": true
+    },
+    {
+      "id": "MED:39235665",
+      "title": "Unusual Age-Dependent Behavior of Leukocytes Telomere Length in Friedreich's Ataxia.",
+      "year": 2024,
+      "first_author": "Scarabino D",
+      "journal": "Mov Disord",
+      "open_access": false
+    },
+    {
+      "id": "MED:39337401",
+      "title": "Skeletal Muscle Involvement in Friedreich Ataxia.",
+      "year": 2024,
+      "first_author": "Indelicato E",
+      "journal": "Int J Mol Sci",
+      "open_access": true
+    },
+    {
+      "id": "MED:42840744",
+      "title": "The role of neurofilament light chain and other fluid biomarkers in cerebellar ataxias.",
+      "year": 2026,
+      "first_author": "Mouraux C",
+      "journal": "Brain Commun",
+      "open_access": false
+    },
+    {
+      "id": "MED:41596528",
+      "title": "Hereditary Ataxias: From Pathogenesis and Clinical Features to Neuroimaging, Fluid, and Digital Biomarkers-A Scoping Review.",
+      "year": 2026,
+      "first_author": "Bernardi E",
+      "journal": "Int J Mol Sci",
+      "open_access": true
+    },
+    {
+      "id": "MED:38359552",
+      "title": "Nerve ultrasound in Friedreich's Ataxia: enlarged nerves as a biomarker of disease severity.",
+      "year": 2024,
+      "first_author": "Di Pietro G",
+      "journal": "Clin Neurophysiol",
+      "open_access": false
+    },
+    {
+      "id": "MED:38778374",
+      "title": "An RNA-seq study in Friedreich ataxia patients identified hsa-miR-148a-3p as a putative prognostic biomarker of the disease.",
+      "year": 2024,
+      "first_author": "Vancheri C",
+      "journal": "Hum Genomics",
+      "open_access": true
+    },
+    {
+      "id": "MED:40303283",
+      "title": "Brain microvascular endothelial cells differentiated from a Friedreich's Ataxia patient iPSC are deficient in tight junction protein expression and paracellularly permeable.",
+      "year": 2025,
+      "first_author": "Smith FM",
+      "journal": "Front Mol Neurosci",
+      "open_access": true
+    },
+    {
+      "id": "MED:40498047",
+      "title": "Increase of Plasma Biomarkers in Friedreich's Ataxia: Potential Insights into Disease Pathology.",
+      "year": 2025,
+      "first_author": "Rummey C",
+      "journal": "Mov Disord",
+      "open_access": true
+    },
+    {
+      "id": "MED:38846537",
+      "title": "Long non-coding RNA <i>TUG1</i> is downregulated in Friedreich's ataxia.",
+      "year": 2024,
+      "first_author": "Koka M",
+      "journal": "Brain Commun",
+      "open_access": true
+    },
+    {
+      "id": "MED:41805414",
+      "title": "Identification of Biological Subtypes of Friedreich Ataxia with Structural MRI-based Machine Learning.",
+      "year": 2026,
+      "first_author": "Pontillo G",
+      "journal": "Radiology",
+      "open_access": false
+    },
+    {
+      "id": "MED:42677125",
+      "title": "Predicting disease progression in progressive cerebellar ataxias: integrating clinical, imaging, fluid, genetic, and digital biomarkers.",
+      "year": 2026,
+      "first_author": "Hao Y",
+      "journal": "Front Neurol",
+      "open_access": true
+    },
+    {
+      "id": "MED:37889470",
+      "title": "Therapeutic Biomarkers in Friedreich's Ataxia: a Systematic Review and Meta-analysis.",
+      "year": 2024,
+      "first_author": "Gavriilaki M",
+      "journal": "Cerebellum",
+      "open_access": true
+    },
+    {
+      "id": "MED:40562976",
+      "title": "Pharmacokinetics and Pharmacodynamics of Nomlabofusp in Non-clinical Studies of Friedreich's Ataxia.",
+      "year": 2025,
+      "first_author": "De Toni F",
+      "journal": "AAPS J",
+      "open_access": true
+    },
+    {
+      "id": "MED:40130461",
+      "title": "Peripheral Nerve Involvement in Friedreich's Ataxia Characterized by Quantitative Magnetic Resonance Neurography.",
+      "year": 2025,
+      "first_author": "Jacobi H",
+      "journal": "Eur J Neurol",
+      "open_access": true
+    },
+    {
+      "id": "MED:42603024",
+      "title": "Characterizing Friedreich's ataxia cardiomyopathy with serial cardiac magnetic resonance imagings.",
+      "year": 2026,
+      "first_author": "Gunsaulus ME",
+      "journal": "Ann Pediatr Cardiol",
+      "open_access": true
+    },
+    {
+      "id": "MED:40344214",
+      "title": "Metformin aggravates pancreatitis by regulating the release of oxidised mitochondrial DNA via the frataxin (FXN)/ninjurin 1 (NINJ1) signalling pathway.",
+      "year": 2025,
+      "first_author": "Xin G",
+      "journal": "Br J Pharmacol",
+      "open_access": false
+    },
+    {
+      "id": "MED:42157962",
+      "title": "Development of a secretable frataxin for enhanced efficacy in treating Friedreich's Ataxia.",
+      "year": 2026,
+      "first_author": "DuBreuil DM",
+      "journal": "Mol Ther Adv",
+      "open_access": true
+    },
+    {
+      "id": "MED:38163227",
+      "title": "Clinical stage and plasma neurofilament concentration in adults with Friedreich ataxia.",
+      "year": 2024,
+      "first_author": "Johnsson M",
+      "journal": "Heliyon",
+      "open_access": true
+    },
+    {
+      "id": "MED:40304846",
+      "title": "Safety Monitoring of Omaveloxolone in Friedreich Ataxia: Results from One Year of Clinical Treatment.",
+      "year": 2025,
+      "first_author": "Gunther K",
+      "journal": "Neurol Ther",
+      "open_access": true
+    },
+    {
+      "id": "MED:38759249",
+      "title": "Characterization of clinical serum cardiac biomarker levels in individuals with Friedreich ataxia.",
+      "year": 2024,
+      "first_author": "Lynch DR",
+      "journal": "J Neurol Sci",
+      "open_access": false
+    },
+    {
+      "id": "MED:38644761",
+      "title": "Localized Changes in Dentate Nucleus Shape and Magnetic Susceptibility in Friedreich Ataxia.",
+      "year": 2024,
+      "first_author": "Harding IH",
+      "journal": "Mov Disord",
+      "open_access": false
+    },
+    {
+      "id": "MED:40533692",
+      "title": "Characteristics of Adverse Events and Clinical Risks of Omaveloxolone Based on FAERS Data.",
+      "year": 2025,
+      "first_author": "Liu H",
+      "journal": "Cerebellum",
+      "open_access": false
+    },
+    {
+      "id": "MED:41756699",
+      "title": "Coexistence of Friedreich's Ataxia and Esophageal Cancer: A Case Report.",
+      "year": 2026,
+      "first_author": "Mehrban A",
+      "journal": "Clin Case Rep",
+      "open_access": true
+    },
+    {
+      "id": "MED:38091940",
+      "title": "Cognitive-affective manifestations since premanifest phases of Spinocerebellar Ataxia Type 3/Machado-Joseph Disease.",
+      "year": 2024,
+      "first_author": "Bolzan G",
+      "journal": "Cortex",
+      "open_access": false
+    },
+    {
+      "id": "MED:42371397",
+      "title": "Impact of Omaveloxolone on Serum Lipids in Patients with Friedreich Ataxia: A 1-Year Real-World Analysis.",
+      "year": 2026,
+      "first_author": "Buchinger D",
+      "journal": "CNS Drugs",
+      "open_access": true
+    },
+    {
+      "id": "MED:41769702",
+      "title": "Dimethyl fumarate and mitochondrial physiology: implications for neurological disorders.",
+      "year": 2026,
+      "first_author": "de Oliveira MR.",
+      "journal": "Front Pharmacol",
+      "open_access": true
+    },
+    {
+      "id": "MED:38311797",
+      "title": "Safety, pharmacokinetics, and pharmacodynamics of nomlabofusp (CTI-1601) in Friedreich's ataxia.",
+      "year": 2024,
+      "first_author": "Clayton R",
+      "journal": "Ann Clin Transl Neurol",
+      "open_access": true
+    },
+    {
+      "id": "MED:40983776",
+      "title": "Progress and challenges in sporadic late-onset cerebellar ataxias.",
+      "year": 2025,
+      "first_author": "Wirth T",
+      "journal": "Nat Rev Neurol",
+      "open_access": false
+    },
+    {
+      "id": "MED:40403493",
+      "title": "Neuromagnetic responses to multimodal stimuli in Friedreich's ataxia.",
+      "year": 2025,
+      "first_author": "Visani E",
+      "journal": "Clin Neurophysiol",
+      "open_access": false
+    },
+    {
+      "id": "MED:40966021",
+      "title": "Identification and validation of mitochondrial ferroptosis and immune microenvironment-related hub biomarkers in liver cirrhosis by integrated bioinformatics analysis.",
+      "year": 2025,
+      "first_author": "Deng P",
+      "journal": "Sci Prog",
+      "open_access": true
+    },
+    {
+      "id": "MED:38686449",
+      "title": "Genetic Determined Iron Starvation Signature in Friedreich's Ataxia.",
+      "year": 2024,
+      "first_author": "Grander M",
+      "journal": "Mov Disord",
+      "open_access": false
+    },
+    {
+      "id": "MED:40752035",
+      "title": "Analysis and verification of potential ferroptosis-related diagnostic markers in the early stage of metabolic dysfunction-associated steatohepatitis.",
+      "year": 2025,
+      "first_author": "Li Q",
+      "journal": "Biochem Biophys Res Commun",
+      "open_access": false
+    },
+    {
+      "id": "MED:42236987",
+      "title": "MRI end-points for clinical trials in ataxias: recommendations from the Ataxia Global Initiative MRI Biomarkers Working Group.",
+      "year": 2026,
+      "first_author": "Öz G",
+      "journal": "Nat Rev Neurol",
+      "open_access": false
+    },
+    {
+      "id": "MED:41715124",
+      "title": "Novel genetic variants identification and immune profiling in ataxia telangiectasia patients.",
+      "year": 2026,
+      "first_author": "Jenni R",
+      "journal": "J Transl Med",
+      "open_access": true
+    },
+    {
+      "id": "MED:38520521",
+      "title": "Exploring mitochondrial biomarkers for Friedreich's ataxia: a multifaceted approach.",
+      "year": 2024,
+      "first_author": "Stovickova L",
+      "journal": "J Neurol",
+      "open_access": true
+    },
+    {
+      "id": "MED:40801974",
+      "title": "Best Oculomotor Endpoints for Clinical Trials in Hereditary Ataxias: A Systematic Review and Consensus by the Ataxia Global Initiative Working Group on Digital‑Motor Biomarkers.",
+      "year": 2025,
+      "first_author": "Pretegiani E",
+      "journal": "Cerebellum",
+      "open_access": true
+    },
+    {
+      "id": "MED:40603794",
+      "title": "Iron Metabolism in Cardiovascular Disease.",
+      "year": 2025,
+      "first_author": "Kalousdian A",
+      "journal": "Adv Exp Med Biol",
+      "open_access": false
+    },
+    {
+      "id": "MED:42630618",
+      "title": "2000-2025: Emerging therapies in primary mitochondrial disease: A structured review, horizon scan, and roadmap for the future.",
+      "year": 2026,
+      "first_author": "Karaa A",
+      "journal": "Ther Adv Rare Dis",
+      "open_access": true
+    },
+    {
+      "id": "MED:39920097",
+      "title": "Clinical Assessment of the Drug-Drug Interaction Potential of Omaveloxolone in Healthy Adult Participants.",
+      "year": 2025,
+      "first_author": "Zahir H",
+      "journal": "J Clin Pharmacol",
+      "open_access": true
+    },
+    {
+      "id": "MED:38790666",
+      "title": "Elevated Bile Acid 3β,5α,6β-Trihydroxycholanoyl Glycine in a Subset of Adult Ataxias Including Niemann-Pick Type C.",
+      "year": 2024,
+      "first_author": "Motamed-Gorji N",
+      "journal": "Antioxidants (Basel)",
+      "open_access": true
+    },
+    {
+      "id": "MED:39976332",
+      "title": "Effect of a Supratherapeutic Dose of Omaveloxolone on the Corrected QT Interval in Healthy Participants: A Randomized, Double-Blind, Placebo- and Active-Controlled, Three-Way Crossover Study.",
+      "year": 2025,
+      "first_author": "Zahir H",
+      "journal": "Clin Transl Sci",
+      "open_access": true
+    },
+    {
+      "id": "MED:40120689",
+      "title": "Lipid nanoparticle (LNP) mediated mRNA delivery in neurodegenerative diseases.",
+      "year": 2025,
+      "first_author": "Moosavi SG",
+      "journal": "J Control Release",
+      "open_access": false
+    },
+    {
+      "id": "MED:39219492",
+      "title": "Understanding the mechanisms of food effect on omaveloxolone pharmacokinetics through physiologically based biopharmaceutics modeling.",
+      "year": 2024,
+      "first_author": "Pepin XJH",
+      "journal": "CPT Pharmacometrics Syst Pharmacol",
+      "open_access": true
+    },
+    {
+      "id": "MED:40119735",
+      "title": "Neuroimaging Biomarkers for Friedreich Ataxia: A Cross-Sectional Analysis of the TRACK-FA Study.",
+      "year": 2025,
+      "first_author": "Georgiou-Karistianis N",
+      "journal": "Ann Neurol",
+      "open_access": true
+    },
+    {
+      "id": "MED:39308341",
+      "title": "Determination of Vatiquinone Drug-Drug Interactions, as CYP450 Perpetrator and Victim, Using Physiologically Based Pharmacokinetic (PBPK) Modeling and Simulation.",
+      "year": 2025,
+      "first_author": "Lee L",
+      "journal": "J Clin Pharmacol",
+      "open_access": true
+    },
+    {
+      "id": "MED:38837775",
+      "title": "Relative Bioavailability of Omaveloxolone When Capsules Are Sprinkled Over and Mixed in Applesauce Compared With Administration as Intact Omaveloxolone Capsules: A Phase 1, Randomized, Open-Label, Single-Dose, Crossover Study in Healthy Adults.",
+      "year": 2024,
+      "first_author": "Hynes SM",
+      "journal": "J Clin Pharmacol",
+      "open_access": false
+    },
+    {
+      "id": "MED:39583293",
+      "title": "Abnormal visual cortex activity using functional magnetic resonance imaging in treatment resistant photophobia in Friedreich Ataxia.",
+      "year": 2024,
+      "first_author": "Gunawardene AN",
+      "journal": "Am J Ophthalmol Case Rep",
+      "open_access": true
+    },
+    {
+      "id": "MED:37219716",
+      "title": "A Milestone in the Treatment of Ataxias: Approval of Omaveloxolone for Friedreich Ataxia.",
+      "year": 2024,
+      "first_author": "Subramony SH",
+      "journal": "Cerebellum",
+      "open_access": false
+    }
+  ],
+  "task": "L-002"
+}

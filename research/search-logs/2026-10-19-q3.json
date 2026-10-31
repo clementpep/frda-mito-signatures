@@ -1,0 +1,265 @@
+{
+  "query": "(TITLE_ABS:Friedreich* OR TITLE_ABS:FRDA OR TITLE_ABS:frataxin OR TITLE_ABS:FXN) AND (TITLE_ABS:GSE* OR TITLE_ABS:\"Gene Expression Omnibus\" OR TITLE_ABS:\"publicly available\" OR TITLE_ABS:\"public data*\" OR TITLE_ABS:reanaly* OR TITLE_ABS:re-analy* OR TITLE_ABS:meta-analys* OR TITLE_ABS:dataset*) AND PUB_YEAR:[2005 TO 2026] AND LANG:eng AND (SRC:MED OR SRC:PPR)",
+  "date": "2026-10-19",
+  "hit_count": 32,
+  "retrieved": 32,
+  "results": [
+    {
+      "id": "MED:42803824",
+      "title": "CTCF-FXN regulatory axis plays critical roles in clinical assessments and disease progression of primary open-angle glaucoma.",
+      "year": 2026,
+      "first_author": "Cai D",
+      "journal": "J Mol Med (Berl)",
+      "open_access": true
+    },
+    {
+      "id": "MED:42268757",
+      "title": "Domain Adaptation for IMU Data to Enhance Objective Assessment of Friedreich Ataxia.",
+      "year": 2026,
+      "first_author": "Tran M",
+      "journal": "IEEE J Biomed Health Inform",
+      "open_access": false
+    },
+    {
+      "id": "MED:36928898",
+      "title": "A Novel Metric for Predicting Severity of Disease Features in Friedreich's Ataxia.",
+      "year": 2023,
+      "first_author": "Rodden LN",
+      "journal": "Mov Disord",
+      "open_access": false
+    },
+    {
+      "id": "MED:40966021",
+      "title": "Identification and validation of mitochondrial ferroptosis and immune microenvironment-related hub biomarkers in liver cirrhosis by integrated bioinformatics analysis.",
+      "year": 2025,
+      "first_author": "Deng P",
+      "journal": "Sci Prog",
+      "open_access": true
+    },
+    {
+      "id": "MED:38846537",
+      "title": "Long non-coding RNA <i>TUG1</i> is downregulated in Friedreich's ataxia.",
+      "year": 2024,
+      "first_author": "Koka M",
+      "journal": "Brain Commun",
+      "open_access": true
+    },
+    {
+      "id": "MED:41640354",
+      "title": "Diagnostic yield of genome sequencing in children with progressive movement disorders.",
+      "year": 2026,
+      "first_author": "Schierbaum L",
+      "journal": "Brain",
+      "open_access": false
+    },
+    {
+      "id": "MED:42000979",
+      "title": "Meta-analysis reveals a core iron-responsive gene signature in Mycobacterium tuberculosis linking siderophore biosynthesis, virulence, and metabolic adaptation.",
+      "year": 2026,
+      "first_author": "Shankar G",
+      "journal": "Biometals",
+      "open_access": false
+    },
+    {
+      "id": "MED:42057285",
+      "title": "MuFaDDG: a sequence-based multiscale feature fusion framework for protein stability changes prediction.",
+      "year": 2026,
+      "first_author": "Gong J",
+      "journal": "Bioinformatics",
+      "open_access": true
+    },
+    {
+      "id": "MED:40512683",
+      "title": "An overview and survey of US Food and Drug Administration-registered wound imaging devices capable of determining percentage area reduction and/or percentage volume reduction.",
+      "year": 2025,
+      "first_author": "Korzendorfer H",
+      "journal": "Wounds",
+      "open_access": false
+    },
+    {
+      "id": "MED:35677823",
+      "title": "Construction and Analysis of a Joint Diagnosis Model of Random Forest and Artificial Neural Network for Obesity.",
+      "year": 2022,
+      "first_author": "Yu J",
+      "journal": "Front Med (Lausanne)",
+      "open_access": true
+    },
+    {
+      "id": "MED:29125828",
+      "title": "Comprehensive analysis of gene expression patterns in Friedreich's ataxia fibroblasts by RNA sequencing reveals altered levels of protein synthesis factors and solute carriers.",
+      "year": 2017,
+      "first_author": "Napierala JS",
+      "journal": "Dis Model Mech",
+      "open_access": true
+    },
+    {
+      "id": "MED:40752035",
+      "title": "Analysis and verification of potential ferroptosis-related diagnostic markers in the early stage of metabolic dysfunction-associated steatohepatitis.",
+      "year": 2025,
+      "first_author": "Li Q",
+      "journal": "Biochem Biophys Res Commun",
+      "open_access": false
+    },
+    {
+      "id": "MED:35237223",
+      "title": "Downregulation of Three Immune-Specific Core Genes and the Regulatory Pathways in Children and Adult Friedreich's Ataxia: A Comprehensive Analysis Based on Microarray.",
+      "year": 2021,
+      "first_author": "Liu L",
+      "journal": "Front Neurol",
+      "open_access": true
+    },
+    {
+      "id": "MED:41349278",
+      "title": "Real-world evidence supporting orphan drugs approvals for rare neuromuscular disorders in the European Union and the United States: Review of public assessment reports (2015-2025).",
+      "year": 2026,
+      "first_author": "García-Parra B",
+      "journal": "Curr Opin Pharmacol",
+      "open_access": false
+    },
+    {
+      "id": "MED:37414174",
+      "title": "FRDA: Fingerprint Region based Data Augmentation using explainable AI for FTIR based microplastics classification.",
+      "year": 2023,
+      "first_author": "Yan X",
+      "journal": "Sci Total Environ",
+      "open_access": false
+    },
+    {
+      "id": "MED:38082810",
+      "title": "A Bayesian Network Approach for Friedreich Ataxia Severity Classification using Probability Modelling.",
+      "year": 2023,
+      "first_author": "Dissanayake S",
+      "journal": "Annu Int Conf IEEE Eng Med Biol Soc",
+      "open_access": false
+    },
+    {
+      "id": "MED:36059798",
+      "title": "FECH Expression Correlates with the Prognosis and Tumor Immune Microenvironment in Clear Cell Renal Cell Carcinoma.",
+      "year": 2022,
+      "first_author": "Zhong G",
+      "journal": "J Oncol",
+      "open_access": true
+    },
+    {
+      "id": "MED:19104905",
+      "title": "PPAR-gamma agonist Azelaoyl PAF increases frataxin protein and mRNA expression: new implications for the Friedreich's ataxia therapy.",
+      "year": 2009,
+      "first_author": "Marmolino D",
+      "journal": "Cerebellum",
+      "open_access": false
+    },
+    {
+      "id": "MED:29509186",
+      "title": "Small RNA-seq analysis of circulating miRNAs to identify phenotypic variability in Friedreich's ataxia patients.",
+      "year": 2018,
+      "first_author": "Seco-Cervera M",
+      "journal": "Sci Data",
+      "open_access": true
+    },
+    {
+      "id": "MED:34372915",
+      "title": "Genome-wide sequencing as a first-tier screening test for short tandem repeat expansions.",
+      "year": 2021,
+      "first_author": "Rajan-Babu IS",
+      "journal": "Genome Med",
+      "open_access": true
+    },
+    {
+      "id": "MED:33794814",
+      "title": "An energy metabolism-based eight-gene signature correlates with the clinical outcome of esophagus carcinoma.",
+      "year": 2021,
+      "first_author": "Zheng W",
+      "journal": "BMC Cancer",
+      "open_access": true
+    },
+    {
+      "id": "MED:40326640",
+      "title": "Phenotypic Heterogeneity in Genetic and Acquired Pediatric Cerebellar Disorders.",
+      "year": 2025,
+      "first_author": "Granath K",
+      "journal": "Mov Disord",
+      "open_access": true
+    },
+    {
+      "id": "MED:20970754",
+      "title": "Protocol proposal for Friedreich ataxia molecular diagnosis using fluorescent and triplet repeat primed polymerase chain reaction.",
+      "year": 2010,
+      "first_author": "Xunclà M",
+      "journal": "Transl Res",
+      "open_access": false
+    },
+    {
+      "id": "MED:28695363",
+      "title": "How does performance of the Friedreich Ataxia Functional Composite compare to rating scales?",
+      "year": 2017,
+      "first_author": "Tai G",
+      "journal": "J Neurol",
+      "open_access": false
+    },
+    {
+      "id": "MED:38710966",
+      "title": "Development and Validation of SCACOMS, a Composite Scale for Assessing Disease Progression and Treatment Effects in Spinocerebellar Ataxia.",
+      "year": 2024,
+      "first_author": "L'Italien G",
+      "journal": "Cerebellum",
+      "open_access": true
+    },
+    {
+      "id": "MED:30483293",
+      "title": "Differential Diel Translation of Transcripts With Roles in the Transfer and Utilization of Iron-Sulfur Clusters in Arabidopsis.",
+      "year": 2018,
+      "first_author": "Zhang H",
+      "journal": "Front Plant Sci",
+      "open_access": true
+    },
+    {
+      "id": "MED:31243847",
+      "title": "Predicting changes in protein stability caused by mutation using sequence-and structure-based methods in a CAGI5 blind challenge.",
+      "year": 2019,
+      "first_author": "Strokach A",
+      "journal": "Hum Mutat",
+      "open_access": false
+    },
+    {
+      "id": "MED:36358942",
+      "title": "Blood Transcript Biomarkers Selected by Machine Learning Algorithm Classify Neurodegenerative Diseases including Alzheimer's Disease.",
+      "year": 2022,
+      "first_author": "Huseby CJ",
+      "journal": "Biomolecules",
+      "open_access": true
+    },
+    {
+      "id": "MED:25359407",
+      "title": "Prioritizing targets for structural biology through the lens of proteomics: the archaeal protein TGAM_1934 from Thermococcus gammatolerans.",
+      "year": 2015,
+      "first_author": "Yang YS",
+      "journal": "Proteomics",
+      "open_access": false
+    },
+    {
+      "id": "MED:27378925",
+      "title": "Downregulation of GSTK1 Is a Common Mechanism Underlying Hypertrophic Cardiomyopathy.",
+      "year": 2016,
+      "first_author": "Sasagawa S",
+      "journal": "Front Pharmacol",
+      "open_access": true
+    },
+    {
+      "id": "MED:23090212",
+      "title": "Neuroanatomical correlates of depression in Friedreich's ataxia: a voxel-based morphometry study.",
+      "year": 2013,
+      "first_author": "Silva CB",
+      "journal": "Cerebellum",
+      "open_access": false
+    },
+    {
+      "id": "MED:23548700",
+      "title": "Epidemiology of hereditary ataxias in Spain: hospital discharge registry and population-based mortality study.",
+      "year": 2013,
+      "first_author": "Alonso V",
+      "journal": "Neuroepidemiology",
+      "open_access": false
+    }
+  ],
+  "task": "L-002"
+}
