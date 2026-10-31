@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-30T06:20:37+00:00",
-  "commit": "2fa7ad0a0a09e67f2293a98a468fc7baeb40e87a",
+  "generated_at": "2026-10-31T02:02:08+00:00",
+  "commit": "3ef08c781e9913936531df5366ad567359beefe7",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -16,14 +16,14 @@
     "repo_url": "https://github.com/clementpep/frda-mito-signatures"
   },
   "progress": {
-    "total": 46,
+    "total": 47,
     "done": 8,
     "in_review": 0,
     "ready": 31,
     "changes_requested": 0,
     "blocked": 0,
     "needs_human": 1,
-    "proposed": 6
+    "proposed": 7
   },
   "milestones": [
     {
@@ -40,7 +40,7 @@
       "goal": "Map what is already known, widen the public data base, derive a candidate mitochondrial signature.",
       "status": "in_progress",
       "tasks_done": 7,
-      "tasks_total": 25
+      "tasks_total": 26
     },
     {
       "id": "M3",
@@ -443,6 +443,14 @@
       "status": "proposed",
       "kind": "literature",
       "track": "literature"
+    },
+    {
+      "id": "FIX-watch-lag",
+      "title": "Weekly watch window must tolerate Europe PMC index lag",
+      "milestone": "M2",
+      "status": "proposed",
+      "kind": "infra",
+      "track": "literature"
     }
   ],
   "claims": [],
@@ -464,6 +472,15 @@
       "attempt": 1,
       "acceptance_met": "2/2",
       "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/FIX-L002a-818a968.md"
+    },
+    {
+      "task": "W-2026-W43",
+      "date": "2026-10-20",
+      "verdict": "CHANGES_REQUESTED",
+      "summary": "Watch reports 0 papers; the same Q2 query now returns 2 in-window FRDA papers that the next 8-day window will not catch",
+      "attempt": 1,
+      "acceptance_met": "5/6",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/W-2026-W43-8e5d9fa.md"
     },
     {
       "task": "L-002",
@@ -617,15 +634,6 @@
       "attempt": 2,
       "acceptance_met": "4/5",
       "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-021-d78f70a.md"
-    },
-    {
-      "task": "T-001",
-      "date": "2026-10-16",
-      "verdict": "PASS",
-      "summary": "P-001 sample metadata and both dataset cards verified against raw SOFT files on fresh data; no blocking finding",
-      "attempt": 1,
-      "acceptance_met": "4/4",
-      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-001-de7d549.md"
     }
   ],
   "research": {
@@ -637,8 +645,8 @@
       "writing": 0.0
     },
     "corpus": {
-      "total": 1277,
-      "to_screen": 1277,
+      "total": 1279,
+      "to_screen": 1279,
       "excluded": 0,
       "to_read": 0,
       "read": 0
@@ -651,6 +659,16 @@
     }
   },
   "news": [
+    {
+      "id": "N-20261019-semaine-w2026-w43",
+      "date": "2026-10-19",
+      "kind": "weekly",
+      "title": "Semaine calme : le protocole est prêt, la bibliothèque compte 1279 articles à trier",
+      "body": "**Ce qu'on a fait**\nLe protocole de la recherche bibliographique a été accepté après vérification, puis les recherches\nelles-mêmes (tâche L-002) ont été faites et acceptées : la bibliothèque du projet contient 1279\narticles, tous encore à trier. Cinq autres tâches de mise en place ont aussi été acceptées. La veille\nde la semaine a trouvé 2 nouveaux articles sur l'ataxie de Friedreich, publiés entre le 11 et le\n19 octobre : ils étaient absents lors du premier passage car la base de données les indexe avec un\nléger retard, et ils sont apparus à la relecture. Aucun nouveau jeu de données public n'a été\ntrouvé, et les deux jeux déjà utilisés n'ont pas changé.\n\n**Ce que ça veut dire**\nLe tri des articles (tâche L-003) n'a pas encore commencé : aucun article n'a été lu ni jugé pertinent.\nLa veille ne couvre que les articles en anglais déjà publiés dans les revues indexées ; les préprints\n(articles pas encore relus par des pairs) n'y sont pas, et 2 existent pour cette semaine. Une décision\nest attendue pour les inclure.\n\n**Ce que ça ne veut pas dire**\nIl n'y a toujours aucun résultat scientifique et aucune piste n'est retenue. Les 2 articles trouvés sont\nsimplement ajoutés à la file de tri ; on ne sait pas encore s'ils sont utiles. Le projet ne produit pas\nde traitement. Aucun conseil médical.\n\n**Et ensuite**\nTrier les articles (L-003), décider du traitement des préprints, puis lire les plus utiles.",
+      "evidence": null,
+      "evidence_plain": null,
+      "claims": []
+    },
     {
       "id": "N-20261017-lancement",
       "date": "2026-10-17",
