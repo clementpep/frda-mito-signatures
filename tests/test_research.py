@@ -431,6 +431,29 @@ def test_plan_window_floor_and_pivot_checks(tmp_path):
     assert "budget_window" in probs and "below its floor" in probs and "pivot" in probs
 
 
+def test_supervisor_pivot_needs_the_owners_delegation(tmp_path):
+    owner = (
+        "---\nid: RD-003\ndate: 2026-10-31\nkind: arbitration\nsummary: delegation\n"
+        "needs_human: true\ndecided_by: {by}\n---\n"
+    )
+    pivot = (
+        "---\nid: RD-004\ndate: 2026-11-02\nkind: pivot\nsummary: muscle first\n"
+        "needs_human: false\ndelegated_by: {ref}\n---\n"
+    )
+    cases = [("owner", "RD-003", False), ("supervisor", "RD-003", True), ("owner", "RD-009", True)]
+    for by, ref, flagged in cases:
+        write(
+            tmp_path,
+            decisions={
+                "RD-003.md": owner.format(by=by),
+                "RD-004.md": pivot.format(ref=ref),
+            },
+        )
+        probs = " | ".join(research.problems(tmp_path))
+        assert ("RD-004: delegated_by" in probs) is flagged, (by, ref, probs)
+        assert "must set needs_human" not in probs  # the delegation, not its absence, is checked
+
+
 # --- attempt-3 findings: citation markers, path agreement, block boundaries -------------------
 
 XREF_BODY = (

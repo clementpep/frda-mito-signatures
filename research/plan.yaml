@@ -8,8 +8,8 @@ budget_bounds: [0.0, 0.8]
 track_floor: {main: 0.2}   # the main line never starves (M1 reproductions, then the active idea)
 max_active_ideas: 1          # one main line at a time; others wait as candidates
 track_budget:
-  literature: 0.6
-  main: 0.4
+  literature: 0.5
+  main: 0.5
   exploration: 0.0
   writing: 0.0
 phases:
