@@ -128,12 +128,16 @@ Push when, and only when:
    - verifier: PASS of a task that adds or changes a claim, closes a milestone, or carries a
      `finding` news item (the result reaches `main` once the landing workflow runs).
 2. **New decision for the owner** — prefix `⚠️ NEEDS HUMAN`, only in the run that **creates** it:
-   - a verifier `NEEDS_HUMAN` verdict (committed once, so notified once);
+   - a verifier `NEEDS_HUMAN` verdict whose blocker is owner-reserved (RD-003 item 2), committed
+     once so notified once; a task that only exhausted `max_attempts` is arbitrated by the weekly
+     supervision, silently;
    - `main` red in the verifier's health check (STEP 9) — every run while it lasts: it is an outage;
    - a landing blocked: only when the `verified/*` branch's last commit is between 2 h and 26 h
      old (first detection), never again for the same branch;
-   - a pivot asked by the supervision, or a decision that is **not** already listed under
-     "Owner decisions pending" in the previous digest.
+   - an owner-reserved question (RD-003 item 2: leaving FRDA / public non-DUA data, DUA,
+     unclear terms, authorship and submission) that is **not** already listed under "Owner
+     decisions pending" in the previous digest. Arbitrations are decided by the supervision
+     (RD-003), never sent as questions.
    Decisions already pending (RD with `needs_human: true`, tasks `needs_human`, open questions of
    the monthly report) are **never** re-notified: they stay listed in each weekly digest.
 3. A routine that cannot run at all (P0 403, P1 setup failure) — `⚠️ NEEDS HUMAN`, every run.
@@ -162,9 +166,10 @@ A blocker that the loop can remove itself is not a question for the owner.
   task, and in addition checks that it is the named prerequisite, copied verbatim, and that it does
   not loosen any gate, test, tolerance or wording rule (P5.5): auto-promotion never covers that.
   When it lands, `T` comes back to the worker with `merge_main: true`.
-- **Never auto-promoted**: scientific scope (research questions, inclusion criteria, data sources),
-  pivots, terms of use, authorship and publication (T-019), budgets and phase outside
-  `budget_bounds`, anything a rule above reserves to the owner. These stay `needs_human` / pending
-  decisions, listed in the digest, notified once (P8).
+- **The worker never auto-promotes** scientific scope (research questions, inclusion criteria,
+  data sources), budgets or phases: those are arbitrations for the weekly supervision, which takes
+  them itself (owner delegation, RD-003). Owner-reserved (RD-003 item 2): leaving FRDA or public
+  non-DUA data, DUA/partnerships, unclear terms of use, authorship and submission (T-019) — these
+  stay `needs_human`, listed in the digest, notified once (P8).
 - **Do not stop on one blocked branch.** After parking, re-run `frda autonomy-status` and take the
   next action in the same run (at most one park and one piece of work per run).

@@ -157,7 +157,8 @@ nothing (L-002 run: 49 preprint hits for 2024–2026 without `LANG:eng`, 0 with 
 finding of verification L-002-bd88fc5 and question 2 of the October report, both on branches
 `auto/L-002` and `auto/W-2026-W44` at the time).
 Decided by the owner on 2026-10-28, before any screening (L-003 not started).
-Change, from L-002's re-hand-over on:
+Change (L-002 landed on 2026-10-30 without it; the preprint arm is task L-002b, before screening
+L-003; confirmed by the owner in RD-003):
 - each query Qx above is also run as a **preprint arm** `Qx-ppr`: the same text with
   `LANG:eng AND (SRC:MED OR SRC:PPR)` replaced by `SRC:PPR`, same year windows; its search log is
   saved separately (slug suffix `-ppr`). The PubMed arm (query text above) is unchanged;

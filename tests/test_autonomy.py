@@ -95,41 +95,41 @@ def test_blocked_branch_frees_the_worker_until_its_prerequisite_lands(sandbox, t
     assert status(sandbox)["next_for_worker"]["action"] == "address_changes"
 
     # The worker cannot fix it itself: it parks the branch on the verifier's FIX task.
-    git(sandbox, "commit", "-q", "--allow-empty", "-m", "blocked(L-002): needs FIX-L002a")
+    git(sandbox, "commit", "-q", "--allow-empty", "-m", "blocked(L-002): needs FIX-T999a")
     git(sandbox, "push", "-q", "origin", "auto/L-002")
     git(sandbox, "fetch", "-q", "origin")
     st = status(sandbox)
     assert st["wip"] == 0
-    assert st["blocked"] == ["auto/L-002 (needs FIX-L002a)"]
+    assert st["blocked"] == ["auto/L-002 (needs FIX-T999a)"]
     assert st["next_for_worker"] == {
         "action": "start_dependency",
-        "task": "FIX-L002a",
-        "branch": "auto/FIX-L002a",
+        "task": "FIX-T999a",
+        "branch": "auto/FIX-T999a",
         "for": "L-002",
         "source_branch": "auto/L-002",
     }
     assert st["next_for_verifier"] is None
 
     # Prerequisite in flight: not started twice, and it is what the verifier sees next.
-    git(sandbox, "checkout", "-q", "-b", "auto/FIX-L002a", "main")
-    commit(sandbox, "work(FIX-L002a): fix", "h.txt")
-    git(sandbox, "push", "-q", "origin", "auto/FIX-L002a")
+    git(sandbox, "checkout", "-q", "-b", "auto/FIX-T999a", "main")
+    commit(sandbox, "work(FIX-T999a): fix", "h.txt")
+    git(sandbox, "push", "-q", "origin", "auto/FIX-T999a")
     git(sandbox, "fetch", "-q", "origin")
     st = status(sandbox)
     assert st["next_for_worker"] is None  # WIP 1/1 taken by the prerequisite
-    assert st["next_for_verifier"]["task"] == "FIX-L002a"
+    assert st["next_for_verifier"]["task"] == "FIX-T999a"
 
     # Prerequisite done on main: the parked branch is the worker's again, main merged first.
     git(sandbox, "checkout", "-q", "main")
     bl = sandbox / "autonomy" / "backlog.yaml"
     bl.write_text(
-        bl.read_text() + "  - id: FIX-L002a\n    title: fix\n    milestone: M2\n    status: done\n"
+        bl.read_text() + "  - id: FIX-T999a\n    title: fix\n    milestone: M2\n    status: done\n"
         "    priority: 1\n    kind: infra\n    track: literature\n    goal: g\n"
         "    acceptance: [a]\n"
     )
-    git(sandbox, "merge", "-q", "--no-edit", "auto/FIX-L002a")
+    git(sandbox, "merge", "-q", "--no-edit", "auto/FIX-T999a")
     git(sandbox, "add", "-A")
-    git(sandbox, "commit", "-q", "-m", "land(FIX-L002a): merge")
+    git(sandbox, "commit", "-q", "-m", "land(FIX-T999a): merge")
     git(sandbox, "push", "-q", "origin", "main")
     git(sandbox, "fetch", "-q", "origin")
     st = status(sandbox)

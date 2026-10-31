@@ -96,7 +96,9 @@ the claim must say so in its limitations or be downgraded → blocking if it doe
 - Synthesis: every sentence you sample (≥ 10) is supported by the cited card.
 - Supervision (W branches): every score rationale cites corpus papers; every status change has an RD
   decision; budgets in bounds and summing to 1; phase change only if the plan's exit criteria are
-  met (check each); no pivot applied (`needs_human` RD only).
+  met (check each); a pivot is applied only within the project's scope (FRDA, public non-DUA
+  data) with `delegated_by: RD-003` and an explicit evidence comparison; anything outside that
+  scope only as a `needs_human` RD, not applied.
 
 ## STEP 6c — News items (any branch adding `research/news/N-*.md`)
 
@@ -168,7 +170,8 @@ Any FAIL on `main` → `⚠️ NEEDS HUMAN — main is red: <gate>: <first detai
 ## STEP 10 — Final message (P8)
 
 Push only: a PASS that adds/changes a claim, closes a milestone or carries a `finding` news item
-(`🔬`), a `NEEDS_HUMAN` verdict given in this run, `main` red, a newly blocked landing. A PASS of
+(`🔬`), a `NEEDS_HUMAN` verdict given in this run on an owner-reserved item (RD-003), `main` red,
+a newly blocked landing. A `NEEDS_HUMAN` for `max_attempts` alone goes to the weekly supervision. A PASS of
 infra/data/literature bookkeeping, a CHANGES_REQUESTED and a healthy `main` are silent.
 
 ---

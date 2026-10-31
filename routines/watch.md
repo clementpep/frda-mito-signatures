@@ -54,8 +54,10 @@ New work suggested by steps 1–3 is added to `autonomy/backlog.yaml` as `status
 - claims added / changed, by status (reproduced / refuted / new / not_demonstrated);
 - drift, new datasets, novelty alerts;
 - milestone progress and the next 3 tasks the worker will take;
-- **Owner decisions pending**: one list, each with its id (RD / task), the question in one line and
-  the date it was first asked. Mark `NEW` the ones absent from the previous digest's list; parked
+- **Owner decisions pending**: one list — only RDs with `needs_human: true` and no
+  `decided_by: owner`, and owner-reserved tasks (RD-003 item 2, e.g. T-019) — each with its id, the
+  question in one line and the date it was first asked. Arbitrations you took go under
+  "Decisions taken this week" (RD ids), not here. Mark `NEW` the ones absent from the previous digest's list; parked
   branches (`blocked`) are listed with their prerequisite, not as owner decisions.
 Numbers and links only; no hype.
 
@@ -71,7 +73,7 @@ git add -A && git commit -m "work($W): weekly watch, digest and supervision"
 bash scripts/push-branch.sh HEAD "auto/$W"
 ```
 Final message: `✅ frda-watch — <W>: <n> papers, <n> datasets, <n> alerts; RD-xxx: <one line>`
-(or `⚠️ NEEDS HUMAN — <the pivot question>` when the supervision asks for a pivot; mention the
+(or `⚠️ NEEDS HUMAN — <the question>` only for an owner-reserved item, RD-003; mention the
 monthly report when one was written).
 
 Notification (P8): push **only** if this week has a trouvaille (≥ 1 novelty alert, ≥ 1 new dataset
