@@ -1,0 +1,793 @@
+{
+  "query": "(TITLE_ABS:Friedreich* OR TITLE_ABS:FRDA OR TITLE_ABS:frataxin OR TITLE_ABS:FXN) AND (TITLE_ABS:transcript* OR TITLE_ABS:\"RNA-seq\" OR TITLE_ABS:\"RNA sequencing\" OR TITLE_ABS:\"gene expression\" OR TITLE_ABS:microarray OR TITLE_ABS:\"differentially expressed\") AND PUB_YEAR:[2012 TO 2016] AND LANG:eng AND (SRC:MED OR SRC:PPR)",
+  "date": "2026-10-19",
+  "hit_count": 98,
+  "retrieved": 98,
+  "results": [
+    {
+      "id": "MED:26170003",
+      "title": "Gene Expression Profile in Peripheral Blood Cells of Friedreich Ataxia Patients.",
+      "year": 2016,
+      "first_author": "Abrahao A",
+      "journal": "Cerebellum",
+      "open_access": false
+    },
+    {
+      "id": "MED:26401053",
+      "title": "Expanded GAA repeats impede transcription elongation through the FXN gene and induce transcriptional silencing that is restricted to the FXN locus.",
+      "year": 2015,
+      "first_author": "Li Y",
+      "journal": "Hum Mol Genet",
+      "open_access": false
+    },
+    {
+      "id": "MED:27386501",
+      "title": "Deep sequencing of mitochondrial genomes reveals increased mutation load in Friedreich's ataxia.",
+      "year": 2016,
+      "first_author": "Bhalla AD",
+      "journal": "Ann Clin Transl Neurol",
+      "open_access": true
+    },
+    {
+      "id": "MED:28392990",
+      "title": "Translating HDAC inhibitors in Friedreich's ataxia.",
+      "year": 2016,
+      "first_author": "Soragni E",
+      "journal": "Expert Opin Orphan Drugs",
+      "open_access": false
+    },
+    {
+      "id": "MED:26027909",
+      "title": "Delivery of the 135 kb human frataxin genomic DNA locus gives rise to different frataxin isoforms.",
+      "year": 2015,
+      "first_author": "Pérez-Luz S",
+      "journal": "Genomics",
+      "open_access": false
+    },
+    {
+      "id": "MED:27082765",
+      "title": "Development of an AAV9 coding for a 3XFLAG-TALEfrat#8-VP64 able to increase in vivo the human frataxin in YG8R mice.",
+      "year": 2016,
+      "first_author": "Chapdelaine P",
+      "journal": "Gene Ther",
+      "open_access": true
+    },
+    {
+      "id": "MED:27425605",
+      "title": "Stalled DNA Replication Forks at the Endogenous GAA Repeats Drive Repeat Expansion in Friedreich's Ataxia Cells.",
+      "year": 2016,
+      "first_author": "Gerhardt J",
+      "journal": "Cell Rep",
+      "open_access": false
+    },
+    {
+      "id": "MED:23859350",
+      "title": "Increasing frataxin gene expression with histone deacetylase inhibitors as a therapeutic approach for Friedreich's ataxia.",
+      "year": 2013,
+      "first_author": "Gottesfeld JM",
+      "journal": "J Neurochem",
+      "open_access": false
+    },
+    {
+      "id": "MED:25814655",
+      "title": "Expanded GAA repeats impair FXN gene expression and reposition the FXN locus to the nuclear lamina in single cells.",
+      "year": 2015,
+      "first_author": "Silva AM",
+      "journal": "Hum Mol Genet",
+      "open_access": false
+    },
+    {
+      "id": "MED:27615158",
+      "title": "Alleviating GAA Repeat Induced Transcriptional Silencing of the Friedreich's Ataxia Gene During Somatic Cell Reprogramming.",
+      "year": 2016,
+      "first_author": "Polak U",
+      "journal": "Stem Cells Dev",
+      "open_access": false
+    },
+    {
+      "id": "MED:26883577",
+      "title": "Intrathecal delivery of frataxin mRNA encapsulated in lipid nanoparticles to dorsal root ganglia as a potential therapeutic for Friedreich's ataxia.",
+      "year": 2016,
+      "first_author": "Nabhan JF",
+      "journal": "Sci Rep",
+      "open_access": true
+    },
+    {
+      "id": "MED:25798128",
+      "title": "Mechanism of Action of 2-Aminobenzamide HDAC Inhibitors in Reversing Gene Silencing in Friedreich's Ataxia.",
+      "year": 2015,
+      "first_author": "Soragni E",
+      "journal": "Front Neurol",
+      "open_access": true
+    },
+    {
+      "id": "MED:23943791",
+      "title": "A GAA repeat expansion reporter model of Friedreich's ataxia recapitulates the genomic context and allows rapid screening of therapeutic compounds.",
+      "year": 2013,
+      "first_author": "Lufino MM",
+      "journal": "Hum Mol Genet",
+      "open_access": false
+    },
+    {
+      "id": "MED:24917884",
+      "title": "Epigenetic-based therapies for Friedreich ataxia.",
+      "year": 2014,
+      "first_author": "Sandi C",
+      "journal": "Front Genet",
+      "open_access": true
+    },
+    {
+      "id": "MED:23996585",
+      "title": "Quantitative profiling and identification of differentially expressed plasma proteins in Friedreich's ataxia.",
+      "year": 2013,
+      "first_author": "Swarup V",
+      "journal": "J Neurosci Res",
+      "open_access": false
+    },
+    {
+      "id": "MED:25159818",
+      "title": "Epigenetic therapy for Friedreich ataxia.",
+      "year": 2014,
+      "first_author": "Soragni E",
+      "journal": "Ann Neurol",
+      "open_access": false
+    },
+    {
+      "id": "MED:23418481",
+      "title": "Pharmacological screening using an FXN-EGFP cellular genomic reporter assay for the therapy of Friedreich ataxia.",
+      "year": 2013,
+      "first_author": "Li L",
+      "journal": "PLoS One",
+      "open_access": true
+    },
+    {
+      "id": "MED:24411698",
+      "title": "Beyond loss of frataxin: the complex molecular pathology of Friedreich ataxia.",
+      "year": 2014,
+      "first_author": "Evans-Galea MV",
+      "journal": "Discov Med",
+      "open_access": false
+    },
+    {
+      "id": "MED:26375377",
+      "title": "Friedreich Ataxia: From the Eye of a Molecular Biologist.",
+      "year": 2015,
+      "first_author": "Muthuswamy S",
+      "journal": "Neurologist",
+      "open_access": false
+    },
+    {
+      "id": "MED:24705504",
+      "title": "Gene expression profiling of mitochondrial oxidative phosphorylation (OXPHOS) complex I in Friedreich ataxia (FRDA) patients.",
+      "year": 2014,
+      "first_author": "Salehi MH",
+      "journal": "PLoS One",
+      "open_access": true
+    },
+    {
+      "id": "MED:24667739",
+      "title": "Rescue of the Friedreich ataxia knockout mutation in transgenic mice containing an FXN-EGFP genomic reporter.",
+      "year": 2014,
+      "first_author": "Sarsero JP",
+      "journal": "PLoS One",
+      "open_access": true
+    },
+    {
+      "id": "MED:23533785",
+      "title": "Epigenetics in Friedreich's Ataxia: Challenges and Opportunities for Therapy.",
+      "year": 2013,
+      "first_author": "Sandi C",
+      "journal": "Genet Res Int",
+      "open_access": true
+    },
+    {
+      "id": "MED:23269675",
+      "title": "Missense mutations linked to friedreich ataxia have different but synergistic effects on mitochondrial frataxin isoforms.",
+      "year": 2013,
+      "first_author": "Li H",
+      "journal": "J Biol Chem",
+      "open_access": false
+    },
+    {
+      "id": "MED:26842135",
+      "title": "Activating frataxin expression by repeat-targeted nucleic acids.",
+      "year": 2016,
+      "first_author": "Li L",
+      "journal": "Nat Commun",
+      "open_access": true
+    },
+    {
+      "id": "MED:22447512",
+      "title": "Interferon gamma upregulates frataxin and corrects the functional deficits in a Friedreich ataxia model.",
+      "year": 2012,
+      "first_author": "Tomassini B",
+      "journal": "Hum Mol Genet",
+      "open_access": true
+    },
+    {
+      "id": "MED:22414340",
+      "title": "Is Friedreich ataxia an epigenetic disorder?",
+      "year": 2012,
+      "first_author": "Kumari D",
+      "journal": "Clin Epigenetics",
+      "open_access": true
+    },
+    {
+      "id": "MED:23382970",
+      "title": "Genetic variations creating microRNA target sites in the FXN 3'-UTR affect frataxin expression in Friedreich ataxia.",
+      "year": 2013,
+      "first_author": "Bandiera S",
+      "journal": "PLoS One",
+      "open_access": true
+    },
+    {
+      "id": "MED:24971578",
+      "title": "MutLα heterodimers modify the molecular phenotype of Friedreich ataxia.",
+      "year": 2014,
+      "first_author": "Ezzatizadeh V",
+      "journal": "PLoS One",
+      "open_access": true
+    },
+    {
+      "id": "MED:27941692",
+      "title": "Liver Growth Factor (LGF) Upregulates Frataxin Protein Expression and Reduces Oxidative Stress in Friedreich's Ataxia Transgenic Mice.",
+      "year": 2016,
+      "first_author": "Calatrava-Ferreras L",
+      "journal": "Int J Mol Sci",
+      "open_access": true
+    },
+    {
+      "id": "MED:24586819",
+      "title": "Generation and characterisation of Friedreich ataxia YG8R mouse fibroblast and neural stem cell models.",
+      "year": 2014,
+      "first_author": "Sandi C",
+      "journal": "PLoS One",
+      "open_access": true
+    },
+    {
+      "id": "MED:22113996",
+      "title": "A TAT-frataxin fusion protein increases lifespan and cardiac function in a conditional Friedreich's ataxia mouse model.",
+      "year": 2012,
+      "first_author": "Vyas PM",
+      "journal": "Hum Mol Genet",
+      "open_access": false
+    },
+    {
+      "id": "MED:24327207",
+      "title": "Modeling of Friedreich ataxia-related iron overloading cardiomyopathy using patient-specific-induced pluripotent stem cells.",
+      "year": 2014,
+      "first_author": "Lee YK",
+      "journal": "Pflugers Arch",
+      "open_access": false
+    },
+    {
+      "id": "MED:25929520",
+      "title": "Novel aberrant genetic and epigenetic events in Friedreich's ataxia.",
+      "year": 2015,
+      "first_author": "Quesada MP",
+      "journal": "Exp Cell Res",
+      "open_access": false
+    },
+    {
+      "id": "MED:23474817",
+      "title": "Heterochromatinization induced by GAA-repeat hyperexpansion in Friedreich's ataxia can be reduced upon HDAC inhibition by vitamin B3.",
+      "year": 2013,
+      "first_author": "Chan PK",
+      "journal": "Hum Mol Genet",
+      "open_access": false
+    },
+    {
+      "id": "MED:26717909",
+      "title": "MiRNA-145 Regulates the Development of Congenital Heart Disease Through Targeting FXN.",
+      "year": 2016,
+      "first_author": "Wang L",
+      "journal": "Pediatr Cardiol",
+      "open_access": false
+    },
+    {
+      "id": "MED:26849417",
+      "title": "Gene Transfer of Brain-derived Neurotrophic Factor (BDNF) Prevents Neurodegeneration Triggered by FXN Deficiency.",
+      "year": 2016,
+      "first_author": "Katsu-Jiménez Y",
+      "journal": "Mol Ther",
+      "open_access": false
+    },
+    {
+      "id": "MED:24737321",
+      "title": "Altered nucleosome positioning at the transcription start site and deficient transcriptional initiation in Friedreich ataxia.",
+      "year": 2014,
+      "first_author": "Chutake YK",
+      "journal": "J Biol Chem",
+      "open_access": true
+    },
+    {
+      "id": "MED:25554687",
+      "title": "Frataxin knockdown in human astrocytes triggers cell death and the release of factors that cause neuronal toxicity.",
+      "year": 2015,
+      "first_author": "Loría F",
+      "journal": "Neurobiol Dis",
+      "open_access": false
+    },
+    {
+      "id": "MED:23859343",
+      "title": "Erythropoietin in Friedreich ataxia.",
+      "year": 2013,
+      "first_author": "Mariotti C",
+      "journal": "J Neurochem",
+      "open_access": false
+    },
+    {
+      "id": "MED:25112975",
+      "title": "Epigenetic promoter silencing in Friedreich ataxia is dependent on repeat length.",
+      "year": 2014,
+      "first_author": "Chutake YK",
+      "journal": "Ann Neurol",
+      "open_access": false
+    },
+    {
+      "id": "MED:23691127",
+      "title": "Development of frataxin gene expression measures for the evaluation of experimental treatments in Friedreich's ataxia.",
+      "year": 2013,
+      "first_author": "Plasterer HL",
+      "journal": "PLoS One",
+      "open_access": true
+    },
+    {
+      "id": "MED:27350085",
+      "title": "Characterization of frataxin gene network in Friedreich's ataxia fibroblasts using the RNA-Seq technique.",
+      "year": 2016,
+      "first_author": "Sanchez N",
+      "journal": "Mitochondrion",
+      "open_access": false
+    },
+    {
+      "id": "MED:26149656",
+      "title": "Role of long purine stretches in controlling the expression of genes associated with neurological disorders.",
+      "year": 2015,
+      "first_author": "Singh HN",
+      "journal": "Gene",
+      "open_access": false
+    },
+    {
+      "id": "MED:23350650",
+      "title": "Frataxin deficiency leads to defects in expression of antioxidants and Nrf2 expression in dorsal root ganglia of the Friedreich's ataxia YG8R mouse model.",
+      "year": 2013,
+      "first_author": "Shan Y",
+      "journal": "Antioxid Redox Signal",
+      "open_access": false
+    },
+    {
+      "id": "MED:25831023",
+      "title": "Friedreich's ataxia--a case of aberrant transcription termination?",
+      "year": 2015,
+      "first_author": "Butler JS",
+      "journal": "Transcription",
+      "open_access": true
+    },
+    {
+      "id": "MED:26158631",
+      "title": "TORC1 Inhibition by Rapamycin Promotes Antioxidant Defences in a Drosophila Model of Friedreich's Ataxia.",
+      "year": 2015,
+      "first_author": "Calap-Quintana P",
+      "journal": "PLoS One",
+      "open_access": true
+    },
+    {
+      "id": "MED:22587705",
+      "title": "Transcription activator-like effector proteins induce the expression of the frataxin gene.",
+      "year": 2012,
+      "first_author": "Tremblay JP",
+      "journal": "Hum Gene Ther",
+      "open_access": false
+    },
+    {
+      "id": "MED:24002729",
+      "title": "A Potential New Therapeutic Approach for Friedreich Ataxia: Induction of Frataxin Expression With TALE Proteins.",
+      "year": 2013,
+      "first_author": "Chapdelaine P",
+      "journal": "Mol Ther Nucleic Acids",
+      "open_access": true
+    },
+    {
+      "id": "MED:25113747",
+      "title": "Dyclonine rescues frataxin deficiency in animal models and buccal cells of patients with Friedreich's ataxia.",
+      "year": 2014,
+      "first_author": "Sahdeo S",
+      "journal": "Hum Mol Genet",
+      "open_access": true
+    },
+    {
+      "id": "MED:25104852",
+      "title": "Frataxin deficiency increases cyclooxygenase 2 and prostaglandins in cell and animal models of Friedreich's ataxia.",
+      "year": 2014,
+      "first_author": "Hayashi G",
+      "journal": "Hum Mol Genet",
+      "open_access": true
+    },
+    {
+      "id": "MED:24794816",
+      "title": "Epigenetic and neurological effects and safety of high-dose nicotinamide in patients with Friedreich's ataxia: an exploratory, open-label, dose-escalation study.",
+      "year": 2014,
+      "first_author": "Libri V",
+      "journal": "Lancet",
+      "open_access": false
+    },
+    {
+      "id": "MED:23574943",
+      "title": "Frataxin deficiency leads to reduced expression and impaired translocation of NF-E2-related factor (Nrf2) in cultured motor neurons.",
+      "year": 2013,
+      "first_author": "D'Oria V",
+      "journal": "Int J Mol Sci",
+      "open_access": true
+    },
+    {
+      "id": "MED:22399236",
+      "title": "Evidence for a role of frataxin in pancreatic islets isolated from multi-organ donors with and without type 2 diabetes mellitus.",
+      "year": 2012,
+      "first_author": "Del Guerra S",
+      "journal": "Horm Metab Res",
+      "open_access": false
+    },
+    {
+      "id": "MED:26621361",
+      "title": "GIFT-1, a phase IIa clinical trial to test the safety and efficacy of IFNγ administration in FRDA patients.",
+      "year": 2016,
+      "first_author": "Marcotulli C",
+      "journal": "Neurol Sci",
+      "open_access": false
+    },
+    {
+      "id": "MED:24787137",
+      "title": "R-loops associated with triplet repeat expansions promote gene silencing in Friedreich ataxia and fragile X syndrome.",
+      "year": 2014,
+      "first_author": "Groh M",
+      "journal": "PLoS Genet",
+      "open_access": true
+    },
+    {
+      "id": "MED:22798143",
+      "title": "Role of mismatch repair enzymes in GAA·TTC triplet-repeat expansion in Friedreich ataxia induced pluripotent stem cells.",
+      "year": 2012,
+      "first_author": "Du J",
+      "journal": "J Biol Chem",
+      "open_access": false
+    },
+    {
+      "id": "MED:22750988",
+      "title": "DNA triplex structures in neurodegenerative disorder, Friedreich's ataxia.",
+      "year": 2012,
+      "first_author": "Rajeswari MR.",
+      "journal": "J Biosci",
+      "open_access": false
+    },
+    {
+      "id": "MED:26752519",
+      "title": "Mitochondrial iron chelation ameliorates cigarette smoke-induced bronchitis and emphysema in mice.",
+      "year": 2016,
+      "first_author": "Cloonan SM",
+      "journal": "Nat Med",
+      "open_access": true
+    },
+    {
+      "id": "MED:25590628",
+      "title": "Reprogramming of Yersinia from virulent to persistent mode revealed by complex in vivo RNA-seq analysis.",
+      "year": 2015,
+      "first_author": "Avican K",
+      "journal": "PLoS Pathog",
+      "open_access": true
+    },
+    {
+      "id": "MED:22522441",
+      "title": "FXN methylation predicts expression and clinical outcome in Friedreich ataxia.",
+      "year": 2012,
+      "first_author": "Evans-Galea MV",
+      "journal": "Ann Neurol",
+      "open_access": false
+    },
+    {
+      "id": "MED:22245581",
+      "title": "Chromatin changes in the development and pathology of the Fragile X-associated disorders and Friedreich ataxia.",
+      "year": 2012,
+      "first_author": "Kumari D",
+      "journal": "Biochim Biophys Acta",
+      "open_access": false
+    },
+    {
+      "id": "MED:26896803",
+      "title": "Reversal of epigenetic promoter silencing in Friedreich ataxia by a class I histone deacetylase inhibitor.",
+      "year": 2016,
+      "first_author": "Chutake YK",
+      "journal": "Nucleic Acids Res",
+      "open_access": true
+    },
+    {
+      "id": "MED:26393353",
+      "title": "FXN Promoter Silencing in the Humanized Mouse Model of Friedreich Ataxia.",
+      "year": 2015,
+      "first_author": "Chutake YK",
+      "journal": "PLoS One",
+      "open_access": true
+    },
+    {
+      "id": "MED:25628335",
+      "title": "Frataxin inactivation leads to steroid deficiency in flies and human ovarian cells.",
+      "year": 2015,
+      "first_author": "Palandri A",
+      "journal": "Hum Mol Genet",
+      "open_access": false
+    },
+    {
+      "id": "MED:22787155",
+      "title": "DNA mismatch repair complex MutSβ promotes GAA·TTC repeat expansion in human cells.",
+      "year": 2012,
+      "first_author": "Halabi A",
+      "journal": "J Biol Chem",
+      "open_access": false
+    },
+    {
+      "id": "MED:26071548",
+      "title": "Cardioprotective HIF-1α-frataxin signaling against ischemia-reperfusion injury.",
+      "year": 2015,
+      "first_author": "Nanayakkara G",
+      "journal": "Am J Physiol Heart Circ Physiol",
+      "open_access": false
+    },
+    {
+      "id": "MED:27479447",
+      "title": "Synthetic Nucleic Acids and Treatment of Neurological Diseases.",
+      "year": 2016,
+      "first_author": "Corey DR.",
+      "journal": "JAMA Neurol",
+      "open_access": false
+    },
+    {
+      "id": "MED:25158131",
+      "title": "p53 directly regulates the transcription of the human frataxin gene and its lack of regulation in tumor cells decreases the utilization of mitochondrial iron.",
+      "year": 2014,
+      "first_author": "Shimizu R",
+      "journal": "Gene",
+      "open_access": false
+    },
+    {
+      "id": "MED:23115244",
+      "title": "Cells lacking pfh1, a fission yeast homolog of mammalian frataxin protein, display constitutive activation of the iron starvation response.",
+      "year": 2012,
+      "first_author": "Gabrielli N",
+      "journal": "J Biol Chem",
+      "open_access": false
+    },
+    {
+      "id": "MED:24100161",
+      "title": "Metabolic remodeling in frataxin-deficient yeast is mediated by Cth2 and Adr1.",
+      "year": 2013,
+      "first_author": "Moreno-Cermeño A",
+      "journal": "Biochim Biophys Acta",
+      "open_access": false
+    },
+    {
+      "id": "MED:26307095",
+      "title": "The Escherichia coli NarL receiver domain regulates transcription through promoter specific functions.",
+      "year": 2015,
+      "first_author": "Katsir G",
+      "journal": "BMC Microbiol",
+      "open_access": true
+    },
+    {
+      "id": "MED:24353833",
+      "title": "Antioxidant effects of fucoxanthin rich powder in rats fed with high fat diet.",
+      "year": 2013,
+      "first_author": "Ha AW",
+      "journal": "Nutr Res Pract",
+      "open_access": true
+    },
+    {
+      "id": "MED:24933366",
+      "title": "Quantitative proteomic analysis identifies targets and pathways of a 2-aminobenzamide HDAC inhibitor in Friedreich's ataxia patient iPSC-derived neural stem cells.",
+      "year": 2014,
+      "first_author": "Shan B",
+      "journal": "J Proteome Res",
+      "open_access": true
+    },
+    {
+      "id": "MED:25738292",
+      "title": "The pathogenesis of cardiomyopathy in Friedreich ataxia.",
+      "year": 2015,
+      "first_author": "Koeppen AH",
+      "journal": "PLoS One",
+      "open_access": true
+    },
+    {
+      "id": "MED:23964316",
+      "title": "The effect of fucoxanthin rich power on the lipid metabolism in rats with a high fat diet.",
+      "year": 2013,
+      "first_author": "Ha AW",
+      "journal": "Nutr Res Pract",
+      "open_access": true
+    },
+    {
+      "id": "MED:23886890",
+      "title": "Molecular and functional alterations in a mouse cardiac model of Friedreich ataxia: activation of the integrated stress response, eIF2α phosphorylation, and the induction of downstream targets.",
+      "year": 2013,
+      "first_author": "Huang ML",
+      "journal": "Am J Pathol",
+      "open_access": false
+    },
+    {
+      "id": "MED:24552179",
+      "title": "Comparative proteomic label-free analysis of Campylobacter jejuni NCTC 11168 cultured with porcine mucin.",
+      "year": 2014,
+      "first_author": "Hong S",
+      "journal": "Foodborne Pathog Dis",
+      "open_access": false
+    },
+    {
+      "id": "MED:27503257",
+      "title": "Chickpea Ferritin CaFer1 Participates in Oxidative Stress Response, and Promotes Growth and Development.",
+      "year": 2016,
+      "first_author": "Parveen S",
+      "journal": "Sci Rep",
+      "open_access": true
+    },
+    {
+      "id": "MED:25084861",
+      "title": "Identification of hypoxia-inducible target genes of Aspergillus fumigatus by transcriptome analysis reveals cellular respiration as an important contributor to hypoxic survival.",
+      "year": 2014,
+      "first_author": "Kroll K",
+      "journal": "Eukaryot Cell",
+      "open_access": false
+    },
+    {
+      "id": "MED:25538551",
+      "title": "The emerging role of 5-hydroxymethylcytosine in neurodegenerative diseases.",
+      "year": 2014,
+      "first_author": "Al-Mahdawi S",
+      "journal": "Front Neurosci",
+      "open_access": true
+    },
+    {
+      "id": "MED:26099177",
+      "title": "Bromodomain inhibitors regulate the C9ORF72 locus in ALS.",
+      "year": 2015,
+      "first_author": "Zeier Z",
+      "journal": "Exp Neurol",
+      "open_access": false
+    },
+    {
+      "id": "MED:23178912",
+      "title": "Dysregulation of iron protein expression in the G93A model of amyotrophic lateral sclerosis.",
+      "year": 2013,
+      "first_author": "Hadzhieva M",
+      "journal": "Neuroscience",
+      "open_access": false
+    },
+    {
+      "id": "MED:22548386",
+      "title": "Human adipose stem cell-conditioned medium increases survival of Friedreich's ataxia cells submitted to oxidative stress.",
+      "year": 2012,
+      "first_author": "Jones J",
+      "journal": "Stem Cells Dev",
+      "open_access": false
+    },
+    {
+      "id": "MED:26702583",
+      "title": "Mitochondrial Hspa9/Mortalin regulates erythroid differentiation via iron-sulfur cluster assembly.",
+      "year": 2016,
+      "first_author": "Shan Y",
+      "journal": "Mitochondrion",
+      "open_access": false
+    },
+    {
+      "id": "MED:27378925",
+      "title": "Downregulation of GSTK1 Is a Common Mechanism Underlying Hypertrophic Cardiomyopathy.",
+      "year": 2016,
+      "first_author": "Sasagawa S",
+      "journal": "Front Pharmacol",
+      "open_access": true
+    },
+    {
+      "id": "MED:24880201",
+      "title": "Carbonic anhydrase 4 and crystallin α-B immunoreactivity may distinguish benign from malignant thyroid nodules in patients with indeterminate thyroid cytology.",
+      "year": 2014,
+      "first_author": "Davidov T",
+      "journal": "J Surg Res",
+      "open_access": false
+    },
+    {
+      "id": "MED:22430499",
+      "title": "Fine tuning the transcription of ldhA for D-lactate production.",
+      "year": 2012,
+      "first_author": "Zhou L",
+      "journal": "J Ind Microbiol Biotechnol",
+      "open_access": false
+    },
+    {
+      "id": "MED:22609301",
+      "title": "The role of mitochondria in cellular iron-sulfur protein biogenesis and iron metabolism.",
+      "year": 2012,
+      "first_author": "Lill R",
+      "journal": "Biochim Biophys Acta",
+      "open_access": false
+    },
+    {
+      "id": "MED:24726947",
+      "title": "Cerebellar ataxia and functional genomics: Identifying the routes to cerebellar neurodegeneration.",
+      "year": 2014,
+      "first_author": "Smeets CJ",
+      "journal": "Biochim Biophys Acta",
+      "open_access": false
+    },
+    {
+      "id": "MED:27807401",
+      "title": "Alzheimer Disease: Crosstalk between the Canonical Wnt/Beta-Catenin Pathway and PPARs Alpha and Gamma.",
+      "year": 2016,
+      "first_author": "Vallée A",
+      "journal": "Front Neurosci",
+      "open_access": true
+    },
+    {
+      "id": "MED:27625068",
+      "title": "Characterization of human mitochondrial ferritin promoter: identification of transcription factors and evidences of epigenetic control.",
+      "year": 2016,
+      "first_author": "Guaraldo M",
+      "journal": "Sci Rep",
+      "open_access": true
+    },
+    {
+      "id": "MED:26812787",
+      "title": "Nrf2 activation in the treatment of neurodegenerative diseases: a focus on its role in mitochondrial bioenergetics and function.",
+      "year": 2016,
+      "first_author": "Esteras N",
+      "journal": "Biol Chem",
+      "open_access": false
+    },
+    {
+      "id": "MED:25464841",
+      "title": "Coupling transcriptional state to large-scale repeat expansions in yeast.",
+      "year": 2014,
+      "first_author": "Shah KA",
+      "journal": "Cell Rep",
+      "open_access": false
+    },
+    {
+      "id": "MED:25147206",
+      "title": "Processing of double-R-loops in (CAG)·(CTG) and C9orf72 (GGGGCC)·(GGCCCC) repeats causes instability.",
+      "year": 2014,
+      "first_author": "Reddy K",
+      "journal": "Nucleic Acids Res",
+      "open_access": true
+    },
+    {
+      "id": "MED:24386347",
+      "title": "Tandem repeat modification during double-strand break repair induced by an engineered TAL effector nuclease in zebrafish genome.",
+      "year": 2013,
+      "first_author": "Huang W",
+      "journal": "PLoS One",
+      "open_access": true
+    },
+    {
+      "id": "MED:24078096",
+      "title": "Association of fibroblast growth factor (FGF-21) as a biomarker with primary mitochondrial disorders, but not with secondary mitochondrial disorders (Friedreich Ataxia).",
+      "year": 2013,
+      "first_author": "Salehi MH",
+      "journal": "Mol Biol Rep",
+      "open_access": true
+    },
+    {
+      "id": "MED:23567191",
+      "title": "Mitochondrial diseases of the brain.",
+      "year": 2013,
+      "first_author": "Chaturvedi RK",
+      "journal": "Free Radic Biol Med",
+      "open_access": false
+    },
+    {
+      "id": "MED:22959270",
+      "title": "Genome-wide screen identifies pathways that govern GAA/TTC repeat fragility and expansions in dividing and nondividing yeast cells.",
+      "year": 2012,
+      "first_author": "Zhang Y",
+      "journal": "Mol Cell",
+      "open_access": false
+    }
+  ],
+  "task": "L-002"
+}

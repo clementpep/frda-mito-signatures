@@ -1,0 +1,409 @@
+{
+  "query": "(TITLE_ABS:Friedreich* OR TITLE_ABS:FRDA OR TITLE_ABS:frataxin OR TITLE_ABS:FXN) AND (TITLE_ABS:muscle OR TITLE_ABS:biops* OR TITLE_ABS:\"cerebrospinal fluid\" OR TITLE_ABS:saliva OR TITLE_ABS:buccal OR TITLE_ABS:neurofilament OR TITLE_ABS:MRI OR TITLE_ABS:imaging) AND (TITLE_ABS:FARS OR TITLE_ABS:mFARS OR TITLE_ABS:SARA OR TITLE_ABS:GAA OR TITLE_ABS:clinical OR TITLE_ABS:\"disease duration\" OR TITLE_ABS:\"age at onset\" OR TITLE_ABS:cardiomyopathy OR TITLE_ABS:patients) AND PUB_YEAR:[2021 TO 2023] AND LANG:eng AND (SRC:MED OR SRC:PPR)",
+  "date": "2026-10-19",
+  "hit_count": 50,
+  "retrieved": 50,
+  "results": [
+    {
+      "id": "MED:37698160",
+      "title": "Friedreich's ataxia: new insights.",
+      "year": 2023,
+      "first_author": "Krasilnikova MM",
+      "journal": "Emerg Top Life Sci",
+      "open_access": false
+    },
+    {
+      "id": "MED:34408077",
+      "title": "Treatment with ROS detoxifying gold quantum clusters alleviates the functional decline in a mouse model of Friedreich ataxia.",
+      "year": 2021,
+      "first_author": "Villa C",
+      "journal": "Sci Transl Med",
+      "open_access": false
+    },
+    {
+      "id": "MED:36410013",
+      "title": "A natural history study to track brain and spinal cord changes in individuals with Friedreich's ataxia: TRACK-FA study protocol.",
+      "year": 2022,
+      "first_author": "Georgiou-Karistianis N",
+      "journal": "PLoS One",
+      "open_access": true
+    },
+    {
+      "id": "MED:38027498",
+      "title": "Skeletal muscle proteome analysis underpins multifaceted mitochondrial dysfunction in Friedreich's ataxia.",
+      "year": 2023,
+      "first_author": "Indelicato E",
+      "journal": "Front Neurosci",
+      "open_access": true
+    },
+    {
+      "id": "MED:36061025",
+      "title": "Hyperactivation of mTOR and AKT in a cardiac hypertrophy animal model of Friedreich ataxia.",
+      "year": 2022,
+      "first_author": "Tong WH",
+      "journal": "Heliyon",
+      "open_access": true
+    },
+    {
+      "id": "MED:36644283",
+      "title": "Cardiovascular Research in Friedreich Ataxia: Unmet Needs and Opportunities.",
+      "year": 2022,
+      "first_author": "Payne RM.",
+      "journal": "JACC Basic Transl Sci",
+      "open_access": true
+    },
+    {
+      "id": "MED:36433650",
+      "title": "Multimodal Analysis of the Visual Pathways in Friedreich's Ataxia Reveals Novel Biomarkers.",
+      "year": 2023,
+      "first_author": "Thomas-Black G",
+      "journal": "Mov Disord",
+      "open_access": false
+    },
+    {
+      "id": "MED:33418083",
+      "title": "DNA repair pathways are altered in neural cell models of frataxin deficiency.",
+      "year": 2021,
+      "first_author": "Moreno-Lorite J",
+      "journal": "Mol Cell Neurosci",
+      "open_access": false
+    },
+    {
+      "id": "MED:32677106",
+      "title": "Safety and efficacy of (+)-epicatechin in subjects with Friedreich's ataxia: A phase II, open-label, prospective study.",
+      "year": 2021,
+      "first_author": "Qureshi MY",
+      "journal": "J Inherit Metab Dis",
+      "open_access": false
+    },
+    {
+      "id": "MED:34713932",
+      "title": "Tract-Specific Spinal Cord Diffusion Tensor Imaging in Friedreich's Ataxia.",
+      "year": 2022,
+      "first_author": "Hernandez ALCC",
+      "journal": "Mov Disord",
+      "open_access": false
+    },
+    {
+      "id": "MED:37166361",
+      "title": "Identification of Safe and Effective Intravenous Dose of AAVrh.10hFXN to Treat the Cardiac Manifestations of Friedreich's Ataxia.",
+      "year": 2023,
+      "first_author": "Munoz-Zuluaga C",
+      "journal": "Hum Gene Ther",
+      "open_access": false
+    },
+    {
+      "id": "MED:34046211",
+      "title": "Mitochondrial and metabolic dysfunction in Friedreich ataxia: update on pathophysiological relevance and clinical interventions.",
+      "year": 2021,
+      "first_author": "Lynch DR",
+      "journal": "Neuronal Signal",
+      "open_access": true
+    },
+    {
+      "id": "MED:37027192",
+      "title": "Skeletal muscle transcriptomics dissects the pathogenesis of Friedreich's ataxia.",
+      "year": 2023,
+      "first_author": "Indelicato E",
+      "journal": "Hum Mol Genet",
+      "open_access": true
+    },
+    {
+      "id": "MED:38812999",
+      "title": "Evaluation of diaphragm functions with diaphragm ultrasound and pulmonary function tests in individuals with Friedreich's ataxia.",
+      "year": 2023,
+      "first_author": "Yetkin NA",
+      "journal": "Turk J Med Sci",
+      "open_access": true
+    },
+    {
+      "id": "MED:35911978",
+      "title": "Cerebrospinal Fluid Proteomics in Friedreich Ataxia Reveals Markers of Neurodegeneration and Neuroinflammation.",
+      "year": 2022,
+      "first_author": "Imbault V",
+      "journal": "Front Neurosci",
+      "open_access": true
+    },
+    {
+      "id": "MED:35360279",
+      "title": "Functional MRI Studies in Friedreich's Ataxia: A Systematic Review.",
+      "year": 2021,
+      "first_author": "Vavla M",
+      "journal": "Front Neurol",
+      "open_access": true
+    },
+    {
+      "id": "MED:36524101",
+      "title": "Efficacy and Safety of Leriglitazone in Patients With Friedreich Ataxia: A Phase 2 Double-Blind, Randomized Controlled Trial (FRAMES).",
+      "year": 2022,
+      "first_author": "Pandolfo M",
+      "journal": "Neurol Genet",
+      "open_access": true
+    },
+    {
+      "id": "MED:36859626",
+      "title": "Reduced cerebello-cerebral functional connectivity correlates with disease severity and impaired white matter integrity in Friedreich ataxia.",
+      "year": 2023,
+      "first_author": "Kerestes R",
+      "journal": "J Neurol",
+      "open_access": true
+    },
+    {
+      "id": "MED:36308733",
+      "title": "Progressive Spinal Cord Degeneration in Friedreich's Ataxia: Results from ENIGMA-Ataxia.",
+      "year": 2023,
+      "first_author": "Rezende TJR",
+      "journal": "Mov Disord",
+      "open_access": false
+    },
+    {
+      "id": "MED:34301694",
+      "title": "Very late-onset Friedreich's ataxia with rapid course mimicking as possible multiple system atrophy cerebellar type.",
+      "year": 2021,
+      "first_author": "Vidhale TA",
+      "journal": "BMJ Case Rep",
+      "open_access": false
+    },
+    {
+      "id": "MED:35079622",
+      "title": "FDX2 and ISCU Gene Variations Lead to Rhabdomyolysis With Distinct Severity and Iron Regulation.",
+      "year": 2022,
+      "first_author": "Montealegre S",
+      "journal": "Neurol Genet",
+      "open_access": true
+    },
+    {
+      "id": "MED:37310043",
+      "title": "Anodal Cerebellar Transcranial Direct Current Stimulation Reduces Motor and Cognitive Symptoms in Friedreich's Ataxia: A Randomized, Sham-Controlled Trial.",
+      "year": 2023,
+      "first_author": "Naeije G",
+      "journal": "Mov Disord",
+      "open_access": false
+    },
+    {
+      "id": "MED:33624001",
+      "title": "Safety and feasibility of upper limb cardiopulmonary exercise test in Friedreich ataxia.",
+      "year": 2022,
+      "first_author": "Pane C",
+      "journal": "Eur J Prev Cardiol",
+      "open_access": false
+    },
+    {
+      "id": "MED:33820410",
+      "title": "Remember Friedreich ataxia even in a toddler with apparently isolated dilated (not hypertrophic!) cardiomyopathy. Revisited.",
+      "year": 2023,
+      "first_author": "Baban A",
+      "journal": "Minerva Pediatr (Torino)",
+      "open_access": false
+    },
+    {
+      "id": "MED:35500368",
+      "title": "Increased brain tissue sodium concentration in Friedreich ataxia: A multimodal MR imaging study.",
+      "year": 2022,
+      "first_author": "Krahe J",
+      "journal": "Neuroimage Clin",
+      "open_access": true
+    },
+    {
+      "id": "MED:33770103",
+      "title": "Pre-clinical left ventricular myocardial remodeling in patients with Friedreich's ataxia: A cardiac MRI study.",
+      "year": 2021,
+      "first_author": "Takazaki KAG",
+      "journal": "PLoS One",
+      "open_access": true
+    },
+    {
+      "id": "MED:34920960",
+      "title": "Characterizing cardiac phenotype in Friedreich's ataxia: The CARFA study.",
+      "year": 2022,
+      "first_author": "Legrand L",
+      "journal": "Arch Cardiovasc Dis",
+      "open_access": false
+    },
+    {
+      "id": "MED:34435700",
+      "title": "Brain Structure and Degeneration Staging in Friedreich Ataxia: Magnetic Resonance Imaging Volumetrics from the ENIGMA-Ataxia Working Group.",
+      "year": 2021,
+      "first_author": "Harding IH",
+      "journal": "Ann Neurol",
+      "open_access": true
+    },
+    {
+      "id": "MED:37284625",
+      "title": "Friedreich cardiomyopathy is a desminopathy.",
+      "year": 2021,
+      "first_author": "Koeppen AH",
+      "journal": "Free Neuropathol",
+      "open_access": false
+    },
+    {
+      "id": "MED:35300598",
+      "title": "The cognitive profile of Friedreich ataxia: a systematic review and meta-analysis.",
+      "year": 2022,
+      "first_author": "Naeije G",
+      "journal": "BMC Neurol",
+      "open_access": true
+    },
+    {
+      "id": "MED:34416478",
+      "title": "Mechanisms of impaired mitochondrial homeostasis and NAD&lt;sup&gt;+&lt;/sup&gt; metabolism in a model of mitochondrial heart disease exhibiting redox active iron accumulation.",
+      "year": 2021,
+      "first_author": "Chiang S",
+      "journal": "Redox Biol",
+      "open_access": true
+    },
+    {
+      "id": "MED:34519102",
+      "title": "Blood Neurofilament Light Chain in Genetic Ataxia: A Meta-Analysis.",
+      "year": 2022,
+      "first_author": "Peng L",
+      "journal": "Mov Disord",
+      "open_access": false
+    },
+    {
+      "id": "MED:37483529",
+      "title": "Brain MRI detects early-stage alterations and disease progression in Friedreich ataxia.",
+      "year": 2023,
+      "first_author": "Adanyeguh IM",
+      "journal": "Brain Commun",
+      "open_access": true
+    },
+    {
+      "id": "MED:36443012",
+      "title": "Patient-Reported Impact of Symptoms in Friedreich Ataxia.",
+      "year": 2023,
+      "first_author": "Seabury J",
+      "journal": "Neurology",
+      "open_access": false
+    },
+    {
+      "id": "MED:34136207",
+      "title": "The cardiomyopathy of Friedreich's ataxia common in a family: A case report.",
+      "year": 2021,
+      "first_author": "Amini O",
+      "journal": "Ann Med Surg (Lond)",
+      "open_access": true
+    },
+    {
+      "id": "MED:36975604",
+      "title": "Epigenome-Wide Changes in the Cell Layers of the Vein Wall When Exposing the Venous Endothelium to Oscillatory Shear Stress.",
+      "year": 2023,
+      "first_author": "Smetanina MA",
+      "journal": "Epigenomes",
+      "open_access": true
+    },
+    {
+      "id": "MED:36300142",
+      "title": "Spinal cord magnetic resonance imaging and spectroscopy detect early-stage alterations and disease progression in Friedreich ataxia.",
+      "year": 2022,
+      "first_author": "Joers JM",
+      "journal": "Brain Commun",
+      "open_access": true
+    },
+    {
+      "id": "MED:34050679",
+      "title": "Fully automated production of the fibroblast activation protein radiotracer [<sup>18</sup> F]FAPI-74.",
+      "year": 2021,
+      "first_author": "Dahl K",
+      "journal": "J Labelled Comp Radiopharm",
+      "open_access": false
+    },
+    {
+      "id": "MED:33272776",
+      "title": "A severe form of autosomal recessive spinocerebellar ataxia associated with novel PMPCA variants.",
+      "year": 2021,
+      "first_author": "Takahashi Y",
+      "journal": "Brain Dev",
+      "open_access": false
+    },
+    {
+      "id": "MED:37808498",
+      "title": "Proprioceptive and tactile processing in individuals with Friedreich ataxia: an fMRI study.",
+      "year": 2023,
+      "first_author": "Destrebecq V",
+      "journal": "Front Neurol",
+      "open_access": true
+    },
+    {
+      "id": "MED:35793360",
+      "title": "Myocardial strain analysis by cardiac magnetic resonance 3D feature-tracking identifies subclinical abnormalities in patients with neuromuscular disease and no overt cardiac involvement.",
+      "year": 2023,
+      "first_author": "Azzu A",
+      "journal": "Eur Heart J Cardiovasc Imaging",
+      "open_access": false
+    },
+    {
+      "id": "MED:36252335",
+      "title": "Mutation analysis of the TATA box-binding protein (TBP) gene in Russian patients with spinocerebellar ataxia and Huntington disease-like phenotype.",
+      "year": 2022,
+      "first_author": "Ivanova E",
+      "journal": "Clin Neurol Neurosurg",
+      "open_access": false
+    },
+    {
+      "id": "MED:35286422",
+      "title": "Control of arm movements in Friedreich's ataxia patients: role of sensory feedback.",
+      "year": 2022,
+      "first_author": "Zhang L",
+      "journal": "Exp Brain Res",
+      "open_access": true
+    },
+    {
+      "id": "MED:33460030",
+      "title": "Efficacy of echocardiography for differential diagnosis of left ventricular hypertrophy: special focus on speckle-tracking longitudinal strain.",
+      "year": 2021,
+      "first_author": "Tanaka H.",
+      "journal": "J Echocardiogr",
+      "open_access": true
+    },
+    {
+      "id": "MED:33679303",
+      "title": "Systematic Review: Quantitative Susceptibility Mapping (QSM) of Brain Iron Profile in Neurodegenerative Diseases.",
+      "year": 2021,
+      "first_author": "Ravanfar P",
+      "journal": "Front Neurosci",
+      "open_access": true
+    },
+    {
+      "id": "MED:35869996",
+      "title": "Unravelling the etiology of sporadic late-onset cerebellar ataxia in a cohort of 205 patients: a prospective study.",
+      "year": 2022,
+      "first_author": "Bogdan T",
+      "journal": "J Neurol",
+      "open_access": false
+    },
+    {
+      "id": "MED:31414248",
+      "title": "VEMPs and Dysautonomia Assessment in Definite Cerebellar Ataxia, Neuropathy, Vestibular Areflexia Syndrome (CANVAS): a Case Series Study.",
+      "year": 2021,
+      "first_author": "Moreno-Ajona D",
+      "journal": "Cerebellum",
+      "open_access": false
+    },
+    {
+      "id": "MED:35332317",
+      "title": "Recessive cerebellar and afferent ataxias - clinical challenges and future directions.",
+      "year": 2022,
+      "first_author": "Beaudin M",
+      "journal": "Nat Rev Neurol",
+      "open_access": false
+    },
+    {
+      "id": "MED:35291442",
+      "title": "Quantitative susceptibility mapping reveals alterations of dentate nuclei in common types of degenerative cerebellar ataxias.",
+      "year": 2022,
+      "first_author": "Deistung A",
+      "journal": "Brain Commun",
+      "open_access": true
+    },
+    {
+      "id": "MED:34245318",
+      "title": "Myocardial Perfusion Reserve in Children with Friedreich Ataxia.",
+      "year": 2021,
+      "first_author": "Hutchens JA",
+      "journal": "Pediatr Cardiol",
+      "open_access": false
+    }
+  ],
+  "task": "L-002"
+}
