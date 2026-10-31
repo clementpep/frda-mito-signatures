@@ -775,3 +775,4 @@ tasks:
       - A re-run check of the previous week's queries is part of the watch (papers with firstPublicationDate in the previous window but first indexed later are caught), repeated once more a week later.
     notes:
       - "Source autonomy/verifications/W-2026-W43-8e5d9fa.md: Q2 over 2026-10-11..2026-10-19 logged 0 on the run day; re-run the next day returned 2 (firstIndexDate 2026-10-19)."
+      - "Source autonomy/verifications/W-2026-W43-c0f6e36.md, non-blocking 1: MED:42878081 (commentary on MED:42878077) is in the 2026-10-11..19 window but matched by no protocol query; the watch only sees protocol-query hits."

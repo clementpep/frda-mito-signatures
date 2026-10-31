@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-31T02:03:04+00:00",
-  "commit": "7a8d25121e5152cd71bc048b8cfc1e8f86358784",
+  "generated_at": "2026-10-31T05:55:12+00:00",
+  "commit": "c0f6e36877b54a63d957198b6f23122aa45346fc",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -456,6 +456,15 @@
   "claims": [],
   "verifications": [
     {
+      "task": "W-2026-W43",
+      "date": "2026-10-31",
+      "verdict": "PASS",
+      "summary": "Attempt-1 findings fixed; 2 lagged MED papers added, preprint blind spot disclosed, L-002/L-003 wording corrected",
+      "attempt": 2,
+      "acceptance_met": "6/6",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/W-2026-W43-c0f6e36.md"
+    },
+    {
       "task": "L-002",
       "date": "2026-10-30",
       "verdict": "PASS",
@@ -625,15 +634,6 @@
       "attempt": 1,
       "acceptance_met": "2/5",
       "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-021-8914580.md"
-    },
-    {
-      "task": "T-021",
-      "date": "2026-10-16",
-      "verdict": "CHANGES_REQUESTED",
-      "summary": "Five of six earlier findings fixed; quote check still has a false-PASS path (angle brackets) and the window=0 regression test is tautological.",
-      "attempt": 2,
-      "acceptance_met": "4/5",
-      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-021-d78f70a.md"
     }
   ],
   "research": {
