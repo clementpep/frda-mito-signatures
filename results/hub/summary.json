@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-31T02:02:35+00:00",
-  "commit": "d5a9a7f46f875d90bc259785f6a6008b9afe3652",
+  "generated_at": "2026-10-31T02:02:49+00:00",
+  "commit": "4834bc486f8df316af239eddd012c8f3c19940bc",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -664,7 +664,7 @@
       "date": "2026-10-19",
       "kind": "weekly",
       "title": "Semaine calme : le protocole est prêt, la bibliothèque compte 1279 articles à trier",
-      "body": "**Ce qu'on a fait**\nLe protocole de la recherche bibliographique a été accepté après vérification, puis les recherches\nelles-mêmes (tâche L-002) ont été faites et acceptées : la bibliothèque du projet contient 1279\narticles, tous encore à trier. Cinq autres tâches de mise en place ont aussi été acceptées. La veille\nde la semaine a trouvé 2 nouveaux articles sur l'ataxie de Friedreich, publiés entre le 11 et le\n19 octobre : ils étaient absents lors du premier passage car la base de données les indexe avec un\nléger retard, et ils sont apparus à la relecture. Aucun nouveau jeu de données public n'a été\ntrouvé, et les deux jeux déjà utilisés n'ont pas changé.\n\n**Ce que ça veut dire**\nLe tri des articles (tâche L-003) n'a pas encore commencé : aucun article n'a été lu ni jugé pertinent.\nLa veille ne couvre que les articles en anglais déjà publiés dans les revues indexées ; les préprints\n(articles pas encore relus par des pairs) n'y sont pas, et 2 existent pour cette semaine. Une décision\nest attendue pour les inclure.\n\n**Ce que ça ne veut pas dire**\nIl n'y a toujours aucun résultat scientifique et aucune piste n'est retenue. Les 2 articles trouvés sont\nsimplement ajoutés à la file de tri ; on ne sait pas encore s'ils sont utiles. Le projet ne produit pas\nde traitement. Aucun conseil médical.\n\n**Et ensuite**\nTrier les articles (L-003), décider du traitement des préprints, puis lire les plus utiles.",
+      "body": "*(Mis à jour le 2026-10-31 après la relecture de la veille.)*\n\n**Ce qu'on a fait**\nLe protocole de la recherche bibliographique a été accepté après vérification, puis les recherches\nelles-mêmes (tâche L-002) ont été faites et acceptées : la bibliothèque du projet contient 1279\narticles, tous encore à trier. Cinq autres tâches de mise en place ont aussi été acceptées. La veille\nde la semaine a trouvé 2 nouveaux articles sur l'ataxie de Friedreich, publiés entre le 11 et le\n19 octobre : ils étaient absents lors du premier passage car la base de données les indexe avec un\nléger retard, et ils sont apparus à la relecture. Aucun nouveau jeu de données public n'a été\ntrouvé, et les deux jeux déjà utilisés n'ont pas changé.\n\n**Ce que ça veut dire**\nLe tri des articles (tâche L-003) n'a pas encore commencé : aucun article n'a été lu ni jugé pertinent.\nLa veille ne couvre que les articles en anglais déjà publiés dans les revues indexées ; les préprints\n(articles pas encore relus par des pairs) n'y sont pas, et 2 existent pour cette semaine. Une décision\nest attendue pour les inclure.\n\n**Ce que ça ne veut pas dire**\nIl n'y a toujours aucun résultat scientifique et aucune piste n'est retenue. Les 2 articles trouvés sont\nsimplement ajoutés à la file de tri ; on ne sait pas encore s'ils sont utiles. Le projet ne produit pas\nde traitement. Aucun conseil médical.\n\n**Et ensuite**\nTrier les articles (L-003), décider du traitement des préprints, puis lire les plus utiles.",
       "evidence": null,
       "evidence_plain": null,
       "claims": []

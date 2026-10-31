@@ -772,6 +772,6 @@ tasks:
     goal: Stop the weekly watch from losing papers indexed after their publication date.
     acceptance:
       - routines/watch.md uses an overlapping window (at least 15 days) and deduplicates against research/corpus.yaml and previous watch logs.
-      - A re-run check of the previous week's queries is part of the watch (papers with firstPublicationDate in the previous window but first indexed later are caught).
+      - A re-run check of the previous week's queries is part of the watch (papers with firstPublicationDate in the previous window but first indexed later are caught), repeated once more a week later.
     notes:
       - "Source autonomy/verifications/W-2026-W43-8e5d9fa.md: Q2 over 2026-10-11..2026-10-19 logged 0 on the run day; re-run the next day returned 2 (firstIndexDate 2026-10-19)."
