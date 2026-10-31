@@ -16,7 +16,9 @@ uv run --frozen frda autonomy-status --json > /tmp/status.json
 python3 -c "import json;print(json.load(open('/tmp/status.json'))['next_for_worker'])"
 ```
 - `None` → final message `💤 frda-worker — nothing to do (<WIP full | no ready task | waiting for verification>)`. Stop. No commit.
-- `{"action": "address_changes", "task": T, "branch": B}` → STEP 2a.
+- `{"action": "address_changes", "task": T, "branch": B}` → STEP 2a
+  (with `"merge_main": true`: the prerequisite it was parked on has landed → STEP 2a, first bullet).
+- `{"action": "start_dependency", "task": F, "branch": B, "for": T, "source_branch": S}` → STEP 2c.
 - `{"action": "start_task", "task": T, "branch": B}` → STEP 2b.
 
 ## STEP 2a — Address the verifier's changes
@@ -25,9 +27,26 @@ python3 -c "import json;print(json.load(open('/tmp/status.json'))['next_for_work
 git checkout -B "$B" "origin/$B"
 ls -t autonomy/verifications/"$T"-*.md | head -1   # the latest report: read ALL of it
 ```
+- `merge_main: true`, or a blocking finding names a `FIX-*` prerequisite that is already `done`
+  on main → `git merge --no-edit origin/main` first (the prerequisite's fix is on
+  main). In `autonomy/backlog.yaml` keep main's entry for the prerequisite (`done`). Then re-read
+  `research/protocol.md` "Amendments": an amendment dated after the branch was cut applies to
+  this task's re-hand-over (say how in the run report).
+
 Fix every blocking finding. Non-blocking ones: fix, or answer why not. If you
 disagree with a finding, do not ignore it: answer it in the run report section
 "Responses to verification", with evidence. Then go to STEP 3 (same branch).
+
+**A blocking finding you may not fix on this branch** (it needs `src/`, `tests/`… outside an
+`infra` task, P5.4/P5.5) **and that names a `FIX-*` prerequisite** in the report → do not stop and
+do not notify (P9). Park the branch and continue:
+```bash
+git commit --allow-empty -m "blocked($T): needs <FIX-ID>"
+bash scripts/push-branch.sh HEAD "$B"
+uv run --frozen frda autonomy-status --json > /tmp/status.json   # then back to STEP 1, once
+```
+No `FIX-*` named, or the fix is a scientific / scope decision → `⚠️ NEEDS HUMAN` as before (P8:
+notified only if this decision is new).
 
 ## STEP 2b — Start a task
 
@@ -46,6 +65,20 @@ split it. Do the first coherent part; in the backlog, replace the task by
 `<T>a` / `<T>b` … with the original acceptance criteria distributed so that
 **none is dropped or softened**, and explain the split in the run report. The
 verifier checks the split.
+
+## STEP 2c — Do a prerequisite fix (P9)
+
+```bash
+git checkout -b "$B" origin/main
+git show "origin/$S:autonomy/backlog.yaml"            # the verifier's FIX entry, on the parked branch
+ls -t $(git ls-tree -r --name-only "origin/$S" autonomy/verifications | grep "/$T-") | head -1
+```
+Check, before anything: the latest verification report of `T` names `F` in a **blocking** finding;
+`F` is `kind: infra` or `data`; its acceptance does not ask to loosen a gate, test, tolerance or
+wording rule. Any check fails → `⚠️ NEEDS HUMAN — F: promote it?` (notified once) and stop.
+Otherwise copy the `F` entry **verbatim** into this branch's `autonomy/backlog.yaml`, change only
+`status: proposed` → `in_review`, add a note `auto-promoted by the worker (P9) to unblock T`. Then
+STEP 3 as for any task; the run report says it is a P9 prerequisite and for which task.
 
 ## STEP 3 — Plan before doing (write it first, in the run report)
 
@@ -100,7 +133,9 @@ The **last** commit of the branch must be the `work(...)` commit.
 
 ## STEP 7 — Final message (P8)
 
-`✅ frda-worker — <T>: handed to verification` + paths.
+`✅ frda-worker — <T>: handed to verification` + paths (prefix with the `⏸️` line when a branch was
+parked in this run). **No push notification** for a hand-over or a park (P8); push only a new
+`NEEDS HUMAN` decision.
 
 ---
 

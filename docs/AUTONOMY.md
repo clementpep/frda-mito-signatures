@@ -12,7 +12,7 @@ decides that the work is good.**
 | `frda-verifier` routine | daily 06:53 Paris | `auto/<TASK>` (changes), `verified/<TASK>` (PASS) | whether a task is done |
 | `frda-watch` routine | Monday 07:41 Paris | `auto/W-YYYY-Www` | what is new outside (data, papers, novelty risk) |
 | `land-verified.yml` | on push `verified/**` | `main` | whether the deterministic bar is met on clean runners |
-| Owner (human) | any time | `main` | scope, `needs_human` decisions, authorship, submission |
+| Owner (human) | any time | `main` | scope (FRDA, public non-DUA data), DUA, authorship, submission — arbitrations are delegated to the supervision (RD-003) |
 
 State lives **only in git**: backlog and statuses in `autonomy/backlog.yaml`, work in branches,
 evidence in `autonomy/runs/` and `autonomy/verifications/`. Any routine can crash at any point
@@ -78,7 +78,8 @@ Aiming for a preprint changes the bar from "useful" to "defensible":
 |---|---|
 | Worker run dies mid-task | no push → task still `ready` on main; next run restarts it |
 | Verifier finds problems | `CHANGES_REQUESTED` commit on `auto/T`; next worker run addresses it |
-| 3 rejected attempts | `NEEDS_HUMAN`; push notification with the question |
+| Fix needs a code change the task may not make | verifier writes `FIX-…` (proposed) as prerequisite; worker parks `auto/T` (`blocked(T): needs FIX-…`), does the fix on `auto/FIX-…`, resumes `T` once it lands (P9) — no owner involvement |
+| 3 rejected attempts | `NEEDS_HUMAN` verdict; the weekly supervision arbitrates it (split, re-scope, park — RD-003); a push only if the blocker is owner-reserved |
 | Landing workflow fails (conflict, red gate) | `verified/T` stays; the verifier flags it next morning |
 | Upstream GEO file changes | `frda fetch` refuses it; watch opens a `FIX-…-drift` task |
 | `main` red (should never happen) | verifier health check notifies; nothing else lands until fixed |
@@ -88,4 +89,7 @@ Aiming for a preprint changes the bar from "useful" to "defensible":
 - Pause/resume a routine in claude.ai → Routines. Change cadence there.
 - Re-prioritise: edit `priority`/`status` in `autonomy/backlog.yaml` on main.
 - Answer a `needs_human`: write the decision in the task's `notes`, set `status: ready`.
-- Follow along: poups-ai-hub `/research`, weekly digests in `autonomy/digests/`.
+- Follow along: poups-ai-hub `/research`, weekly digests in `autonomy/digests/` (section "Owner
+  decisions pending" lists everything waiting for you).
+- Notifications (P8): a push only for a trouvaille (`🔬`) or a **new** decision (`⚠️`); routine
+  runs, hand-overs and known blockers are silent.

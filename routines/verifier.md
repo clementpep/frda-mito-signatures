@@ -20,7 +20,9 @@ bash scripts/routine-setup.sh    # re-downloads everything and checks sha256 aga
 uv run --frozen frda autonomy-status --json > /tmp/status.json
 ```
 - `landing_pending` branches whose last commit is older than 2 hours: the landing workflow failed.
-  Note them for the final message (`⚠️ NEEDS HUMAN — landing blocked: check Actions on <branch>`).
+  Note them for the final message (`⚠️ NEEDS HUMAN — landing blocked: check Actions on <branch>`);
+  push only on first detection (last commit < 26 h old, P8).
+- `blocked` branches are parked by the worker on a prerequisite (P9): nothing to verify there.
 - `next_for_verifier` is `None` → run the **main health check** (STEP 9) and stop.
 - Otherwise verify `next_for_verifier` (T, B, head). After finishing, re-run status and verify the
   next one, up to `verifier_max_branches_per_run` (autonomy/config.yaml).
@@ -42,6 +44,11 @@ Europe PMC), that nothing was downloaded outside a manifest, and that each `prop
 the phase scope. In your verify commit you may promote in-scope `proposed` tasks to `ready`.
 
 ## STEP 3 — Scope and gate tampering (blocking if violated)
+
+- A P9 prerequisite (`auto/FIX-*` started with `start_dependency`): the task is named in a blocking
+  finding of the parked task's latest verification report; its backlog entry is a verbatim copy of
+  the one on the parked branch (only `status` and one note changed); it loosens nothing (P5.5).
+  Any doubt → **blocking**.
 
 - Files outside the task's purpose changed? Why?
 - Any change under `src/frda/gates.py`, `src/frda/claims.py`, `src/frda/prereg.py`, `tests/`,
@@ -89,7 +96,9 @@ the claim must say so in its limitations or be downgraded → blocking if it doe
 - Synthesis: every sentence you sample (≥ 10) is supported by the cited card.
 - Supervision (W branches): every score rationale cites corpus papers; every status change has an RD
   decision; budgets in bounds and summing to 1; phase change only if the plan's exit criteria are
-  met (check each); no pivot applied (`needs_human` RD only).
+  met (check each); a pivot is applied only within the project's scope (FRDA, public non-DUA
+  data) with `delegated_by: RD-003` and an explicit evidence comparison; anything outside that
+  scope only as a `needs_human` RD, not applied.
 
 ## STEP 6c — News items (any branch adding `research/news/N-*.md`)
 
@@ -124,6 +133,10 @@ Verdict rules:
 
 Write `autonomy/verifications/<T>-<sha7 of REVIEWED>.md` (template below).
 
+A blocking finding that needs a code / test / gate change the task may not make: write it as a
+`FIX-*` task (`status: proposed`, kind `infra`, concrete acceptance) in the same commit and say in
+the finding "prerequisite: FIX-…". The worker will do it itself (P9) — no NEEDS_HUMAN for that.
+
 Non-blocking findings worth acting on are not left in the report only: in the same verify commit,
 add them to `autonomy/backlog.yaml` as one follow-up task (`status: proposed`, id `T-xxx` or
 `FIX-xxx`, track of the work, `notes` citing the report) — or append them to the `notes` of an
@@ -150,10 +163,16 @@ bash scripts/push-branch.sh HEAD "$B"
 
 ## STEP 9 — Main health check (when nothing to verify)
 
-On `main` with fresh data: P2 gates. All PASS → `💤 frda-verifier — nothing to verify, main healthy`.
+On `main` with fresh data: P2 gates. All PASS → `💤 frda-verifier — nothing to verify, main healthy`
+(silent: no push).
 Any FAIL on `main` → `⚠️ NEEDS HUMAN — main is red: <gate>: <first detail line>` (do not fix it here).
 
 ## STEP 10 — Final message (P8)
+
+Push only: a PASS that adds/changes a claim, closes a milestone or carries a `finding` news item
+(`🔬`), a `NEEDS_HUMAN` verdict given in this run on an owner-reserved item (RD-003), `main` red,
+a newly blocked landing. A `NEEDS_HUMAN` for `max_attempts` alone goes to the weekly supervision. A PASS of
+infra/data/literature bookkeeping, a CHANGES_REQUESTED and a healthy `main` are silent.
 
 ---
 

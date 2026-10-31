@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-31T05:55:12+00:00",
-  "commit": "c0f6e36877b54a63d957198b6f23122aa45346fc",
+  "generated_at": "2026-10-31T17:15:37+00:00",
+  "commit": "89daf339946e6272bd49f42724c9db97745bb27a",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -16,10 +16,10 @@
     "repo_url": "https://github.com/clementpep/frda-mito-signatures"
   },
   "progress": {
-    "total": 47,
+    "total": 48,
     "done": 8,
     "in_review": 0,
-    "ready": 31,
+    "ready": 32,
     "changes_requested": 0,
     "blocked": 0,
     "needs_human": 1,
@@ -40,7 +40,7 @@
       "goal": "Map what is already known, widen the public data base, derive a candidate mitochondrial signature.",
       "status": "in_progress",
       "tasks_done": 7,
-      "tasks_total": 26
+      "tasks_total": 27
     },
     {
       "id": "M3",
@@ -97,6 +97,14 @@
       "title": "Run the protocol searches and build the corpus",
       "milestone": "M2",
       "status": "done",
+      "kind": "literature",
+      "track": "literature"
+    },
+    {
+      "id": "L-002b",
+      "title": "Preprint arm of the protocol searches (amendment A1)",
+      "milestone": "M2",
+      "status": "ready",
       "kind": "literature",
       "track": "literature"
     },
@@ -639,8 +647,8 @@
   "research": {
     "phase": "A",
     "track_budget": {
-      "literature": 0.6,
-      "main": 0.4,
+      "literature": 0.5,
+      "main": 0.5,
       "exploration": 0.0,
       "writing": 0.0
     },
@@ -653,9 +661,9 @@
     },
     "ideas": [],
     "last_decision": {
-      "id": "RD-002",
-      "date": "2026-10-17",
-      "summary": "Patient-first — the main line analyses data from patients with clinical annotations (blood cohort GSE102008 first); cell models become supporting evidence."
+      "id": "RD-004",
+      "date": "2026-10-31",
+      "summary": "Phase A budget rebalanced to literature 0.5 / main 0.5 so the patient-line reproductions (M1) start while the 1277-record screening runs."
     }
   },
   "news": [

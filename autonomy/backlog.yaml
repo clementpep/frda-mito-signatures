@@ -98,6 +98,22 @@ tasks:
     attempts: 1
     verification: autonomy/verifications/L-002-678c32c.md
 
+  - id: L-002b
+    title: Preprint arm of the protocol searches (amendment A1)
+    milestone: M2
+    status: ready
+    priority: 1
+    kind: literature
+    track: literature
+    depends_on: [L-002]
+    goal: Run the preprint arm of every protocol query (research/protocol.md, amendment A1) and add every hit to the corpus as to_screen, so screening covers preprints.
+    acceptance:
+      - One research/search-logs/*.json per query and year window of the preprint arm (slug suffix `-ppr`), produced by `frda lit-search --save`, query text exactly as amendment A1 derives it.
+      - Every retrieved hit added with `frda lit-add --found-by <log-stem>` (ids resolved by Europe PMC; ids already in the corpus only gain the found_by); counts per query and arm reported in research/screening.md.
+      - "`frda lit-verify` PASS on every id added by this task."
+    notes:
+      - "2026-10-31 RD-003: owner decision, preprints included; L-002 landed (2026-10-30) without this arm. L-003 depends on this task."
+
   - id: L-003
     title: Title/abstract screening of the corpus
     milestone: M2
@@ -105,7 +121,7 @@ tasks:
     priority: 2
     kind: literature
     track: literature
-    depends_on: [L-002]
+    depends_on: [L-002, L-002b]
     goal: Screen every to_screen paper against the protocol criteria.
     acceptance:
       - Every to_screen paper moved to excluded or to_read with a screen_reason citing the criterion, a relevance 0–3 and topics; at most 150 per run (split the task if more remain, criteria unchanged).
