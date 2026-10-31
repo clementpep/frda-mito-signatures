@@ -37,7 +37,9 @@ class Branch:
     head: str
     subject: str
     committed_at: str
-    state: str  # needs_verification | changes_requested | needs_human | blocked | landing_pending | landed
+    # needs_verification | changes_requested | needs_human | blocked | landing_pending | superseded
+    # | landed
+    state: str
     blocked_on: str | None = None
 
 
@@ -80,6 +82,19 @@ def branches(root: Path | None = None) -> list[Branch]:
                 else:
                     state = "needs_verification"
             result.append(Branch(name, task, kind, sha, subject, date, state))
+    # verified/<T> is superseded when auto/<T> moved past it (e.g. main merged in after a landing
+    # that could not run): it will never land as is, and the newer auto/<T> needs verification.
+    autos = {b.task: b for b in result if b.kind == "auto" and b.state != "landed"}
+    for b in result:
+        a = autos.get(b.task)
+        if (
+            b.kind == "verified"
+            and b.state == "landing_pending"
+            and a
+            and a.head != b.head
+            and is_ancestor(b.head, a.head, root)
+        ):
+            b.state = "superseded"
     result.sort(key=lambda b: b.committed_at)
     return result
 
@@ -94,7 +109,7 @@ def status(root: Path | None = None) -> dict[str, Any]:
     root = root or paths.ROOT
     cfg = load_yaml(root / "autonomy" / "config.yaml")
     bs = branches(root)
-    verified_tasks = {b.task for b in bs if b.kind == "verified" and b.state != "landed"}
+    verified_tasks = {b.task for b in bs if b.kind == "verified" and b.state == "landing_pending"}
     open_auto = [b for b in bs if b.kind == "auto" and b.state != "landed"]
     # A task whose verified/ branch is waiting to land is no longer the worker's.
     active = [b for b in open_auto if b.task not in verified_tasks]
@@ -167,5 +182,5 @@ def status(root: Path | None = None) -> dict[str, Any]:
         "landing_pending": [b.name for b in bs if b.state == "landing_pending"],
         "needs_human": [b.name for b in bs if b.state == "needs_human"],
         "blocked": [f"{b.name} (needs {b.blocked_on})" for b in bs if b.state == "blocked"],
-        "stale_landed": [b.name for b in bs if b.state == "landed"],
+        "stale_landed": [b.name for b in bs if b.state in ("landed", "superseded")],
     }
