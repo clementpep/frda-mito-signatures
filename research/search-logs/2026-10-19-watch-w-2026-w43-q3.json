@@ -1,0 +1,8 @@
+{
+  "query": "(TITLE_ABS:Friedreich* OR TITLE_ABS:FRDA OR TITLE_ABS:frataxin OR TITLE_ABS:FXN) AND (TITLE_ABS:GSE* OR TITLE_ABS:\"Gene Expression Omnibus\" OR TITLE_ABS:\"publicly available\" OR TITLE_ABS:\"public data*\" OR TITLE_ABS:reanaly* OR TITLE_ABS:re-analy* OR TITLE_ABS:meta-analys* OR TITLE_ABS:dataset*) AND LANG:eng AND (SRC:MED OR SRC:PPR) AND FIRST_PDATE:[2026-10-11 TO 2026-10-19]",
+  "date": "2026-10-19",
+  "hit_count": 0,
+  "retrieved": 0,
+  "results": [],
+  "task": "W-2026-W43"
+}

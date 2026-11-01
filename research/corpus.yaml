@@ -19275,3 +19275,35 @@ papers:
   - 2026-10-19-q5b-2024-2026
   status: to_screen
   topics: []
+- id: MED:42878077
+  title: Edited HSPCs rescue frataxin deficiency and inflammation-driven multisystemic pathology in Friedreich's
+    ataxia mice.
+  year: 2026
+  journal: The Journal of clinical investigation
+  first_author: Sivakumar A
+  doi: 10.1172/jci209546
+  pmcid: PMC13668640
+  kind: primary
+  open_access: true
+  added: '2026-10-31'
+  added_by: W-2026-W43
+  found_by:
+  - 2026-10-31-watch-w-2026-w43-rerun-q2
+  status: to_screen
+  topics: []
+- id: MED:42887212
+  title: Glial-specific mitochondrial failure and redox imbalance contribute to regional vulnerability
+    in Friedreich's ataxia.
+  year: 2026
+  journal: Redox biology
+  first_author: Sanz-Alcázar A
+  doi: 10.1016/j.redox.2026.104437
+  pmcid: PMC13696766
+  kind: primary
+  open_access: true
+  added: '2026-10-31'
+  added_by: W-2026-W43
+  found_by:
+  - 2026-10-31-watch-w-2026-w43-rerun-q2
+  status: to_screen
+  topics: []
