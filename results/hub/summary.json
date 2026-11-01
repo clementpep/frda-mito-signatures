@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-31T17:16:23+00:00",
-  "commit": "05f125605520083235a772d6471e2db0802a25bb",
+  "generated_at": "2026-11-01T05:55:16+00:00",
+  "commit": "62c1c9f10f3b946ca348d7183b7f8da7eeec552a",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -465,6 +465,15 @@
   "verifications": [
     {
       "task": "W-2026-W43",
+      "date": "2026-11-01",
+      "verdict": "PASS",
+      "summary": "Re-hand-over of the already verified W43 watch (c0f6e36) merged with main; no W43 content changed, gates PASS on fresh data",
+      "attempt": 3,
+      "acceptance_met": "6/6",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/W-2026-W43-62c1c9f.md"
+    },
+    {
+      "task": "W-2026-W43",
       "date": "2026-10-31",
       "verdict": "PASS",
       "summary": "Attempt-1 findings fixed; 2 lagged MED papers added, preprint blind spot disclosed, L-002/L-003 wording corrected",
@@ -633,15 +642,6 @@
       "attempt": 4,
       "acceptance_met": "4/5",
       "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-021-61283e6.md"
-    },
-    {
-      "task": "T-021",
-      "date": "2026-10-16",
-      "verdict": "CHANGES_REQUESTED",
-      "summary": "Gates green, but lit-verify can false-PASS, pick_next mishandles zero-budget tracks, and a test assertion was weakened.",
-      "attempt": 1,
-      "acceptance_met": "2/5",
-      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-021-8914580.md"
     }
   ],
   "research": {
