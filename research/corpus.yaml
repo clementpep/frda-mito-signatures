@@ -43,6 +43,7 @@ papers:
   added_by: W-2026-W44
   found_by:
   - 2026-10-26-watch-w-2026-w44-q2
+  - 2026-10-26-watch-w-2026-w44-q5a
   status: to_screen
   topics: []
 - id: MED:42909834
@@ -70,6 +71,7 @@ papers:
   added_by: W-2026-W44
   found_by:
   - 2026-10-26-watch-w-2026-w44-q1-ppr
+  - 2026-10-26-watch-w-2026-w44-q5a-ppr
   status: to_screen
   topics: []
 - id: PPR:PPR1344364
@@ -84,6 +86,7 @@ papers:
   added_by: W-2026-W44
   found_by:
   - 2026-10-26-watch-w-2026-w44-q1-ppr
+  - 2026-10-26-watch-w-2026-w44-q2-ppr
   status: to_screen
   topics: []
 - id: MED:29125828

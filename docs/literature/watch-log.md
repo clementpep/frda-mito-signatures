@@ -8,7 +8,7 @@ screening (L-003) decides inclusion.
 Window: FIRST_PDATE 2026-10-11 → 2026-10-26 (15 days, overlapping the previous week to cover
 Europe PMC index lag, see FIX-watch-lag). Logs: `research/search-logs/2026-10-26-watch-w-2026-w44-*.json`.
 Protocol queries (with `LANG:eng AND (SRC:MED OR SRC:PPR)`) return no preprints; a separate preprint
-arm (same queries, `SRC:PPR` instead, no `LANG:eng`) is logged with the `-ppr` suffix.
+arm (same queries, `SRC:PPR` instead, no `LANG:eng`; protocol amendment A1, 2026-10-28) is logged with the `-ppr` suffix.
 
 | Id | Title | Found by | Relevance (from title) |
 |---|---|---|---|
@@ -21,4 +21,4 @@ arm (same queries, `SRC:PPR` instead, no `LANG:eng`) is logged with the `-ppr` s
 
 Hit counts (window above): MED arm Q1 0, Q2 3, Q3 0, Q5a 2, Q5b 0; preprint arm Q1 2, Q2 1, Q3 0, Q5a 1, Q5b 0.
 6 unique records added (4 MED, 2 preprints). The two MED:42878077 / MED:42887212 records were
-first indexed 2026-10-19 and are the ones the W-2026-W43 run (window to 2026-10-19) missed.
+first indexed 2026-10-19 (per verification W-2026-W43-8e5d9fa) and are the ones the W-2026-W43 run (window to 2026-10-19) missed.
