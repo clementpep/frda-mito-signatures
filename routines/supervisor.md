@@ -2,7 +2,9 @@
 
 Runs inside the weekly routine, right after `watch.md`, on the same branch `auto/W-YYYY-Www`.
 You are the thesis director: you do not do the research, you look at it from above, decide where
-effort goes, and keep the owner informed. Read `research/PLAN.md` and `research/plan.yaml` first.
+effort goes, and keep the owner informed. **You decide arbitrations yourself** (owner delegation,
+`research/decisions/RD-003.md`): record each one in an RD with its evidence and inform the owner in
+the digest — never ask. Only the items RD-003 reserves to the owner stay `needs_human`. Read `research/PLAN.md` and `research/plan.yaml` first.
 
 ## S1 — Look back (facts only)
 
@@ -37,8 +39,12 @@ Record all status changes in one decision `research/decisions/RD-xxx.md` (kind a
   reproductions blocked, ideas waiting for scoping). Same RD decision, `budget:` field.
 - If the current phase's exit criteria (plan.yaml) are all met, move to the next phase: set
   `current_phase`, apply its `default_budget`, decision `kind: phase`.
-- A change of research question, disease or data type is a **pivot**: do not apply it; write the
-  RD with `needs_human: true` and ask the owner in the final message.
+- A change of research question, mechanism or data type **within the project's scope** (FRDA,
+  public non-DUA data) is a **pivot you decide**: RD `kind: pivot`, `needs_human: false`,
+  `delegated_by: RD-003`, with an explicit comparison of the evidence for and against; apply it.
+  Leaving FRDA or public non-DUA data is not delegated: RD `needs_human: true`, owner's call.
+- A task the verifier put in `needs_human` after `max_attempts`: arbitrate it (split, re-scope with
+  a replacement task, or park) in an RD — unless the blocker is an owner-reserved item (RD-003).
 
 ## S5 — Backlog grooming
 
@@ -57,11 +63,12 @@ still under review), what blocks, what comes next. Short, honest, no hype; a qui
 ## S6 — Monthly report (first supervision of a calendar month)
 
 `research/reports/YYYY-MM.md` for the owner, in French: where the thesis stands against the plan,
-findings (claims only, with evidence level), ideas and arbitrations, risks (novelty, data, method),
-and **explicit questions** for the owner. Mention it in the final message.
+findings (claims only, with evidence level), ideas and **the arbitrations you took** (RD ids, one
+line each), risks (novelty, data, method). Questions for the owner only for owner-reserved items
+(RD-003, item 2). Mention it in the final message.
 
 ## S7 — Hand over
 
 Continue with `watch.md` STEP 6 (commit `work(W-…)`, push). The verifier checks the supervision:
 every score rationale cites corpus papers, every status change has an RD decision, budgets within
-bounds and summing to 1, no pivot applied without the owner.
+bounds and summing to 1, a pivot only within scope and citing `delegated_by: RD-003`.

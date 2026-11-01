@@ -1,3 +1,5 @@
+import io
+
 import pytest
 from pydantic import ValidationError
 
@@ -46,3 +48,33 @@ def test_http_urls_rejected():
     m["files"][0]["url"] = m["files"][0]["url"].replace("https://", "http://")
     with pytest.raises(ValidationError):
         Manifest.model_validate(m)
+
+
+class _Resp(io.BytesIO):
+    def __init__(self, body: bytes, length: int):
+        super().__init__(body)
+        self.headers = {"Content-Length": str(length)}
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *a):
+        return False
+
+
+def test_short_transfer_is_retried_not_reported_as_drift(tmp_path, monkeypatch):
+    # 2026-10-31: NCBI answered 200 with 0 of 3118820 bytes about one time in two; the short
+    # body used to be hashed and reported as "upstream file changed".
+    from frda import acquire
+
+    body = b"x" * 100
+    answers = [_Resp(b"", 100), _Resp(body[:40], 100), _Resp(body, 100)]
+    monkeypatch.setattr(acquire.urllib.request, "urlopen", lambda req, timeout: answers.pop(0))
+    monkeypatch.setattr(acquire.time, "sleep", lambda s: None)
+    dest = tmp_path / "f.gz"
+    acquire._download("https://example.org/f.gz", dest)
+    assert dest.read_bytes() == body and answers == []
+
+    monkeypatch.setattr(acquire.urllib.request, "urlopen", lambda req, timeout: _Resp(b"", 100))
+    with pytest.raises(acquire.DownloadError, match="received 0 of 100 bytes"):
+        acquire._download("https://example.org/f.gz", dest)

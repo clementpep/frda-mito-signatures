@@ -6,10 +6,13 @@ A checksum mismatch is a hard failure: the file is not kept. Upstream drift
 
 from __future__ import annotations
 
+import http.client
 import json
 import os
 import shutil
 import tempfile
+import time
+import urllib.error
 import urllib.request
 from datetime import UTC, datetime
 from pathlib import Path
@@ -29,10 +32,38 @@ def raw_path(manifest: Manifest, f: ManifestFile, raw_dir: Path | None = None) -
     return (raw_dir or paths.RAW) / manifest.id / f.name
 
 
-def _download(url: str, dest: Path) -> None:
+class DownloadError(RuntimeError):
+    """The transfer itself failed (cut short, network). Not evidence of upstream drift."""
+
+
+RETRY_DELAYS = (2, 4, 8, 16, 32, 64)  # NCBI drops come in bursts: ~2 min in all
+
+
+def _download_once(url: str, dest: Path) -> None:
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
     with urllib.request.urlopen(req, timeout=120) as resp, dest.open("wb") as out:
-        shutil.copyfileobj(resp, out)
+        expected = resp.headers.get("Content-Length")
+        try:
+            shutil.copyfileobj(resp, out)
+        except http.client.IncompleteRead as exc:
+            raise DownloadError(f"{url}: transfer cut short ({exc})") from exc
+    got = dest.stat().st_size
+    # NCBI's HTTPS front end drops transfers at random (seen 2026-10-31: 0 of 3118820 bytes
+    # with status 200). A short body must not reach the checksum and pass for upstream drift.
+    if expected is not None and got != int(expected):
+        raise DownloadError(f"{url}: received {got} of {expected} bytes")
+
+
+def _download(url: str, dest: Path) -> None:
+    """Download with retries on transfer failures only; the checksum is checked by the caller."""
+    for attempt, delay in enumerate((0, *RETRY_DELAYS)):
+        time.sleep(delay)
+        try:
+            _download_once(url, dest)
+            return
+        except (DownloadError, urllib.error.URLError, TimeoutError, ConnectionError) as exc:
+            if attempt == len(RETRY_DELAYS):
+                raise DownloadError(f"{exc} (after {attempt + 1} attempts)") from exc
 
 
 def fetch_file(

@@ -196,6 +196,20 @@ def normalise(text: str) -> str:
     return text.strip().lower()
 
 
+TITLE_TAG = re.compile(r"</?(i|b|em|strong|sup|sub|sc|u)\b[^>]*>", flags=re.I)
+
+
+def title_text(title: str) -> str:
+    """A title as plain text. Europe PMC returns inline markup escaped (`&lt;i&gt;`) while the
+    corpus stores it unescaped once (`<i>`): unescape until stable, then drop inline tags."""
+    for _ in range(3):
+        unescaped = html.unescape(title)
+        if unescaped == title:
+            break
+        title = unescaped
+    return normalise(TITLE_TAG.sub("", title))
+
+
 # ----------------------------------------------------------------------------------------------
 # Verbatim matching (redesigned after T-021 verification, attempts 1-4).
 #
@@ -433,7 +447,7 @@ def verify(paper_ids: list[str] | None = None, root: Path | None = None) -> list
             problems.append(f"{p.id}: does not exist in Europe PMC")
             continue
         ratio = difflib.SequenceMatcher(
-            None, normalise(p.title), normalise(rec.get("title", ""))
+            None, title_text(p.title), title_text(rec.get("title", ""))
         ).ratio()
         if ratio < 0.9:
             problems.append(f"{p.id}: recorded title differs from Europe PMC ({ratio:.2f})")

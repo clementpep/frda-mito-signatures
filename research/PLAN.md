@@ -20,8 +20,9 @@ patients, with their clinical annotations; cell models support it, they do not r
    GSE145115)? A shift in a cell model is not a clinical benefit.
 
 The question can be refined by the weekly supervision (decision `kind: arbitration`). Changing it
-— another disease, another mechanism, another data type — is a **pivot**: decided by the owner
-(`needs_human: true`).
+— another mechanism, another data type — is a **pivot**, decided by the supervision under the
+owner's delegation (RD-003: `delegated_by: RD-003`). Another disease, or leaving public non-DUA
+data, stays the owner's call (`needs_human: true`).
 
 ## How a working week looks
 
@@ -77,5 +78,6 @@ recorded as an RD decision (`kind: phase`) and announced to the owner in the mon
 ## What the owner sees
 
 - `/research` on poups-ai-hub: phase, budgets, corpus progress, ideas and their status.
-- `research/reports/YYYY-MM.md`: monthly progress report with explicit questions.
-- Push notifications: `⚠️ NEEDS HUMAN` (pivot, terms of use, three failed verifications).
+- `research/reports/YYYY-MM.md`: monthly progress report with the arbitrations taken.
+- Push notifications (procedures P8): `🔬` trouvailles; `⚠️ NEEDS HUMAN` only for an owner-reserved
+  question (RD-003), once.

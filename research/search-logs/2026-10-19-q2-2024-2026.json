@@ -1,0 +1,881 @@
+{
+  "query": "(TITLE_ABS:Friedreich* OR TITLE_ABS:FRDA OR TITLE_ABS:frataxin OR TITLE_ABS:FXN) AND ((TITLE_ABS:transcript* OR TITLE_ABS:\"RNA-seq\" OR TITLE_ABS:\"RNA sequencing\" OR TITLE_ABS:\"gene expression\" OR TITLE_ABS:microarray OR TITLE_ABS:\"differentially expressed\") OR TITLE_ABS:mitochondri*) AND (TITLE_ABS:treat* OR TITLE_ABS:compound* OR TITLE_ABS:HDAC OR TITLE_ABS:inhibitor* OR TITLE_ABS:therap* OR TITLE_ABS:drug* OR TITLE_ABS:omaveloxolone OR TITLE_ABS:nicotinamide OR TITLE_ABS:\"gene therapy\") AND PUB_YEAR:[2024 TO 2026] AND LANG:eng AND (SRC:MED OR SRC:PPR)",
+  "date": "2026-10-19",
+  "hit_count": 109,
+  "retrieved": 109,
+  "results": [
+    {
+      "id": "MED:42018061",
+      "title": "The TRKB Agonist 7,8-dihydroxyflavone Alleviates DNA Damage and Apoptosis in a Neuronal Cell Model of Friedreich's Ataxia.",
+      "year": 2026,
+      "first_author": "Galán-Cruz J",
+      "journal": "Mol Neurobiol",
+      "open_access": true
+    },
+    {
+      "id": "MED:42134333",
+      "title": "Therapeutic activity of a hematopoietic stem cell-delivered cell-penetrating frataxin in Friedreich's ataxia models.",
+      "year": 2026,
+      "first_author": "Pido-Lopez J",
+      "journal": "Cell Rep Med",
+      "open_access": true
+    },
+    {
+      "id": "MED:42572232",
+      "title": "Physiologically Regulated Frataxin Gene Replacement Restores Neurological Function in a Mouse Model of Friedreich Ataxia.",
+      "year": 2026,
+      "first_author": "Pilotto F",
+      "journal": "Hum Gene Ther",
+      "open_access": false
+    },
+    {
+      "id": "MED:42295329",
+      "title": "Epigenetic reactivation in Friedreich's ataxia from benzamides to gene‑targeted chimeras.",
+      "year": 2026,
+      "first_author": "Ansari FU",
+      "journal": "Expert Opin Drug Discov",
+      "open_access": false
+    },
+    {
+      "id": "MED:41514384",
+      "title": "Human pluripotent stem cell models of Friedreich's ataxia: innovations, considerations, and future perspectives.",
+      "year": 2026,
+      "first_author": "Nguyen HT",
+      "journal": "Stem Cell Res Ther",
+      "open_access": true
+    },
+    {
+      "id": "MED:42526774",
+      "title": "Limiting intestinal iron absorption rescues glial defects and extends lifespan in a Drosophila model of Friedreich's ataxia.",
+      "year": 2026,
+      "first_author": "Turki E",
+      "journal": "Neurobiol Dis",
+      "open_access": false
+    },
+    {
+      "id": "MED:42383006",
+      "title": "Dysregulation of sphingolipid-metabolizing enzymes in Friedreich's ataxia: &lt;i&gt;In vitro&lt;/i&gt; and &lt;i&gt;in vivo&lt;/i&gt; insights into therapeutic targeting.",
+      "year": 2026,
+      "first_author": "Ramchunder Z",
+      "journal": "iScience",
+      "open_access": true
+    },
+    {
+      "id": "MED:40406806",
+      "title": "Sulforaphane Targets Multiple Pathological Processes in Friedreich Ataxia Patient-Induced Pluripotent Stem Cell-Derived Sensory Neurons.",
+      "year": 2025,
+      "first_author": "Yang W",
+      "journal": "Antioxid Redox Signal",
+      "open_access": false
+    },
+    {
+      "id": "MED:42850823",
+      "title": "Mitochondrial dynamics and repair differences in two mouse models of Friedreich's ataxia.",
+      "year": 2026,
+      "first_author": "Salinas L",
+      "journal": "J Physiol",
+      "open_access": false
+    },
+    {
+      "id": "MED:41579709",
+      "title": "Targeting frataxin deficiency in DRG neurons and fibroblasts: omaveloxolone restores metabolic and iron balance to reduce ferroptosis.",
+      "year": 2026,
+      "first_author": "Portillo-Carrasquer M",
+      "journal": "Biomed Pharmacother",
+      "open_access": false
+    },
+    {
+      "id": "MED:42158846",
+      "title": "Recent developments in Friedreich's ataxia: a state-of-the-art review.",
+      "year": 2026,
+      "first_author": "Chapman LR",
+      "journal": "Brain Commun",
+      "open_access": true
+    },
+    {
+      "id": "MED:39519164",
+      "title": "Differential Gene Expression in Late-Onset Friedreich Ataxia: A Comparative Transcriptomic Analysis Between Symptomatic and Asymptomatic Sisters.",
+      "year": 2024,
+      "first_author": "Petrillo S",
+      "journal": "Int J Mol Sci",
+      "open_access": true
+    },
+    {
+      "id": "MED:42754241",
+      "title": "Friedreich Ataxia: From Genetics to Mechanism to Clinical Features.",
+      "year": 2026,
+      "first_author": "Lynch DR",
+      "journal": "Annu Rev Pathol",
+      "open_access": false
+    },
+    {
+      "id": "MED:41002373",
+      "title": "Oxidative Stress and Antioxidant Therapies in Friedreich's Ataxia.",
+      "year": 2025,
+      "first_author": "Jiménez-Jiménez FJ",
+      "journal": "Cells",
+      "open_access": true
+    },
+    {
+      "id": "MED:42833467",
+      "title": "The Cardiac Calcium Handling Machinery is Remodeled in Friedreich's Ataxia.",
+      "year": 2026,
+      "first_author": "Abou-Assali O",
+      "journal": "Heart Rhythm",
+      "open_access": false
+    },
+    {
+      "id": "MED:40501183",
+      "title": "Omaveloxolone, But Not Dimethyl Fumarate, Improves Cardiac Function in Friedreich's Ataxia Mice With Severe Cardiomyopathy.",
+      "year": 2025,
+      "first_author": "Salinas L",
+      "journal": "J Am Heart Assoc",
+      "open_access": true
+    },
+    {
+      "id": "MED:42240896",
+      "title": "Autophagy activation by urolithin-a derivative UA-36 mitigates Friedreich's ataxia pathologies induced by frataxin deficiency.",
+      "year": 2026,
+      "first_author": "Gong Q",
+      "journal": "Mol Biomed",
+      "open_access": true
+    },
+    {
+      "id": "MED:38920668",
+      "title": "The Regulation of the Disease-Causing Gene <i>FXN</i>.",
+      "year": 2024,
+      "first_author": "Dong YN",
+      "journal": "Cells",
+      "open_access": true
+    },
+    {
+      "id": "MED:42439976",
+      "title": "CRISPR-Cas9-based therapies for Huntington's disease and Friedreich's ataxia: mechanisms, advances, and future perspectives.",
+      "year": 2026,
+      "first_author": "Mundada AR",
+      "journal": "Neurogenetics",
+      "open_access": false
+    },
+    {
+      "id": "MED:40849475",
+      "title": "Alpha-lipoic acid supplementation improves pathological alterations in cellular models of Friedreich ataxia.",
+      "year": 2025,
+      "first_author": "Talaverón-Rey M",
+      "journal": "Orphanet J Rare Dis",
+      "open_access": true
+    },
+    {
+      "id": "MED:41318543",
+      "title": "Microgliopathy as a primary mediator of neuronal death in models of Friedreich's Ataxia.",
+      "year": 2025,
+      "first_author": "Pernaci C",
+      "journal": "Nat Commun",
+      "open_access": true
+    },
+    {
+      "id": "MED:42150975",
+      "title": "Targeting competitive Fe-S regulation to treat Friedreich's ataxia.",
+      "year": 2026,
+      "first_author": "Campos JC",
+      "journal": "Trends Pharmacol Sci",
+      "open_access": false
+    },
+    {
+      "id": "MED:40375363",
+      "title": "Therapeutic combination of L-ascorbic acid, N-acetylcysteine, and dimethyl fumarate in Friedreich's ataxia: insights from in vitro models.",
+      "year": 2025,
+      "first_author": "Edzeamey FJ",
+      "journal": "Redox Rep",
+      "open_access": true
+    },
+    {
+      "id": "MED:38622054",
+      "title": "Pharmacotherapeutic strategies for Friedreich Ataxia: a review of the available data.",
+      "year": 2024,
+      "first_author": "Gunther K",
+      "journal": "Expert Opin Pharmacother",
+      "open_access": false
+    },
+    {
+      "id": "MED:42033121",
+      "title": "Nomlabofusp Treatment Produces Frataxin Levels That Correlate Across Peripheral Tissues: Preclinical and Clinical Support for Surrogate Tissue Sampling.",
+      "year": 2026,
+      "first_author": "De Toni F",
+      "journal": "Clin Transl Sci",
+      "open_access": true
+    },
+    {
+      "id": "MED:39823061",
+      "title": "Design and validation of cell-based potency assays for frataxin supplementation treatments.",
+      "year": 2024,
+      "first_author": "Mukherjee S",
+      "journal": "Mol Ther Methods Clin Dev",
+      "open_access": true
+    },
+    {
+      "id": "MED:42513621",
+      "title": "Evolution of Friedreich's Ataxia Management Across Established and Emerging Therapies-Systematic Review and Meta-Analysis.",
+      "year": 2026,
+      "first_author": "Garah B",
+      "journal": "J Clin Med",
+      "open_access": true
+    },
+    {
+      "id": "MED:40704029",
+      "title": "Antisense oligonucleotide therapy for patients with Friedreich's ataxia carrying the c.165+5G&gt;C splicing mutation.",
+      "year": 2025,
+      "first_author": "Yameogo P",
+      "journal": "Mol Ther Nucleic Acids",
+      "open_access": true
+    },
+    {
+      "id": "MED:41137390",
+      "title": "Development of an AAV-based gene therapy for the ocular phenotype of Friedreich's ataxia.",
+      "year": 2026,
+      "first_author": "Tang H",
+      "journal": "Mol Ther",
+      "open_access": true
+    },
+    {
+      "id": "MED:40404357",
+      "title": "Inhibition of Rho-Associated Kinases ROCK1 and ROCK2 as a Therapeutic Strategy to Reactivate the Repressed &lt;i&gt;FXN&lt;/i&gt; Gene in Friedreich Ataxia.",
+      "year": 2025,
+      "first_author": "Fang M",
+      "journal": "J Neurosci",
+      "open_access": false
+    },
+    {
+      "id": "MED:42303002",
+      "title": "Genetic modifiers of Friedreich's ataxia pathophysiology in Drosophila melanogaster - A systematic review and meta-analysis.",
+      "year": 2026,
+      "first_author": "Yadav RK",
+      "journal": "Free Radic Biol Med",
+      "open_access": false
+    },
+    {
+      "id": "MED:38631900",
+      "title": "Frataxin deficiency shifts metabolism to promote reactive microglia via glucose catabolism.",
+      "year": 2024,
+      "first_author": "Sciarretta F",
+      "journal": "Life Sci Alliance",
+      "open_access": true
+    },
+    {
+      "id": "MED:38891993",
+      "title": "An In Silico Analysis of Genetic Variants and Structural Modeling of the Human Frataxin Protein in Friedreich's Ataxia.",
+      "year": 2024,
+      "first_author": "Da Conceição LMA",
+      "journal": "Int J Mol Sci",
+      "open_access": true
+    },
+    {
+      "id": "MED:39115603",
+      "title": "New and Emerging Drug and Gene Therapies for Friedreich Ataxia.",
+      "year": 2024,
+      "first_author": "Scott V",
+      "journal": "CNS Drugs",
+      "open_access": true
+    },
+    {
+      "id": "MED:42149296",
+      "title": "FXN predicts poor prognosis in colon adenocarcinoma and correlates with immune cell infiltration.",
+      "year": 2026,
+      "first_author": "Sun M",
+      "journal": "Clin Transl Oncol",
+      "open_access": true
+    },
+    {
+      "id": "MED:40972403",
+      "title": "Leriglitazone improves iron homeostasis and ferroptotic markers in frataxin-deficient dorsal root ganglia neurons.",
+      "year": 2025,
+      "first_author": "Portillo-Carrasquer M",
+      "journal": "Biomed Pharmacother",
+      "open_access": false
+    },
+    {
+      "id": "MED:39810561",
+      "title": "Friedreich ataxia: what can we learn from non-GAA repeat mutations?",
+      "year": 2025,
+      "first_author": "Lynch DR",
+      "journal": "Neurodegener Dis Manag",
+      "open_access": false
+    },
+    {
+      "id": "MED:42504621",
+      "title": "Omaveloxolone Driven NRF2 Activation as a Novel Therapeutic Strategy for Pulmonary Hypertension.",
+      "year": 2026,
+      "first_author": "Huang C",
+      "journal": "Hypertension",
+      "open_access": false
+    },
+    {
+      "id": "MED:42794697",
+      "title": "Mitochondrial Quality Control in Inherited Mitochondrial Cardiomyopathy: Convergent Pathobiology and a Testable Therapeutic Framework.",
+      "year": 2026,
+      "first_author": "Lee CL",
+      "journal": "Int J Mol Sci",
+      "open_access": true
+    },
+    {
+      "id": "MED:41865610",
+      "title": "Myo-inositol elevation as an in vivo marker of reactive gliosis in pediatric Friedreich ataxia: evidence from HERMES-edited MR spectroscopy.",
+      "year": 2026,
+      "first_author": "Gaetz W",
+      "journal": "Neuroimage Clin",
+      "open_access": true
+    },
+    {
+      "id": "MED:42846527",
+      "title": "Clinical and genetic analysis of multiple mitochondrial dysfunctions syndrome type 6 caused by biallelic &lt;i&gt;PMPCB&lt;/i&gt; variants in children.",
+      "year": 2026,
+      "first_author": "Wu Y",
+      "journal": "Front Pediatr",
+      "open_access": false
+    },
+    {
+      "id": "MED:39909887",
+      "title": "Frataxin Traps Low Abundance Quaternary Structure to Stimulate Human Fe-S Cluster Biosynthesis.",
+      "year": 2025,
+      "first_author": "Cory SA",
+      "journal": "Biochemistry",
+      "open_access": true
+    },
+    {
+      "id": "MED:40541211",
+      "title": "Friedreich's ataxia-a rare multisystem disease.",
+      "year": 2025,
+      "first_author": "Reetz K",
+      "journal": "Lancet Neurol",
+      "open_access": false
+    },
+    {
+      "id": "MED:38352270",
+      "title": "AAV8 gene therapy reverses cardiac pathology and prevents early mortality in a mouse model of Friedreich's ataxia.",
+      "year": 2024,
+      "first_author": "Chang JC",
+      "journal": "Mol Ther Methods Clin Dev",
+      "open_access": true
+    },
+    {
+      "id": "MED:38272714",
+      "title": "Omaveloxolone: a groundbreaking milestone as the first FDA-approved drug for Friedreich ataxia.",
+      "year": 2024,
+      "first_author": "Pilotto F",
+      "journal": "Trends Mol Med",
+      "open_access": false
+    },
+    {
+      "id": "MED:38063871",
+      "title": "Frataxin analysis using triple quadrupole mass spectrometry: application to a large heterogeneous clinical cohort.",
+      "year": 2024,
+      "first_author": "Lynch DR",
+      "journal": "J Neurol",
+      "open_access": false
+    },
+    {
+      "id": "MED:42736305",
+      "title": "Myeloid cell replacement induces intercellular mitochondrial transfer and restores metabolism in a mouse model of mitochondrial disease.",
+      "year": 2026,
+      "first_author": "Cho H",
+      "journal": "Nat Commun",
+      "open_access": true
+    },
+    {
+      "id": "MED:38778374",
+      "title": "An RNA-seq study in Friedreich ataxia patients identified hsa-miR-148a-3p as a putative prognostic biomarker of the disease.",
+      "year": 2024,
+      "first_author": "Vancheri C",
+      "journal": "Hum Genomics",
+      "open_access": true
+    },
+    {
+      "id": "MED:38495102",
+      "title": "A peptide derived from TID1S rescues frataxin deficiency and mitochondrial defects in FRDA cellular models.",
+      "year": 2024,
+      "first_author": "Dong YN",
+      "journal": "Front Pharmacol",
+      "open_access": true
+    },
+    {
+      "id": "MED:40296143",
+      "title": "MSH2 is not required for either maintenance of DNA methylation or repeat contraction at the FMR1 locus in fragile X syndrome or the FXN locus in Friedreich's ataxia.",
+      "year": 2025,
+      "first_author": "Grant-Bier J",
+      "journal": "Epigenetics Chromatin",
+      "open_access": true
+    },
+    {
+      "id": "MED:40140196",
+      "title": "Nomlabofusp, a Fusion Protein of Human Frataxin and a Cell Penetrant Peptide, Delivers Mature and Functional Frataxin into Mitochondria.",
+      "year": 2025,
+      "first_author": "Baile MG",
+      "journal": "AAPS J",
+      "open_access": false
+    },
+    {
+      "id": "MED:39324476",
+      "title": "Case Report of Friedreich's Ataxia and ALG1 -Related Biochemical Abnormalities in a Patient With Progressive Spastic Paraplegia.",
+      "year": 2025,
+      "first_author": "Quinlan A",
+      "journal": "Am J Med Genet A",
+      "open_access": false
+    },
+    {
+      "id": "MED:42301137",
+      "title": "Pharmacological Activation of NRF2 by Omaveloxolone Upregulates NRF2-Target Proteins in SMA Type I Human Fibroblasts.",
+      "year": 2026,
+      "first_author": "Vrettou S",
+      "journal": "FASEB J",
+      "open_access": true
+    },
+    {
+      "id": "MED:39171530",
+      "title": "NAD+ precursors prolong survival and improve cardiac phenotypes in a mouse model of Friedreich's Ataxia.",
+      "year": 2024,
+      "first_author": "Perry CE",
+      "journal": "JCI Insight",
+      "open_access": true
+    },
+    {
+      "id": "MED:42621215",
+      "title": "Therapeutic potential of the Nrf2 activator omaveloxolone in spinocerebellar ataxia type 3 in cellular and &lt;i&gt;Drosophila&lt;/i&gt; models.",
+      "year": 2026,
+      "first_author": "Pan SH",
+      "journal": "Front Pharmacol",
+      "open_access": true
+    },
+    {
+      "id": "MED:38420191",
+      "title": "Gene editing improves endoplasmic reticulum-mitochondrial contacts and unfolded protein response in Friedreich's ataxia iPSC-derived neurons.",
+      "year": 2024,
+      "first_author": "Mishra P",
+      "journal": "Front Pharmacol",
+      "open_access": true
+    },
+    {
+      "id": "MED:38600238",
+      "title": "Expression and processing of mature human frataxin after gene therapy in mice.",
+      "year": 2024,
+      "first_author": "Rojsajjakul T",
+      "journal": "Sci Rep",
+      "open_access": true
+    },
+    {
+      "id": "MED:38379897",
+      "title": "Emerging antioxidant therapies in Friedreich's ataxia.",
+      "year": 2024,
+      "first_author": "Edzeamey FJ",
+      "journal": "Front Pharmacol",
+      "open_access": true
+    },
+    {
+      "id": "MED:39688804",
+      "title": "Plasma miRNAs Correlate with Structural Brain and Cardiac Damage in Friedreich's Ataxia.",
+      "year": 2024,
+      "first_author": "Peluzzo TM",
+      "journal": "Cerebellum",
+      "open_access": false
+    },
+    {
+      "id": "MED:39337401",
+      "title": "Skeletal Muscle Involvement in Friedreich Ataxia.",
+      "year": 2024,
+      "first_author": "Indelicato E",
+      "journal": "Int J Mol Sci",
+      "open_access": true
+    },
+    {
+      "id": "MED:39721363",
+      "title": "Low expression of Frataxin might contribute to diabetic peripheral neuropathy in a mouse model.",
+      "year": 2025,
+      "first_author": "Xia S",
+      "journal": "Biochem Biophys Res Commun",
+      "open_access": false
+    },
+    {
+      "id": "MED:41372402",
+      "title": "Mutations in mitochondrial ferredoxin FDX2 suppress frataxin deficiency.",
+      "year": 2026,
+      "first_author": "Meisel JD",
+      "journal": "Nature",
+      "open_access": true
+    },
+    {
+      "id": "MED:38638052",
+      "title": "Recent Advances in the Treatment Strategies of Friedreich's Ataxia: A Review of Potential Drug Candidates and their Underlying Mechanisms.",
+      "year": 2024,
+      "first_author": "Saini AK",
+      "journal": "Curr Pharm Des",
+      "open_access": false
+    },
+    {
+      "id": "MED:39134123",
+      "title": "A multiple animal and cellular models approach to study frataxin deficiency in Friedreich Ataxia.",
+      "year": 2024,
+      "first_author": "Mosbach V",
+      "journal": "Biochim Biophys Acta Mol Cell Res",
+      "open_access": false
+    },
+    {
+      "id": "MED:41750406",
+      "title": "Therapeutic Potential of Deferiprone-Resveratrol Hybrid (DFP-RVT) Against Hepatic Iron Overload in β-Thalassemia Mice: A Proteomic Analysis.",
+      "year": 2026,
+      "first_author": "Maneekesorn S",
+      "journal": "Biomolecules",
+      "open_access": true
+    },
+    {
+      "id": "MED:42259290",
+      "title": "Chemical modulation of Miro1 alleviates cell-type-specific vulnerabilities in Friedreich's ataxia.",
+      "year": 2026,
+      "first_author": "Chandra S",
+      "journal": "Cell Chem Biol",
+      "open_access": false
+    },
+    {
+      "id": "MED:41097010",
+      "title": "Synthesis and Biological Profile of Omaveloxolone: The Cornerstone for Friedreich Ataxia Treatment.",
+      "year": 2025,
+      "first_author": "Cordaro M",
+      "journal": "Int J Mol Sci",
+      "open_access": true
+    },
+    {
+      "id": "MED:42000979",
+      "title": "Meta-analysis reveals a core iron-responsive gene signature in Mycobacterium tuberculosis linking siderophore biosynthesis, virulence, and metabolic adaptation.",
+      "year": 2026,
+      "first_author": "Shankar G",
+      "journal": "Biometals",
+      "open_access": false
+    },
+    {
+      "id": "MED:40487352",
+      "title": "Anti-gene oligonucleotides targeting Friedreich's ataxia expanded GAA⋅TTC repeats increase Frataxin expression.",
+      "year": 2025,
+      "first_author": "Mozafari N",
+      "journal": "Mol Ther Nucleic Acids",
+      "open_access": true
+    },
+    {
+      "id": "MED:40966021",
+      "title": "Identification and validation of mitochondrial ferroptosis and immune microenvironment-related hub biomarkers in liver cirrhosis by integrated bioinformatics analysis.",
+      "year": 2025,
+      "first_author": "Deng P",
+      "journal": "Sci Prog",
+      "open_access": true
+    },
+    {
+      "id": "MED:40752035",
+      "title": "Analysis and verification of potential ferroptosis-related diagnostic markers in the early stage of metabolic dysfunction-associated steatohepatitis.",
+      "year": 2025,
+      "first_author": "Li Q",
+      "journal": "Biochem Biophys Res Commun",
+      "open_access": false
+    },
+    {
+      "id": "MED:40562976",
+      "title": "Pharmacokinetics and Pharmacodynamics of Nomlabofusp in Non-clinical Studies of Friedreich's Ataxia.",
+      "year": 2025,
+      "first_author": "De Toni F",
+      "journal": "AAPS J",
+      "open_access": true
+    },
+    {
+      "id": "MED:40376404",
+      "title": "Frataxin: from the sequence to the biological role.",
+      "year": 2025,
+      "first_author": "Pignataro MF",
+      "journal": "Biophys Rev",
+      "open_access": false
+    },
+    {
+      "id": "MED:40744695",
+      "title": "Evaluation of Mitochondrial Complex 1 Density with [&lt;sup&gt;18&lt;/sup&gt;F]BCPP-EF in a Murine Model and Individuals with Friedreich Ataxia.",
+      "year": 2025,
+      "first_author": "Chen L",
+      "journal": "J Nucl Med",
+      "open_access": true
+    },
+    {
+      "id": "MED:38038720",
+      "title": "A modified mouse model of Friedreich's ataxia with conditional <i>Fxn</i> allele homozygosity delays onset of cardiomyopathy.",
+      "year": 2024,
+      "first_author": "Perfitt TL",
+      "journal": "Am J Physiol Heart Circ Physiol",
+      "open_access": false
+    },
+    {
+      "id": "MED:42511079",
+      "title": "Transcriptome Sequencing Reveals That Curcumin Protects Leghorn Chicken Cardiomyocytes from Heat Stress-Induced Iron Dysregulation.",
+      "year": 2026,
+      "first_author": "Bian M",
+      "journal": "Animals (Basel)",
+      "open_access": true
+    },
+    {
+      "id": "MED:40563426",
+      "title": "Salutary Effects of Overexpression of Rsm22, an Assembly Factor for the Mitochondrial Ribosome, on Frataxin/Yfh1 Depletion Phenotypes in &lt;i&gt;Saccharomyces cerevisiae&lt;/i&gt;.",
+      "year": 2025,
+      "first_author": "Pandey AK",
+      "journal": "Biomolecules",
+      "open_access": true
+    },
+    {
+      "id": "MED:40752029",
+      "title": "The Tiger Milk Medicinal Mushroom Lignosus rhinocerus (Agaricomycetes) Mitigates Oxidative Damage in a Cellular Model Mimicking Friedreich's Ataxia.",
+      "year": 2025,
+      "first_author": "Phang MWL",
+      "journal": "Int J Med Mushrooms",
+      "open_access": false
+    },
+    {
+      "id": "MED:40344214",
+      "title": "Metformin aggravates pancreatitis by regulating the release of oxidised mitochondrial DNA via the frataxin (FXN)/ninjurin 1 (NINJ1) signalling pathway.",
+      "year": 2025,
+      "first_author": "Xin G",
+      "journal": "Br J Pharmacol",
+      "open_access": false
+    },
+    {
+      "id": "MED:38846537",
+      "title": "Long non-coding RNA <i>TUG1</i> is downregulated in Friedreich's ataxia.",
+      "year": 2024,
+      "first_author": "Koka M",
+      "journal": "Brain Commun",
+      "open_access": true
+    },
+    {
+      "id": "MED:40300600",
+      "title": "Model-guided design of microRNA-based gene circuits supports precise dosage of transgenic cargoes into diverse primary cells.",
+      "year": 2025,
+      "first_author": "Love KS",
+      "journal": "Cell Syst",
+      "open_access": false
+    },
+    {
+      "id": "MED:41436440",
+      "title": "Ferroptosis is a novel pathogenic mechanism of FDXR-related disease via disruption of the NRF2 pathway.",
+      "year": 2025,
+      "first_author": "Campbell T",
+      "journal": "Cell Death Discov",
+      "open_access": true
+    },
+    {
+      "id": "MED:42722415",
+      "title": "Ferroptosis, immune activation and MASH-related HCC.",
+      "year": 2026,
+      "first_author": "Kuchay MS",
+      "journal": "Gut",
+      "open_access": false
+    },
+    {
+      "id": "MED:41769702",
+      "title": "Dimethyl fumarate and mitochondrial physiology: implications for neurological disorders.",
+      "year": 2026,
+      "first_author": "de Oliveira MR.",
+      "journal": "Front Pharmacol",
+      "open_access": true
+    },
+    {
+      "id": "MED:38980086",
+      "title": "The importance of synthetic pharmacotherapy for recessive cerebellar ataxias.",
+      "year": 2024,
+      "first_author": "Beaudin M",
+      "journal": "Expert Rev Neurother",
+      "open_access": false
+    },
+    {
+      "id": "MED:39184439",
+      "title": "FXN targeting induces cell death in ovarian cancer stem-like cells through PRDX3-Mediated oxidative stress.",
+      "year": 2024,
+      "first_author": "Xu S",
+      "journal": "iScience",
+      "open_access": true
+    },
+    {
+      "id": "MED:38266318",
+      "title": "Protective effect of FXN overexpression on ferroptosis in L-Glu-induced SH-SY5Y cells.",
+      "year": 2024,
+      "first_author": "Wang M",
+      "journal": "Acta Histochem",
+      "open_access": false
+    },
+    {
+      "id": "MED:41212342",
+      "title": "Mitochondria-Mediated Mechanisms of Ferroptosis in Neurological Diseases.",
+      "year": 2025,
+      "first_author": "Zhong R",
+      "journal": "Neurochem Res",
+      "open_access": false
+    },
+    {
+      "id": "MED:39334695",
+      "title": "Downregulation of Iron-Sulfur Cluster Biogenesis May Contribute to Hyperglycemia-Mediated Diabetic Peripheral Neuropathy in Murine Models.",
+      "year": 2024,
+      "first_author": "Wu L",
+      "journal": "Antioxidants (Basel)",
+      "open_access": true
+    },
+    {
+      "id": "MED:38672439",
+      "title": "Protective Role of Dioscin against Doxorubicin-Induced Chronic Cardiotoxicity: Insights from Nrf2-GPX4 Axis-Mediated Cardiac Ferroptosis.",
+      "year": 2024,
+      "first_author": "Liu J",
+      "journal": "Biomolecules",
+      "open_access": true
+    },
+    {
+      "id": "MED:42630618",
+      "title": "2000-2025: Emerging therapies in primary mitochondrial disease: A structured review, horizon scan, and roadmap for the future.",
+      "year": 2026,
+      "first_author": "Karaa A",
+      "journal": "Ther Adv Rare Dis",
+      "open_access": true
+    },
+    {
+      "id": "MED:38426621",
+      "title": "Targeting mitochondrial bioenergetics by combination treatment with imatinib and dichloroacetate in human erythroleukemic K‑562 and colorectal HCT‑116 cancer cells.",
+      "year": 2024,
+      "first_author": "Kakafika MG",
+      "journal": "Int J Oncol",
+      "open_access": true
+    },
+    {
+      "id": "MED:42853664",
+      "title": "A second-generation \"hypoxia in a pill\" rescues neurodegenerative phenotypes across distinct mouse models.",
+      "year": 2026,
+      "first_author": "Wang H",
+      "journal": "Proc Natl Acad Sci U S A",
+      "open_access": false
+    },
+    {
+      "id": "MED:39153956",
+      "title": "Emerging therapies in hereditary ataxias.",
+      "year": 2025,
+      "first_author": "Eisel MLS",
+      "journal": "Trends Mol Med",
+      "open_access": false
+    },
+    {
+      "id": "MED:40155807",
+      "title": "Aromatase reduces sperm motility by down-regulating the expression of proteins related to ATP synthesis in seminal plasma extracellular vesicles.",
+      "year": 2025,
+      "first_author": "Luo X",
+      "journal": "BMC Genomics",
+      "open_access": true
+    },
+    {
+      "id": "MED:37838071",
+      "title": "Management of Friedreich Ataxia-Associated Cardiomyopathy in Pregnancy: A Review of the Literature.",
+      "year": 2024,
+      "first_author": "Peterson AN",
+      "journal": "Am J Cardiol",
+      "open_access": false
+    },
+    {
+      "id": "MED:41850598",
+      "title": "Deciphering the missing links between Friedreich ataxia and multiple sclerosis for targeted drug development.",
+      "year": 2026,
+      "first_author": "Kwa FAA",
+      "journal": "Drug Discov Today",
+      "open_access": false
+    },
+    {
+      "id": "MED:37889470",
+      "title": "Therapeutic Biomarkers in Friedreich's Ataxia: a Systematic Review and Meta-analysis.",
+      "year": 2024,
+      "first_author": "Gavriilaki M",
+      "journal": "Cerebellum",
+      "open_access": true
+    },
+    {
+      "id": "MED:41018170",
+      "title": "Friedreich Ataxia and Related Diabetes: Therapeutic Approach Targeting Mitochondrial Dysfunction.",
+      "year": 2025,
+      "first_author": "Sureshkumar P",
+      "journal": "JCEM Case Rep",
+      "open_access": true
+    },
+    {
+      "id": "MED:38734062",
+      "title": "Ferrostatin-1 specifically targets mitochondrial iron-sulfur clusters and aconitase to improve cardiac function in Sirtuin 3 cardiomyocyte knockout mice.",
+      "year": 2024,
+      "first_author": "Cantrell AC",
+      "journal": "J Mol Cell Cardiol",
+      "open_access": false
+    },
+    {
+      "id": "MED:39317669",
+      "title": "ATH434, a promising iron-targeting compound for treating iron regulation disorders.",
+      "year": 2024,
+      "first_author": "Pall AE",
+      "journal": "Metallomics",
+      "open_access": false
+    },
+    {
+      "id": "MED:41531784",
+      "title": "Research Progress on Idebenone in Neurodegenerative Diseases.",
+      "year": 2025,
+      "first_author": "Zhang Y",
+      "journal": "Aging Med (Milton)",
+      "open_access": true
+    },
+    {
+      "id": "MED:41011210",
+      "title": "Characterizing Population Pharmacokinetics of Vatiquinone in Healthy Volunteers and Patients with Friedreich's Ataxia.",
+      "year": 2025,
+      "first_author": "Hu Y",
+      "journal": "Pharmaceuticals (Basel)",
+      "open_access": true
+    },
+    {
+      "id": "MED:37919861",
+      "title": "Emerging small molecule inhibitors of Bach1 as therapeutic agents: Rationale, recent advances, and future perspectives.",
+      "year": 2024,
+      "first_author": "Hushpulian DM",
+      "journal": "Bioessays",
+      "open_access": false
+    },
+    {
+      "id": "MED:37816193",
+      "title": "The Therapeutic Potential of Targeting Ferroptosis in the Treatment of Mitochondrial Cardiomyopathies and Heart Failure.",
+      "year": 2024,
+      "first_author": "Cantrell AC",
+      "journal": "J Cardiovasc Pharmacol",
+      "open_access": false
+    },
+    {
+      "id": "MED:39375833",
+      "title": "Emerging perspectives of copper-mediated transcriptional regulation in mammalian cell development.",
+      "year": 2024,
+      "first_author": "Fitisemanu FM",
+      "journal": "Metallomics",
+      "open_access": true
+    },
+    {
+      "id": "MED:38713090",
+      "title": "Mitochondrial Calcium Regulation of Cardiac Metabolism in Health and Disease.",
+      "year": 2024,
+      "first_author": "Balderas E",
+      "journal": "Physiology (Bethesda)",
+      "open_access": false
+    },
+    {
+      "id": "MED:38686449",
+      "title": "Genetic Determined Iron Starvation Signature in Friedreich's Ataxia.",
+      "year": 2024,
+      "first_author": "Grander M",
+      "journal": "Mov Disord",
+      "open_access": false
+    },
+    {
+      "id": "MED:38520521",
+      "title": "Exploring mitochondrial biomarkers for Friedreich's ataxia: a multifaceted approach.",
+      "year": 2024,
+      "first_author": "Stovickova L",
+      "journal": "J Neurol",
+      "open_access": true
+    }
+  ],
+  "task": "L-002"
+}

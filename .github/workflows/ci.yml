@@ -2,7 +2,8 @@ name: ci
 
 # The same gates as the routines, on GitHub's runners, for every branch.
 # verified/** is covered by land-verified.yml. A verifier commit requesting
-# changes is expected to be red, so it is skipped here to avoid noise.
+# changes is expected to be red, so it is skipped here to avoid noise; so is an empty
+# `blocked(<TASK>): needs FIX-…` parking commit (routines/procedures.md P9).
 on:
   push:
     branches-ignore: ['verified/**']
@@ -10,7 +11,7 @@ on:
 
 jobs:
   gates:
-    if: ${{ !contains(github.event.head_commit.message, 'CHANGES_REQUESTED') && !contains(github.event.head_commit.message, 'NEEDS_HUMAN') }}
+    if: ${{ !contains(github.event.head_commit.message, 'CHANGES_REQUESTED') && !contains(github.event.head_commit.message, 'NEEDS_HUMAN') && !startsWith(github.event.head_commit.message, 'blocked(') }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:

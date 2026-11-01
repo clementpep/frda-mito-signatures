@@ -98,7 +98,7 @@ def cmd_autonomy_status(args: argparse.Namespace) -> int:
         print(f"  {b['state']:<20} {b['name']:<28} {b['head'][:8]} {b['subject'][:60]}")
     print(f"next for worker:   {st['next_for_worker']}")
     print(f"next for verifier: {st['next_for_verifier']}")
-    for key in ("landing_pending", "needs_human", "stale_landed"):
+    for key in ("landing_pending", "needs_human", "blocked", "stale_landed"):
         if st[key]:
             print(f"{key}: {', '.join(st[key])}")
     return 0

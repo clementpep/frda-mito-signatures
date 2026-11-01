@@ -1,0 +1,569 @@
+{
+  "query": "(TITLE_ABS:Friedreich* OR TITLE_ABS:FRDA OR TITLE_ABS:frataxin OR TITLE_ABS:FXN) AND (TITLE_ABS:muscle OR TITLE_ABS:biops* OR TITLE_ABS:\"cerebrospinal fluid\" OR TITLE_ABS:saliva OR TITLE_ABS:buccal OR TITLE_ABS:neurofilament OR TITLE_ABS:MRI OR TITLE_ABS:imaging) AND (TITLE_ABS:FARS OR TITLE_ABS:mFARS OR TITLE_ABS:SARA OR TITLE_ABS:GAA OR TITLE_ABS:clinical OR TITLE_ABS:\"disease duration\" OR TITLE_ABS:\"age at onset\" OR TITLE_ABS:cardiomyopathy OR TITLE_ABS:patients) AND PUB_YEAR:[2017 TO 2020] AND LANG:eng AND (SRC:MED OR SRC:PPR)",
+  "date": "2026-10-19",
+  "hit_count": 70,
+  "retrieved": 70,
+  "results": [
+    {
+      "id": "MED:32826895",
+      "title": "Frataxin gene editing rescues Friedreich's ataxia pathology in dorsal root ganglia organoid-derived sensory neurons.",
+      "year": 2020,
+      "first_author": "Mazzara PG",
+      "journal": "Nat Commun",
+      "open_access": true
+    },
+    {
+      "id": "MED:31680804",
+      "title": "Quantitative Proteomic and Network Analysis of Differentially Expressed Proteins in PBMC of Friedreich's Ataxia (FRDA) Patients.",
+      "year": 2019,
+      "first_author": "Pathak D",
+      "journal": "Front Neurosci",
+      "open_access": true
+    },
+    {
+      "id": "MED:31317428",
+      "title": "Molecular Mechanisms and Therapeutics for the GAA·TTC Expansion Disease Friedreich Ataxia.",
+      "year": 2019,
+      "first_author": "Gottesfeld JM.",
+      "journal": "Neurotherapeutics",
+      "open_access": false
+    },
+    {
+      "id": "MED:30596685",
+      "title": "Differences in the determinants of right ventricular and regional left ventricular long-axis dysfunction in Friedreich ataxia.",
+      "year": 2018,
+      "first_author": "Peverill RE",
+      "journal": "PLoS One",
+      "open_access": true
+    },
+    {
+      "id": "MED:31673878",
+      "title": "The first biallelic missense mutation in the FXN gene in a consanguineous Turkish family with Charcot-Marie-Tooth-like phenotype.",
+      "year": 2020,
+      "first_author": "Candayan A",
+      "journal": "Neurogenetics",
+      "open_access": false
+    },
+    {
+      "id": "MED:32269244",
+      "title": "Long-term voluntary running prevents the onset of symptomatic Friedreich's ataxia in mice.",
+      "year": 2020,
+      "first_author": "Zhao H",
+      "journal": "Sci Rep",
+      "open_access": true
+    },
+    {
+      "id": "MED:30294800",
+      "title": "Corneal confocal microscopy: Neurologic disease biomarker in Friedreich ataxia.",
+      "year": 2018,
+      "first_author": "Pagovich OE",
+      "journal": "Ann Neurol",
+      "open_access": false
+    },
+    {
+      "id": "MED:29125828",
+      "title": "Comprehensive analysis of gene expression patterns in Friedreich's ataxia fibroblasts by RNA sequencing reveals altered levels of protein synthesis factors and solute carriers.",
+      "year": 2017,
+      "first_author": "Napierala JS",
+      "journal": "Dis Model Mech",
+      "open_access": true
+    },
+    {
+      "id": "MED:30911578",
+      "title": "Randomized, double-blind, placebo-controlled study of interferon-<i>γ</i> 1b in Friedreich Ataxia.",
+      "year": 2019,
+      "first_author": "Lynch DR",
+      "journal": "Ann Clin Transl Neurol",
+      "open_access": true
+    },
+    {
+      "id": "MED:30237783",
+      "title": "Functional and Structural Brain Damage in Friedreich's Ataxia.",
+      "year": 2018,
+      "first_author": "Vavla M",
+      "journal": "Front Neurol",
+      "open_access": true
+    },
+    {
+      "id": "MED:29070698",
+      "title": "Transplantation of wild-type mouse hematopoietic stem and progenitor cells ameliorates deficits in a mouse model of Friedreich's ataxia.",
+      "year": 2017,
+      "first_author": "Rocca CJ",
+      "journal": "Sci Transl Med",
+      "open_access": false
+    },
+    {
+      "id": "MED:28562313",
+      "title": "Friedreich's ataxia induced pluripotent stem cell-derived cardiomyocytes display electrophysiological abnormalities and calcium handling deficiency.",
+      "year": 2017,
+      "first_author": "Crombie DE",
+      "journal": "Aging (Albany NY)",
+      "open_access": true
+    },
+    {
+      "id": "MED:32385683",
+      "title": "Neurofilament light chain as a potential biomarker of disease status in Friedreich ataxia.",
+      "year": 2020,
+      "first_author": "Clay A",
+      "journal": "J Neurol",
+      "open_access": false
+    },
+    {
+      "id": "MED:31105516",
+      "title": "Erythropoietin and Friedreich Ataxia: Time for a Reappraisal?",
+      "year": 2019,
+      "first_author": "Boesch S",
+      "journal": "Front Neurosci",
+      "open_access": true
+    },
+    {
+      "id": "MED:30358880",
+      "title": "Intraepidermal Nerve Fiber Density in Friedreich's Ataxia.",
+      "year": 2018,
+      "first_author": "Indelicato E",
+      "journal": "J Neuropathol Exp Neurol",
+      "open_access": false
+    },
+    {
+      "id": "MED:31640150",
+      "title": "Targeting NRF2 for the Treatment of Friedreich's Ataxia: A Comparison among Drugs.",
+      "year": 2019,
+      "first_author": "Petrillo S",
+      "journal": "Int J Mol Sci",
+      "open_access": true
+    },
+    {
+      "id": "MED:32646255",
+      "title": "Stress-Induced Mouse Model of the Cardiac Manifestations of Friedreich's Ataxia Corrected by AAV-mediated Gene Therapy.",
+      "year": 2020,
+      "first_author": "Salami CO",
+      "journal": "Hum Gene Ther",
+      "open_access": false
+    },
+    {
+      "id": "MED:33912028",
+      "title": "The Cardioprotective Mechanism of Phenylaminoethyl Selenides (PAESe) Against Doxorubicin-Induced Cardiotoxicity Involves Frataxin.",
+      "year": 2020,
+      "first_author": "Fu X",
+      "journal": "Front Pharmacol",
+      "open_access": true
+    },
+    {
+      "id": "MED:31414727",
+      "title": "Measuring peripheral nerve involvement in Friedreich's ataxia.",
+      "year": 2019,
+      "first_author": "Creigh PD",
+      "journal": "Ann Clin Transl Neurol",
+      "open_access": true
+    },
+    {
+      "id": "MED:26897753",
+      "title": "Combined Cerebellar Proton MR Spectroscopy and DWI Study of Patients with Friedreich's Ataxia.",
+      "year": 2017,
+      "first_author": "Gramegna LL",
+      "journal": "Cerebellum",
+      "open_access": false
+    },
+    {
+      "id": "MED:32002649",
+      "title": "NfL and pNfH are increased in Friedreich's ataxia.",
+      "year": 2020,
+      "first_author": "Hayer SN",
+      "journal": "J Neurol",
+      "open_access": true
+    },
+    {
+      "id": "MED:32731306",
+      "title": "Toward quantitative neuroimaging biomarkers for Friedreich's ataxia at 7 Tesla: Susceptibility mapping, diffusion imaging, R<sub>2</sub> and R<sub>1</sub> relaxometry.",
+      "year": 2020,
+      "first_author": "Straub S",
+      "journal": "J Neurosci Res",
+      "open_access": true
+    },
+    {
+      "id": "MED:30326180",
+      "title": "Developmental and neurodegenerative damage in Friedreich's ataxia.",
+      "year": 2019,
+      "first_author": "Rezende TJR",
+      "journal": "Eur J Neurol",
+      "open_access": false
+    },
+    {
+      "id": "MED:32593884",
+      "title": "Hereditary spastic paraplegia type 11 (SPG11) is associated with obesity and hypothalamic damage.",
+      "year": 2020,
+      "first_author": "Cardozo-Hernández ALC",
+      "journal": "J Neurol Sci",
+      "open_access": false
+    },
+    {
+      "id": "MED:31641877",
+      "title": "Cerebellum and cognition in Friedreich ataxia: a voxel-based morphometry and volumetric MRI study.",
+      "year": 2020,
+      "first_author": "Cocozza S",
+      "journal": "J Neurol",
+      "open_access": false
+    },
+    {
+      "id": "MED:30771164",
+      "title": "Pattern of Cerebellar Atrophy in Friedreich's Ataxia-Using the SUIT Template.",
+      "year": 2019,
+      "first_author": "Lindig T",
+      "journal": "Cerebellum",
+      "open_access": false
+    },
+    {
+      "id": "MED:30425621",
+      "title": "Plasma Markers of Neurodegeneration Are Raised in Friedreich's Ataxia.",
+      "year": 2018,
+      "first_author": "Zeitlberger AM",
+      "journal": "Front Cell Neurosci",
+      "open_access": true
+    },
+    {
+      "id": "MED:33238751",
+      "title": "Central Nervous System Therapeutic Targets in Friedreich Ataxia.",
+      "year": 2020,
+      "first_author": "Harding IH",
+      "journal": "Hum Gene Ther",
+      "open_access": true
+    },
+    {
+      "id": "MED:31346473",
+      "title": "The cerebellar phenotype of Charcot-Marie-Tooth neuropathy type 4C.",
+      "year": 2019,
+      "first_author": "Skott H",
+      "journal": "Cerebellum Ataxias",
+      "open_access": true
+    },
+    {
+      "id": "MED:32032665",
+      "title": "The potential of the novel NAD<sup>+</sup> supplementing agent, SNH6, as a therapeutic strategy for the treatment of Friedreich's ataxia.",
+      "year": 2020,
+      "first_author": "Chiang S",
+      "journal": "Pharmacol Res",
+      "open_access": false
+    },
+    {
+      "id": "MED:32510804",
+      "title": "Cerebellar cognitive disorder parallels cerebellar motor symptoms in Friedreich ataxia.",
+      "year": 2020,
+      "first_author": "Naeije G",
+      "journal": "Ann Clin Transl Neurol",
+      "open_access": true
+    },
+    {
+      "id": "MED:31898277",
+      "title": "Longitudinal Increases in Cerebral Brain Activation During Working Memory Performance in Friedreich Ataxia: 24-Month Data from IMAGE-FRDA.",
+      "year": 2020,
+      "first_author": "Shishegar R",
+      "journal": "Cerebellum",
+      "open_access": false
+    },
+    {
+      "id": "MED:28912677",
+      "title": "Reversible Axonal Dystrophy by Calcium Modulation in Frataxin-Deficient Sensory Neurons of YG8R Mice.",
+      "year": 2017,
+      "first_author": "Mollá B",
+      "journal": "Front Mol Neurosci",
+      "open_access": true
+    },
+    {
+      "id": "MED:31023572",
+      "title": "Probing the multifactorial source of hand dysfunction in Friedreich ataxia.",
+      "year": 2019,
+      "first_author": "Corben LA",
+      "journal": "J Clin Neurosci",
+      "open_access": false
+    },
+    {
+      "id": "MED:31868751",
+      "title": "Nanoscopic X-ray imaging and quantification of the iron cellular architecture within single fibroblasts of Friedreich's ataxia patients.",
+      "year": 2020,
+      "first_author": "De Samber B",
+      "journal": "J Synchrotron Radiat",
+      "open_access": false
+    },
+    {
+      "id": "MED:29928651",
+      "title": "Cognitive and functional connectivity alterations in Friedreich's ataxia.",
+      "year": 2018,
+      "first_author": "Cocozza S",
+      "journal": "Ann Clin Transl Neurol",
+      "open_access": true
+    },
+    {
+      "id": "MED:28543952",
+      "title": "Structural signature of classical versus late-onset friedreich's ataxia by Multimodality brain MRI.",
+      "year": 2017,
+      "first_author": "Rezende TJR",
+      "journal": "Hum Brain Mapp",
+      "open_access": false
+    },
+    {
+      "id": "MED:28935570",
+      "title": "Molecular Alterations in a Mouse Cardiac Model of Friedreich Ataxia: An Impaired Nrf2 Response Mediated via Upregulation of Keap1 and Activation of the Gsk3β Axis.",
+      "year": 2017,
+      "first_author": "Anzovino A",
+      "journal": "Am J Pathol",
+      "open_access": false
+    },
+    {
+      "id": "MED:29898895",
+      "title": "Identification of cardioprotective drugs by medium-scale <i>in vivo</i> pharmacological screening on a <i>Drosophila</i> cardiac model of Friedreich's ataxia.",
+      "year": 2018,
+      "first_author": "Palandri A",
+      "journal": "Dis Model Mech",
+      "open_access": true
+    },
+    {
+      "id": "MED:30389370",
+      "title": "A case series of hereditary cerebellar ataxias in a highly consanguineous population from Northeast Brazil.",
+      "year": 2019,
+      "first_author": "Rangel DM",
+      "journal": "Parkinsonism Relat Disord",
+      "open_access": false
+    },
+    {
+      "id": "MED:29342155",
+      "title": "Nanoscopic X-ray fluorescence imaging and quantification of intracellular key-elements in cryofrozen Friedreich's ataxia fibroblasts.",
+      "year": 2018,
+      "first_author": "De Samber B",
+      "journal": "PLoS One",
+      "open_access": true
+    },
+    {
+      "id": "MED:28478596",
+      "title": "Deciphering the causes of sporadic late-onset cerebellar ataxias: a prospective study with implications for diagnostic work.",
+      "year": 2017,
+      "first_author": "Gebus O",
+      "journal": "J Neurol",
+      "open_access": false
+    },
+    {
+      "id": "MED:29130498",
+      "title": "Peripheral nerve ultrasound in Friedreich ataxia.",
+      "year": 2018,
+      "first_author": "Mulroy E",
+      "journal": "Muscle Nerve",
+      "open_access": false
+    },
+    {
+      "id": "MED:29179232",
+      "title": "Differentially Regulated Cell-Free MicroRNAs in the Plasma of Friedreich's Ataxia Patients and Their Association with Disease Pathology.",
+      "year": 2018,
+      "first_author": "Dantham S",
+      "journal": "Neuropediatrics",
+      "open_access": false
+    },
+    {
+      "id": "MED:33162876",
+      "title": "Sensitivity of Neuroimaging Indicators in Monitoring the Effects of Interferon Gamma Treatment in Friedreich's Ataxia.",
+      "year": 2020,
+      "first_author": "Vavla M",
+      "journal": "Front Neurosci",
+      "open_access": true
+    },
+    {
+      "id": "MED:33344308",
+      "title": "Cardiomyopathy as the first manifestation of Friedreich's ataxia.",
+      "year": 2020,
+      "first_author": "Maffei RTLN",
+      "journal": "Autops Case Rep",
+      "open_access": true
+    },
+    {
+      "id": "MED:32657886",
+      "title": "MR imaging and spectroscopy in degenerative ataxias: toward multimodal, multisite, multistage monitoring of neurodegeneration.",
+      "year": 2020,
+      "first_author": "Öz G",
+      "journal": "Curr Opin Neurol",
+      "open_access": false
+    },
+    {
+      "id": "MED:32775015",
+      "title": "Autosomal Recessive Spastic Ataxia of Charlevoix-Saguenay (ARSACS) in a Thai Patient: The Classic Clinical Manifestations, Funduscopic Feature, and Brain Imaging Findings with a Novel Mutation in the <i>SACS</i> Gene.",
+      "year": 2020,
+      "first_author": "Srikajon J",
+      "journal": "Tremor Other Hyperkinet Mov (N Y)",
+      "open_access": true
+    },
+    {
+      "id": "MED:31467149",
+      "title": "Very-late-onset Friedreich's ataxia: diagnosis in a kindred with late-onset cerebellar ataxia.",
+      "year": 2020,
+      "first_author": "Fearon C",
+      "journal": "Pract Neurol",
+      "open_access": false
+    },
+    {
+      "id": "MED:31571321",
+      "title": "The complex phenotype of spinocerebellar ataxia type 48 in eight unrelated Italian families.",
+      "year": 2020,
+      "first_author": "Lieto M",
+      "journal": "Eur J Neurol",
+      "open_access": false
+    },
+    {
+      "id": "MED:32259893",
+      "title": "Late-onset autosomal recessive cerebellar ataxia and neuropathy with a novel splicing mutation in the <i>ATM</i> gene.",
+      "year": 2020,
+      "first_author": "Shimazaki H",
+      "journal": "J Integr Neurosci",
+      "open_access": false
+    },
+    {
+      "id": "MED:30233871",
+      "title": "Value of cardiac biomarker measurement in the differential diagnosis of infiltrative cardiomyopathy patients with preserved left ventricular systolic function.",
+      "year": 2018,
+      "first_author": "Hu K",
+      "journal": "J Thorac Dis",
+      "open_access": false
+    },
+    {
+      "id": "MED:27575947",
+      "title": "Neurobehavioral deficits in the KIKO mouse model of Friedreich's ataxia.",
+      "year": 2017,
+      "first_author": "McMackin MZ",
+      "journal": "Behav Brain Res",
+      "open_access": false
+    },
+    {
+      "id": "MED:29772159",
+      "title": "High Titer of Circulating Antiglutamic Acid Decarboxylase Antibodies in a Patient with Cerebellar Ataxia and Type 1 Diabetes.",
+      "year": 2017,
+      "first_author": "Kataria R",
+      "journal": "Conn Med",
+      "open_access": false
+    },
+    {
+      "id": "MED:30473193",
+      "title": "Neuroimaging Applications in Chronic Ataxias.",
+      "year": 2018,
+      "first_author": "Mascalchi M",
+      "journal": "Int Rev Neurobiol",
+      "open_access": false
+    },
+    {
+      "id": "MED:29891058",
+      "title": "Spastic ataxias.",
+      "year": 2018,
+      "first_author": "Bereznyakova O",
+      "journal": "Handb Clin Neurol",
+      "open_access": false
+    },
+    {
+      "id": "MED:31796683",
+      "title": "Friedreich's Ataxia: Case series and the Additive Value of Cardiovascular Magnetic Resonance.",
+      "year": 2020,
+      "first_author": "Mavrogeni S",
+      "journal": "J Neuromuscul Dis",
+      "open_access": false
+    },
+    {
+      "id": "MED:28986271",
+      "title": "The Subclinical Cardiomyopathy of Friedreich's Ataxia in a Pediatric Population.",
+      "year": 2018,
+      "first_author": "Plehn JF",
+      "journal": "J Card Fail",
+      "open_access": false
+    },
+    {
+      "id": "MED:29886479",
+      "title": "Intrathecal Baclofen Therapy for Painful Muscle Spasms in a Patient with Friedreich's Ataxia.",
+      "year": 2018,
+      "first_author": "Kalyvas AV",
+      "journal": "Stereotact Funct Neurosurg",
+      "open_access": false
+    },
+    {
+      "id": "MED:30599859",
+      "title": "A new MRI marker of ataxia with oculomotor apraxia.",
+      "year": 2019,
+      "first_author": "Ronsin S",
+      "journal": "Eur J Radiol",
+      "open_access": false
+    },
+    {
+      "id": "MED:28556242",
+      "title": "Cerebral compensation during motor function in Friedreich ataxia: The IMAGE-FRDA study.",
+      "year": 2017,
+      "first_author": "Harding IH",
+      "journal": "Mov Disord",
+      "open_access": false
+    },
+    {
+      "id": "MED:33053453",
+      "title": "Clinical Therapeutic Management of Human Mitochondrial Disorders.",
+      "year": 2020,
+      "first_author": "Finsterer J.",
+      "journal": "Pediatr Neurol",
+      "open_access": false
+    },
+    {
+      "id": "MED:32743982",
+      "title": "Primary coenzyme Q10 deficiency due to COQ8A gene mutations.",
+      "year": 2020,
+      "first_author": "Zhang L",
+      "journal": "Mol Genet Genomic Med",
+      "open_access": true
+    },
+    {
+      "id": "MED:31493945",
+      "title": "Genetic and phenotypic features of patients with childhood ataxias diagnosed by next-generation sequencing gene panel.",
+      "year": 2020,
+      "first_author": "Arslan EA",
+      "journal": "Brain Dev",
+      "open_access": false
+    },
+    {
+      "id": "MED:29299331",
+      "title": "Cerebellar ataxia with sensory ganglionopathy; does autoimmunity have a role to play?",
+      "year": 2017,
+      "first_author": "Zis P",
+      "journal": "Cerebellum Ataxias",
+      "open_access": true
+    },
+    {
+      "id": "MED:29172012",
+      "title": "Do whole body vibration exercises affect lower limbs neuromuscular activity in populations with a medical condition? A systematic review.",
+      "year": 2017,
+      "first_author": "Dionello CF",
+      "journal": "Restor Neurol Neurosci",
+      "open_access": false
+    },
+    {
+      "id": "MED:28082326",
+      "title": "Friedreich Ataxia: Hypoplasia of Spinal Cord and Dorsal Root Ganglia.",
+      "year": 2017,
+      "first_author": "Koeppen AH",
+      "journal": "J Neuropathol Exp Neurol",
+      "open_access": false
+    },
+    {
+      "id": "MED:32368540",
+      "title": "Novel frameshift mutation in the <i>SACS</i> gene causing spastic ataxia of charlevoix-saguenay in a consanguineous family from the Arabian Peninsula: A case report and review of literature.",
+      "year": 2020,
+      "first_author": "Al-Ajmi A",
+      "journal": "World J Clin Cases",
+      "open_access": true
+    },
+    {
+      "id": "MED:28064324",
+      "title": "Mitochondrial iron-sulfur cluster biogenesis from molecular understanding to clinical disease.",
+      "year": 2017,
+      "first_author": "Alfadhel M",
+      "journal": "Neurosciences (Riyadh)",
+      "open_access": true
+    },
+    {
+      "id": "MED:28930516",
+      "title": "New targeted therapies and diagnostic methods for iron overload diseases.",
+      "year": 2018,
+      "first_author": "Kolnagou A",
+      "journal": "Front Biosci (Schol Ed)",
+      "open_access": false
+    }
+  ],
+  "task": "L-002"
+}

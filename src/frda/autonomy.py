@@ -3,6 +3,9 @@
 Branch protocol (routines/procedures.md):
   auto/<TASK>      work in progress; head commit `work(<TASK>): ...` -> awaiting verification
                    head commit `verify(<TASK>): CHANGES_REQUESTED|NEEDS_HUMAN ...` -> back to worker / human
+                   head commit `blocked(<TASK>): needs <DEP>` -> parked by the worker until the
+                   prerequisite task DEP (named by the verifier) is done on main; meanwhile the
+                   worker is free to do DEP and other work
   verified/<TASK>  auto/<TASK> + one `verify(<TASK>): PASS` commit; landed on main by
                    .github/workflows/land-verified.yml, which deletes both branches.
 """
@@ -23,6 +26,7 @@ from frda.yamlio import load_yaml
 VERDICT_RE = re.compile(
     r"^verify\((?P<task>[^)]+)\): (?P<verdict>PASS|CHANGES_REQUESTED|NEEDS_HUMAN)"
 )
+BLOCKED_RE = re.compile(r"^blocked\((?P<task>[^)]+)\): needs (?P<dep>FIX-[A-Za-z0-9-]+)")
 
 
 @dataclass
@@ -33,7 +37,10 @@ class Branch:
     head: str
     subject: str
     committed_at: str
-    state: str  # needs_verification | changes_requested | needs_human | landing_pending | landed
+    # needs_verification | changes_requested | needs_human | blocked | landing_pending | superseded
+    # | landed
+    state: str
+    blocked_on: str | None = None
 
 
 def _remote_branches(prefix: str, root: Path) -> list[tuple[str, str, str, str]]:
@@ -61,6 +68,9 @@ def branches(root: Path | None = None) -> list[Branch]:
                 state = "landed"
             elif kind == "verified":
                 state = "landing_pending"
+            elif blk := BLOCKED_RE.match(subject):
+                result.append(Branch(name, task, kind, sha, subject, date, "blocked", blk["dep"]))
+                continue
             else:
                 m = VERDICT_RE.match(subject)
                 if m and m.group("verdict") == "CHANGES_REQUESTED":
@@ -72,6 +82,19 @@ def branches(root: Path | None = None) -> list[Branch]:
                 else:
                     state = "needs_verification"
             result.append(Branch(name, task, kind, sha, subject, date, state))
+    # verified/<T> is superseded when auto/<T> moved past it (e.g. main merged in after a landing
+    # that could not run): it will never land as is, and the newer auto/<T> needs verification.
+    autos = {b.task: b for b in result if b.kind == "auto" and b.state != "landed"}
+    for b in result:
+        a = autos.get(b.task)
+        if (
+            b.kind == "verified"
+            and b.state == "landing_pending"
+            and a
+            and a.head != b.head
+            and is_ancestor(b.head, a.head, root)
+        ):
+            b.state = "superseded"
     result.sort(key=lambda b: b.committed_at)
     return result
 
@@ -86,21 +109,43 @@ def status(root: Path | None = None) -> dict[str, Any]:
     root = root or paths.ROOT
     cfg = load_yaml(root / "autonomy" / "config.yaml")
     bs = branches(root)
-    verified_tasks = {b.task for b in bs if b.kind == "verified" and b.state != "landed"}
+    verified_tasks = {b.task for b in bs if b.kind == "verified" and b.state == "landing_pending"}
     open_auto = [b for b in bs if b.kind == "auto" and b.state != "landed"]
     # A task whose verified/ branch is waiting to land is no longer the worker's.
     active = [b for b in open_auto if b.task not in verified_tasks]
+    bl = load_backlog(root / "autonomy" / "backlog.yaml")
+    done = {t.id for t in bl.tasks if t.status == "done"}
+    taken = {b.task for b in bs if b.state != "landed"}
+    # A parked branch whose prerequisite has landed is the worker's again (merge main, re-hand).
+    for b in active:
+        if b.state == "blocked" and b.blocked_on in done:
+            b.state = "changes_requested"
     wip = [
-        b for b in active if b.task.startswith(("T-", "L-", "FIX-")) and b.state != "needs_human"
+        b
+        for b in active
+        if b.task.startswith(("T-", "L-", "FIX-")) and b.state not in ("needs_human", "blocked")
     ]
 
     next_worker: dict[str, Any] | None = None
     fix = next((b for b in active if b.state == "changes_requested"), None)
+    dep = next(
+        (b for b in active if b.state == "blocked" and b.blocked_on not in taken),
+        None,
+    )
     if fix:
         next_worker = {"action": "address_changes", "task": fix.task, "branch": fix.name}
+        if fix.blocked_on:
+            next_worker["merge_main"] = True
+    elif dep and dep.blocked_on and len(wip) < cfg["wip_limit"]:
+        # The prerequisite was written by the verifier on the blocked branch; it is not on main.
+        next_worker = {
+            "action": "start_dependency",
+            "task": dep.blocked_on,
+            "branch": f"auto/{dep.blocked_on}",
+            "for": dep.task,
+            "source_branch": dep.name,
+        }
     elif len(wip) < cfg["wip_limit"]:
-        bl = load_backlog(root / "autonomy" / "backlog.yaml")
-        taken = {b.task for b in bs if b.state != "landed"}
         plan = load_plan(root)
         task, reason = pick_next(
             bl,
@@ -136,5 +181,6 @@ def status(root: Path | None = None) -> dict[str, Any]:
         "next_for_verifier": next_verifier,
         "landing_pending": [b.name for b in bs if b.state == "landing_pending"],
         "needs_human": [b.name for b in bs if b.state == "needs_human"],
-        "stale_landed": [b.name for b in bs if b.state == "landed"],
+        "blocked": [f"{b.name} (needs {b.blocked_on})" for b in bs if b.state == "blocked"],
+        "stale_landed": [b.name for b in bs if b.state in ("landed", "superseded")],
     }

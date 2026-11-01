@@ -150,4 +150,19 @@ Per-run cap: **6 cards**
 `research/synthesis/` — themed chapters; every statement cites `[@SRC:ID]` of a read paper.
 
 ## Amendments
-(none yet)
+
+### A1 — 2026-10-28 — preprints are in scope (owner decision)
+Reason: `LANG:eng` removes every Europe PMC preprint record, so the `SRC:PPR` part of `Y` retrieves
+nothing (L-002 run: 49 preprint hits for 2024–2026 without `LANG:eng`, 0 with it; non-blocking
+finding of verification L-002-bd88fc5 and question 2 of the October report, both on branches
+`auto/L-002` and `auto/W-2026-W44` at the time).
+Decided by the owner on 2026-10-28, before any screening (L-003 not started).
+Change (L-002 landed on 2026-10-30 without it; the preprint arm is task L-002b, before screening
+L-003; confirmed by the owner in RD-003):
+- each query Qx above is also run as a **preprint arm** `Qx-ppr`: the same text with
+  `LANG:eng AND (SRC:MED OR SRC:PPR)` replaced by `SRC:PPR`, same year windows; its search log is
+  saved separately (slug suffix `-ppr`). The PubMed arm (query text above) is unchanged;
+- preprint-arm hits enter the corpus as for any query (`frda lit-add`, `to_screen`, `kind: preprint`);
+- screening criteria are unchanged: I5/E5 (English) are applied at screening, E6 keeps the
+  published version when both exist; cards and synthesis say "preprint, not peer-reviewed";
+- the weekly watch (`routines/watch.md` STEP 3) runs both arms.

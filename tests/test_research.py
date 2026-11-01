@@ -217,6 +217,47 @@ def test_quote_verification_catches_invented_quotes(tmp_path, monkeypatch):
     assert any("does not exist" in p for p in literature.verify(root=tmp_path))
 
 
+def test_title_check_ignores_escaped_inline_markup(tmp_path, monkeypatch):
+    # FIX-L002a: Europe PMC escapes inline tags (&lt;i&gt;), the corpus stores them unescaped once
+    # (paper_from_record). Shapes of MED:40919203, MED:32249386 and MED:42383006.
+    cases = [
+        (
+            "Characterization and immunoprotective efficacy of a fumarate reductase <i>frdA</i> "
+            "mutant of <i>Salmonella enteritidis</i>.",
+            "Characterization and immunoprotective efficacy of a fumarate reductase "
+            "&lt;i&gt;frdA&lt;/i&gt; mutant of &lt;i&gt;Salmonella enteritidis&lt;/i&gt;.",
+        ),
+        (
+            "Calpain-Inhibitors Protect Frataxin-Deficient Dorsal Root Ganglia Neurons from Loss "
+            "of Mitochondrial Na<sup>+</sup>/Ca<sup>2+</sup> Exchanger, NCLX, and Apoptosis.",
+            "Calpain-Inhibitors Protect Frataxin-Deficient Dorsal Root Ganglia Neurons from Loss "
+            "of Mitochondrial Na&lt;sup&gt;+&lt;/sup&gt;/Ca&lt;sup&gt;2+&lt;/sup&gt; Exchanger, "
+            "NCLX, and Apoptosis.",
+        ),
+        (
+            "Dysregulation of sphingolipid-metabolizing enzymes in Friedreich's ataxia: "
+            "<i>In vitro</i> and <i>in vivo</i> insights into therapeutic targeting.",
+            "Dysregulation of sphingolipid-metabolizing enzymes in Friedreich's ataxia: "
+            "&lt;i&gt;In vitro&lt;/i&gt; and &lt;i&gt;in vivo&lt;/i&gt; insights into "
+            "therapeutic targeting.",
+        ),
+    ]
+    monkeypatch.setattr(literature.time, "sleep", lambda s: None)
+    for recorded, epmc in cases:
+        assert literature.title_text(recorded) == literature.title_text(epmc)
+        write(tmp_path, corpus=[paper(title=recorded)])
+        monkeypatch.setattr(literature, "fetch_record", lambda pid, t=epmc: {"title": t})
+        assert literature.verify(root=tmp_path) == []
+    # A genuinely different title still fails at the unchanged 0.9 threshold.
+    write(tmp_path, corpus=[paper(title=cases[0][0])])
+    monkeypatch.setattr(
+        literature,
+        "fetch_record",
+        lambda pid: {"title": "Frataxin deficiency &lt;i&gt;in vivo&lt;/i&gt; alters iron uptake."},
+    )
+    assert any("recorded title differs" in p for p in literature.verify(root=tmp_path))
+
+
 def test_seed_research_memory_is_valid():
     assert research.problems() == []
 
@@ -388,6 +429,29 @@ def test_plan_window_floor_and_pivot_checks(tmp_path):
     )
     probs = " | ".join(research.problems(tmp_path))
     assert "budget_window" in probs and "below its floor" in probs and "pivot" in probs
+
+
+def test_supervisor_pivot_needs_the_owners_delegation(tmp_path):
+    owner = (
+        "---\nid: RD-003\ndate: 2026-10-31\nkind: arbitration\nsummary: delegation\n"
+        "needs_human: true\ndecided_by: {by}\n---\n"
+    )
+    pivot = (
+        "---\nid: RD-004\ndate: 2026-11-02\nkind: pivot\nsummary: muscle first\n"
+        "needs_human: false\ndelegated_by: {ref}\n---\n"
+    )
+    cases = [("owner", "RD-003", False), ("supervisor", "RD-003", True), ("owner", "RD-009", True)]
+    for by, ref, flagged in cases:
+        write(
+            tmp_path,
+            decisions={
+                "RD-003.md": owner.format(by=by),
+                "RD-004.md": pivot.format(ref=ref),
+            },
+        )
+        probs = " | ".join(research.problems(tmp_path))
+        assert ("RD-004: delegated_by" in probs) is flagged, (by, ref, probs)
+        assert "must set needs_human" not in probs  # the delegation, not its absence, is checked
 
 
 # --- attempt-3 findings: citation markers, path agreement, block boundaries -------------------

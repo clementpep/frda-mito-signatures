@@ -1,0 +1,1201 @@
+{
+  "query": "(TITLE_ABS:\"gene set\" OR TITLE_ABS:\"gene-set\" OR TITLE_ABS:\"pathway analysis\") AND (TITLE_ABS:\"small sample*\" OR TITLE_ABS:\"few samples\" OR TITLE_ABS:meta-analys* OR TITLE_ABS:\"batch effect*\" OR TITLE_ABS:pseudoreplication OR TITLE_ABS:\"sample size\") AND (TITLE_ABS:transcript* OR TITLE_ABS:\"RNA-seq\" OR TITLE_ABS:microarray) AND PUB_YEAR:[2005 TO 2026] AND LANG:eng AND (SRC:MED OR SRC:PPR)",
+  "date": "2026-10-19",
+  "hit_count": 149,
+  "retrieved": 149,
+  "results": [
+    {
+      "id": "MED:42832917",
+      "title": "Fetal environment associated with small for gestational age birth transcriptionally primes umbilical cord mesenchymal stem cells toward osteogenic pathways with potentially impaired adipogenic differentiation.",
+      "year": 2026,
+      "first_author": "Yogi A",
+      "journal": "Placenta",
+      "open_access": false
+    },
+    {
+      "id": "MED:42707325",
+      "title": "Association Between Mutation Context-Associated RUNX1 Transcriptional States and Immune-Stromal Heterogeneity in Nonsmall Cell Lung Cancer.",
+      "year": 2026,
+      "first_author": "Wang J",
+      "journal": "Hum Mutat",
+      "open_access": true
+    },
+    {
+      "id": "MED:42260905",
+      "title": "Differential Transcriptome Analysis of Intrauterine UPD6pat Fetuses With Distinct Phenotypes.",
+      "year": 2026,
+      "first_author": "Yu J",
+      "journal": "Mol Genet Genomic Med",
+      "open_access": true
+    },
+    {
+      "id": "MED:42499091",
+      "title": "Expression patterns of pyroptosis-related genes in atrial fibrillation and their application in diagnostic models.",
+      "year": 2026,
+      "first_author": "Sun Y",
+      "journal": "Medicine (Baltimore)",
+      "open_access": true
+    },
+    {
+      "id": "MED:42688215",
+      "title": "Preliminary transcriptome profiling of induced pluripotent stem cell-derived hematopoietic stem and progenitor cells in Kawasaki disease.",
+      "year": 2026,
+      "first_author": "Mei L",
+      "journal": "Front Pediatr",
+      "open_access": true
+    },
+    {
+      "id": "MED:42554890",
+      "title": "Rumen epithelial functional adaptation in alpine ewes: transcriptomic effects of micronutrient premix and concentrate supplementation levels.",
+      "year": 2026,
+      "first_author": "Cheng J",
+      "journal": "Stress Biol",
+      "open_access": true
+    },
+    {
+      "id": "MED:42392458",
+      "title": "Uncovering a dual T helper 17/type 2 transcriptomic endotype in psoriasis.",
+      "year": 2026,
+      "first_author": "Chen CH",
+      "journal": "J Am Acad Dermatol",
+      "open_access": false
+    },
+    {
+      "id": "MED:41070224",
+      "title": "Cross-modal predictive modeling of multi-omic data in 3D airway organ tissue equivalents during viral infection.",
+      "year": 2025,
+      "first_author": "Rezapour M",
+      "journal": "Front Genet",
+      "open_access": true
+    },
+    {
+      "id": "MED:42784621",
+      "title": "Transcriptomic associations and biomarkers in ANCA‑associated Glomerulonephritis and IgG4‑related Disease: A bioinformatics and machine learning study.",
+      "year": 2026,
+      "first_author": "Li X",
+      "journal": "PLoS One",
+      "open_access": true
+    },
+    {
+      "id": "MED:41924281",
+      "title": "Identification and dual-center histological validation of EMT core genes in chronic rhinosinusitis with nasal polyps: an integrated multi-cohort transcriptomic and single-cell analysis.",
+      "year": 2026,
+      "first_author": "Xu K",
+      "journal": "Front Immunol",
+      "open_access": true
+    },
+    {
+      "id": "MED:41847341",
+      "title": "Single-cell transcriptomics reveals heterogeneous neutrophil populations and diagnostic biomarkers in atherosclerosis.",
+      "year": 2026,
+      "first_author": "Wang P",
+      "journal": "Front Physiol",
+      "open_access": true
+    },
+    {
+      "id": "MED:42326009",
+      "title": "Integrated transcriptomics identifies immune-metabolic dysregulation and candidate diagnostic biomarkers in oligoasthenozoospermia with experimental validation.",
+      "year": 2026,
+      "first_author": "Peng L",
+      "journal": "Front Cell Dev Biol",
+      "open_access": true
+    },
+    {
+      "id": "MED:41734196",
+      "title": "Comprehensive analysis of the potential effect and mechanism of pyroptosis-related genes in treatment-related myeloid tumors.",
+      "year": 2026,
+      "first_author": "Cheng J",
+      "journal": "PLoS One",
+      "open_access": true
+    },
+    {
+      "id": "MED:42284313",
+      "title": "Identification of AC025811.3 and AC012354.6 as two critical survival-related lncRNAs for uterine corpus cancer.",
+      "year": 2026,
+      "first_author": "Pu L",
+      "journal": "PLoS One",
+      "open_access": true
+    },
+    {
+      "id": "MED:42116290",
+      "title": "Causal role of serum metabolites in chronic periodontitis: A bidirectional Mendelian randomization and multi-omics integration study.",
+      "year": 2026,
+      "first_author": "Li X",
+      "journal": "Medicine (Baltimore)",
+      "open_access": true
+    },
+    {
+      "id": "MED:42607545",
+      "title": "Sex-stratified blood transcriptomic candidate biomarkers of multiple sclerosis identified by ensemble feature selection.",
+      "year": 2026,
+      "first_author": "Polewko-Klim A",
+      "journal": "Mult Scler Relat Disord",
+      "open_access": false
+    },
+    {
+      "id": "MED:41595515",
+      "title": "Transcriptome- and Epigenome-Wide Association Studies of Tic Spectrum Disorder in Discordant Monozygotic Twins.",
+      "year": 2026,
+      "first_author": "Dalsberg J",
+      "journal": "Genes (Basel)",
+      "open_access": true
+    },
+    {
+      "id": "MED:41198058",
+      "title": "Functional role of granulocytic myeloid-derived suppressor cells in CAR-T therapy: insights from single-cell RNA sequencing in multiple myeloma.",
+      "year": 2025,
+      "first_author": "Zhang C",
+      "journal": "Immunopharmacol Immunotoxicol",
+      "open_access": false
+    },
+    {
+      "id": "MED:41121476",
+      "title": "Analysis of the Molecular Mechanism of Comorbidity Genes Between Breast Cancer and Depression.",
+      "year": 2025,
+      "first_author": "Xie H",
+      "journal": "Curr Pharm Biotechnol",
+      "open_access": false
+    },
+    {
+      "id": "MED:42093161",
+      "title": "Enhancing validation of case-control omics signatures through \"minimalist\" single-subject analysis (N-of-1 trials): proof of concept in sepsis.",
+      "year": 2026,
+      "first_author": "Wilson LS",
+      "journal": "J Am Med Inform Assoc",
+      "open_access": true
+    },
+    {
+      "id": "MED:42164373",
+      "title": "Identification and diagnostic model construction of cuproptosis-related biomarkers in bone metastatic prostate cancer.",
+      "year": 2026,
+      "first_author": "Li J",
+      "journal": "Transl Androl Urol",
+      "open_access": true
+    },
+    {
+      "id": "MED:42495609",
+      "title": "LOXL1, THY1, and TYMS define an annotation-derived hemoglobin-associated immunotranscriptomic signature in osteoarthritis cartilage.",
+      "year": 2026,
+      "first_author": "Zhang X",
+      "journal": "Front Immunol",
+      "open_access": true
+    },
+    {
+      "id": "MED:41758733",
+      "title": "Gene Expression Profiling of Peripheral Blood and Endometrial Cancer Risk Factors: Systems Epidemiology Approach in the NOWAC Postgenome Cohort Study.",
+      "year": 2026,
+      "first_author": "Gavriluk O",
+      "journal": "Lifestyle Genom",
+      "open_access": true
+    },
+    {
+      "id": "MED:40918403",
+      "title": "Identification of Endoplasmic Reticulum Stress-Related Genes in Osteoporosis Pathogenesis.",
+      "year": 2025,
+      "first_author": "Zhu Y",
+      "journal": "Mediators Inflamm",
+      "open_access": true
+    },
+    {
+      "id": "MED:41688827",
+      "title": "Identifying Mouse Undifferentiated To Differentiated Spermatogonia Stem Cells at the Single-Cell Level Using Machine Learning Approaches.",
+      "year": 2026,
+      "first_author": "Karoii DH",
+      "journal": "Stem Cell Rev Rep",
+      "open_access": false
+    },
+    {
+      "id": "MED:42057361",
+      "title": "CD8+ T-cells, CD86+ macrophages and TNF-α signalling pathways are correlated with fetlock osteoarthritis in racehorses.",
+      "year": 2026,
+      "first_author": "Secor EJ",
+      "journal": "Equine Vet J",
+      "open_access": false
+    },
+    {
+      "id": "MED:41716413",
+      "title": "UNC93B1 promotes pancreatic cancer progression through modulation of cGAS-STING signaling.",
+      "year": 2026,
+      "first_author": "Yang H",
+      "journal": "Front Immunol",
+      "open_access": true
+    },
+    {
+      "id": "MED:42338983",
+      "title": "LPIN3 emerges as a diagnostic biomarker in Moyamoya disease revealing immune-lipid metabolic crosstalk.",
+      "year": 2026,
+      "first_author": "Lu Z",
+      "journal": "Front Genet",
+      "open_access": true
+    },
+    {
+      "id": "MED:41204370",
+      "title": "Identification of potential blood biomarkers of coronary artery disease using a cuproptosis gene set.",
+      "year": 2025,
+      "first_author": "Li J",
+      "journal": "Eur J Med Res",
+      "open_access": true
+    },
+    {
+      "id": "MED:42180604",
+      "title": "Multi-stage transcriptome analysis identifies hub genes and regulatory mechanisms driving cervical cancer progression.",
+      "year": 2026,
+      "first_author": "Li P",
+      "journal": "PeerJ",
+      "open_access": true
+    },
+    {
+      "id": "MED:42748406",
+      "title": "Conserved hepatic RNA signatures across multiple cohorts reveal novel mechanistic clues for advanced fibrosis in human MASLD.",
+      "year": 2026,
+      "first_author": "Maiers JL",
+      "journal": "Hepatol Commun",
+      "open_access": true
+    },
+    {
+      "id": "MED:41929972",
+      "title": "Exploring shared molecular pathways and gene signatures in type 2 diabetes mellitus and Alzheimer's disease in a Pakistani cohort.",
+      "year": 2026,
+      "first_author": "Noreen Z",
+      "journal": "J Alzheimers Dis Rep",
+      "open_access": true
+    },
+    {
+      "id": "MED:41226022",
+      "title": "DeepCMS: A Feature Selection-Driven Model for Cancer Molecular Subtyping with a Case Study on Testicular Germ Cell Tumors.",
+      "year": 2025,
+      "first_author": "Khan MW",
+      "journal": "Diagnostics (Basel)",
+      "open_access": true
+    },
+    {
+      "id": "MED:41229788",
+      "title": "Integrated bulk sequencing and single-cell transcriptomic profiling implicates neutrophil-driven hypoxia in atrial fibrillation development.",
+      "year": 2025,
+      "first_author": "Huang H",
+      "journal": "J Thorac Dis",
+      "open_access": true
+    },
+    {
+      "id": "MED:41383633",
+      "title": "Single-cell transcriptomics identifies FOSL1-regulated IGFBP3+ melanoma subtype as a neuro-immunoregulatory signaling hub facilitating tumor progression.",
+      "year": 2025,
+      "first_author": "Ge W",
+      "journal": "Front Immunol",
+      "open_access": true
+    },
+    {
+      "id": "MED:39113021",
+      "title": "COMSE: analysis of single-cell RNA-seq data using community detection-based feature selection.",
+      "year": 2024,
+      "first_author": "Luo Q",
+      "journal": "BMC Biol",
+      "open_access": true
+    },
+    {
+      "id": "MED:41507915",
+      "title": "Identification of novel circulating protein biomarkers for hepatocellular carcinoma superior to alpha-fetoprotein through a stemness index and secretome analysis.",
+      "year": 2026,
+      "first_author": "Gao C",
+      "journal": "World J Surg Oncol",
+      "open_access": true
+    },
+    {
+      "id": "MED:40141240",
+      "title": "Transcriptomic Alterations Induced by Tetrahydrocannabinol in SIV/HIV Infection: A Systematic Review.",
+      "year": 2025,
+      "first_author": "Valizadeh A",
+      "journal": "Int J Mol Sci",
+      "open_access": true
+    },
+    {
+      "id": "MED:42738433",
+      "title": "Transcriptomic Profiling Reveals Candidate lncRNA-S100-GPCR Co-Expression Networks in Lungs of Piglets Infected with &lt;i&gt;Glaesserella parasuis&lt;/i&gt;.",
+      "year": 2026,
+      "first_author": "Zeng J",
+      "journal": "Animals (Basel)",
+      "open_access": true
+    },
+    {
+      "id": "MED:40950408",
+      "title": "Investigating the metabolic reprogramming mechanisms in diabetic nephropathy: a comprehensive analysis using bioinformatics and machine learning.",
+      "year": 2025,
+      "first_author": "He S",
+      "journal": "Front Cell Dev Biol",
+      "open_access": true
+    },
+    {
+      "id": "MED:35931958",
+      "title": "Fused inverse-normal method for integrated differential expression analysis of RNA-seq data.",
+      "year": 2022,
+      "first_author": "Prasad B",
+      "journal": "BMC Bioinformatics",
+      "open_access": true
+    },
+    {
+      "id": "MED:42556471",
+      "title": "Targeted Transcriptomic Profiling Identifies Biomarkers and Molecular Features Associated With Immunotherapy Response in Classic Hodgkin Lymphoma.",
+      "year": 2026,
+      "first_author": "Hamana L",
+      "journal": "Mod Pathol",
+      "open_access": false
+    },
+    {
+      "id": "MED:40136389",
+      "title": "How \"Omics\" Studies Contribute to a Better Understanding of Fuchs' Endothelial Corneal Dystrophy.",
+      "year": 2025,
+      "first_author": "Prašnikar E",
+      "journal": "Curr Issues Mol Biol",
+      "open_access": true
+    },
+    {
+      "id": "MED:40329537",
+      "title": "Integrating spatial transcriptomics and snRNA-seq data enhances differential gene expression analysis results of AD-related phenotypes.",
+      "year": 2025,
+      "first_author": "Tang S",
+      "journal": "HGG Adv",
+      "open_access": true
+    },
+    {
+      "id": "MED:38946889",
+      "title": "mRNA-lncRNA gene expression signature in HPV-associated neoplasia and cervical cancer.",
+      "year": 2024,
+      "first_author": "Kulaeva ED",
+      "journal": "Vavilovskii Zhurnal Genet Selektsii",
+      "open_access": false
+    },
+    {
+      "id": "MED:40540134",
+      "title": "Exploring the potential biomarkers between stroke and obstructive sleep apnea by WGCNA and machine learning.",
+      "year": 2025,
+      "first_author": "Zhou L",
+      "journal": "Sleep Breath",
+      "open_access": false
+    },
+    {
+      "id": "MED:41155518",
+      "title": "Transcriptomic Profiling of the Tumor Microenvironment in High-Grade Serous Carcinoma: A Pilot Study of Morphologic and Molecular Distinctions Between Classic and SET Patterns.",
+      "year": 2025,
+      "first_author": "Giannini R",
+      "journal": "Int J Mol Sci",
+      "open_access": true
+    },
+    {
+      "id": "MED:40950877",
+      "title": "Establishing a glycolysis-linked multigene prognostic signature in lung adenocarcinoma: a multicenter integrative approach.",
+      "year": 2025,
+      "first_author": "Dong W",
+      "journal": "J Thorac Dis",
+      "open_access": true
+    },
+    {
+      "id": "MED:39826031",
+      "title": "The Circadian Rhythm Regulates the Hepato-ovarian Axis Linking Polycystic Ovary Syndrome and Non-alcoholic Fatty Liver Disease.",
+      "year": 2026,
+      "first_author": "Lan Y",
+      "journal": "Biochem Genet",
+      "open_access": false
+    },
+    {
+      "id": "MED:40699640",
+      "title": "Exploring Migraine Pathogenesis: Transcriptomic Insights and Pathway Analysis in Nitroglycerin-Induced Rat Model.",
+      "year": 2025,
+      "first_author": "Chen QW",
+      "journal": "Curr Issues Mol Biol",
+      "open_access": true
+    },
+    {
+      "id": "MED:39979276",
+      "title": "Genetic markers of early response to lurasidone in acute schizophrenia.",
+      "year": 2025,
+      "first_author": "Yoshikawa A",
+      "journal": "Pharmacogenomics J",
+      "open_access": true
+    },
+    {
+      "id": "MED:40012919",
+      "title": "Characterization of moyamoya disease molecular subtypes through disulfidptosis‑related genes and immune landscape analysis.",
+      "year": 2025,
+      "first_author": "Wang Y",
+      "journal": "Exp Ther Med",
+      "open_access": true
+    },
+    {
+      "id": "MED:37634207",
+      "title": "Classification of cancer cells and gene selection based on microarray data using MOPSO algorithm.",
+      "year": 2023,
+      "first_author": "Rahimi MR",
+      "journal": "J Cancer Res Clin Oncol",
+      "open_access": false
+    },
+    {
+      "id": "MED:35085775",
+      "title": "ASpediaFI: Functional Interaction Analysis of Alternative Splicing Events.",
+      "year": 2022,
+      "first_author": "Lee K",
+      "journal": "Genomics Proteomics Bioinformatics",
+      "open_access": true
+    },
+    {
+      "id": "MED:37259023",
+      "title": "Constructing ferroptosis-related competing endogenous RNA networks and exploring potential biomarkers correlated with immune infiltration cells in asthma using combinative bioinformatics strategy.",
+      "year": 2023,
+      "first_author": "Chen ST",
+      "journal": "BMC Genomics",
+      "open_access": true
+    },
+    {
+      "id": "MED:35013427",
+      "title": "Expression of type I interferon-associated genes at antiretroviral therapy interruption predicts HIV virological rebound.",
+      "year": 2022,
+      "first_author": "Zacharopoulou P",
+      "journal": "Sci Rep",
+      "open_access": true
+    },
+    {
+      "id": "MED:38719502",
+      "title": "Association between COVID-19 severity and tobacco smoking status: a retrospective cohort study using propensity score matching weights analysis.",
+      "year": 2024,
+      "first_author": "Alshammari MA",
+      "journal": "BMJ Open Respir Res",
+      "open_access": true
+    },
+    {
+      "id": "MED:39291193",
+      "title": "Gene Expression Sets and Renal Profiling from the Renal AL Amyloid Involvement and NEOD00 (RAIN) Trial.",
+      "year": 2024,
+      "first_author": "Varga C",
+      "journal": "Kidney Int Rep",
+      "open_access": true
+    },
+    {
+      "id": "MED:41303433",
+      "title": "Circulating microRNA Profiles in Acute Spinal Cord Injury: Evidence for Distinct Plasma Signatures Compared with Polytrauma Patients.",
+      "year": 2025,
+      "first_author": "Hörauf JA",
+      "journal": "Int J Mol Sci",
+      "open_access": true
+    },
+    {
+      "id": "MED:30592170",
+      "title": "Conducting gene set tests in meta-analyses of transcriptome expression data.",
+      "year": 2019,
+      "first_author": "Kosch R",
+      "journal": "Res Synth Methods",
+      "open_access": false
+    },
+    {
+      "id": "MED:36699262",
+      "title": "Screening and identification of potential hub genes and immune cell infiltration in the synovial tissue of rheumatoid arthritis by bioinformatic approach.",
+      "year": 2023,
+      "first_author": "Feng ZW",
+      "journal": "Heliyon",
+      "open_access": true
+    },
+    {
+      "id": "MED:34190319",
+      "title": "Global transcriptomic changes occur in uterine fluid-derived extracellular vesicles during the endometrial window for embryo implantation.",
+      "year": 2021,
+      "first_author": "Giacomini E",
+      "journal": "Hum Reprod",
+      "open_access": true
+    },
+    {
+      "id": "MED:37435067",
+      "title": "Innovative breakthroughs facilitated by single-cell multi-omics: manipulating natural killer cell functionality correlates with a novel subcategory of melanoma cells.",
+      "year": 2023,
+      "first_author": "Zhao Z",
+      "journal": "Front Immunol",
+      "open_access": true
+    },
+    {
+      "id": "MED:31822265",
+      "title": "Longitudinal linear combination test for gene set analysis.",
+      "year": 2019,
+      "first_author": "Khodayari Moez E",
+      "journal": "BMC Bioinformatics",
+      "open_access": true
+    },
+    {
+      "id": "MED:31031796",
+      "title": "A Novel Joint Gene Set Analysis Framework Improves Identification of Enriched Pathways in Cross Disease Transcriptomic Analysis.",
+      "year": 2019,
+      "first_author": "Qin W",
+      "journal": "Front Genet",
+      "open_access": true
+    },
+    {
+      "id": "MED:37845772",
+      "title": "Analysis of transcriptomic features reveals molecular endotypes of SLE with clinical implications.",
+      "year": 2023,
+      "first_author": "Hubbard EL",
+      "journal": "Genome Med",
+      "open_access": true
+    },
+    {
+      "id": "MED:32889300",
+      "title": "Classification algorithms applied to blood-based transcriptome meta-analysis to predict idiopathic Parkinson's disease.",
+      "year": 2020,
+      "first_author": "Falchetti M",
+      "journal": "Comput Biol Med",
+      "open_access": false
+    },
+    {
+      "id": "MED:39241251",
+      "title": "Single-cell RNA sequencing reveals transcriptomic landscape and potential targets for human testicular ageing.",
+      "year": 2024,
+      "first_author": "Xia K",
+      "journal": "Hum Reprod",
+      "open_access": true
+    },
+    {
+      "id": "MED:26342128",
+      "title": "Gene set analysis approaches for RNA-seq data: performance evaluation and application guideline.",
+      "year": 2016,
+      "first_author": "Rahmatallah Y",
+      "journal": "Brief Bioinform",
+      "open_access": true
+    },
+    {
+      "id": "MED:35205761",
+      "title": "Machine Learning-Based Analysis of Glioma Grades Reveals Co-Enrichment.",
+      "year": 2022,
+      "first_author": "Garbulowski M",
+      "journal": "Cancers (Basel)",
+      "open_access": true
+    },
+    {
+      "id": "MED:28334305",
+      "title": "Variance component score test for time-course gene set analysis of longitudinal RNA-seq data.",
+      "year": 2017,
+      "first_author": "Agniel D",
+      "journal": "Biostatistics",
+      "open_access": false
+    },
+    {
+      "id": "MED:30939133",
+      "title": "Gene set meta-analysis with Quantitative Set Analysis for Gene Expression (QuSAGE).",
+      "year": 2019,
+      "first_author": "Meng H",
+      "journal": "PLoS Comput Biol",
+      "open_access": true
+    },
+    {
+      "id": "MED:34744146",
+      "title": "Subgroup Identification with Gene Expression Profiles of Adipose Tissue in Patients with Coronary Artery Disease.",
+      "year": 2021,
+      "first_author": "Jiang C",
+      "journal": "Int Heart J",
+      "open_access": false
+    },
+    {
+      "id": "MED:31156698",
+      "title": "Analyses of a Panel of Transcripts Identified From a Small Sample Size and Construction of RNA Networks in Hepatocellular Carcinoma.",
+      "year": 2019,
+      "first_author": "Sheng Z",
+      "journal": "Front Genet",
+      "open_access": true
+    },
+    {
+      "id": "MED:34489404",
+      "title": "Learning interpretable cellular and gene signature embeddings from single-cell transcriptomic data.",
+      "year": 2021,
+      "first_author": "Zhao Y",
+      "journal": "Nat Commun",
+      "open_access": true
+    },
+    {
+      "id": "MED:32393195",
+      "title": "Knowledge-based analyses reveal new candidate genes associated with risk of hepatitis B virus related hepatocellular carcinoma.",
+      "year": 2020,
+      "first_author": "Jiang D",
+      "journal": "BMC Cancer",
+      "open_access": true
+    },
+    {
+      "id": "MED:38770717",
+      "title": "CPADS: a web tool for comprehensive pancancer analysis of drug sensitivity.",
+      "year": 2024,
+      "first_author": "Li K",
+      "journal": "Brief Bioinform",
+      "open_access": true
+    },
+    {
+      "id": "MED:30646919",
+      "title": "A novel gene selection algorithm for cancer classification using microarray datasets.",
+      "year": 2019,
+      "first_author": "Alanni R",
+      "journal": "BMC Med Genomics",
+      "open_access": true
+    },
+    {
+      "id": "MED:25738861",
+      "title": "A regression-based differential expression detection algorithm for microarray studies with ultra-low sample size.",
+      "year": 2015,
+      "first_author": "Vasiliu D",
+      "journal": "PLoS One",
+      "open_access": true
+    },
+    {
+      "id": "MED:35004856",
+      "title": "Identification of Diagnostic Markers Correlated With HIV<sup>+</sup> Immune Non-response Based on Bioinformatics Analysis.",
+      "year": 2021,
+      "first_author": "Bai R",
+      "journal": "Front Mol Biosci",
+      "open_access": true
+    },
+    {
+      "id": "MED:35063573",
+      "title": "Meta-analysis of gene expression data in adipose tissue reveals new obesity associated genes.",
+      "year": 2022,
+      "first_author": "Goutzelas Y",
+      "journal": "Gene",
+      "open_access": false
+    },
+    {
+      "id": "MED:26171964",
+      "title": "Meta-Analysis of Placental Transcriptome Data Identifies a Novel Molecular Pathway Related to Preeclampsia.",
+      "year": 2015,
+      "first_author": "van Uitert M",
+      "journal": "PLoS One",
+      "open_access": true
+    },
+    {
+      "id": "MED:32682418",
+      "title": "Identification of potential crucial genes in atrial fibrillation: a bioinformatic analysis.",
+      "year": 2020,
+      "first_author": "Zhang J",
+      "journal": "BMC Med Genomics",
+      "open_access": true
+    },
+    {
+      "id": "MED:26607492",
+      "title": "RNA-Enrich: a cut-off free functional enrichment testing method for RNA-seq with improved detection power.",
+      "year": 2016,
+      "first_author": "Lee C",
+      "journal": "Bioinformatics",
+      "open_access": false
+    },
+    {
+      "id": "MED:32309369",
+      "title": "Identification and analysis of dysregulated lncRNA and associated ceRNA in the pathogenesis of keloid.",
+      "year": 2020,
+      "first_author": "Duan X",
+      "journal": "Ann Transl Med",
+      "open_access": true
+    },
+    {
+      "id": "MED:33725527",
+      "title": "Eutopic endometrium from women with endometriosis and chlamydial endometritis share immunological cell types and DNA repair imbalance: A transcriptome meta-analytical perspective.",
+      "year": 2021,
+      "first_author": "Poli-Neto OB",
+      "journal": "J Reprod Immunol",
+      "open_access": false
+    },
+    {
+      "id": "MED:33068229",
+      "title": "The effect of blastomere loss during frozen embryo transfer on the transcriptome of offspring's umbilical cord blood.",
+      "year": 2020,
+      "first_author": "Wu YT",
+      "journal": "Mol Biol Rep",
+      "open_access": false
+    },
+    {
+      "id": "MED:35141302",
+      "title": "Construction and Analysis of the lncRNA-miRNA-mRNA Network Based on Competing Endogenous RNA in Atrial Fibrillation.",
+      "year": 2022,
+      "first_author": "Ke X",
+      "journal": "Front Cardiovasc Med",
+      "open_access": true
+    },
+    {
+      "id": "MED:31719968",
+      "title": "RNA sequencing of identical twins discordant for autism reveals blood-based signatures implicating immune and transcriptional dysregulation.",
+      "year": 2019,
+      "first_author": "Saffari A",
+      "journal": "Mol Autism",
+      "open_access": true
+    },
+    {
+      "id": "MED:37180676",
+      "title": "Correlation of gene expression profiles to identify pancreatic cancer cell lines that best model primary human tumors.",
+      "year": 2023,
+      "first_author": "Hu Y",
+      "journal": "Transl Cancer Res",
+      "open_access": true
+    },
+    {
+      "id": "MED:36230801",
+      "title": "Subpathway Analysis of Transcriptome Profiles Reveals New Molecular Mechanisms of Acquired Chemotherapy Resistance in Breast Cancer.",
+      "year": 2022,
+      "first_author": "Huo Y",
+      "journal": "Cancers (Basel)",
+      "open_access": true
+    },
+    {
+      "id": "MED:35220956",
+      "title": "Network meta-analysis of transcriptome expression changes in different manifestations of dengue virus infection.",
+      "year": 2022,
+      "first_author": "Winter C",
+      "journal": "BMC Genomics",
+      "open_access": true
+    },
+    {
+      "id": "MED:30016992",
+      "title": "Transcriptional network analysis on brains reveals a potential regulatory role of PPP1R3F in autism spectrum disorders.",
+      "year": 2018,
+      "first_author": "Doostparast Torshizi A",
+      "journal": "BMC Res Notes",
+      "open_access": true
+    },
+    {
+      "id": "MED:35124177",
+      "title": "A systematically derived overview of the non-ubiquitous pathways and genes that define the molecular and genetic signature of the healthy trabecular meshwork.",
+      "year": 2022,
+      "first_author": "Liesenborghs I",
+      "journal": "Genomics",
+      "open_access": false
+    },
+    {
+      "id": "MED:24465620",
+      "title": "Prediction of the number of activated genes in multiple independent Cd(+2)- and As(+3)-induced malignant transformations of human urothelial cells (UROtsa).",
+      "year": 2014,
+      "first_author": "Garrett SH",
+      "journal": "PLoS One",
+      "open_access": true
+    },
+    {
+      "id": "MED:25243581",
+      "title": "Rotation gene set testing for longitudinal expression data.",
+      "year": 2014,
+      "first_author": "Dørum G",
+      "journal": "Biom J",
+      "open_access": false
+    },
+    {
+      "id": "MED:31856860",
+      "title": "A longitudinal study highlights shared aspects of the transcriptomic response to cardiogenic and septic shock.",
+      "year": 2019,
+      "first_author": "Braga D",
+      "journal": "Crit Care",
+      "open_access": true
+    },
+    {
+      "id": "MED:30267407",
+      "title": "Functional genomics identifies AMPD2 as a new prognostic marker for undifferentiated pleomorphic sarcoma.",
+      "year": 2019,
+      "first_author": "Orth MF",
+      "journal": "Int J Cancer",
+      "open_access": false
+    },
+    {
+      "id": "MED:31801406",
+      "title": "Integrative Omics Approach to Identifying Genes Associated With Atrial Fibrillation.",
+      "year": 2020,
+      "first_author": "Wang B",
+      "journal": "Circ Res",
+      "open_access": false
+    },
+    {
+      "id": "MED:28676447",
+      "title": "Profiling conserved biological pathways in Autosomal Dominant Polycystic Kidney Disorder (ADPKD) to elucidate key transcriptomic alterations regulating cystogenesis: A cross-species meta-analysis approach.",
+      "year": 2017,
+      "first_author": "Chatterjee S",
+      "journal": "Gene",
+      "open_access": false
+    },
+    {
+      "id": "MED:22369383",
+      "title": "Gene selection and classification for cancer microarray data based on machine learning and similarity measures.",
+      "year": 2011,
+      "first_author": "Liu Q",
+      "journal": "BMC Genomics",
+      "open_access": true
+    },
+    {
+      "id": "MED:28378556",
+      "title": "RNA-Seq for Gene Expression Profiling of Human Necrotizing Enterocolitis: a Pilot Study.",
+      "year": 2017,
+      "first_author": "Jung K",
+      "journal": "J Korean Med Sci",
+      "open_access": true
+    },
+    {
+      "id": "MED:30503344",
+      "title": "Comprehensive analysis of lncRNA-associated ceRNA network in colorectal cancer.",
+      "year": 2019,
+      "first_author": "Yuan W",
+      "journal": "Biochem Biophys Res Commun",
+      "open_access": false
+    },
+    {
+      "id": "MED:23418184",
+      "title": "A powerful Bayesian meta-analysis method to integrate multiple gene set enrichment studies.",
+      "year": 2013,
+      "first_author": "Chen M",
+      "journal": "Bioinformatics",
+      "open_access": true
+    },
+    {
+      "id": "MED:31617731",
+      "title": "Meta-analysis of blood genome-wide expression profiling studies in pulmonary arterial hypertension.",
+      "year": 2020,
+      "first_author": "Elinoff JM",
+      "journal": "Am J Physiol Lung Cell Mol Physiol",
+      "open_access": false
+    },
+    {
+      "id": "MED:34875061",
+      "title": "Identifying and optimizing human endometrial gene expression signatures for endometrial dating.",
+      "year": 2022,
+      "first_author": "Diaz-Gimeno P",
+      "journal": "Hum Reprod",
+      "open_access": false
+    },
+    {
+      "id": "MED:19664562",
+      "title": "A weighted sample size for microarray datasets that considers the variability of variance and multiplicity.",
+      "year": 2009,
+      "first_author": "Kim KY",
+      "journal": "J Biosci Bioeng",
+      "open_access": false
+    },
+    {
+      "id": "MED:20610611",
+      "title": "ROAST: rotation gene set tests for complex microarray experiments.",
+      "year": 2010,
+      "first_author": "Wu D",
+      "journal": "Bioinformatics",
+      "open_access": true
+    },
+    {
+      "id": "MED:20109181",
+      "title": "Testing for mean and correlation changes in microarray experiments: an application for pathway analysis.",
+      "year": 2010,
+      "first_author": "Alvo M",
+      "journal": "BMC Bioinformatics",
+      "open_access": true
+    },
+    {
+      "id": "MED:23532688",
+      "title": "Comparison of hepatocellular carcinoma (HCC), cholangiocarcinoma (CC), and combined HCC-CC (CHC) with each other based on microarray dataset.",
+      "year": 2013,
+      "first_author": "Wang L.",
+      "journal": "Tumour Biol",
+      "open_access": false
+    },
+    {
+      "id": "MED:33598714",
+      "title": "Mapping the entire functionally active endometrial microbiota.",
+      "year": 2021,
+      "first_author": "Sola-Leyva A",
+      "journal": "Hum Reprod",
+      "open_access": false
+    },
+    {
+      "id": "MED:31156702",
+      "title": "Whole-Exome Sequencing Identifies Somatic Mutations Associated With Mortality in Metastatic Clear Cell Kidney Carcinoma.",
+      "year": 2019,
+      "first_author": "Mendoza-Alvarez A",
+      "journal": "Front Genet",
+      "open_access": true
+    },
+    {
+      "id": "MED:24348776",
+      "title": "A study exploring critical pathways in clear cell renal cell carcinoma.",
+      "year": 2014,
+      "first_author": "Zeng Z",
+      "journal": "Exp Ther Med",
+      "open_access": true
+    },
+    {
+      "id": "MED:22369099",
+      "title": "A robust tool for discriminative analysis and feature selection in paired samples impacts the identification of the genes essential for reprogramming lung tissue to adenocarcinoma.",
+      "year": 2011,
+      "first_author": "Toh SH",
+      "journal": "BMC Genomics",
+      "open_access": true
+    },
+    {
+      "id": "MED:34732124",
+      "title": "Transcriptome profiling reveals the developmental regulation of NaCl-treated Forcipomyia taiwana eggs.",
+      "year": 2021,
+      "first_author": "Chen ME",
+      "journal": "BMC Genomics",
+      "open_access": true
+    },
+    {
+      "id": "MED:30313048",
+      "title": "Expression profiles of long noncoding RNAs and mRNAs in peripheral blood mononuclear cells of patients with acute myocardial infarction.",
+      "year": 2018,
+      "first_author": "Zhao P",
+      "journal": "Medicine (Baltimore)",
+      "open_access": true
+    },
+    {
+      "id": "MED:24888725",
+      "title": "Gene expression profiling of laser microdissected airway smooth muscle tissue in asthma and atopy.",
+      "year": 2014,
+      "first_author": "Yick CY",
+      "journal": "Allergy",
+      "open_access": false
+    },
+    {
+      "id": "MED:23491407",
+      "title": "Glucocorticoid-induced changes in gene expression of airway smooth muscle in patients with asthma.",
+      "year": 2013,
+      "first_author": "Yick CY",
+      "journal": "Am J Respir Crit Care Med",
+      "open_access": false
+    },
+    {
+      "id": "MED:27842512",
+      "title": "SABRE: a method for assessing the stability of gene modules in complex tissues and subject populations.",
+      "year": 2016,
+      "first_author": "Shannon CP",
+      "journal": "BMC Bioinformatics",
+      "open_access": true
+    },
+    {
+      "id": "MED:19545372",
+      "title": "Platform dependence of inference on gene-wise and gene-set involvement in human lung development.",
+      "year": 2009,
+      "first_author": "Du R",
+      "journal": "BMC Bioinformatics",
+      "open_access": true
+    },
+    {
+      "id": "MED:18466594",
+      "title": "Finding pathway regulators: gene set approach using peak identification algorithms.",
+      "year": 2007,
+      "first_author": "Lee E",
+      "journal": "BMC Proc",
+      "open_access": true
+    },
+    {
+      "id": "MED:31035427",
+      "title": "Mapping Semaphorins and Netrins in the Pathogenesis of Human Thoracic Aortic Aneurysms.",
+      "year": 2019,
+      "first_author": "Alebrahim D",
+      "journal": "Int J Mol Sci",
+      "open_access": true
+    },
+    {
+      "id": "MED:20196851",
+      "title": "Gene expression profiles of lung adenocarcinoma linked to histopathological grading and survival but not to EGF-R status: a microarray study.",
+      "year": 2010,
+      "first_author": "Neumann J",
+      "journal": "BMC Cancer",
+      "open_access": true
+    },
+    {
+      "id": "MED:26005638",
+      "title": "Enriched transcription factor signatures in triple negative breast cancer indicates possible targeted therapies with existing drugs.",
+      "year": 2015,
+      "first_author": "Willis S",
+      "journal": "Meta Gene",
+      "open_access": true
+    },
+    {
+      "id": "MED:25521637",
+      "title": "Pathway analysis and transcriptomics improve protein identification by shotgun proteomics from samples comprising small number of cells--a benchmarking study.",
+      "year": 2014,
+      "first_author": "Sun J",
+      "journal": "BMC Genomics",
+      "open_access": true
+    },
+    {
+      "id": "MED:25827448",
+      "title": "Short-Term Adjuvant Therapy with Terminalia arjuna Attenuates Ongoing Inflammation and Immune Imbalance in Patients with Stable Coronary Artery Disease: In Vitro and In Vivo Evidence.",
+      "year": 2015,
+      "first_author": "Kapoor D",
+      "journal": "J Cardiovasc Transl Res",
+      "open_access": false
+    },
+    {
+      "id": "MED:25860484",
+      "title": "Transcription factors and microRNA-co-regulated genes in gastric cancer invasion in ex vivo.",
+      "year": 2015,
+      "first_author": "Shi Y",
+      "journal": "PLoS One",
+      "open_access": true
+    },
+    {
+      "id": "MED:25300922",
+      "title": "Blood gene expression profiles suggest altered immune function associated with symptoms of generalized anxiety disorder.",
+      "year": 2015,
+      "first_author": "Wingo AP",
+      "journal": "Brain Behav Immun",
+      "open_access": false
+    },
+    {
+      "id": "MED:26447506",
+      "title": "The Use of Genomics and Pathway Analysis in Our Understanding and Prediction of Clinical Renal Transplant Injury.",
+      "year": 2016,
+      "first_author": "Menon MC",
+      "journal": "Transplantation",
+      "open_access": false
+    },
+    {
+      "id": "MED:31212673",
+      "title": "A Robust Approach for Identification of Cancer Biomarkers and Candidate Drugs.",
+      "year": 2019,
+      "first_author": "Shahjaman M",
+      "journal": "Medicina (Kaunas)",
+      "open_access": true
+    },
+    {
+      "id": "MED:27896820",
+      "title": "PPARγ targeted oral cancer treatment and additional utility of genomics analytic techniques.",
+      "year": 2017,
+      "first_author": "Handley N",
+      "journal": "Laryngoscope",
+      "open_access": false
+    },
+    {
+      "id": "MED:23151274",
+      "title": "Sepsis in transit: from clinical to molecular classification.",
+      "year": 2012,
+      "first_author": "Thair SA",
+      "journal": "Crit Care",
+      "open_access": true
+    },
+    {
+      "id": "MED:22166114",
+      "title": "Predicting gene ontology from a global meta-analysis of 1-color microarray experiments.",
+      "year": 2011,
+      "first_author": "Dozmorov MG",
+      "journal": "BMC Bioinformatics",
+      "open_access": true
+    },
+    {
+      "id": "MED:21470421",
+      "title": "Identification of SERPINA1 as single marker for papillary thyroid carcinoma through microarray meta analysis and quantification of its discriminatory power in independent validation.",
+      "year": 2011,
+      "first_author": "Vierlinger K",
+      "journal": "BMC Med Genomics",
+      "open_access": true
+    },
+    {
+      "id": "MED:31340509",
+      "title": "Metabolomics Analyses in High-Low Feed Efficient Dairy Cows Reveal Novel Biochemical Mechanisms and Predictive Biomarkers.",
+      "year": 2019,
+      "first_author": "Wang X",
+      "journal": "Metabolites",
+      "open_access": true
+    },
+    {
+      "id": "MED:23778302",
+      "title": "Assessment of gene expression in peripheral blood using RNAseq before and after weight restoration in anorexia nervosa.",
+      "year": 2013,
+      "first_author": "Kim Y",
+      "journal": "Psychiatry Res",
+      "open_access": false
+    },
+    {
+      "id": "MED:19546833",
+      "title": "Genetic determinants of hearing loss associated with vestibular schwannomas.",
+      "year": 2009,
+      "first_author": "Stankovic KM",
+      "journal": "Otol Neurotol",
+      "open_access": false
+    },
+    {
+      "id": "MED:21479231",
+      "title": "Integrated analysis of multiple microarray datasets identifies a reproducible survival predictor in ovarian cancer.",
+      "year": 2011,
+      "first_author": "Konstantinopoulos PA",
+      "journal": "PLoS One",
+      "open_access": true
+    },
+    {
+      "id": "MED:23418513",
+      "title": "Transcriptomic profiling of human peritumoral neocortex tissues revealed genes possibly involved in tumor-induced epilepsy.",
+      "year": 2013,
+      "first_author": "Niesen CE",
+      "journal": "PLoS One",
+      "open_access": true
+    },
+    {
+      "id": "MED:23793063",
+      "title": "Differences and similarities in the transcriptional profile of peripheral whole blood in early and late-onset preeclampsia: insights into the molecular basis of the phenotype of preeclampsiaa.",
+      "year": 2013,
+      "first_author": "Chaiworapongsa T",
+      "journal": "J Perinat Med",
+      "open_access": false
+    },
+    {
+      "id": "MED:23421644",
+      "title": "Differences in gene expression within a striking phenotypic mosaic Eucalyptus tree that varies in susceptibility to herbivory.",
+      "year": 2013,
+      "first_author": "Padovan A",
+      "journal": "BMC Plant Biol",
+      "open_access": true
+    },
+    {
+      "id": "MED:33305818",
+      "title": "Oral Vitamin D supplementation impacts gene expression in granulosa cells in women undergoing IVF.",
+      "year": 2021,
+      "first_author": "Makieva S",
+      "journal": "Hum Reprod",
+      "open_access": false
+    },
+    {
+      "id": "MED:26380656",
+      "title": "Differential Expression of MicroRNAs in Papillary Thyroid Carcinoma and Their Role in Racial Disparity.",
+      "year": 2015,
+      "first_author": "Suresh R",
+      "journal": "J Cancer Sci Ther",
+      "open_access": true
+    },
+    {
+      "id": "MED:22849515",
+      "title": "Discovery and validation of gene classifiers for endocrine-disrupting chemicals in zebrafish (danio rerio).",
+      "year": 2012,
+      "first_author": "Wang RL",
+      "journal": "BMC Genomics",
+      "open_access": true
+    },
+    {
+      "id": "MED:23852853",
+      "title": "Pharmacogenetics of antidepressant drugs: an update after almost 20 years of research.",
+      "year": 2013,
+      "first_author": "Fabbri C",
+      "journal": "Am J Med Genet B Neuropsychiatr Genet",
+      "open_access": false
+    },
+    {
+      "id": "MED:28715416",
+      "title": "Signatures of inflammation and impending multiple organ dysfunction in the hyperacute phase of trauma: A prospective cohort study.",
+      "year": 2017,
+      "first_author": "Cabrera CP",
+      "journal": "PLoS Med",
+      "open_access": true
+    },
+    {
+      "id": "MED:20005686",
+      "title": "Mixture classification model based on clinical markers for breast cancer prognosis.",
+      "year": 2010,
+      "first_author": "Zeng T",
+      "journal": "Artif Intell Med",
+      "open_access": false
+    },
+    {
+      "id": "MED:16964424",
+      "title": "Microarray profiling of gene expression patterns in glomerular cells of astaxanthin-treated diabetic mice: a nutrigenomic approach.",
+      "year": 2006,
+      "first_author": "Naito Y",
+      "journal": "Int J Mol Med",
+      "open_access": false
+    },
+    {
+      "id": "MED:17016611",
+      "title": "Inflammatory response of esophageal epithelium in combined-type esophagitis in rats: a transcriptome analysis.",
+      "year": 2006,
+      "first_author": "Naito Y",
+      "journal": "Int J Mol Med",
+      "open_access": false
+    }
+  ],
+  "task": "L-002"
+}

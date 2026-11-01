@@ -191,6 +191,10 @@ class DecisionMeta(Strict):
     ideas: list[str] = Field(default_factory=list)
     budget: dict[str, float] | None = None
     needs_human: bool = False
+    # Who took the decision. An RD with needs_human: true is pending until decided_by: owner.
+    decided_by: Literal["owner", "supervisor"] = "supervisor"
+    # A supervisor pivot must cite the owner's delegation (an RD with decided_by: owner).
+    delegated_by: str | None = Field(default=None, pattern=r"^RD-\d{3}$")
 
 
 # --------------------------------------------------------------------------- loading
@@ -312,8 +316,15 @@ def problems(root: Path | None = None) -> list[str]:
     if plan and len(active) > plan.get("max_active_ideas", 1):
         out.append(f"ideas: {len(active)} active ideas {active} > max_active_ideas")
     for did, (_, dm) in decisions.items():
-        if dm.kind == "pivot" and not dm.needs_human:
-            out.append(f"{did}: a pivot decision must set needs_human: true (owner's call)")
+        if dm.delegated_by is not None:
+            ref = decisions.get(dm.delegated_by)
+            if ref is None or ref[1].decided_by != "owner":
+                out.append(f"{did}: delegated_by {dm.delegated_by} is not an owner decision")
+        if dm.kind == "pivot" and not dm.needs_human and dm.delegated_by is None:
+            out.append(
+                f"{did}: a pivot decision must set needs_human: true (owner's call) or cite the "
+                "owner's delegation (delegated_by)"
+            )
         for iid in dm.ideas:
             if iid not in iids:
                 out.append(f"{did}: references unknown idea {iid}")
