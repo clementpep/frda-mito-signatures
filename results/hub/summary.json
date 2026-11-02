@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-02T01:55:13+00:00",
-  "commit": "e82ed5207b3fb679e9b53fe0d7e73b0cf658de2d",
+  "generated_at": "2026-11-02T05:59:32+00:00",
+  "commit": "c811f83da4ab75b781c3bf0f6429f4acf70387a3",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -18,9 +18,9 @@
   "progress": {
     "total": 50,
     "done": 8,
-    "in_review": 1,
+    "in_review": 0,
     "ready": 32,
-    "changes_requested": 0,
+    "changes_requested": 1,
     "blocked": 0,
     "needs_human": 1,
     "proposed": 8
@@ -208,7 +208,7 @@
       "id": "T-026a",
       "title": "Patient blood cohort GSE102008 — sample metadata pipeline and dataset card",
       "milestone": "M1",
-      "status": "in_review",
+      "status": "changes_requested",
       "kind": "data",
       "track": "main"
     },
@@ -480,6 +480,15 @@
   "claims": [],
   "verifications": [
     {
+      "task": "T-026",
+      "date": "2026-11-02",
+      "verdict": "CHANGES_REQUESTED",
+      "summary": "Science and recomputation check out, but the handover commit is named work(T-026a), so the landing guard would reject verified/T-026",
+      "attempt": 1,
+      "acceptance_met": "5/5",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-026-c811f83.md"
+    },
+    {
       "task": "W-2026-W43",
       "date": "2026-11-01",
       "verdict": "PASS",
@@ -649,15 +658,6 @@
       "attempt": 3,
       "acceptance_met": "4/5",
       "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-021-316cbdc.md"
-    },
-    {
-      "task": "T-021",
-      "date": "2026-10-16",
-      "verdict": "NEEDS_HUMAN",
-      "summary": "Attempt-3 finding fixed, but lit-verify still accepts quotes that are not contiguous in the paper (3 reproduced paths); owner-authorised last attempt failed.",
-      "attempt": 4,
-      "acceptance_met": "4/5",
-      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-021-61283e6.md"
     }
   ],
   "research": {
