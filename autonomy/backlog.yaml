@@ -792,3 +792,18 @@ tasks:
     notes:
       - "Source autonomy/verifications/W-2026-W43-8e5d9fa.md: Q2 over 2026-10-11..2026-10-19 logged 0 on the run day; re-run the next day returned 2 (firstIndexDate 2026-10-19)."
       - "Source autonomy/verifications/W-2026-W43-c0f6e36.md, non-blocking 1: MED:42878081 (commentary on MED:42878077) is in the 2026-10-11..19 window but matched by no protocol query; the watch only sees protocol-query hits."
+
+  - id: L-010
+    title: Assess candidate dataset GSE337925 (FXN reactivation, RNA-seq) for the project
+    milestone: M2
+    status: proposed
+    priority: 3
+    kind: literature
+    track: literature
+    goal: Decide from the GEO record and the associated paper whether GSE337925 is usable (independent units, controls, terms of use, allowlist) and what it could add.
+    acceptance:
+      - Sample table (donors / cell lines, conditions) taken from the GEO record, nothing inferred; independent-unit count per group stated.
+      - Terms of use checked against P5.2; verdict usable / not usable / needs_human with the exact question.
+      - If usable, a manifest task is proposed (not created ready); no data downloaded by this task.
+    notes:
+      - "Source autonomy/digests/W-2026-W45.md and data-manifests/candidates.yaml (GSE337925, GSE313540 seen 2026-11-02; GEO pdat 2026-10-26)."

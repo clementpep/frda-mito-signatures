@@ -1,0 +1,17 @@
+{
+  "query": "(TITLE_ABS:Friedreich* OR TITLE_ABS:FRDA OR TITLE_ABS:frataxin OR TITLE_ABS:FXN) AND (TITLE_ABS:transcript* OR TITLE_ABS:\"RNA-seq\" OR TITLE_ABS:\"RNA sequencing\" OR TITLE_ABS:\"gene expression\" OR TITLE_ABS:microarray OR TITLE_ABS:\"differentially expressed\") AND PUB_YEAR:[2005 TO 2026] AND LANG:eng AND (SRC:MED OR SRC:PPR) AND FIRST_PDATE:[2026-10-24 TO 2026-11-02]",
+  "date": "2026-11-02",
+  "hit_count": 1,
+  "retrieved": 1,
+  "results": [
+    {
+      "id": "MED:42966307",
+      "title": "The Fe-S cluster assembly NFS1-ISD11-FH subcomplex is involved in heme biosynthesis in plants. ",
+      "year": 2026,
+      "first_author": "Armas AM",
+      "journal": "Plant Physiol Biochem",
+      "open_access": false
+    }
+  ],
+  "task": "W-2026-W45"
+}

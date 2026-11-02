@@ -1,0 +1,17 @@
+{
+  "query": "(TITLE_ABS:Friedreich* OR TITLE_ABS:FRDA OR TITLE_ABS:frataxin OR TITLE_ABS:FXN) AND (TITLE_ABS:muscle OR TITLE_ABS:biops* OR TITLE_ABS:\"cerebrospinal fluid\" OR TITLE_ABS:saliva OR TITLE_ABS:buccal OR TITLE_ABS:neurofilament OR TITLE_ABS:MRI OR TITLE_ABS:imaging) AND (TITLE_ABS:FARS OR TITLE_ABS:mFARS OR TITLE_ABS:SARA OR TITLE_ABS:GAA OR TITLE_ABS:clinical OR TITLE_ABS:\"disease duration\" OR TITLE_ABS:\"age at onset\" OR TITLE_ABS:cardiomyopathy OR TITLE_ABS:patients) AND PUB_YEAR:[2005 TO 2026] AND LANG:eng AND (SRC:MED OR SRC:PPR) AND FIRST_PDATE:[2026-10-24 TO 2026-11-02]",
+  "date": "2026-11-02",
+  "hit_count": 1,
+  "retrieved": 1,
+  "results": [
+    {
+      "id": "MED:42949167",
+      "title": "Intrinsic Activity Reductions and Cerebello-Cortical Diaschisis-Like Mechanism in Friedreich Ataxia: An fALFF Resting-State fMRI Study.",
+      "year": 2026,
+      "first_author": "Gilles N",
+      "journal": "Brain Behav",
+      "open_access": true
+    }
+  ],
+  "task": "W-2026-W45"
+}

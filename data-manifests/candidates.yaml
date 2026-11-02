@@ -1,0 +1,25 @@
+# Candidate public datasets seen by the weekly watch (GEO summary only; nothing downloaded,
+# no manifest, no sha256). A candidate becomes a dataset only through a task + manifest + review (P5.1).
+candidates:
+- accession: GSE337925
+  title: Non-enzymatic functions of CBP/EP300 are harnessed by gene-targeted inducers of proximity [RNA-seq]
+  type: Expression profiling by high throughput sequencing
+  organism: Homo sapiens
+  n_samples: 8
+  geo_pdat: '2026-10-26'
+  seen: '2026-11-02'
+  seen_by: W-2026-W45
+  summary_says: FRDA GAA-repeat expansion silences FXN; synthetic gene regulators recruit CBP/EP300 to GAA repeats to restore FXN expression (GEO summary, truncated at retrieval).
+  status: candidate_unassessed
+  notes: Intervention study on FXN reactivation; sample types, donors/cell lines and terms of use not checked. Relevance to the mitochondrial-signature question undecided. Also reported by the W-2026-W44 run (branch auto/W-2026-W44, not on main at the time of this run).
+- accession: GSE313540
+  title: Non-enzymatic functions of CBP/EP300 are harnessed by gene-targeted inducers of proximity [ChIP-seq]
+  type: Genome binding/occupancy profiling by high throughput sequencing
+  organism: Homo sapiens
+  n_samples: 82
+  geo_pdat: '2026-10-26'
+  seen: '2026-11-02'
+  seen_by: W-2026-W45
+  summary_says: same study as GSE337925 (ChIP-seq arm).
+  status: candidate_unassessed
+  notes: ChIP-seq, not transcriptomic; recorded for completeness.

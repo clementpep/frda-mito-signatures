@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-01T05:57:08+00:00",
-  "commit": "4aad2dee0771e86ece6d048acf44caf44e092e7e",
+  "generated_at": "2026-11-02T06:46:49+00:00",
+  "commit": "e82ed5207b3fb679e9b53fe0d7e73b0cf658de2d",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -16,14 +16,14 @@
     "repo_url": "https://github.com/clementpep/frda-mito-signatures"
   },
   "progress": {
-    "total": 48,
+    "total": 49,
     "done": 8,
     "in_review": 0,
     "ready": 32,
     "changes_requested": 0,
     "blocked": 0,
     "needs_human": 1,
-    "proposed": 7
+    "proposed": 8
   },
   "milestones": [
     {
@@ -40,7 +40,7 @@
       "goal": "Map what is already known, widen the public data base, derive a candidate mitochondrial signature.",
       "status": "in_progress",
       "tasks_done": 7,
-      "tasks_total": 27
+      "tasks_total": 28
     },
     {
       "id": "M3",
@@ -459,6 +459,14 @@
       "status": "proposed",
       "kind": "infra",
       "track": "literature"
+    },
+    {
+      "id": "L-010",
+      "title": "Assess candidate dataset GSE337925 (FXN reactivation, RNA-seq) for the project",
+      "milestone": "M2",
+      "status": "proposed",
+      "kind": "literature",
+      "track": "literature"
     }
   ],
   "claims": [],
@@ -653,8 +661,8 @@
       "writing": 0.0
     },
     "corpus": {
-      "total": 1279,
-      "to_screen": 1279,
+      "total": 1283,
+      "to_screen": 1283,
       "excluded": 0,
       "to_read": 0,
       "read": 0
@@ -667,6 +675,16 @@
     }
   },
   "news": [
+    {
+      "id": "N-20261102-semaine-w2026-w45",
+      "date": "2026-11-02",
+      "kind": "weekly",
+      "title": "Semaine calme : 4 nouveaux articles à trier, aucun résultat",
+      "body": "**Ce qu'on a fait**\nLa veille de la semaine a trouvé 4 nouveaux articles sur l'ataxie de Friedreich ou ses mécanismes, ajoutés à la\nfile de tri, qui compte désormais 1283 articles. Deux jeux de données publics récents ont été notés comme\ncandidats : ils portent sur une méthode visant à relancer l'activité du gène FXN dans des cellules. Rien n'a été\ntéléchargé, et on ne sait pas encore s'ils sont utilisables. Les deux jeux de données déjà utilisés n'ont pas changé.\n\n**Ce que ça veut dire**\nLe tri des articles n'a pas commencé : aucun article n'a été lu ni jugé pertinent. Le travail sur les données de\npatients (cohorte sanguine) attend sa vérification.\n\n**Ce que ça ne veut pas dire**\nIl n'y a toujours aucun résultat scientifique. Les nouveaux articles et jeux de données sont seulement mis de côté\npour examen ; on ne sait pas s'ils sont utiles. Le projet ne produit pas de traitement. Aucun conseil médical.\n\n**Et ensuite**\nChercher aussi les préprints (articles pas encore relus par des pairs), puis trier les articles.",
+      "evidence": null,
+      "evidence_plain": null,
+      "claims": []
+    },
     {
       "id": "N-20261019-semaine-w2026-w43",
       "date": "2026-10-19",
