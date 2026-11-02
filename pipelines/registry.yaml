@@ -13,3 +13,8 @@ pipelines:
     command: python pipelines/p001_sample_metadata.py --out {out}
     results_dir: results/P-001-sample-metadata
     description: GSM sample characteristics for both seed datasets
+  - id: P-002
+    task: T-026a
+    command: python pipelines/p002_gse102008_metadata.py --out {out}
+    results_dir: results/P-002-gse102008-metadata
+    description: GSM-level sample metadata of the blood cohort GSE102008 (series-matrix header only)

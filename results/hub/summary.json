@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-01T05:57:08+00:00",
-  "commit": "4aad2dee0771e86ece6d048acf44caf44e092e7e",
+  "generated_at": "2026-11-02T01:55:13+00:00",
+  "commit": "e82ed5207b3fb679e9b53fe0d7e73b0cf658de2d",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -16,14 +16,14 @@
     "repo_url": "https://github.com/clementpep/frda-mito-signatures"
   },
   "progress": {
-    "total": 48,
+    "total": 50,
     "done": 8,
-    "in_review": 0,
+    "in_review": 1,
     "ready": 32,
     "changes_requested": 0,
     "blocked": 0,
     "needs_human": 1,
-    "proposed": 7
+    "proposed": 8
   },
   "milestones": [
     {
@@ -32,7 +32,7 @@
       "goal": "Characterise the seed datasets and the patient blood cohort GSE102008 (RD-002, patients first) and reproduce published results before anything new.",
       "status": "in_progress",
       "tasks_done": 1,
-      "tasks_total": 9
+      "tasks_total": 11
     },
     {
       "id": "M2",
@@ -205,11 +205,27 @@
       "track": "main"
     },
     {
-      "id": "T-026",
-      "title": "Patient blood cohort GSE102008 — manifest, sample metadata, dataset card",
+      "id": "T-026a",
+      "title": "Patient blood cohort GSE102008 — sample metadata pipeline and dataset card",
+      "milestone": "M1",
+      "status": "in_review",
+      "kind": "data",
+      "track": "main"
+    },
+    {
+      "id": "T-026b",
+      "title": "Patient blood cohort GSE102008 — manifest passing the manifests and data_integrity gates",
       "milestone": "M1",
       "status": "ready",
       "kind": "data",
+      "track": "main"
+    },
+    {
+      "id": "FIX-T026-probe-matrix",
+      "title": "Manifest and loader support for a probe-level GEO series matrix",
+      "milestone": "M1",
+      "status": "proposed",
+      "kind": "infra",
       "track": "main"
     },
     {
