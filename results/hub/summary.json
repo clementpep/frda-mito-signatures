@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-03T01:52:05+00:00",
-  "commit": "ead2b664cc01bd916925e2269c9264729db3161f",
+  "generated_at": "2026-11-03T01:53:44+00:00",
+  "commit": "4a222609de42f18ffd4a6ae717293dc1fcb460d2",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -672,7 +672,7 @@
       "date": "2026-10-26",
       "kind": "weekly",
       "title": "Semaine 44 - six nouveaux articles repérés, rien de terminé cette semaine",
-      "body": "**Ce qu'on a fait**\nRien n'a été accepté cette semaine : aucune tâche terminée et vérifiée. La veille hebdomadaire a\ncontrôlé que les deux jeux de données de départ n'ont pas changé en ligne (aucun changement) et\ncherché de nouvelles séries de données publiques sur l'ataxie de Friedreich : une vérification\nultérieure en a trouvé une, une étude sur la réactivation du gène FXN, notée comme piste sans être\ntéléchargée. La veille a aussi repéré six articles récents (quatre publiés, deux versions\npréliminaires pas encore relues par des pairs), notés à trier. Seuls les titres ont été lus.\n\n**Ce que ça veut dire**\nCes six articles sont des pistes de lecture, pas des résultats. Dire s'ils comptent pour le projet\nest l'étape de tri, qui n'a pas encore commencé. La semaine précédente avait annoncé zéro article ;\nc'était inexact selon sa vérification, car la base européenne d'articles met parfois plusieurs jours à les indexer. La\nfenêtre de recherche a donc été élargie à 15 jours.\n\n**Ce que ça ne veut pas dire**\nIl n'y a toujours aucun résultat scientifique : le projet n'a encore formulé aucune affirmation. Ces\narticles et ce jeu de données sont des pistes de lecture, pas des résultats. Le projet ne produit\npas de traitement. Aucun conseil médical.\n\n**Et ensuite**\nLa liste d'articles de départ (L-002) est terminée et acceptée depuis le 30 octobre. Prochaine étape : le tri des\narticles, puis l'étude de données de patients (sang), orientation\nencore en attente de validation du responsable du projet.",
+      "body": "**Ce qu'on a fait**\nRien n'a été accepté cette semaine : aucune tâche terminée et vérifiée. La veille hebdomadaire a\ncontrôlé que les deux jeux de données de départ n'ont pas changé en ligne (aucun changement) et\ncherché de nouvelles séries de données publiques sur l'ataxie de Friedreich : une vérification\nultérieure en a trouvé une, une étude sur la réactivation du gène FXN, notée comme piste sans être\ntéléchargée. La veille a aussi repéré six articles récents (quatre publiés, deux versions\npréliminaires pas encore relues par des pairs), notés à trier. Seuls les titres ont été lus.\n\n**Ce que ça veut dire**\nCes six articles sont des pistes de lecture, pas des résultats. Dire s'ils comptent pour le projet\nest l'étape de tri, qui n'a pas encore commencé. La semaine précédente avait annoncé zéro article ;\nc'était inexact selon sa vérification, car la base européenne d'articles met parfois plusieurs jours à les indexer. La\nfenêtre de recherche a donc été élargie à 15 jours.\n\n**Ce que ça ne veut pas dire**\nIl n'y a toujours aucun résultat scientifique : le projet n'a encore formulé aucune affirmation. Ces\narticles et ce jeu de données sont des pistes de lecture, pas des résultats. Le projet ne produit\npas de traitement. Aucun conseil médical.\n\n**Et ensuite**\nLa liste d'articles de départ (L-002) est terminée et acceptée depuis le 30 octobre. Prochaines étapes : ajouter la recherche des\nversions préliminaires à la liste, puis trier les articles ; en parallèle, l'étude de données de patients (sang),\norientation confirmée par le responsable du projet.",
       "evidence": null,
       "evidence_plain": null,
       "claims": []
