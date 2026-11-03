@@ -793,3 +793,17 @@ tasks:
       - "Source autonomy/verifications/W-2026-W43-8e5d9fa.md: Q2 over 2026-10-11..2026-10-19 logged 0 on the run day; re-run the next day returned 2 (firstIndexDate 2026-10-19)."
       - "Source autonomy/verifications/W-2026-W43-c0f6e36.md, non-blocking 1: MED:42878081 (commentary on MED:42878077) is in the 2026-10-11..19 window but matched by no protocol query; the watch only sees protocol-query hits."
       - "2026-10-27 (W-2026-W44 verification, autonomy/verifications/W-2026-W44-63c7531.md, CHANGES_REQUESTED): the watch must save its GEO probe as a log and not assert claims that do not exist. W-2026-W44 applied the 15-day window and a separate preprint arm (protocol amendment A1) by hand; the routine files were not edited (routines/ is outside a watch run's remit)."
+
+  - id: FIX-watch-texts
+    title: Watch texts hygiene after W-2026-W44 (dated news sentences, stored GEO summaries)
+    milestone: M2
+    status: proposed
+    priority: 3
+    kind: literature
+    track: literature
+    goal: Correct the minor wording and traceability issues found in the W-2026-W44 verification.
+    acceptance:
+      - News item N-20261026 dates its status sentences and does not count MED:42921272 as an FRDA article without caveat.
+      - The GEO summaries behind candidates.yaml summary_says are stored in a search log; inferred fields (GSE337926 SuperSeries) are marked as inferred.
+    notes:
+      - "Source autonomy/verifications/W-2026-W44-0562606.md, non-blocking findings."

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-03T01:54:00+00:00",
-  "commit": "9d4c1a2e6dfde104370a00b100e0846fe49320b2",
+  "generated_at": "2026-11-03T05:58:27+00:00",
+  "commit": "0562606c5a83ccadd7de1c1cba9fd85760c74613",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -16,14 +16,14 @@
     "repo_url": "https://github.com/clementpep/frda-mito-signatures"
   },
   "progress": {
-    "total": 48,
+    "total": 49,
     "done": 8,
     "in_review": 0,
     "ready": 32,
     "changes_requested": 0,
     "blocked": 0,
     "needs_human": 1,
-    "proposed": 7
+    "proposed": 8
   },
   "milestones": [
     {
@@ -40,7 +40,7 @@
       "goal": "Map what is already known, widen the public data base, derive a candidate mitochondrial signature.",
       "status": "in_progress",
       "tasks_done": 7,
-      "tasks_total": 27
+      "tasks_total": 28
     },
     {
       "id": "M3",
@@ -459,10 +459,27 @@
       "status": "proposed",
       "kind": "infra",
       "track": "literature"
+    },
+    {
+      "id": "FIX-watch-texts",
+      "title": "Watch texts hygiene after W-2026-W44 (dated news sentences, stored GEO summaries)",
+      "milestone": "M2",
+      "status": "proposed",
+      "kind": "literature",
+      "track": "literature"
     }
   ],
   "claims": [],
   "verifications": [
+    {
+      "task": "W-2026-W44",
+      "date": "2026-11-03",
+      "verdict": "PASS",
+      "summary": "Merged with main, status texts corrected, watch counts and GEO candidates reproduce independently",
+      "attempt": 3,
+      "acceptance_met": "7/7",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/W-2026-W44-0562606.md"
+    },
     {
       "task": "W-2026-W44",
       "date": "2026-11-02",
@@ -633,15 +650,6 @@
       "attempt": 5,
       "acceptance_met": "4/5",
       "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-021-9d8aaf8.md"
-    },
-    {
-      "task": "T-021",
-      "date": "2026-10-17",
-      "verdict": "PASS",
-      "summary": "Attempt-5 blocking finding (leading decimal point) fixed and tested in both directions; remaining gaps are documented best-effort limits, non-blocking.",
-      "attempt": 6,
-      "acceptance_met": "5/5",
-      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-021-ca94e63.md"
     }
   ],
   "research": {
