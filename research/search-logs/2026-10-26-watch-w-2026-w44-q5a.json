@@ -1,0 +1,25 @@
+{
+  "query": "(TITLE_ABS:Friedreich* OR TITLE_ABS:FRDA OR TITLE_ABS:frataxin OR TITLE_ABS:FXN) AND (TITLE_ABS:biomarker* OR TITLE_ABS:blood OR TITLE_ABS:plasma OR TITLE_ABS:serum OR TITLE_ABS:PBMC* OR TITLE_ABS:miRNA* OR TITLE_ABS:microRNA*) AND (TITLE_ABS:FARS OR TITLE_ABS:mFARS OR TITLE_ABS:SARA OR TITLE_ABS:GAA OR TITLE_ABS:clinical OR TITLE_ABS:\"disease duration\" OR TITLE_ABS:\"age at onset\" OR TITLE_ABS:cardiomyopathy OR TITLE_ABS:patients) AND PUB_YEAR:[2005 TO 2026] AND LANG:eng AND (SRC:MED OR SRC:PPR) AND FIRST_PDATE:[2026-10-11 TO 2026-10-26]",
+  "date": "2026-10-26",
+  "hit_count": 2,
+  "retrieved": 2,
+  "results": [
+    {
+      "id": "MED:42921272",
+      "title": "Neurodegenerative Diseases: Epidemiology, Risk Factors, Classification, Pathophysiology, Clinical Features, Diagnosis, and Therapeutic Strategies.",
+      "year": 2026,
+      "first_author": "He Z",
+      "journal": "MedComm (2020)",
+      "open_access": false
+    },
+    {
+      "id": "MED:42909834",
+      "title": "Ataxia Therapeutics: A Comprehensive Overview of the Clinical Development Pipeline.",
+      "year": 2026,
+      "first_author": "Cappella M",
+      "journal": "Pharmaceut Med",
+      "open_access": false
+    }
+  ],
+  "task": "W-2026-W44"
+}
