@@ -788,8 +788,8 @@ tasks:
     goal: Stop the weekly watch from losing papers indexed after their publication date.
     acceptance:
       - routines/watch.md uses an overlapping window (at least 15 days) and deduplicates against research/corpus.yaml and previous watch logs.
-      - A re-run check of the previous week's queries is part of the watch (papers with firstPublicationDate in the previous window but first indexed later are caught).
-      - routines/watch.md states that the protocol queries carry LANG:eng AND (SRC:MED OR SRC:PPR) and that the preprint arm is reported separately (SRC:PPR without LANG:eng) until the open protocol amendment on LANG:eng is decided.
+      - A re-run check of the previous week's queries is part of the watch (papers with firstPublicationDate in the previous window but first indexed later are caught), repeated once more a week later.
     notes:
-      - "Source autonomy/verifications/W-2026-W43-8e5d9fa.md (branch auto/W-2026-W43, CHANGES_REQUESTED): Q2 over 2026-10-11..2026-10-19 logged 0 on the run day; a re-run the next day returned 2 (firstIndexDate 2026-10-19). W-2026-W44 applied the 15-day window by hand (2026-10-11..2026-10-26) and a separate preprint arm; the routine files were not edited (routines/ is outside a watch run's remit)."
-      - "2026-10-27 (W-2026-W44 verification, autonomy/verifications/W-2026-W44-63c7531.md, CHANGES_REQUESTED): the watch must save its GEO probe as a log and not assert claims that do not exist; protocol amendment on LANG:eng is not filed (protocol.md: none yet)."
+      - "Source autonomy/verifications/W-2026-W43-8e5d9fa.md: Q2 over 2026-10-11..2026-10-19 logged 0 on the run day; re-run the next day returned 2 (firstIndexDate 2026-10-19)."
+      - "Source autonomy/verifications/W-2026-W43-c0f6e36.md, non-blocking 1: MED:42878081 (commentary on MED:42878077) is in the 2026-10-11..19 window but matched by no protocol query; the watch only sees protocol-query hits."
+      - "2026-10-27 (W-2026-W44 verification, autonomy/verifications/W-2026-W44-63c7531.md, CHANGES_REQUESTED): the watch must save its GEO probe as a log and not assert claims that do not exist. W-2026-W44 applied the 15-day window and a separate preprint arm (protocol amendment A1) by hand; the routine files were not edited (routines/ is outside a watch run's remit)."

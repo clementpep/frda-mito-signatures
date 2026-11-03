@@ -1,0 +1,8 @@
+{
+  "query": "(TITLE_ABS:Friedreich* OR TITLE_ABS:FRDA OR TITLE_ABS:frataxin OR TITLE_ABS:FXN) AND (TITLE_ABS:transcript* OR TITLE_ABS:\"RNA-seq\" OR TITLE_ABS:\"RNA sequencing\" OR TITLE_ABS:\"gene expression\" OR TITLE_ABS:microarray OR TITLE_ABS:\"differentially expressed\") AND LANG:eng AND (SRC:MED OR SRC:PPR) AND FIRST_PDATE:[2026-10-11 TO 2026-10-19]",
+  "date": "2026-10-19",
+  "hit_count": 0,
+  "retrieved": 0,
+  "results": [],
+  "task": "W-2026-W43"
+}
