@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-02T06:46:49+00:00",
-  "commit": "e82ed5207b3fb679e9b53fe0d7e73b0cf658de2d",
+  "generated_at": "2026-11-03T05:56:13+00:00",
+  "commit": "8c1d50ffddadc98c098a6c6bf73458c53edcf985",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -472,6 +472,15 @@
   "claims": [],
   "verifications": [
     {
+      "task": "W-2026-W45",
+      "date": "2026-11-03",
+      "verdict": "CHANGES_REQUESTED",
+      "summary": "Watch data and logs reproduce; the public news item misstates the T-026 status and the next step",
+      "attempt": 1,
+      "acceptance_met": "5/5",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/W-2026-W45-8c1d50f.md"
+    },
+    {
       "task": "W-2026-W43",
       "date": "2026-11-01",
       "verdict": "PASS",
@@ -641,15 +650,6 @@
       "attempt": 3,
       "acceptance_met": "4/5",
       "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-021-316cbdc.md"
-    },
-    {
-      "task": "T-021",
-      "date": "2026-10-16",
-      "verdict": "NEEDS_HUMAN",
-      "summary": "Attempt-3 finding fixed, but lit-verify still accepts quotes that are not contiguous in the paper (3 reproduced paths); owner-authorised last attempt failed.",
-      "attempt": 4,
-      "acceptance_met": "4/5",
-      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-021-61283e6.md"
     }
   ],
   "research": {
