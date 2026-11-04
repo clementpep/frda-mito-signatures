@@ -1,0 +1,38 @@
+{
+  "source": "NCBI GEO DataSets (E-utilities esearch+esummary, db=gds)",
+  "query": "(FRDA OR frataxin OR FXN) AND GSE[ETYP] AND 2026/10/11:2026/10/26[PDAT]",
+  "window": "2026-10-11..2026-10-26",
+  "date": "2026-11-01",
+  "note": "Re-run on 2026-11-01 by the worker answering verification W-2026-W44-63c7531; the original 2026-10-26 probe was not logged (digest said 0). Whether these series were visible on 2026-10-26 cannot be established.",
+  "hit_count": 3,
+  "task": "W-2026-W44",
+  "results": [
+    {
+      "uid": "200337925",
+      "accession": "GSE337925",
+      "title": "Non-enzymatic functions of CBP/EP300 are harnessed by gene-targeted inducers of proximity [RNA-seq]",
+      "gdstype": "Expression profiling by high throughput sequencing",
+      "taxon": "Homo sapiens",
+      "pdat": "2026/10/26",
+      "n_samples": 8
+    },
+    {
+      "uid": "200313540",
+      "accession": "GSE313540",
+      "title": "Non-enzymatic functions of CBP/EP300 are harnessed by gene-targeted inducers of proximity [ChIP-seq]",
+      "gdstype": "Genome binding/occupancy profiling by high throughput sequencing",
+      "taxon": "Homo sapiens",
+      "pdat": "2026/10/26",
+      "n_samples": 82
+    },
+    {
+      "uid": "200337926",
+      "accession": "GSE337926",
+      "title": "Non-enzymatic functions of CBP/EP300 are harnessed by gene-targeted inducers of proximity",
+      "gdstype": "Genome binding/occupancy profiling by high throughput sequencing; Expression profiling by high throughput sequencing",
+      "taxon": "Homo sapiens",
+      "pdat": "2026/10/23",
+      "n_samples": 90
+    }
+  ]
+}

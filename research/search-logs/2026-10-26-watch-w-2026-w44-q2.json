@@ -1,0 +1,33 @@
+{
+  "query": "(TITLE_ABS:Friedreich* OR TITLE_ABS:FRDA OR TITLE_ABS:frataxin OR TITLE_ABS:FXN) AND ((TITLE_ABS:transcript* OR TITLE_ABS:\"RNA-seq\" OR TITLE_ABS:\"RNA sequencing\" OR TITLE_ABS:\"gene expression\" OR TITLE_ABS:microarray OR TITLE_ABS:\"differentially expressed\") OR TITLE_ABS:mitochondri*) AND (TITLE_ABS:treat* OR TITLE_ABS:compound* OR TITLE_ABS:HDAC OR TITLE_ABS:inhibitor* OR TITLE_ABS:therap* OR TITLE_ABS:drug* OR TITLE_ABS:omaveloxolone OR TITLE_ABS:nicotinamide OR TITLE_ABS:\"gene therapy\") AND PUB_YEAR:[2005 TO 2026] AND LANG:eng AND (SRC:MED OR SRC:PPR) AND FIRST_PDATE:[2026-10-11 TO 2026-10-26]",
+  "date": "2026-10-26",
+  "hit_count": 3,
+  "retrieved": 3,
+  "results": [
+    {
+      "id": "MED:42878077",
+      "title": "Edited HSPCs rescue frataxin deficiency and inflammation-driven multisystemic pathology in Friedreich's ataxia mice.",
+      "year": 2026,
+      "first_author": "Sivakumar A",
+      "journal": "J Clin Invest",
+      "open_access": true
+    },
+    {
+      "id": "MED:42887212",
+      "title": "Glial-specific mitochondrial failure and redox imbalance contribute to regional vulnerability in Friedreich's ataxia.",
+      "year": 2026,
+      "first_author": "Sanz-Alcázar A",
+      "journal": "Redox Biol",
+      "open_access": false
+    },
+    {
+      "id": "MED:42921272",
+      "title": "Neurodegenerative Diseases: Epidemiology, Risk Factors, Classification, Pathophysiology, Clinical Features, Diagnosis, and Therapeutic Strategies.",
+      "year": 2026,
+      "first_author": "He Z",
+      "journal": "MedComm (2020)",
+      "open_access": false
+    }
+  ],
+  "task": "W-2026-W44"
+}
