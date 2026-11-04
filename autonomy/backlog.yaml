@@ -291,8 +291,9 @@ tasks:
   - id: T-026a
     title: Patient blood cohort GSE102008 — sample metadata pipeline and dataset card
     milestone: M1
-    status: changes_requested
-    attempts: 1
+    status: done
+    attempts: 2
+    verification: autonomy/verifications/T-026-ec29091.md
     priority: 1
     kind: data
     track: main
