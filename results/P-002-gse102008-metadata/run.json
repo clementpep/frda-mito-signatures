@@ -1,0 +1,43 @@
+{
+  "pipeline": "P-002",
+  "task": "T-026a",
+  "analysis_kind": "qc",
+  "preregistration": null,
+  "code_sha": "e82ed5207b3fb679e9b53fe0d7e73b0cf658de2d",
+  "created_at": "2026-11-02T01:55:13+00:00",
+  "inputs": [
+    {
+      "dataset": "GSE102008",
+      "file": "GSE102008_series_matrix.txt.gz",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE102nnn/GSE102008/matrix/GSE102008_series_matrix.txt.gz",
+      "sha256": "574bc21e377a6552f2329079b9665789b25732b1b93bfec484fa44023e966b45"
+    }
+  ],
+  "params": {
+    "parse": "characteristics by key per sample (series-matrix lines are compacted)"
+  },
+  "independent_units": {
+    "GSE102008:Patient": 411,
+    "GSE102008:Carrier": 228,
+    "GSE102008:Control": 94
+  },
+  "environment": {
+    "python": "3.13.18",
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1",
+    "statsmodels": "0.15.0",
+    "matplotlib": "3.11.2",
+    "frda": "0.1.0"
+  },
+  "outputs": [
+    {
+      "path": "GSE102008_samples.json",
+      "sha256": "5b55836f13be958daf8831964ca2b1f95ad404dc2e1591ab17caa2f7eba846c4"
+    },
+    {
+      "path": "GSE102008_summary.json",
+      "sha256": "979aaad91021c1a51831d7428d42ad11871d8f083ae01a637544d23190e32619"
+    }
+  ]
+}
