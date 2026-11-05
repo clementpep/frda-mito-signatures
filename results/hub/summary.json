@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-03T05:56:13+00:00",
-  "commit": "8c1d50ffddadc98c098a6c6bf73458c53edcf985",
+  "generated_at": "2026-11-05T01:50:23+00:00",
+  "commit": "d1f5fce7d0c802879de93ad53362415621fd6c6a",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -16,14 +16,14 @@
     "repo_url": "https://github.com/clementpep/frda-mito-signatures"
   },
   "progress": {
-    "total": 49,
-    "done": 8,
+    "total": 52,
+    "done": 9,
     "in_review": 0,
     "ready": 32,
     "changes_requested": 0,
     "blocked": 0,
     "needs_human": 1,
-    "proposed": 8
+    "proposed": 10
   },
   "milestones": [
     {
@@ -31,8 +31,8 @@
       "title": "Credible foundation",
       "goal": "Characterise the seed datasets and the patient blood cohort GSE102008 (RD-002, patients first) and reproduce published results before anything new.",
       "status": "in_progress",
-      "tasks_done": 1,
-      "tasks_total": 9
+      "tasks_done": 2,
+      "tasks_total": 11
     },
     {
       "id": "M2",
@@ -40,7 +40,7 @@
       "goal": "Map what is already known, widen the public data base, derive a candidate mitochondrial signature.",
       "status": "in_progress",
       "tasks_done": 7,
-      "tasks_total": 28
+      "tasks_total": 29
     },
     {
       "id": "M3",
@@ -205,11 +205,27 @@
       "track": "main"
     },
     {
-      "id": "T-026",
-      "title": "Patient blood cohort GSE102008 — manifest, sample metadata, dataset card",
+      "id": "T-026a",
+      "title": "Patient blood cohort GSE102008 — sample metadata pipeline and dataset card",
+      "milestone": "M1",
+      "status": "done",
+      "kind": "data",
+      "track": "main"
+    },
+    {
+      "id": "T-026b",
+      "title": "Patient blood cohort GSE102008 — manifest passing the manifests and data_integrity gates",
       "milestone": "M1",
       "status": "ready",
       "kind": "data",
+      "track": "main"
+    },
+    {
+      "id": "FIX-T026-probe-matrix",
+      "title": "Manifest and loader support for a probe-level GEO series matrix",
+      "milestone": "M1",
+      "status": "proposed",
+      "kind": "infra",
       "track": "main"
     },
     {
@@ -461,6 +477,14 @@
       "track": "literature"
     },
     {
+      "id": "FIX-watch-texts",
+      "title": "Watch texts hygiene after W-2026-W44 (dated news sentences, stored GEO summaries)",
+      "milestone": "M2",
+      "status": "proposed",
+      "kind": "literature",
+      "track": "literature"
+    },
+    {
       "id": "L-010",
       "title": "Assess candidate dataset GSE337925 (FXN reactivation, RNA-seq) for the project",
       "milestone": "M2",
@@ -472,6 +496,15 @@
   "claims": [],
   "verifications": [
     {
+      "task": "T-026",
+      "date": "2026-11-04",
+      "verdict": "PASS",
+      "summary": "Handover commit now named work(T-026); pipeline and outputs unchanged since attempt 1, card fixes verified, gates PASS on fresh data",
+      "attempt": 2,
+      "acceptance_met": "5/5",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-026-ec29091.md"
+    },
+    {
       "task": "W-2026-W45",
       "date": "2026-11-03",
       "verdict": "CHANGES_REQUESTED",
@@ -479,6 +512,33 @@
       "attempt": 1,
       "acceptance_met": "5/5",
       "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/W-2026-W45-8c1d50f.md"
+    },
+    {
+      "task": "W-2026-W44",
+      "date": "2026-11-03",
+      "verdict": "PASS",
+      "summary": "Merged with main, status texts corrected, watch counts and GEO candidates reproduce independently",
+      "attempt": 3,
+      "acceptance_met": "7/7",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/W-2026-W44-0562606.md"
+    },
+    {
+      "task": "W-2026-W44",
+      "date": "2026-11-02",
+      "verdict": "CHANGES_REQUESTED",
+      "summary": "Both attempt-1 findings fixed and reproduce, but the branch no longer merges with main and its news item states a stale, false status",
+      "attempt": 2,
+      "acceptance_met": "6/7",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/W-2026-W44-8b4b373.md"
+    },
+    {
+      "task": "T-026",
+      "date": "2026-11-02",
+      "verdict": "CHANGES_REQUESTED",
+      "summary": "Science and recomputation check out, but the handover commit is named work(T-026a), so the landing guard would reject verified/T-026",
+      "attempt": 1,
+      "acceptance_met": "5/5",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-026-c811f83.md"
     },
     {
       "task": "W-2026-W43",
@@ -515,6 +575,15 @@
       "attempt": 1,
       "acceptance_met": "2/2",
       "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/FIX-L002a-818a968.md"
+    },
+    {
+      "task": "W-2026-W44",
+      "date": "2026-10-27",
+      "verdict": "CHANGES_REQUESTED",
+      "summary": "Digest, report and news assert a reproduced claim that does not exist, and \"0 new GEO series\" does not reproduce",
+      "attempt": 1,
+      "acceptance_met": "5/7",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/W-2026-W44-63c7531.md"
     },
     {
       "task": "W-2026-W43",
@@ -605,51 +674,6 @@
       "attempt": 3,
       "acceptance_met": "4/5",
       "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-024-d2e8d3f.md"
-    },
-    {
-      "task": "T-022",
-      "date": "2026-10-17",
-      "verdict": "PASS",
-      "summary": "column_map now validated at manifest, read and gate level; every attempt-1 blocking and non-blocking correction confirmed; gates green on fresh data.",
-      "attempt": 2,
-      "acceptance_met": "5/5",
-      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-022-056e96a.md"
-    },
-    {
-      "task": "T-022",
-      "date": "2026-10-17",
-      "verdict": "CHANGES_REQUESTED",
-      "summary": "Gates green and OpenAlex path works, but column_map is not validated (duplicate targets can pass the data_integrity gate silently).",
-      "attempt": 1,
-      "acceptance_met": "4/5",
-      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-022-835d2ad.md"
-    },
-    {
-      "task": "T-021",
-      "date": "2026-10-17",
-      "verdict": "NEEDS_HUMAN",
-      "summary": "Redesign closes all three attempt-4 findings, but a leading decimal point is ignored (\".5\" == \"5\", a 10x change passes lit-verify); owner-authorised last attempt.",
-      "attempt": 5,
-      "acceptance_met": "4/5",
-      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-021-9d8aaf8.md"
-    },
-    {
-      "task": "T-021",
-      "date": "2026-10-17",
-      "verdict": "PASS",
-      "summary": "Attempt-5 blocking finding (leading decimal point) fixed and tested in both directions; remaining gaps are documented best-effort limits, non-blocking.",
-      "attempt": 6,
-      "acceptance_met": "5/5",
-      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-021-ca94e63.md"
-    },
-    {
-      "task": "T-021",
-      "date": "2026-10-16",
-      "verdict": "CHANGES_REQUESTED",
-      "summary": "Both attempt-2 findings fixed and mutation-tested; a new false-PASS path remains (inline xref/sup/sub glued into prose).",
-      "attempt": 3,
-      "acceptance_met": "4/5",
-      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-021-316cbdc.md"
     }
   ],
   "research": {
@@ -661,8 +685,8 @@
       "writing": 0.0
     },
     "corpus": {
-      "total": 1283,
-      "to_screen": 1283,
+      "total": 1287,
+      "to_screen": 1287,
       "excluded": 0,
       "to_read": 0,
       "read": 0
@@ -680,7 +704,17 @@
       "date": "2026-11-02",
       "kind": "weekly",
       "title": "Semaine calme : 4 nouveaux articles à trier, aucun résultat",
-      "body": "**Ce qu'on a fait**\nLa veille de la semaine a trouvé 4 nouveaux articles sur l'ataxie de Friedreich ou ses mécanismes, ajoutés à la\nfile de tri, qui compte désormais 1283 articles. Deux jeux de données publics récents ont été notés comme\ncandidats : ils portent sur une méthode visant à relancer l'activité du gène FXN dans des cellules. Rien n'a été\ntéléchargé, et on ne sait pas encore s'ils sont utilisables. Les deux jeux de données déjà utilisés n'ont pas changé.\n\n**Ce que ça veut dire**\nLe tri des articles n'a pas commencé : aucun article n'a été lu ni jugé pertinent. Le travail sur les données de\npatients (cohorte sanguine) attend sa vérification.\n\n**Ce que ça ne veut pas dire**\nIl n'y a toujours aucun résultat scientifique. Les nouveaux articles et jeux de données sont seulement mis de côté\npour examen ; on ne sait pas s'ils sont utiles. Le projet ne produit pas de traitement. Aucun conseil médical.\n\n**Et ensuite**\nChercher aussi les préprints (articles pas encore relus par des pairs), puis trier les articles.",
+      "body": "**Ce qu'on a fait**\nLa veille de la semaine a trouvé 4 nouveaux articles liés à l'ataxie de Friedreich ou aux mitochondries, ajoutés à la\nfile de tri, qui compte désormais 1283 articles. Deux jeux de données publics récents ont été notés comme\ncandidats : ils portent sur une méthode visant à relancer l'activité du gène FXN dans des cellules. Rien n'a été\ntéléchargé, et on ne sait pas encore s'ils sont utilisables. Les deux jeux de données déjà utilisés n'ont pas changé.\n\n**Ce que ça veut dire**\nLe tri des articles n'a pas commencé : aucun article n'a été lu ni jugé pertinent. Le travail sur les données de\npatients (cohorte sanguine) a reçu une demande de corrections de la vérification : elles sont en cours.\n\n**Ce que ça ne veut pas dire**\nIl n'y a toujours aucun résultat scientifique. Les nouveaux articles et jeux de données sont seulement mis de côté\npour examen ; on ne sait pas s'ils sont utiles. Le projet ne produit pas de traitement. Aucun conseil médical.\n\n**Et ensuite**\nLa recherche de préprints (articles pas encore relus par des pairs) a été faite cette semaine et n'a rien trouvé ; il reste à la formaliser dans la routine. Ensuite, trier les articles.",
+      "evidence": null,
+      "evidence_plain": null,
+      "claims": []
+    },
+    {
+      "id": "N-20261026-semaine-w2026-w44",
+      "date": "2026-10-26",
+      "kind": "weekly",
+      "title": "Semaine 44 - six nouveaux articles repérés, rien de terminé cette semaine",
+      "body": "**Ce qu'on a fait**\nRien n'a été accepté cette semaine : aucune tâche terminée et vérifiée. La veille hebdomadaire a\ncontrôlé que les deux jeux de données de départ n'ont pas changé en ligne (aucun changement) et\ncherché de nouvelles séries de données publiques sur l'ataxie de Friedreich : une vérification\nultérieure en a trouvé une, une étude sur la réactivation du gène FXN, notée comme piste sans être\ntéléchargée. La veille a aussi repéré six articles récents (quatre publiés, deux versions\npréliminaires pas encore relues par des pairs), notés à trier. Seuls les titres ont été lus.\n\n**Ce que ça veut dire**\nCes six articles sont des pistes de lecture, pas des résultats. Dire s'ils comptent pour le projet\nest l'étape de tri, qui n'a pas encore commencé. La semaine précédente avait annoncé zéro article ;\nc'était inexact selon sa vérification, car la base européenne d'articles met parfois plusieurs jours à les indexer. La\nfenêtre de recherche a donc été élargie à 15 jours.\n\n**Ce que ça ne veut pas dire**\nIl n'y a toujours aucun résultat scientifique : le projet n'a encore formulé aucune affirmation. Ces\narticles et ce jeu de données sont des pistes de lecture, pas des résultats. Le projet ne produit\npas de traitement. Aucun conseil médical.\n\n**Et ensuite**\nLa liste d'articles de départ (L-002) est terminée et acceptée depuis le 30 octobre. Prochaines étapes : ajouter la recherche des\nversions préliminaires à la liste, puis trier les articles ; en parallèle, l'étude de données de patients (sang),\norientation décidée par le responsable du projet.",
       "evidence": null,
       "evidence_plain": null,
       "claims": []

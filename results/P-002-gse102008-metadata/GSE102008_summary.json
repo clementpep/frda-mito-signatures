@@ -1,0 +1,606 @@
+{
+  "checks": {
+    "n_gsm": 733,
+    "n_matrix_columns": 733,
+    "n_unique_array_ids": 733,
+    "n_unique_gsm": 733,
+    "n_unique_pidn": 733,
+    "problems": []
+  },
+  "dataset": "GSE102008",
+  "duration_vs_age_minus_onset": {
+    "fields_present_outside_patients": {
+      "duration": 0,
+      "functional stage": 0,
+      "gaa1": 0,
+      "gaa2": 0,
+      "onset": 0
+    },
+    "max_abs_diff": 0.0,
+    "n_abs_diff_le_1": 407,
+    "n_exact": 407,
+    "n_gaa1_eq_gaa2": 72,
+    "n_gaa1_lt_gaa2": 1,
+    "n_negative_duration": 1,
+    "n_with_age_onset_duration": 407,
+    "n_with_gaa1_and_gaa2": 357,
+    "negative_duration_records": [
+      {
+        "age": 28.0,
+        "duration": -22.0,
+        "gsm": "GSM2721383",
+        "onset": 50.0,
+        "pidn": "50"
+      }
+    ]
+  },
+  "structure": {
+    "family_identifier_in_geo": "not provided",
+    "n_titles_with_relative_token_or_nonstandard_form": 3,
+    "pidn_duplicates": [],
+    "pidn_non_numeric": [
+      {
+        "base_pidn_present_in_cohort": null,
+        "gsm": "GSM2721220",
+        "pidn": "LM",
+        "status": "Carrier",
+        "title": "CHOP_LM_Carrier_1"
+      },
+      {
+        "base_pidn_present_in_cohort": {
+          "base": "4044",
+          "status": "Patient"
+        },
+        "gsm": "GSM2721228",
+        "pidn": "4044_mo",
+        "status": "Carrier",
+        "title": "CHOP_4044_mo_Carrier_1"
+      },
+      {
+        "base_pidn_present_in_cohort": {
+          "base": "4044",
+          "status": "Patient"
+        },
+        "gsm": "GSM2721229",
+        "pidn": "4044_fa",
+        "status": "Carrier",
+        "title": "CHOP_4044_fa_Carrier_1"
+      },
+      {
+        "base_pidn_present_in_cohort": {
+          "base": "184",
+          "status": null
+        },
+        "gsm": "GSM2721230",
+        "pidn": "184_mom",
+        "status": "Carrier",
+        "title": "CHOP_184_mom_Carrier_1"
+      }
+    ],
+    "relative_or_nonstandard_titles": [
+      {
+        "gsm": "GSM2721228",
+        "status": "Carrier",
+        "title": "CHOP_4044_mo_Carrier_1"
+      },
+      {
+        "gsm": "GSM2721229",
+        "status": "Carrier",
+        "title": "CHOP_4044_fa_Carrier_1"
+      },
+      {
+        "gsm": "GSM2721230",
+        "status": "Carrier",
+        "title": "CHOP_184_mom_Carrier_1"
+      }
+    ],
+    "run_twice_candidates_title_suffix_r_or_sample_number_r": [
+      {
+        "gsm": "GSM2720731",
+        "sample_number": "1r",
+        "status": "Patient",
+        "title": "CHOP_216_Patient_1r"
+      },
+      {
+        "gsm": "GSM2720772",
+        "sample_number": "1r",
+        "status": "Patient",
+        "title": "CHOP_4184_Patient_1r"
+      },
+      {
+        "gsm": "GSM2720815",
+        "sample_number": "1r",
+        "status": "Patient",
+        "title": "CHOP_4496_Patient_1r"
+      },
+      {
+        "gsm": "GSM2721079",
+        "sample_number": "1r",
+        "status": "Carrier",
+        "title": "CHOP_6263_Carrier_1r"
+      }
+    ]
+  },
+  "tables": {
+    "age_by_site_status": {
+      "CHOP|Carrier": {
+        "max": 78.0,
+        "mean": 48.925,
+        "median": 49.0,
+        "min": 10.0,
+        "n": 160,
+        "q1": 43.0,
+        "q3": 56.0,
+        "sd": 11.7273
+      },
+      "CHOP|Control": {
+        "max": 68.0,
+        "mean": 38.6489,
+        "median": 37.5,
+        "min": 13.0,
+        "n": 94,
+        "q1": 27.0,
+        "q3": 50.0,
+        "sd": 14.1988
+      },
+      "CHOP|Patient": {
+        "max": 84.0,
+        "mean": 29.1656,
+        "median": 26.0,
+        "min": 4.0,
+        "n": 314,
+        "q1": 18.0,
+        "q3": 37.0,
+        "sd": 15.0678
+      },
+      "UCLA|Carrier": {
+        "max": 82.0,
+        "mean": 51.0882,
+        "median": 51.0,
+        "min": 10.0,
+        "n": 68,
+        "q1": 44.75,
+        "q3": 58.25,
+        "sd": 12.3103
+      },
+      "UCLA|Control": {
+        "n": 0
+      },
+      "UCLA|Patient": {
+        "max": 65.0,
+        "mean": 29.1134,
+        "median": 25.0,
+        "min": 8.0,
+        "n": 97,
+        "q1": 18.0,
+        "q3": 37.0,
+        "sd": 14.9163
+      }
+    },
+    "age_by_status": {
+      "Carrier": {
+        "max": 82.0,
+        "mean": 49.5702,
+        "median": 50.0,
+        "min": 10.0,
+        "n": 228,
+        "q1": 43.0,
+        "q3": 57.0,
+        "sd": 11.9182
+      },
+      "Control": {
+        "max": 68.0,
+        "mean": 38.6489,
+        "median": 37.5,
+        "min": 13.0,
+        "n": 94,
+        "q1": 27.0,
+        "q3": 50.0,
+        "sd": 14.1988
+      },
+      "Patient": {
+        "max": 84.0,
+        "mean": 29.1533,
+        "median": 26.0,
+        "min": 4.0,
+        "n": 411,
+        "q1": 18.0,
+        "q3": 37.0,
+        "sd": 15.0141
+      }
+    },
+    "batch_x_site": {
+      "1": {
+        "CHOP": 4
+      },
+      "10": {
+        "CHOP": 6,
+        "UCLA": 6
+      },
+      "11": {
+        "CHOP": 31,
+        "UCLA": 31
+      },
+      "12": {
+        "CHOP": 51,
+        "UCLA": 1
+      },
+      "13": {
+        "CHOP": 9
+      },
+      "14": {
+        "CHOP": 35
+      },
+      "15": {
+        "CHOP": 29,
+        "UCLA": 40
+      },
+      "16": {
+        "CHOP": 52
+      },
+      "17": {
+        "CHOP": 69,
+        "UCLA": 46
+      },
+      "18": {
+        "CHOP": 85,
+        "UCLA": 17
+      },
+      "19": {
+        "CHOP": 55
+      },
+      "2": {
+        "CHOP": 52
+      },
+      "3": {
+        "CHOP": 21,
+        "UCLA": 24
+      },
+      "4": {
+        "CHOP": 26
+      },
+      "5": {
+        "CHOP": 7
+      },
+      "6": {
+        "CHOP": 17
+      },
+      "7": {
+        "CHOP": 15
+      },
+      "8": {
+        "CHOP": 2
+      },
+      "9": {
+        "CHOP": 2
+      }
+    },
+    "batch_x_status": {
+      "1": {
+        "Carrier": 0,
+        "Control": 0,
+        "Patient": 4
+      },
+      "10": {
+        "Carrier": 0,
+        "Control": 0,
+        "Patient": 12
+      },
+      "11": {
+        "Carrier": 28,
+        "Control": 8,
+        "Patient": 26
+      },
+      "12": {
+        "Carrier": 16,
+        "Control": 2,
+        "Patient": 34
+      },
+      "13": {
+        "Carrier": 3,
+        "Control": 0,
+        "Patient": 6
+      },
+      "14": {
+        "Carrier": 16,
+        "Control": 18,
+        "Patient": 1
+      },
+      "15": {
+        "Carrier": 22,
+        "Control": 0,
+        "Patient": 47
+      },
+      "16": {
+        "Carrier": 12,
+        "Control": 6,
+        "Patient": 34
+      },
+      "17": {
+        "Carrier": 44,
+        "Control": 16,
+        "Patient": 55
+      },
+      "18": {
+        "Carrier": 29,
+        "Control": 18,
+        "Patient": 55
+      },
+      "19": {
+        "Carrier": 12,
+        "Control": 15,
+        "Patient": 28
+      },
+      "2": {
+        "Carrier": 20,
+        "Control": 0,
+        "Patient": 32
+      },
+      "3": {
+        "Carrier": 5,
+        "Control": 5,
+        "Patient": 35
+      },
+      "4": {
+        "Carrier": 5,
+        "Control": 2,
+        "Patient": 19
+      },
+      "5": {
+        "Carrier": 2,
+        "Control": 1,
+        "Patient": 4
+      },
+      "6": {
+        "Carrier": 10,
+        "Control": 1,
+        "Patient": 6
+      },
+      "7": {
+        "Carrier": 4,
+        "Control": 1,
+        "Patient": 10
+      },
+      "8": {
+        "Carrier": 0,
+        "Control": 1,
+        "Patient": 1
+      },
+      "9": {
+        "Carrier": 0,
+        "Control": 0,
+        "Patient": 2
+      }
+    },
+    "clinical_fields_present_by_status": {
+      "Carrier": {
+        "0": 228
+      },
+      "Control": {
+        "0": 94
+      },
+      "Patient": {
+        "0": 2,
+        "2": 13,
+        "3": 27,
+        "4": 71,
+        "5": 298
+      }
+    },
+    "completeness_per_field_per_status": {
+      "age": {
+        "Carrier": 228,
+        "Control": 94,
+        "Patient": 411
+      },
+      "batch": {
+        "Carrier": 228,
+        "Control": 94,
+        "Patient": 411
+      },
+      "duration": {
+        "Carrier": 0,
+        "Control": 0,
+        "Patient": 407
+      },
+      "functional_stage": {
+        "Carrier": 0,
+        "Control": 0,
+        "Patient": 334
+      },
+      "gaa1": {
+        "Carrier": 0,
+        "Control": 0,
+        "Patient": 376
+      },
+      "gaa2": {
+        "Carrier": 0,
+        "Control": 0,
+        "Patient": 357
+      },
+      "onset": {
+        "Carrier": 0,
+        "Control": 0,
+        "Patient": 407
+      },
+      "rin": {
+        "Carrier": 228,
+        "Control": 94,
+        "Patient": 411
+      }
+    },
+    "duration_by_status": {
+      "Carrier": {
+        "n": 0
+      },
+      "Control": {
+        "n": 0
+      },
+      "Patient": {
+        "max": 57.0,
+        "mean": 14.9607,
+        "median": 13.0,
+        "min": -22.0,
+        "n": 407,
+        "q1": 7.0,
+        "q3": 20.0,
+        "sd": 10.6312
+      }
+    },
+    "functional_stage_by_status": {
+      "Carrier": {
+        "n": 0
+      },
+      "Control": {
+        "n": 0
+      },
+      "Patient": {
+        "max": 6.0,
+        "mean": 3.74551,
+        "median": 4.0,
+        "min": 1.0,
+        "n": 334,
+        "q1": 2.5,
+        "q3": 5.0,
+        "sd": 1.3916
+      }
+    },
+    "gaa1_by_status": {
+      "Carrier": {
+        "n": 0
+      },
+      "Control": {
+        "n": 0
+      },
+      "Patient": {
+        "max": 6108.0,
+        "mean": 907.465,
+        "median": 900.0,
+        "min": 165.0,
+        "n": 376,
+        "q1": 766.75,
+        "q3": 1011.75,
+        "sd": 346.562
+      }
+    },
+    "gaa2_by_status": {
+      "Carrier": {
+        "n": 0
+      },
+      "Control": {
+        "n": 0
+      },
+      "Patient": {
+        "max": 1079.0,
+        "mean": 601.056,
+        "median": 633.0,
+        "min": 1.0,
+        "n": 357,
+        "q1": 460.0,
+        "q3": 800.0,
+        "sd": 244.961
+      }
+    },
+    "n_per_status": {
+      "Carrier": 228,
+      "Control": 94,
+      "Patient": 411
+    },
+    "onset_by_status": {
+      "Carrier": {
+        "n": 0
+      },
+      "Control": {
+        "n": 0
+      },
+      "Patient": {
+        "max": 75.0,
+        "mean": 14.1941,
+        "median": 12.0,
+        "min": 1.0,
+        "n": 407,
+        "q1": 7.0,
+        "q3": 17.0,
+        "sd": 10.135
+      }
+    },
+    "rin_by_status": {
+      "Carrier": {
+        "max": 10.0,
+        "mean": 8.41228,
+        "median": 8.5,
+        "min": 1.0,
+        "n": 228,
+        "q1": 8.1,
+        "q3": 8.9,
+        "sd": 1.06887
+      },
+      "Control": {
+        "max": 10.0,
+        "mean": 8.59787,
+        "median": 8.7,
+        "min": 6.8,
+        "n": 94,
+        "q1": 8.2,
+        "q3": 9.1,
+        "sd": 0.594415
+      },
+      "Patient": {
+        "max": 10.0,
+        "mean": 8.46983,
+        "median": 8.6,
+        "min": 1.0,
+        "n": 411,
+        "q1": 8.1,
+        "q3": 9.1,
+        "sd": 1.06566
+      }
+    },
+    "sample_number_x_status": {
+      "1": {
+        "Carrier": 223,
+        "Control": 93,
+        "Patient": 387
+      },
+      "1r": {
+        "Carrier": 1,
+        "Control": 0,
+        "Patient": 3
+      },
+      "2": {
+        "Carrier": 3,
+        "Control": 1,
+        "Patient": 19
+      },
+      "3": {
+        "Carrier": 1,
+        "Control": 0,
+        "Patient": 2
+      }
+    },
+    "sex_x_status": {
+      "FEMALE": {
+        "Carrier": 141,
+        "Control": 40,
+        "Patient": 192
+      },
+      "MALE": {
+        "Carrier": 87,
+        "Control": 54,
+        "Patient": 219
+      }
+    },
+    "site_x_status": {
+      "CHOP": {
+        "Carrier": 160,
+        "Control": 94,
+        "Patient": 314
+      },
+      "UCLA": {
+        "Carrier": 68,
+        "Control": 0,
+        "Patient": 97
+      }
+    }
+  }
+}
