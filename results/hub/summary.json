@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-05T01:50:40+00:00",
-  "commit": "7e71be5251d3759700b38a2dbddcddad709dfa3d",
+  "generated_at": "2026-11-05T05:55:42+00:00",
+  "commit": "09a4eb12dbf6b6174f3e54af013c5e108fd0ff41",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -496,6 +496,15 @@
   "claims": [],
   "verifications": [
     {
+      "task": "W-2026-W45",
+      "date": "2026-11-05",
+      "verdict": "CHANGES_REQUESTED",
+      "summary": "Attempt-1 news fixes applied, but after merging main the digest, report, notebook and news still describe T-026 and W-2026-W44 as unlanded",
+      "attempt": 2,
+      "acceptance_met": "5/5",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/W-2026-W45-09a4eb1.md"
+    },
+    {
       "task": "T-026",
       "date": "2026-11-04",
       "verdict": "PASS",
@@ -665,15 +674,6 @@
       "attempt": 4,
       "acceptance_met": "5/5",
       "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-024-6d29f3c.md"
-    },
-    {
-      "task": "T-024",
-      "date": "2026-10-17",
-      "verdict": "NEEDS_HUMAN",
-      "summary": "attempt-2 blockers B1/B2 fixed and gates green, but the wording gate still passes inflected core stems (cured, proven, it caused, preuve) and markup/Unicode bypasses; attempt limit reached",
-      "attempt": 3,
-      "acceptance_met": "4/5",
-      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-024-d2e8d3f.md"
     }
   ],
   "research": {
