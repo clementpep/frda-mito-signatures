@@ -322,6 +322,8 @@ tasks:
     track: main
     depends_on: [T-026a, FIX-T026-probe-matrix]
     goal: Declare the GSE102008 series matrix in data-manifests with checksum, terms and citation, once the loader can express a probe-level matrix.
+    notes:
+      - "Verifier W-2026-W45 (autonomy/verifications/W-2026-W45-11ab4eb.md): the 2026-11-02 news item says the patient-cohort work was integrated; only T-026a landed, say so in the next news item that mentions this line."
     acceptance:
       - data-manifests/GSE102008.yaml (series matrix and, if used, the non-normalised file) with sha256, terms of use and citation, passing the manifests and data_integrity gates.
       - Groups Patient / Carrier / Control list the GSM columns of results/P-002-gse102008-metadata/GSE102008_samples.json (411 / 228 / 94 independent units, unit donor), checked against that file.

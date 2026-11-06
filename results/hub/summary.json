@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-06T01:52:34+00:00",
-  "commit": "334abdd62711dc3835e68657f1bd6314564bfad4",
+  "generated_at": "2026-11-06T05:55:29+00:00",
+  "commit": "11ab4eb4fd30a4a686fa8082902fbfdf9f3fdd25",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -497,6 +497,15 @@
   "verifications": [
     {
       "task": "W-2026-W45",
+      "date": "2026-11-06",
+      "verdict": "PASS",
+      "summary": "Stale post-merge status wording fixed in news, digest, report and notebook; ids, counts and gates re-checked on fresh data",
+      "attempt": 3,
+      "acceptance_met": "5/5",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/W-2026-W45-11ab4eb.md"
+    },
+    {
+      "task": "W-2026-W45",
       "date": "2026-11-05",
       "verdict": "CHANGES_REQUESTED",
       "summary": "Attempt-1 news fixes applied, but after merging main the digest, report, notebook and news still describe T-026 and W-2026-W44 as unlanded",
@@ -665,15 +674,6 @@
       "attempt": 2,
       "acceptance_met": "4/5",
       "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-024-2be79de.md"
-    },
-    {
-      "task": "T-024",
-      "date": "2026-10-17",
-      "verdict": "PASS",
-      "summary": "blockers 1-2 of attempt 3 fixed (inflected stems, NFKC/Cf, markup variants, re-check before send); no gate weakened; residual obfuscation bypasses are non-blocking",
-      "attempt": 4,
-      "acceptance_met": "5/5",
-      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-024-6d29f3c.md"
     }
   ],
   "research": {
