@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-05T05:55:42+00:00",
-  "commit": "09a4eb12dbf6b6174f3e54af013c5e108fd0ff41",
+  "generated_at": "2026-11-06T01:52:34+00:00",
+  "commit": "334abdd62711dc3835e68657f1bd6314564bfad4",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -704,7 +704,7 @@
       "date": "2026-11-02",
       "kind": "weekly",
       "title": "Semaine calme : 4 nouveaux articles à trier, aucun résultat",
-      "body": "**Ce qu'on a fait**\nLa veille de la semaine a trouvé 4 nouveaux articles liés à l'ataxie de Friedreich ou aux mitochondries, ajoutés à la\nfile de tri, qui compte désormais 1283 articles. Deux jeux de données publics récents ont été notés comme\ncandidats : ils portent sur une méthode visant à relancer l'activité du gène FXN dans des cellules. Rien n'a été\ntéléchargé, et on ne sait pas encore s'ils sont utilisables. Les deux jeux de données déjà utilisés n'ont pas changé.\n\n**Ce que ça veut dire**\nLe tri des articles n'a pas commencé : aucun article n'a été lu ni jugé pertinent. Le travail sur les données de\npatients (cohorte sanguine) a reçu une demande de corrections de la vérification : elles sont en cours.\n\n**Ce que ça ne veut pas dire**\nIl n'y a toujours aucun résultat scientifique. Les nouveaux articles et jeux de données sont seulement mis de côté\npour examen ; on ne sait pas s'ils sont utiles. Le projet ne produit pas de traitement. Aucun conseil médical.\n\n**Et ensuite**\nLa recherche de préprints (articles pas encore relus par des pairs) a été faite cette semaine et n'a rien trouvé ; il reste à la formaliser dans la routine. Ensuite, trier les articles.",
+      "body": "**Ce qu'on a fait**\nLa veille de la semaine a trouvé 4 nouveaux articles liés à l'ataxie de Friedreich ou aux mitochondries, ajoutés à la\nfile de tri, qui compte désormais 1283 articles. Deux jeux de données publics récents ont été notés comme\ncandidats : ils portent sur une méthode visant à relancer l'activité du gène FXN dans des cellules. Rien n'a été\ntéléchargé, et on ne sait pas encore s'ils sont utilisables. Les deux jeux de données déjà utilisés n'ont pas changé.\n\n**Ce que ça veut dire**\nLe tri des articles n'a pas commencé : aucun article n'a été lu ni jugé pertinent. Le travail sur les données de\npatients (cohorte sanguine) a passé la vérification indépendante et a été intégré au projet.\n\n**Ce que ça ne veut pas dire**\nIl n'y a toujours aucun résultat scientifique. Les nouveaux articles et jeux de données sont seulement mis de côté\npour examen ; on ne sait pas s'ils sont utiles. Le projet ne produit pas de traitement. Aucun conseil médical.\n\n**Et ensuite**\nLa recherche de préprints (articles pas encore relus par des pairs) a été faite cette semaine et n'a rien trouvé ; il reste à la formaliser dans la routine. Ensuite, trier les articles.",
       "evidence": null,
       "evidence_plain": null,
       "claims": []
