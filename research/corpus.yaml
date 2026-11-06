@@ -19366,3 +19366,61 @@ papers:
   - 2026-10-31-watch-w-2026-w43-rerun-q2
   status: to_screen
   topics: []
+- id: MED:42966307
+  title: The Fe-S cluster assembly NFS1-ISD11-FH subcomplex is involved in heme biosynthesis in plants.
+  year: 2026
+  journal: 'Plant physiology and biochemistry : PPB'
+  first_author: Armas AM
+  doi: 10.1016/j.plaphy.2026.111903
+  kind: primary
+  open_access: false
+  added: '2026-11-02'
+  added_by: W-2026-W45
+  found_by:
+  - watch-W-2026-W45
+  status: to_screen
+  topics: []
+- id: MED:42966764
+  title: In vivo frataxin expression of a triplex purified minicircle.
+  year: 2026
+  journal: Gene therapy
+  first_author: Mozafari N
+  doi: 10.1038/s41434-026-00653-x
+  kind: primary
+  open_access: false
+  added: '2026-11-02'
+  added_by: W-2026-W45
+  found_by:
+  - watch-W-2026-W45
+  status: to_screen
+  topics: []
+- id: MED:42956153
+  title: Stimulated protein degradation to promote mitochondrial function and neuronal survival.
+  year: 2026
+  journal: Science (New York, N.Y.)
+  first_author: Chandrasekhar S
+  doi: 10.1126/science.aed2525
+  kind: primary
+  open_access: false
+  added: '2026-11-02'
+  added_by: W-2026-W45
+  found_by:
+  - watch-W-2026-W45
+  status: to_screen
+  topics: []
+- id: MED:42949167
+  title: 'Intrinsic Activity Reductions and Cerebello-Cortical Diaschisis-Like Mechanism in Friedreich
+    Ataxia: An fALFF Resting-State fMRI Study.'
+  year: 2026
+  journal: Brain and behavior
+  first_author: Gilles N
+  doi: 10.1002/brb3.71866
+  pmcid: PMC13715069
+  kind: primary
+  open_access: true
+  added: '2026-11-02'
+  added_by: W-2026-W45
+  found_by:
+  - watch-W-2026-W45
+  status: to_screen
+  topics: []

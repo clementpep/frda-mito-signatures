@@ -322,6 +322,8 @@ tasks:
     track: main
     depends_on: [T-026a, FIX-T026-probe-matrix]
     goal: Declare the GSE102008 series matrix in data-manifests with checksum, terms and citation, once the loader can express a probe-level matrix.
+    notes:
+      - "Verifier W-2026-W45 (autonomy/verifications/W-2026-W45-11ab4eb.md): the 2026-11-02 news item says the patient-cohort work was integrated; only T-026a landed, say so in the next news item that mentions this line."
     acceptance:
       - data-manifests/GSE102008.yaml (series matrix and, if used, the non-normalised file) with sha256, terms of use and citation, passing the manifests and data_integrity gates.
       - Groups Patient / Carrier / Control list the GSM columns of results/P-002-gse102008-metadata/GSE102008_samples.json (411 / 228 / 94 independent units, unit donor), checked against that file.
@@ -841,3 +843,19 @@ tasks:
       - The GEO summaries behind candidates.yaml summary_says are stored in a search log; inferred fields (GSE337926 SuperSeries) are marked as inferred.
     notes:
       - "Source autonomy/verifications/W-2026-W44-0562606.md, non-blocking findings."
+
+  - id: L-010
+    title: Assess candidate dataset GSE337925 (FXN reactivation, RNA-seq) for the project
+    milestone: M2
+    status: proposed
+    priority: 3
+    kind: literature
+    track: literature
+    goal: Decide from the GEO record and the associated paper whether GSE337925 is usable (independent units, controls, terms of use, allowlist) and what it could add.
+    acceptance:
+      - Sample table (donors / cell lines, conditions) taken from the GEO record, nothing inferred; independent-unit count per group stated.
+      - Terms of use checked against P5.2; verdict usable / not usable / needs_human with the exact question.
+      - If usable, a manifest task is proposed (not created ready); no data downloaded by this task.
+      - Record treated/untreated and control status of the 8 samples, and state the relevance to the mitochondrial focus.
+    notes:
+      - "Source autonomy/digests/W-2026-W45.md and data-manifests/candidates.yaml (GSE337925, GSE313540 seen 2026-11-02; GEO pdat 2026-10-26)."
