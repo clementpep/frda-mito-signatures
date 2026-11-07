@@ -349,7 +349,7 @@ tasks:
   - id: T-027
     title: Extract reproduction targets from Nachun et al. 2018 (GSE102008)
     milestone: M1
-    status: in_review
+    status: changes_requested
     priority: 1
     kind: reproduction
     track: main
@@ -360,6 +360,10 @@ tasks:
       - evaluation/reproduction-targets.yaml gains >= 4 targets for PMID 29790959 taken from the paper itself (not the GEO summary), each with location, verbatim published value, method and thresholds, and the columns needed - the DE counts (829 patients vs controls, 1078 patients vs carriers, 182 carriers vs controls, at the paper's global FDR); the FDS-network mitochondrial modules with their FDS association (yellow - coeff. -0.0093, log BF 3.01, respiratory chain complex; red - coeff. -0.0077, log BF 1.91, mitochondrial translation); the transcript counts associated with FDS, GAA1 and duration (1508, 280, 13).
       - Expected gap from method differences (Bayesian model comparison in the paper, cohort counts 418/228/93 vs GEO 411/228/94, frataxin exclusion not applicable) written down BEFORE reproducing.
       - If the full text is not open access, say so and use only what is legally available.
+    notes:
+      - "Verifier attempt 1 (autonomy/verifications/T-027-2d93454.md): fix RT-005 published_value (not verbatim). Non-blocking, to take in the same fix: add MCMC 10 000 iterations / seed 12 345 to authors_method (paper Methods); note paper says 'GO Molecular Process 2015' (likely Molecular Function; typo in paper); add an overlap/sign-concordance threshold and a rule for 'matched module' / 'top enriched terms' BEFORE reproducing; RT-004 has no criterion of its own; YAML anchors to avoid drift; header still says 'filled by T-003'."
+    attempts: 1
+    verification: autonomy/verifications/T-027-2d93454.md
 
   - id: T-028
     title: QC and reproduction of the GSE102008 headline results

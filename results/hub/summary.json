@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-07T01:52:17+00:00",
-  "commit": "736444d6abc10e1d85c9fdfee56277d69150efac",
+  "generated_at": "2026-11-07T05:56:28+00:00",
+  "commit": "2d9345458875896aee735ce83a0f4bc612955222",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -18,9 +18,9 @@
   "progress": {
     "total": 52,
     "done": 9,
-    "in_review": 1,
+    "in_review": 0,
     "ready": 31,
-    "changes_requested": 0,
+    "changes_requested": 1,
     "blocked": 0,
     "needs_human": 1,
     "proposed": 10
@@ -232,7 +232,7 @@
       "id": "T-027",
       "title": "Extract reproduction targets from Nachun et al. 2018 (GSE102008)",
       "milestone": "M1",
-      "status": "in_review",
+      "status": "changes_requested",
       "kind": "reproduction",
       "track": "main"
     },
@@ -496,6 +496,15 @@
   "claims": [],
   "verifications": [
     {
+      "task": "T-027",
+      "date": "2026-11-07",
+      "verdict": "CHANGES_REQUESTED",
+      "summary": "8/9 published_value quotes verbatim; RT-005 quote is not (parenthesis closed by the worker); everything else sound",
+      "attempt": 1,
+      "acceptance_met": "2/3",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-027-2d93454.md"
+    },
+    {
       "task": "W-2026-W45",
       "date": "2026-11-06",
       "verdict": "PASS",
@@ -665,15 +674,6 @@
       "attempt": 1,
       "acceptance_met": "3/5",
       "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-024-03fa311.md"
-    },
-    {
-      "task": "T-024",
-      "date": "2026-10-17",
-      "verdict": "CHANGES_REQUESTED",
-      "summary": "launch item and evidence ceiling fixed, but the overselling gate still lets affirmative overselling through (negation window, missing stems, NFC)",
-      "attempt": 2,
-      "acceptance_met": "4/5",
-      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-024-2be79de.md"
     }
   ],
   "research": {
