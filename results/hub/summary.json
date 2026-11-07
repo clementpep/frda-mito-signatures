@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-06T05:56:05+00:00",
-  "commit": "a71ede3e6f00de9ae366110e342a6efb5bf51d04",
+  "generated_at": "2026-11-07T01:52:17+00:00",
+  "commit": "736444d6abc10e1d85c9fdfee56277d69150efac",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -18,8 +18,8 @@
   "progress": {
     "total": 52,
     "done": 9,
-    "in_review": 0,
-    "ready": 32,
+    "in_review": 1,
+    "ready": 31,
     "changes_requested": 0,
     "blocked": 0,
     "needs_human": 1,
@@ -232,7 +232,7 @@
       "id": "T-027",
       "title": "Extract reproduction targets from Nachun et al. 2018 (GSE102008)",
       "milestone": "M1",
-      "status": "ready",
+      "status": "in_review",
       "kind": "reproduction",
       "track": "main"
     },

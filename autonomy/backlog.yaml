@@ -349,7 +349,7 @@ tasks:
   - id: T-027
     title: Extract reproduction targets from Nachun et al. 2018 (GSE102008)
     milestone: M1
-    status: ready
+    status: in_review
     priority: 1
     kind: reproduction
     track: main
