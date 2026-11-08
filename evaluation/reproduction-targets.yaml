@@ -1,4 +1,4 @@
-# Published results we try to reproduce (filled by T-003). One entry per target:
+# Published results we try to reproduce (filled by T-003, completed by T-027). One entry per target:
 #   - id: RT-001
 #     pmid: '29125828'
 #     location: Figure / table / section
@@ -18,7 +18,7 @@ targets:
     status + RIN vs null = intercept + RIN; log10 BF > 0.5 for status; pairwise DE if pp > 0.95. Preprocessing:
     lumi VST + RSN, 17 outliers removed (full set), ComBat, detection-score and annotation filtering,
     duplicate probes collapsed to one per gene (WGCNA collapseRows, maxMean): 16,099 features in the full
-    dataset. Posterior probability (pp) definitions differ in the paper: DE contrasts, fraction of posterior
+    dataset. Posterior estimates: 10,000 MCMC iterations, random seed 12,345 (Methods). Posterior probability (pp) definitions differ in the paper: DE contrasts, fraction of posterior
     samples non-zero with the same sign as the median; phenotype regression, fraction non-zero ''whose
     sign was opposite that of the median estimate''. Global FDR = mean of (1 - pp) over the genes called;
     it is NOT a multiplicity correction (the paper states Bayes factors need none). '
@@ -37,8 +37,12 @@ targets:
     bound to the same engine. Pass criterion (set before reproducing): ordering patients-vs-carriers >
     patients-vs-controls > carriers-vs-controls in DE counts (this ordering is derived from the published
     counts; the paper explains it by sample size); counts within a factor 2 of the published ones reported
-    as ''same order'', otherwise ''not reproduced''; overlap of DE gene lists reported as a number. Exact
-    equality is neither expected nor required.'
+    as ''same order'', otherwise ''not reproduced''; overlap of DE gene lists reported as a number (Jaccard index of our DE set vs the paper''s Table 2 / Table S
+    genes where available); sign concordance of the shared genes reported as a fraction; thresholds fixed now:
+    sign concordance >= 0.9 and Jaccard >= 0.3 for ''overlap reproduced'', else ''overlap not reproduced''.
+    For RT-004 (1115 transcripts, effect of disease status across the three groups) the criterion is the
+    same count rule (factor 2) plus: it must be >= the largest pairwise count among our own contrasts
+    (patients-vs-carriers), as in the paper (1115 vs 1078). Exact equality is neither expected nor required.'
 - id: RT-002
   pmid: '29790959'
   location: Results, 'Differential expression' (Fig. 1, Table 2)
@@ -48,7 +52,7 @@ targets:
     status + RIN vs null = intercept + RIN; log10 BF > 0.5 for status; pairwise DE if pp > 0.95. Preprocessing:
     lumi VST + RSN, 17 outliers removed (full set), ComBat, detection-score and annotation filtering,
     duplicate probes collapsed to one per gene (WGCNA collapseRows, maxMean): 16,099 features in the full
-    dataset. Posterior probability (pp) definitions differ in the paper: DE contrasts, fraction of posterior
+    dataset. Posterior estimates: 10,000 MCMC iterations, random seed 12,345 (Methods). Posterior probability (pp) definitions differ in the paper: DE contrasts, fraction of posterior
     samples non-zero with the same sign as the median; phenotype regression, fraction non-zero ''whose
     sign was opposite that of the median estimate''. Global FDR = mean of (1 - pp) over the genes called;
     it is NOT a multiplicity correction (the paper states Bayes factors need none). '
@@ -67,8 +71,12 @@ targets:
     bound to the same engine. Pass criterion (set before reproducing): ordering patients-vs-carriers >
     patients-vs-controls > carriers-vs-controls in DE counts (this ordering is derived from the published
     counts; the paper explains it by sample size); counts within a factor 2 of the published ones reported
-    as ''same order'', otherwise ''not reproduced''; overlap of DE gene lists reported as a number. Exact
-    equality is neither expected nor required.'
+    as ''same order'', otherwise ''not reproduced''; overlap of DE gene lists reported as a number (Jaccard index of our DE set vs the paper''s Table 2 / Table S
+    genes where available); sign concordance of the shared genes reported as a fraction; thresholds fixed now:
+    sign concordance >= 0.9 and Jaccard >= 0.3 for ''overlap reproduced'', else ''overlap not reproduced''.
+    For RT-004 (1115 transcripts, effect of disease status across the three groups) the criterion is the
+    same count rule (factor 2) plus: it must be >= the largest pairwise count among our own contrasts
+    (patients-vs-carriers), as in the paper (1115 vs 1078). Exact equality is neither expected nor required.'
 - id: RT-003
   pmid: '29790959'
   location: Results, 'Differential expression' (Fig. 1, Table 2)
@@ -78,7 +86,7 @@ targets:
     status + RIN vs null = intercept + RIN; log10 BF > 0.5 for status; pairwise DE if pp > 0.95. Preprocessing:
     lumi VST + RSN, 17 outliers removed (full set), ComBat, detection-score and annotation filtering,
     duplicate probes collapsed to one per gene (WGCNA collapseRows, maxMean): 16,099 features in the full
-    dataset. Posterior probability (pp) definitions differ in the paper: DE contrasts, fraction of posterior
+    dataset. Posterior estimates: 10,000 MCMC iterations, random seed 12,345 (Methods). Posterior probability (pp) definitions differ in the paper: DE contrasts, fraction of posterior
     samples non-zero with the same sign as the median; phenotype regression, fraction non-zero ''whose
     sign was opposite that of the median estimate''. Global FDR = mean of (1 - pp) over the genes called;
     it is NOT a multiplicity correction (the paper states Bayes factors need none). '
@@ -97,8 +105,12 @@ targets:
     bound to the same engine. Pass criterion (set before reproducing): ordering patients-vs-carriers >
     patients-vs-controls > carriers-vs-controls in DE counts (this ordering is derived from the published
     counts; the paper explains it by sample size); counts within a factor 2 of the published ones reported
-    as ''same order'', otherwise ''not reproduced''; overlap of DE gene lists reported as a number. Exact
-    equality is neither expected nor required.'
+    as ''same order'', otherwise ''not reproduced''; overlap of DE gene lists reported as a number (Jaccard index of our DE set vs the paper''s Table 2 / Table S
+    genes where available); sign concordance of the shared genes reported as a fraction; thresholds fixed now:
+    sign concordance >= 0.9 and Jaccard >= 0.3 for ''overlap reproduced'', else ''overlap not reproduced''.
+    For RT-004 (1115 transcripts, effect of disease status across the three groups) the criterion is the
+    same count rule (factor 2) plus: it must be >= the largest pairwise count among our own contrasts
+    (patients-vs-carriers), as in the paper (1115 vs 1078). Exact equality is neither expected nor required.'
 - id: RT-004
   pmid: '29790959'
   location: Results, 'Differential expression'
@@ -109,7 +121,7 @@ targets:
     status + RIN vs null = intercept + RIN; log10 BF > 0.5 for status; pairwise DE if pp > 0.95. Preprocessing:
     lumi VST + RSN, 17 outliers removed (full set), ComBat, detection-score and annotation filtering,
     duplicate probes collapsed to one per gene (WGCNA collapseRows, maxMean): 16,099 features in the full
-    dataset. Posterior probability (pp) definitions differ in the paper: DE contrasts, fraction of posterior
+    dataset. Posterior estimates: 10,000 MCMC iterations, random seed 12,345 (Methods). Posterior probability (pp) definitions differ in the paper: DE contrasts, fraction of posterior
     samples non-zero with the same sign as the median; phenotype regression, fraction non-zero ''whose
     sign was opposite that of the median estimate''. Global FDR = mean of (1 - pp) over the genes called;
     it is NOT a multiplicity correction (the paper states Bayes factors need none). '
@@ -128,18 +140,22 @@ targets:
     bound to the same engine. Pass criterion (set before reproducing): ordering patients-vs-carriers >
     patients-vs-controls > carriers-vs-controls in DE counts (this ordering is derived from the published
     counts; the paper explains it by sample size); counts within a factor 2 of the published ones reported
-    as ''same order'', otherwise ''not reproduced''; overlap of DE gene lists reported as a number. Exact
-    equality is neither expected nor required.'
+    as ''same order'', otherwise ''not reproduced''; overlap of DE gene lists reported as a number (Jaccard index of our DE set vs the paper''s Table 2 / Table S
+    genes where available); sign concordance of the shared genes reported as a fraction; thresholds fixed now:
+    sign concordance >= 0.9 and Jaccard >= 0.3 for ''overlap reproduced'', else ''overlap not reproduced''.
+    For RT-004 (1115 transcripts, effect of disease status across the three groups) the criterion is the
+    same count rule (factor 2) plus: it must be >= the largest pairwise count among our own contrasts
+    (patients-vs-carriers), as in the paper (1115 vs 1078). Exact equality is neither expected nor required.'
 - id: RT-005
   pmid: '29790959'
   location: Results, 'Regression with clinical phenotypes' (Fig. 2, Table 3)
-  published_value: we identified 1508 transcripts significantly associated with FDS (global FDR = 0.0028)
+  published_value: we identified 1508 transcripts significantly associated with FDS (global FDR = 0.0028
   authors_method: 'BayesFactor per gene in patients with complete phenotypes (n = 308; compound heterozygotes
     excluded); age removed (collinear with all three measures); full model = intercept + phenotype (FDS,
     GAA1 or duration = age at draw - age of onset) + sex + RIN vs null without the phenotype; log BF >
-    0.5 and pp > 0.95; Posterior probability (pp) definitions differ in the paper: DE contrasts, fraction
+    0.5 and pp > 0.95; Posterior estimates: 10,000 MCMC iterations, random seed 12,345 (Methods). Posterior probability (pp) definitions differ in the paper: DE contrasts, fraction
     of posterior samples non-zero with the same sign as the median; phenotype regression, fraction non-zero
-    ''whose sign was opposite that of the median estimate''. Global FDR = mean of (1 - pp) over the genes
+    ''whose sign was opposite that of the median estimate''. This second wording is probably a typo in the paper (read as the same sign as the median); our interpretation, not a published statement. Global FDR = mean of (1 - pp) over the genes
     called; it is NOT a multiplicity correction (the paper states Bayes factors need none). Patient-only
     dataset: 6 outliers removed, 15,198 probes.'
   dataset: GSE102008
@@ -161,9 +177,9 @@ targets:
   authors_method: 'BayesFactor per gene in patients with complete phenotypes (n = 308; compound heterozygotes
     excluded); age removed (collinear with all three measures); full model = intercept + phenotype (FDS,
     GAA1 or duration = age at draw - age of onset) + sex + RIN vs null without the phenotype; log BF >
-    0.5 and pp > 0.95; Posterior probability (pp) definitions differ in the paper: DE contrasts, fraction
+    0.5 and pp > 0.95; Posterior estimates: 10,000 MCMC iterations, random seed 12,345 (Methods). Posterior probability (pp) definitions differ in the paper: DE contrasts, fraction
     of posterior samples non-zero with the same sign as the median; phenotype regression, fraction non-zero
-    ''whose sign was opposite that of the median estimate''. Global FDR = mean of (1 - pp) over the genes
+    ''whose sign was opposite that of the median estimate''. This second wording is probably a typo in the paper (read as the same sign as the median); our interpretation, not a published statement. Global FDR = mean of (1 - pp) over the genes
     called; it is NOT a multiplicity correction (the paper states Bayes factors need none). Patient-only
     dataset: 6 outliers removed, 15,198 probes.'
   dataset: GSE102008
@@ -185,9 +201,9 @@ targets:
   authors_method: 'BayesFactor per gene in patients with complete phenotypes (n = 308; compound heterozygotes
     excluded); age removed (collinear with all three measures); full model = intercept + phenotype (FDS,
     GAA1 or duration = age at draw - age of onset) + sex + RIN vs null without the phenotype; log BF >
-    0.5 and pp > 0.95; Posterior probability (pp) definitions differ in the paper: DE contrasts, fraction
+    0.5 and pp > 0.95; Posterior estimates: 10,000 MCMC iterations, random seed 12,345 (Methods). Posterior probability (pp) definitions differ in the paper: DE contrasts, fraction
     of posterior samples non-zero with the same sign as the median; phenotype regression, fraction non-zero
-    ''whose sign was opposite that of the median estimate''. Global FDR = mean of (1 - pp) over the genes
+    ''whose sign was opposite that of the median estimate''. This second wording is probably a typo in the paper (read as the same sign as the median); our interpretation, not a published statement. Global FDR = mean of (1 - pp) over the genes
     called; it is NOT a multiplicity correction (the paper states Bayes factors need none). Patient-only
     dataset: 6 outliers removed, 15,198 probes.'
   dataset: GSE102008
@@ -213,8 +229,7 @@ targets:
     not any source of biological variation removed''); signed network, soft power 6, module merge dissimilarity
     threshold 0.2; 6 outliers removed, 15,198 probes; hub genes by scaled connectivity; eight modules.
     Eigengenes tested with the FDS regression design, age removed, log BF > 0.5. Enrichment: log BF from
-    a hypergeometric overlap test implemented in BayesFactor, gene sets from Enrichr (GO BP 2015, GO MF
-    2015, KEGG 2016, Reactome 2016).'
+    a hypergeometric overlap test implemented in BayesFactor, gene sets from Enrichr (GO BP 2015, GO MF 2015 (the paper writes ''GO Molecular Process 2015'', read here as Molecular Function: our interpretation), KEGG 2016, Reactome 2016).'
   dataset: GSE102008
   columns_needed: status==Patient, functional stage, Sex, rin, expression matrix; gene symbols for enrichment
     (probe annotation)
@@ -224,7 +239,10 @@ targets:
     is arbitrary, so modules are matched by gene overlap and by enrichment, never by colour name; (3)
     eigengene sign convention, so coefficients are compared by sign and order of magnitude only; (4) enrichment
     log BF requires the same Enrichr libraries (versions 2015/2016) which we may not be able to obtain;
-    if unavailable, say so and compare categories only. Pass criterion (set before reproducing): a matched
+    if unavailable, say so and compare categories only. Matching rule (fixed now): our module matched to the paper''s one = the module with the largest gene
+    overlap (hypergeometric p < 0.05) with the published module''s gene list (Table S), else matched by
+    enrichment category alone and reported as weaker; ''top enriched terms'' = the 5 terms with the highest
+    log BF in our enrichment. Pass criterion (set before reproducing): a matched
     module with negative association with FDS (log BF > 0.5) whose top enriched terms include the same
     category (respiratory chain complex for yellow; mitochondrial translation for red). Anything else
     is ''not reproduced'', reported as such.'
@@ -238,8 +256,7 @@ targets:
     not any source of biological variation removed''); signed network, soft power 6, module merge dissimilarity
     threshold 0.2; 6 outliers removed, 15,198 probes; hub genes by scaled connectivity; eight modules.
     Eigengenes tested with the FDS regression design, age removed, log BF > 0.5. Enrichment: log BF from
-    a hypergeometric overlap test implemented in BayesFactor, gene sets from Enrichr (GO BP 2015, GO MF
-    2015, KEGG 2016, Reactome 2016).'
+    a hypergeometric overlap test implemented in BayesFactor, gene sets from Enrichr (GO BP 2015, GO MF 2015 (the paper writes ''GO Molecular Process 2015'', read here as Molecular Function: our interpretation), KEGG 2016, Reactome 2016).'
   dataset: GSE102008
   columns_needed: status==Patient, functional stage, Sex, rin, expression matrix; gene symbols for enrichment
     (probe annotation)
@@ -249,7 +266,10 @@ targets:
     is arbitrary, so modules are matched by gene overlap and by enrichment, never by colour name; (3)
     eigengene sign convention, so coefficients are compared by sign and order of magnitude only; (4) enrichment
     log BF requires the same Enrichr libraries (versions 2015/2016) which we may not be able to obtain;
-    if unavailable, say so and compare categories only. Pass criterion (set before reproducing): a matched
+    if unavailable, say so and compare categories only. Matching rule (fixed now): our module matched to the paper''s one = the module with the largest gene
+    overlap (hypergeometric p < 0.05) with the published module''s gene list (Table S), else matched by
+    enrichment category alone and reported as weaker; ''top enriched terms'' = the 5 terms with the highest
+    log BF in our enrichment. Pass criterion (set before reproducing): a matched
     module with negative association with FDS (log BF > 0.5) whose top enriched terms include the same
     category (respiratory chain complex for yellow; mitochondrial translation for red). Anything else
     is ''not reproduced'', reported as such.'
