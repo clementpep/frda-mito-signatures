@@ -1,4 +1,4 @@
-# Published results we try to reproduce (filled by T-003). One entry per target:
+# Published results we try to reproduce (filled by T-003, completed by T-027). One entry per target:
 #   - id: RT-001
 #     pmid: '29125828'
 #     location: Figure / table / section
@@ -6,4 +6,290 @@
 #     authors_method: tool, normalisation, thresholds
 #     dataset: GSE104288
 #     expected_gap: written BEFORE reproducing
-targets: []
+#   columns_needed: data columns the reproduction needs (added by T-027)
+# Source for all RT-*: Nachun et al. 2018, Hum Mol Genet, PMC6097013 (CC BY-NC), full text read through Europe PMC 2026-11-07.
+targets:
+- id: RT-001
+  pmid: '29790959'
+  location: Results, 'Differential expression' (Fig. 1, Table 2)
+  published_value: 829 transcripts were DE between patients and controls (global FDR = 0.012)
+  authors_method: 'BayesFactor linear model per gene; age and sex were regressed out beforehand (median
+    posterior estimates, ''Removal of confounding covariates''), then full model = intercept + disease
+    status + RIN vs null = intercept + RIN; log10 BF > 0.5 for status; pairwise DE if pp > 0.95. Preprocessing:
+    lumi VST + RSN, 17 outliers removed (full set), ComBat, detection-score and annotation filtering,
+    duplicate probes collapsed to one per gene (WGCNA collapseRows, maxMean): 16,099 features in the full
+    dataset. Posterior estimates: 10,000 MCMC iterations, random seed 12,345 (Methods). Posterior probability (pp) definitions differ in the paper: DE contrasts, fraction of posterior
+    samples non-zero with the same sign as the median; phenotype regression, fraction non-zero ''whose
+    sign was opposite that of the median estimate''. Global FDR = mean of (1 - pp) over the genes called;
+    it is NOT a multiplicity correction (the paper states Bayes factors need none). '
+  dataset: GSE102008
+  columns_needed: status (Patient/Carrier/Control), rin, ILMN probe id x sample expression matrix (series
+    matrix, processed)
+  expected_gap: 'Written before reproducing. Sources of difference: (1) cohorts: paper 418/228/93 vs GEO
+    411/228/94; 7 patients absent from GEO and not reconcilable (card GSE102008.md); the 2 low-frataxin
+    controls cannot be identified, the frataxin exclusion is not applicable; GEO patient mean age differs
+    from the paper''s (see card), which matters for age removal. (2) Tested universe and unit: paper counts
+    ~16k gene-level rows (probes collapsed by maxMean); the GEO matrix has detection/annotation filtering
+    but no documented collapse to genes, so the reproduction must declare its own collapse and the counts
+    are not comparable one-to-one. (3) Covariates: the reproduction must choose between replicating the
+    paper''s residualisation of age and sex and adjusting them differently (card flags this for T-028);
+    either choice moves the counts. (4) Method: BayesFactor default priors, MCMC posterior; we are not
+    bound to the same engine. Pass criterion (set before reproducing): ordering patients-vs-carriers >
+    patients-vs-controls > carriers-vs-controls in DE counts (this ordering is derived from the published
+    counts; the paper explains it by sample size); counts within a factor 2 of the published ones reported
+    as ''same order'', otherwise ''not reproduced''; overlap reported as a number: Jaccard index of our DE set vs the full published DE gene list
+    (Supplementary Table S2, to be fetched from the paper''s supplementary files; if it cannot be obtained,
+    overlap is ''not assessable'' and counts as NOT reproduced, never as a pass) and, on the shared genes
+    only, the fraction with the same sign of effect (patients minus comparator). Thresholds fixed now,
+    judgement calls without a calibration: Jaccard >= 0.3 and sign concordance >= 0.9 on >= 50 shared genes
+    (our pipeline re-implements preprocessing and engine, so identity is not expected); the Jaccard expected
+    by chance given our feature count and the published set size is reported alongside. For RT-004 (1115
+    transcripts, effect of disease status across the three groups) the criterion is the same count rule
+    (factor 2); the paper''s 1078/829/182 are subsets of the 1115 (pairwise calls made among the omnibus
+    set), so we report whether our pairwise calls are restricted likewise; that is a hierarchy consistency
+    check, not reproduction evidence. Exact equality is neither expected nor required.'
+- id: RT-002
+  pmid: '29790959'
+  location: Results, 'Differential expression' (Fig. 1, Table 2)
+  published_value: 1078 between patients and carriers (global FDR = 0.0017)
+  authors_method: 'BayesFactor linear model per gene; age and sex were regressed out beforehand (median
+    posterior estimates, ''Removal of confounding covariates''), then full model = intercept + disease
+    status + RIN vs null = intercept + RIN; log10 BF > 0.5 for status; pairwise DE if pp > 0.95. Preprocessing:
+    lumi VST + RSN, 17 outliers removed (full set), ComBat, detection-score and annotation filtering,
+    duplicate probes collapsed to one per gene (WGCNA collapseRows, maxMean): 16,099 features in the full
+    dataset. Posterior estimates: 10,000 MCMC iterations, random seed 12,345 (Methods). Posterior probability (pp) definitions differ in the paper: DE contrasts, fraction of posterior
+    samples non-zero with the same sign as the median; phenotype regression, fraction non-zero ''whose
+    sign was opposite that of the median estimate''. Global FDR = mean of (1 - pp) over the genes called;
+    it is NOT a multiplicity correction (the paper states Bayes factors need none). '
+  dataset: GSE102008
+  columns_needed: status (Patient/Carrier/Control), rin, ILMN probe id x sample expression matrix (series
+    matrix, processed)
+  expected_gap: 'Written before reproducing. Sources of difference: (1) cohorts: paper 418/228/93 vs GEO
+    411/228/94; 7 patients absent from GEO and not reconcilable (card GSE102008.md); the 2 low-frataxin
+    controls cannot be identified, the frataxin exclusion is not applicable; GEO patient mean age differs
+    from the paper''s (see card), which matters for age removal. (2) Tested universe and unit: paper counts
+    ~16k gene-level rows (probes collapsed by maxMean); the GEO matrix has detection/annotation filtering
+    but no documented collapse to genes, so the reproduction must declare its own collapse and the counts
+    are not comparable one-to-one. (3) Covariates: the reproduction must choose between replicating the
+    paper''s residualisation of age and sex and adjusting them differently (card flags this for T-028);
+    either choice moves the counts. (4) Method: BayesFactor default priors, MCMC posterior; we are not
+    bound to the same engine. Pass criterion (set before reproducing): ordering patients-vs-carriers >
+    patients-vs-controls > carriers-vs-controls in DE counts (this ordering is derived from the published
+    counts; the paper explains it by sample size); counts within a factor 2 of the published ones reported
+    as ''same order'', otherwise ''not reproduced''; overlap reported as a number: Jaccard index of our DE set vs the full published DE gene list
+    (Supplementary Table S2, to be fetched from the paper''s supplementary files; if it cannot be obtained,
+    overlap is ''not assessable'' and counts as NOT reproduced, never as a pass) and, on the shared genes
+    only, the fraction with the same sign of effect (patients minus comparator). Thresholds fixed now,
+    judgement calls without a calibration: Jaccard >= 0.3 and sign concordance >= 0.9 on >= 50 shared genes
+    (our pipeline re-implements preprocessing and engine, so identity is not expected); the Jaccard expected
+    by chance given our feature count and the published set size is reported alongside. For RT-004 (1115
+    transcripts, effect of disease status across the three groups) the criterion is the same count rule
+    (factor 2); the paper''s 1078/829/182 are subsets of the 1115 (pairwise calls made among the omnibus
+    set), so we report whether our pairwise calls are restricted likewise; that is a hierarchy consistency
+    check, not reproduction evidence. Exact equality is neither expected nor required.'
+- id: RT-003
+  pmid: '29790959'
+  location: Results, 'Differential expression' (Fig. 1, Table 2)
+  published_value: 182 between carriers and controls (global FDR = 0.018)
+  authors_method: 'BayesFactor linear model per gene; age and sex were regressed out beforehand (median
+    posterior estimates, ''Removal of confounding covariates''), then full model = intercept + disease
+    status + RIN vs null = intercept + RIN; log10 BF > 0.5 for status; pairwise DE if pp > 0.95. Preprocessing:
+    lumi VST + RSN, 17 outliers removed (full set), ComBat, detection-score and annotation filtering,
+    duplicate probes collapsed to one per gene (WGCNA collapseRows, maxMean): 16,099 features in the full
+    dataset. Posterior estimates: 10,000 MCMC iterations, random seed 12,345 (Methods). Posterior probability (pp) definitions differ in the paper: DE contrasts, fraction of posterior
+    samples non-zero with the same sign as the median; phenotype regression, fraction non-zero ''whose
+    sign was opposite that of the median estimate''. Global FDR = mean of (1 - pp) over the genes called;
+    it is NOT a multiplicity correction (the paper states Bayes factors need none). '
+  dataset: GSE102008
+  columns_needed: status (Patient/Carrier/Control), rin, ILMN probe id x sample expression matrix (series
+    matrix, processed)
+  expected_gap: 'Written before reproducing. Sources of difference: (1) cohorts: paper 418/228/93 vs GEO
+    411/228/94; 7 patients absent from GEO and not reconcilable (card GSE102008.md); the 2 low-frataxin
+    controls cannot be identified, the frataxin exclusion is not applicable; GEO patient mean age differs
+    from the paper''s (see card), which matters for age removal. (2) Tested universe and unit: paper counts
+    ~16k gene-level rows (probes collapsed by maxMean); the GEO matrix has detection/annotation filtering
+    but no documented collapse to genes, so the reproduction must declare its own collapse and the counts
+    are not comparable one-to-one. (3) Covariates: the reproduction must choose between replicating the
+    paper''s residualisation of age and sex and adjusting them differently (card flags this for T-028);
+    either choice moves the counts. (4) Method: BayesFactor default priors, MCMC posterior; we are not
+    bound to the same engine. Pass criterion (set before reproducing): ordering patients-vs-carriers >
+    patients-vs-controls > carriers-vs-controls in DE counts (this ordering is derived from the published
+    counts; the paper explains it by sample size); counts within a factor 2 of the published ones reported
+    as ''same order'', otherwise ''not reproduced''; overlap reported as a number: Jaccard index of our DE set vs the full published DE gene list
+    (Supplementary Table S2, to be fetched from the paper''s supplementary files; if it cannot be obtained,
+    overlap is ''not assessable'' and counts as NOT reproduced, never as a pass) and, on the shared genes
+    only, the fraction with the same sign of effect (patients minus comparator). Thresholds fixed now,
+    judgement calls without a calibration: Jaccard >= 0.3 and sign concordance >= 0.9 on >= 50 shared genes
+    (our pipeline re-implements preprocessing and engine, so identity is not expected); the Jaccard expected
+    by chance given our feature count and the published set size is reported alongside. For RT-004 (1115
+    transcripts, effect of disease status across the three groups) the criterion is the same count rule
+    (factor 2); the paper''s 1078/829/182 are subsets of the 1115 (pairwise calls made among the omnibus
+    set), so we report whether our pairwise calls are restricted likewise; that is a hierarchy consistency
+    check, not reproduction evidence. Exact equality is neither expected nor required.'
+- id: RT-004
+  pmid: '29790959'
+  location: Results, 'Differential expression'
+  published_value: 1115 transcripts were significant for the effect of disease status across all three
+    groups
+  authors_method: 'BayesFactor linear model per gene; age and sex were regressed out beforehand (median
+    posterior estimates, ''Removal of confounding covariates''), then full model = intercept + disease
+    status + RIN vs null = intercept + RIN; log10 BF > 0.5 for status; pairwise DE if pp > 0.95. Preprocessing:
+    lumi VST + RSN, 17 outliers removed (full set), ComBat, detection-score and annotation filtering,
+    duplicate probes collapsed to one per gene (WGCNA collapseRows, maxMean): 16,099 features in the full
+    dataset. Posterior estimates: 10,000 MCMC iterations, random seed 12,345 (Methods). Posterior probability (pp) definitions differ in the paper: DE contrasts, fraction of posterior
+    samples non-zero with the same sign as the median; phenotype regression, fraction non-zero ''whose
+    sign was opposite that of the median estimate''. Global FDR = mean of (1 - pp) over the genes called;
+    it is NOT a multiplicity correction (the paper states Bayes factors need none). '
+  dataset: GSE102008
+  columns_needed: status (Patient/Carrier/Control), rin, ILMN probe id x sample expression matrix (series
+    matrix, processed)
+  expected_gap: 'Written before reproducing. Sources of difference: (1) cohorts: paper 418/228/93 vs GEO
+    411/228/94; 7 patients absent from GEO and not reconcilable (card GSE102008.md); the 2 low-frataxin
+    controls cannot be identified, the frataxin exclusion is not applicable; GEO patient mean age differs
+    from the paper''s (see card), which matters for age removal. (2) Tested universe and unit: paper counts
+    ~16k gene-level rows (probes collapsed by maxMean); the GEO matrix has detection/annotation filtering
+    but no documented collapse to genes, so the reproduction must declare its own collapse and the counts
+    are not comparable one-to-one. (3) Covariates: the reproduction must choose between replicating the
+    paper''s residualisation of age and sex and adjusting them differently (card flags this for T-028);
+    either choice moves the counts. (4) Method: BayesFactor default priors, MCMC posterior; we are not
+    bound to the same engine. Pass criterion (set before reproducing): ordering patients-vs-carriers >
+    patients-vs-controls > carriers-vs-controls in DE counts (this ordering is derived from the published
+    counts; the paper explains it by sample size); counts within a factor 2 of the published ones reported
+    as ''same order'', otherwise ''not reproduced''; overlap reported as a number: Jaccard index of our DE set vs the full published DE gene list
+    (Supplementary Table S2, to be fetched from the paper''s supplementary files; if it cannot be obtained,
+    overlap is ''not assessable'' and counts as NOT reproduced, never as a pass) and, on the shared genes
+    only, the fraction with the same sign of effect (patients minus comparator). Thresholds fixed now,
+    judgement calls without a calibration: Jaccard >= 0.3 and sign concordance >= 0.9 on >= 50 shared genes
+    (our pipeline re-implements preprocessing and engine, so identity is not expected); the Jaccard expected
+    by chance given our feature count and the published set size is reported alongside. For RT-004 (1115
+    transcripts, effect of disease status across the three groups) the criterion is the same count rule
+    (factor 2); the paper''s 1078/829/182 are subsets of the 1115 (pairwise calls made among the omnibus
+    set), so we report whether our pairwise calls are restricted likewise; that is a hierarchy consistency
+    check, not reproduction evidence. Exact equality is neither expected nor required.'
+- id: RT-005
+  pmid: '29790959'
+  location: Results, 'Regression with clinical phenotypes' (Fig. 2, Table 3; quote truncated before the paper''s '', Fig. 2, Table 3, ...)'' so that it is an exact substring)
+  published_value: we identified 1508 transcripts significantly associated with FDS (global FDR = 0.0028
+  authors_method: 'BayesFactor per gene in patients with complete phenotypes (n = 308; compound heterozygotes
+    excluded); age removed (collinear with all three measures); full model = intercept + phenotype (FDS,
+    GAA1 or duration = age at draw - age of onset) + sex + RIN vs null without the phenotype; log BF >
+    0.5 and pp > 0.95; Posterior estimates: 10,000 MCMC iterations, random seed 12,345 (Methods). Posterior probability (pp) definitions differ in the paper: DE contrasts, fraction
+    of posterior samples non-zero with the same sign as the median; phenotype regression, fraction non-zero
+    ''whose sign was opposite that of the median estimate''. This second wording is probably a typo in the paper (read as the same sign as the median); our interpretation, not a published statement. Global FDR = mean of (1 - pp) over the genes
+    called; it is NOT a multiplicity correction (the paper states Bayes factors need none). Patient-only
+    dataset: 6 outliers removed, 15,198 probes.'
+  dataset: GSE102008
+  columns_needed: status==Patient, functional stage, gaa1, duration, Sex, rin, expression matrix. No genotype
+    key exists among the 13 GEO characteristic keys (card GSE102008.md), so the 18 compound heterozygotes
+    cannot be identified or excluded
+  expected_gap: 'Written before reproducing. (1) Subset: paper n = 308; GEO has 411 patients with variable
+    completeness of functional stage / gaa1 / duration; our n is counted and reported before analysis.
+    (2) Compound heterozygotes cannot be excluded (no genotype field). (3) Gene-level collapse and age
+    residualisation as for the DE targets. (4) Duration has no unit in GEO (equals age - onset in 407/407
+    patients). (5) Engine differs (BayesFactor vs ours). Pass criterion (set before reproducing): ordering
+    of counts FDS > GAA1 > duration (derived from the published counts, not a published claim); same order
+    of magnitude (factor 2 for FDS, factor 3 for GAA1, duration reported as small, <= 50); sign agreement
+    of the top genes of Table 3 reported as a number.'
+- id: RT-006
+  pmid: '29790959'
+  location: Results, 'Regression with clinical phenotypes'
+  published_value: 280 transcripts significantly associated with GAA1 (global FDR = 0.0043)
+  authors_method: 'BayesFactor per gene in patients with complete phenotypes (n = 308; compound heterozygotes
+    excluded); age removed (collinear with all three measures); full model = intercept + phenotype (FDS,
+    GAA1 or duration = age at draw - age of onset) + sex + RIN vs null without the phenotype; log BF >
+    0.5 and pp > 0.95; Posterior estimates: 10,000 MCMC iterations, random seed 12,345 (Methods). Posterior probability (pp) definitions differ in the paper: DE contrasts, fraction
+    of posterior samples non-zero with the same sign as the median; phenotype regression, fraction non-zero
+    ''whose sign was opposite that of the median estimate''. This second wording is probably a typo in the paper (read as the same sign as the median); our interpretation, not a published statement. Global FDR = mean of (1 - pp) over the genes
+    called; it is NOT a multiplicity correction (the paper states Bayes factors need none). Patient-only
+    dataset: 6 outliers removed, 15,198 probes.'
+  dataset: GSE102008
+  columns_needed: status==Patient, functional stage, gaa1, duration, Sex, rin, expression matrix. No genotype
+    key exists among the 13 GEO characteristic keys (card GSE102008.md), so the 18 compound heterozygotes
+    cannot be identified or excluded
+  expected_gap: 'Written before reproducing. (1) Subset: paper n = 308; GEO has 411 patients with variable
+    completeness of functional stage / gaa1 / duration; our n is counted and reported before analysis.
+    (2) Compound heterozygotes cannot be excluded (no genotype field). (3) Gene-level collapse and age
+    residualisation as for the DE targets. (4) Duration has no unit in GEO (equals age - onset in 407/407
+    patients). (5) Engine differs (BayesFactor vs ours). Pass criterion (set before reproducing): ordering
+    of counts FDS > GAA1 > duration (derived from the published counts, not a published claim); same order
+    of magnitude (factor 2 for FDS, factor 3 for GAA1, duration reported as small, <= 50); sign agreement
+    of the top genes of Table 3 reported as a number.'
+- id: RT-007
+  pmid: '29790959'
+  location: Results, 'Regression with clinical phenotypes'
+  published_value: 13 transcripts significantly associated with disease duration (global FDR = 0.006)
+  authors_method: 'BayesFactor per gene in patients with complete phenotypes (n = 308; compound heterozygotes
+    excluded); age removed (collinear with all three measures); full model = intercept + phenotype (FDS,
+    GAA1 or duration = age at draw - age of onset) + sex + RIN vs null without the phenotype; log BF >
+    0.5 and pp > 0.95; Posterior estimates: 10,000 MCMC iterations, random seed 12,345 (Methods). Posterior probability (pp) definitions differ in the paper: DE contrasts, fraction
+    of posterior samples non-zero with the same sign as the median; phenotype regression, fraction non-zero
+    ''whose sign was opposite that of the median estimate''. This second wording is probably a typo in the paper (read as the same sign as the median); our interpretation, not a published statement. Global FDR = mean of (1 - pp) over the genes
+    called; it is NOT a multiplicity correction (the paper states Bayes factors need none). Patient-only
+    dataset: 6 outliers removed, 15,198 probes.'
+  dataset: GSE102008
+  columns_needed: status==Patient, functional stage, gaa1, duration, Sex, rin, expression matrix. No genotype
+    key exists among the 13 GEO characteristic keys (card GSE102008.md), so the 18 compound heterozygotes
+    cannot be identified or excluded
+  expected_gap: 'Written before reproducing. (1) Subset: paper n = 308; GEO has 411 patients with variable
+    completeness of functional stage / gaa1 / duration; our n is counted and reported before analysis.
+    (2) Compound heterozygotes cannot be excluded (no genotype field). (3) Gene-level collapse and age
+    residualisation as for the DE targets. (4) Duration has no unit in GEO (equals age - onset in 407/407
+    patients). (5) Engine differs (BayesFactor vs ours). Pass criterion (set before reproducing): ordering
+    of counts FDS > GAA1 > duration (derived from the published counts, not a published claim); same order
+    of magnitude (factor 2 for FDS, factor 3 for GAA1, duration reported as small, <= 50); sign agreement
+    of the top genes of Table 3 reported as a number.'
+- id: RT-008
+  pmid: '29790959'
+  location: Results, 'Functional disability stage' (Fig. 6C) and 'Enrichment analysis of significant modules'
+  published_value: the yellow module (coeff. = −0.0093, log BF = 3.01, pp = 1.0) | Enrichment analysis
+    of yellow module indicated enrichment for rRNA processing (44 genes, log BF = 2.98) and the mitochondrial
+    respiratory chain complex (20 genes, log BF = 1.89)
+  authors_method: 'WGCNA on the patient-only set with complete phenotypes; input corrected for batch with
+    ComBat ONLY (no age/sex removal, ''the network construction step must be performed on data that has
+    not any source of biological variation removed''); signed network, soft power 6, module merge dissimilarity
+    threshold 0.2; 6 outliers removed, 15,198 probes; hub genes by scaled connectivity; eight modules.
+    Eigengenes tested with the FDS regression design, age removed, log BF > 0.5. Enrichment: log BF from
+    a hypergeometric overlap test implemented in BayesFactor, gene sets from Enrichr (GO BP 2015, GO MF 2015 (the paper writes ''GO Molecular Process 2015'', read here as Molecular Function: our interpretation), KEGG 2016, Reactome 2016).'
+  dataset: GSE102008
+  columns_needed: status==Patient, functional stage, Sex, rin, expression matrix; gene symbols for enrichment
+    (probe annotation)
+  expected_gap: 'Written before reproducing. Known and fixed by the paper: soft power 6, signed network,
+    merge 0.2, ComBat-only input. Unknown or different: (1) exact patient subset (308 vs GEO) and probe
+    set (15,198 after filtering and collapse; our collapse may differ); (2) module-to-colour assignment
+    is arbitrary, so modules are matched by gene overlap and by enrichment, never by colour name; (3)
+    eigengene sign convention, so coefficients are compared by sign and order of magnitude only; (4) enrichment
+    log BF requires the same Enrichr libraries (versions 2015/2016) which we may not be able to obtain;
+    if unavailable, say so and compare categories only. Matching rule (fixed now): our module matched to the paper''s one = the module with the largest gene
+    overlap (hypergeometric p < 0.05) with the published module''s gene list (supplementary module gene lists; if not obtainable, not assessable and NOT reproduced), else not matched (an enrichment-only
+    match is circular with the pass test and is excluded from ''reproduced''); ''top enriched terms'' = the 5 terms with the highest
+    log BF pooled across the four libraries (arbitrary choice, fixed now). Pass criterion (set before reproducing): a matched
+    module with negative association with FDS (log BF > 0.5) whose top enriched terms include the same
+    category (respiratory chain complex for yellow; mitochondrial translation for red). Anything else
+    is ''not reproduced'', reported as such.'
+- id: RT-009
+  pmid: '29790959'
+  location: Results, 'Functional disability stage' (Fig. 6C) and 'Enrichment analysis of significant modules'
+  published_value: the red module (coeff. = −0.0077, log BF = 1.91, pp = 1.0) | the red module was strongly
+    enriched for translation, especially mitochondrial translation (27 genes, log BF = 4.44)
+  authors_method: 'WGCNA on the patient-only set with complete phenotypes; input corrected for batch with
+    ComBat ONLY (no age/sex removal, ''the network construction step must be performed on data that has
+    not any source of biological variation removed''); signed network, soft power 6, module merge dissimilarity
+    threshold 0.2; 6 outliers removed, 15,198 probes; hub genes by scaled connectivity; eight modules.
+    Eigengenes tested with the FDS regression design, age removed, log BF > 0.5. Enrichment: log BF from
+    a hypergeometric overlap test implemented in BayesFactor, gene sets from Enrichr (GO BP 2015, GO MF 2015 (the paper writes ''GO Molecular Process 2015'', read here as Molecular Function: our interpretation), KEGG 2016, Reactome 2016).'
+  dataset: GSE102008
+  columns_needed: status==Patient, functional stage, Sex, rin, expression matrix; gene symbols for enrichment
+    (probe annotation)
+  expected_gap: 'Written before reproducing. Known and fixed by the paper: soft power 6, signed network,
+    merge 0.2, ComBat-only input. Unknown or different: (1) exact patient subset (308 vs GEO) and probe
+    set (15,198 after filtering and collapse; our collapse may differ); (2) module-to-colour assignment
+    is arbitrary, so modules are matched by gene overlap and by enrichment, never by colour name; (3)
+    eigengene sign convention, so coefficients are compared by sign and order of magnitude only; (4) enrichment
+    log BF requires the same Enrichr libraries (versions 2015/2016) which we may not be able to obtain;
+    if unavailable, say so and compare categories only. Matching rule (fixed now): our module matched to the paper''s one = the module with the largest gene
+    overlap (hypergeometric p < 0.05) with the published module''s gene list (supplementary module gene lists; if not obtainable, not assessable and NOT reproduced), else not matched (an enrichment-only
+    match is circular with the pass test and is excluded from ''reproduced''); ''top enriched terms'' = the 5 terms with the highest
+    log BF pooled across the four libraries (arbitrary choice, fixed now). Pass criterion (set before reproducing): a matched
+    module with negative association with FDS (log BF > 0.5) whose top enriched terms include the same
+    category (respiratory chain complex for yellow; mitochondrial translation for red). Anything else
+    is ''not reproduced'', reported as such.'

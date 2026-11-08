@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-06T05:56:05+00:00",
-  "commit": "a71ede3e6f00de9ae366110e342a6efb5bf51d04",
+  "generated_at": "2026-11-08T05:56:55+00:00",
+  "commit": "514b2a1adc27d731b798dc88c1a5395347e780c7",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -17,9 +17,9 @@
   },
   "progress": {
     "total": 52,
-    "done": 9,
+    "done": 10,
     "in_review": 0,
-    "ready": 32,
+    "ready": 31,
     "changes_requested": 0,
     "blocked": 0,
     "needs_human": 1,
@@ -31,7 +31,7 @@
       "title": "Credible foundation",
       "goal": "Characterise the seed datasets and the patient blood cohort GSE102008 (RD-002, patients first) and reproduce published results before anything new.",
       "status": "in_progress",
-      "tasks_done": 2,
+      "tasks_done": 3,
       "tasks_total": 11
     },
     {
@@ -232,7 +232,7 @@
       "id": "T-027",
       "title": "Extract reproduction targets from Nachun et al. 2018 (GSE102008)",
       "milestone": "M1",
-      "status": "ready",
+      "status": "done",
       "kind": "reproduction",
       "track": "main"
     },
@@ -496,6 +496,24 @@
   "claims": [],
   "verifications": [
     {
+      "task": "T-027",
+      "date": "2026-11-08",
+      "verdict": "PASS",
+      "summary": "attempt-1 blocking fixed (RT-005 now an exact substring); 11/11 quote fragments verbatim; pass criteria and expected gaps committed before any reproduction",
+      "attempt": 2,
+      "acceptance_met": "3/3",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-027-514b2a1.md"
+    },
+    {
+      "task": "T-027",
+      "date": "2026-11-07",
+      "verdict": "CHANGES_REQUESTED",
+      "summary": "8/9 published_value quotes verbatim; RT-005 quote is not (parenthesis closed by the worker); everything else sound",
+      "attempt": 1,
+      "acceptance_met": "2/3",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-027-2d93454.md"
+    },
+    {
       "task": "W-2026-W45",
       "date": "2026-11-06",
       "verdict": "PASS",
@@ -656,24 +674,6 @@
       "attempt": 2,
       "acceptance_met": "3/4",
       "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-025-ecbd498.md"
-    },
-    {
-      "task": "T-024",
-      "date": "2026-10-17",
-      "verdict": "CHANGES_REQUESTED",
-      "summary": "gates pass, but the launch news item overstates scope and two gate holes let overselling reach outsiders",
-      "attempt": 1,
-      "acceptance_met": "3/5",
-      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-024-03fa311.md"
-    },
-    {
-      "task": "T-024",
-      "date": "2026-10-17",
-      "verdict": "CHANGES_REQUESTED",
-      "summary": "launch item and evidence ceiling fixed, but the overselling gate still lets affirmative overselling through (negation window, missing stems, NFC)",
-      "attempt": 2,
-      "acceptance_met": "4/5",
-      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-024-2be79de.md"
     }
   ],
   "research": {
