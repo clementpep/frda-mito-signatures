@@ -349,7 +349,7 @@ tasks:
   - id: T-027
     title: Extract reproduction targets from Nachun et al. 2018 (GSE102008)
     milestone: M1
-    status: changes_requested
+    status: done
     priority: 1
     kind: reproduction
     track: main
@@ -363,7 +363,7 @@ tasks:
     notes:
       - "Verifier attempt 1 (autonomy/verifications/T-027-2d93454.md): fix RT-005 published_value (not verbatim). Non-blocking, to take in the same fix: add MCMC 10 000 iterations / seed 12 345 to authors_method (paper Methods); note paper says 'GO Molecular Process 2015' (likely Molecular Function; typo in paper); add an overlap/sign-concordance threshold and a rule for 'matched module' / 'top enriched terms' BEFORE reproducing; RT-004 has no criterion of its own; YAML anchors to avoid drift; header still says 'filled by T-003'."
     attempts: 1
-    verification: autonomy/verifications/T-027-2d93454.md
+    verification: autonomy/verifications/T-027-514b2a1.md
 
   - id: T-028
     title: QC and reproduction of the GSE102008 headline results
@@ -379,6 +379,8 @@ tasks:
       - The matrix used (GEO series matrix or non-normalised file) and the normalisation are stated and justified against the paper's methods.
       - Reproduction pipeline registered and reproducible (analysis_kind=reproduction); claims reproduced or refuted with source, checks and limitations; statistics on individuals with covariates handled as the paper did (its methods - age and other collinear variables regressed out before the phenotype regressions, ComBat for batch in the networks only; quoted with location), then as we would; the cohort count gap from T-026 carried into the comparison.
       - docs/reproductions/GSE102008.md — published vs obtained side by side, overlap metrics for gene lists, each gap explained.
+    notes:
+      - "Verifier T-027 attempt 2 (autonomy/verifications/T-027-514b2a1.md), non-blocking: fetch Supplementary Tables S2 (DE lists) and S5 (module genes) - without them overlap criteria = NOT reproduced; thresholds (Jaccard >= 0.3, sign concordance >= 0.9 on >= 50 genes, factor 2/3, duration <= 50) are fixed, do not change; report chance Jaccard; RT-005 location holds an editorial note on the truncated quote (cosmetic); run report wording on RT-004/RT-008-009 differs from the stricter YAML text (YAML is authoritative)."
 
   - id: T-029
     title: Preregister the clinical association analysis (PR-003)
