@@ -18,3 +18,8 @@ pipelines:
     command: python pipelines/p002_gse102008_metadata.py --out {out}
     results_dir: results/P-002-gse102008-metadata
     description: GSM-level sample metadata of the blood cohort GSE102008 (series-matrix header only)
+  - id: P-003
+    task: T-002
+    command: python pipelines/p003_qc.py --out {out}
+    results_dir: results/P-003-qc
+    description: QC of GSE104288 and GSE145115 (correlation outliers, PCA, inferred sex)

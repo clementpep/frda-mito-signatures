@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-08T05:57:42+00:00",
-  "commit": "207e264386374f4a325697805ba450f88f6235c7",
+  "generated_at": "2026-11-09T01:50:14+00:00",
+  "commit": "7f4760870788e442c498a70402440a07a5798175",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -18,8 +18,8 @@
   "progress": {
     "total": 52,
     "done": 10,
-    "in_review": 0,
-    "ready": 31,
+    "in_review": 1,
+    "ready": 30,
     "changes_requested": 0,
     "blocked": 0,
     "needs_human": 1,
@@ -176,7 +176,7 @@
       "id": "T-002",
       "title": "Quality control of both matrices",
       "milestone": "M1",
-      "status": "ready",
+      "status": "in_review",
       "kind": "qc",
       "track": "main"
     },

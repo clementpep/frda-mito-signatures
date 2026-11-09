@@ -228,7 +228,7 @@ tasks:
   - id: T-002
     title: Quality control of both matrices
     milestone: M1
-    status: ready
+    status: in_review
     priority: 2
     kind: qc
     track: main

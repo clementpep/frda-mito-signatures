@@ -1,0 +1,103 @@
+{
+  "pipeline": "P-003",
+  "task": "T-002",
+  "analysis_kind": "qc",
+  "preregistration": null,
+  "code_sha": "7f4760870788e442c498a70402440a07a5798175",
+  "created_at": "2026-11-09T01:48:59+00:00",
+  "inputs": [
+    {
+      "dataset": "GSE104288",
+      "file": "GSE104288_DESeq_counts.txt.gz",
+      "sha256": "8d497ec78ae6a62a1ad2077b49901d14860da1ca403943c968fc68a39f750d8f"
+    },
+    {
+      "dataset": "GSE145115",
+      "file": "GSE145115_counts_all_samples_normalised.txt.gz",
+      "sha256": "9b19865fddfa8f282fd8aac82b12853ee917788a1e2bc8796bcec3d248c59f83"
+    },
+    {
+      "dataset": "GSE104288",
+      "file": "results/P-001-sample-metadata/GSE104288_samples.json",
+      "sha256": ""
+    }
+  ],
+  "params": {
+    "min_median": 10.0,
+    "iqr_k": 3.0,
+    "male_min": 3.0,
+    "female_max": 1.0,
+    "y_genes": [
+      "RPS4Y1",
+      "DDX3Y",
+      "KDM5D",
+      "UTY",
+      "EIF1AY"
+    ],
+    "transform": "log2(x+1)",
+    "similarity": "spearman"
+  },
+  "independent_units": {
+    "GSE104288:FRDA": 18,
+    "GSE104288:control": 17,
+    "GSE145115:FRDA_untreated": 1,
+    "GSE145115:FRDA_DMSO": 1,
+    "GSE145115:FRDA_A196_low": 1,
+    "GSE145115:FRDA_A196_mid": 1,
+    "GSE145115:FRDA_A196_high": 1,
+    "GSE145115:FRDA_SGC2043": 1,
+    "GSE145115:control_untreated": 1,
+    "GSE145115:control_DMSO": 1
+  },
+  "environment": {
+    "python": "3.13.18",
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1",
+    "statsmodels": "0.15.0",
+    "matplotlib": "3.11.2",
+    "frda": "0.1.0"
+  },
+  "outputs": [
+    {
+      "path": "GSE104288_pca.csv",
+      "sha256": "ff4496134b91174d8917530a42b8cbd8f370d4a94fd65e74fbb44029ea0a449b"
+    },
+    {
+      "path": "GSE104288_qc.json",
+      "sha256": "052cb819e39f7f0f23d75096ef4093cdfc40b5b2c23c5d97b23a38f25c24ffda"
+    },
+    {
+      "path": "GSE104288_qc.png",
+      "sha256": "52cf6d9df7945bb89ea6a2cc6f978e16c43aa8a7d5c338fa93df7ab2c857c449"
+    },
+    {
+      "path": "GSE104288_sex.png",
+      "sha256": "3bd1a1284a0ad0c3bb3f62a7c70fbc150fc34d11a5f79bc8eaf516384959fd43"
+    },
+    {
+      "path": "GSE104288_spearman.csv",
+      "sha256": "980391621964d2048507ca482b6bbde388e354c89c39082fd08f0189368c9b82"
+    },
+    {
+      "path": "GSE145115_pca.csv",
+      "sha256": "107251c12e8bf3e66a549a9278d85df8e47ff21d24ba1c4319778131c550bfcd"
+    },
+    {
+      "path": "GSE145115_qc.json",
+      "sha256": "24e5ae9693dd68bd3a9cca8a2aed36e725eeb6d04d14515f492bf0ff817bf69e"
+    },
+    {
+      "path": "GSE145115_qc.png",
+      "sha256": "6a42fab9c9c6946bd320dbec43a8dc1fb0fb244f8bee57bd84c89604649554b5"
+    },
+    {
+      "path": "GSE145115_sex.png",
+      "sha256": "3280728a1e9786f3e34c4f5b87ec60736a8c4ec5edddb919b8daa44d18ccdf36"
+    },
+    {
+      "path": "GSE145115_spearman.csv",
+      "sha256": "8df9e59006d1d0a71a8cd4584843a96fb35873d1339a22cde4268125508e998e"
+    }
+  ]
+}

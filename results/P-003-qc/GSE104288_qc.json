@@ -1,0 +1,751 @@
+{
+  "dataset": "GSE104288",
+  "library_sum_range": [
+    20518400.0,
+    32158100.0
+  ],
+  "n_genes_kept_median_ge_10": 13983,
+  "n_genes_total": 16531,
+  "n_samples": 35,
+  "outlier_rule": {
+    "flagged": [],
+    "k": 3.0,
+    "q1": 0.938648,
+    "q3": 0.953331,
+    "score": "median Spearman correlation to the other samples (log2(x+1), kept genes)",
+    "threshold": 0.8946
+  },
+  "pca_associations": {
+    "PC1": {
+      "kruskal_p_group": 0.0174847,
+      "mannwhitney_p_inferred_sex": 0.95675,
+      "spearman_p_age": 0.441775,
+      "spearman_rho_age": 0.134305,
+      "variance_explained": 0.151016
+    },
+    "PC2": {
+      "kruskal_p_group": 0.00171581,
+      "mannwhitney_p_inferred_sex": 0.239979,
+      "spearman_p_age": 0.469152,
+      "spearman_rho_age": 0.126455,
+      "variance_explained": 0.132427
+    },
+    "PC3": {
+      "kruskal_p_group": 0.00214448,
+      "mannwhitney_p_inferred_sex": 0.0197006,
+      "spearman_p_age": 0.0953016,
+      "spearman_rho_age": 0.286415,
+      "variance_explained": 0.0902103
+    },
+    "PC4": {
+      "kruskal_p_group": 0.276082,
+      "mannwhitney_p_inferred_sex": 0.00055478,
+      "spearman_p_age": 0.39694,
+      "spearman_rho_age": -0.147764,
+      "variance_explained": 0.0643457
+    },
+    "PC5": {
+      "kruskal_p_group": 0.620548,
+      "mannwhitney_p_inferred_sex": 0.870756,
+      "spearman_p_age": 0.958565,
+      "spearman_rho_age": 0.00911258,
+      "variance_explained": 0.0579448
+    }
+  },
+  "samples": {
+    "C1650": {
+      "age_years": 37.0,
+      "genes_detected_gt0": 16065,
+      "group": "control",
+      "inferred_sex": "female",
+      "library_sum": 23695700.0,
+      "median_spearman_same_group": 0.966996,
+      "median_spearman_to_others": 0.961707,
+      "outlier_flag": false,
+      "pc": {
+        "PC1": -23.9027,
+        "PC2": 5.5864,
+        "PC3": -17.6031,
+        "PC4": -5.70696,
+        "PC5": 4.53587
+      },
+      "xist_log2": 9.34881,
+      "y_score": 0.42808
+    },
+    "C2036": {
+      "age_years": 11.0,
+      "genes_detected_gt0": 15987,
+      "group": "control",
+      "inferred_sex": "female",
+      "library_sum": 24188200.0,
+      "median_spearman_same_group": 0.968821,
+      "median_spearman_to_others": 0.956264,
+      "outlier_flag": false,
+      "pc": {
+        "PC1": -13.6977,
+        "PC2": -15.5466,
+        "PC3": -35.2844,
+        "PC4": -2.90977,
+        "PC5": 9.40167
+      },
+      "xist_log2": 9.85809,
+      "y_score": 0.186144
+    },
+    "C2153": {
+      "age_years": 40.0,
+      "genes_detected_gt0": 15909,
+      "group": "control",
+      "inferred_sex": "female",
+      "library_sum": 24890200.0,
+      "median_spearman_same_group": 0.959964,
+      "median_spearman_to_others": 0.951239,
+      "outlier_flag": false,
+      "pc": {
+        "PC1": -5.79118,
+        "PC2": -23.05,
+        "PC3": -34.3353,
+        "PC4": 17.3236,
+        "PC5": 3.3066
+      },
+      "xist_log2": 10.1879,
+      "y_score": 0.224184
+    },
+    "C2169": {
+      "age_years": 52.0,
+      "genes_detected_gt0": 16105,
+      "group": "control",
+      "inferred_sex": "male",
+      "library_sum": 23745300.0,
+      "median_spearman_same_group": 0.953805,
+      "median_spearman_to_others": 0.949922,
+      "outlier_flag": false,
+      "pc": {
+        "PC1": 1.12181,
+        "PC2": -37.082,
+        "PC3": 10.4765,
+        "PC4": 8.86001,
+        "PC5": -15.9917
+      },
+      "xist_log2": 0.0,
+      "y_score": 10.1497
+    },
+    "C21808": {
+      "age_years": 0.00273785,
+      "genes_detected_gt0": 16222,
+      "group": "control",
+      "inferred_sex": "male",
+      "library_sum": 20518400.0,
+      "median_spearman_same_group": 0.953842,
+      "median_spearman_to_others": 0.942544,
+      "outlier_flag": false,
+      "pc": {
+        "PC1": -16.4235,
+        "PC2": -2.02698,
+        "PC3": 2.35328,
+        "PC4": 31.571,
+        "PC5": 17.2215
+      },
+      "xist_log2": 0.0,
+      "y_score": 10.2167
+    },
+    "C2671": {
+      "age_years": 47.0,
+      "genes_detected_gt0": 16074,
+      "group": "control",
+      "inferred_sex": "female",
+      "library_sum": 22488700.0,
+      "median_spearman_same_group": 0.959472,
+      "median_spearman_to_others": 0.953181,
+      "outlier_flag": false,
+      "pc": {
+        "PC1": -8.93873,
+        "PC2": 4.13071,
+        "PC3": -34.6253,
+        "PC4": -12.3209,
+        "PC5": 20.6377
+      },
+      "xist_log2": 10.2573,
+      "y_score": 0.0
+    },
+    "C288": {
+      "age_years": 64.0,
+      "genes_detected_gt0": 16109,
+      "group": "control",
+      "inferred_sex": "male",
+      "library_sum": 23306800.0,
+      "median_spearman_same_group": 0.962471,
+      "median_spearman_to_others": 0.955542,
+      "outlier_flag": false,
+      "pc": {
+        "PC1": -30.6881,
+        "PC2": 5.70124,
+        "PC3": -12.3258,
+        "PC4": 0.427525,
+        "PC5": 12.1046
+      },
+      "xist_log2": 0.0,
+      "y_score": 10.1166
+    },
+    "C3348": {
+      "age_years": 10.0,
+      "genes_detected_gt0": 15977,
+      "group": "control",
+      "inferred_sex": "male",
+      "library_sum": 24180000.0,
+      "median_spearman_same_group": 0.962867,
+      "median_spearman_to_others": 0.95348,
+      "outlier_flag": false,
+      "pc": {
+        "PC1": -29.8652,
+        "PC2": -12.297,
+        "PC3": -8.60329,
+        "PC4": 8.85126,
+        "PC5": 25.9862
+      },
+      "xist_log2": 0.0,
+      "y_score": 10.1785
+    },
+    "C3652": {
+      "age_years": 24.0,
+      "genes_detected_gt0": 16133,
+      "group": "control",
+      "inferred_sex": "male",
+      "library_sum": 22769800.0,
+      "median_spearman_same_group": 0.967044,
+      "median_spearman_to_others": 0.951322,
+      "outlier_flag": false,
+      "pc": {
+        "PC1": -22.0315,
+        "PC2": -12.8326,
+        "PC3": -12.9995,
+        "PC4": 23.2844,
+        "PC5": 0.27257
+      },
+      "xist_log2": 0.0,
+      "y_score": 10.0679
+    },
+    "C3956": {
+      "age_years": 27.0,
+      "genes_detected_gt0": 16043,
+      "group": "control",
+      "inferred_sex": "female",
+      "library_sum": 22947000.0,
+      "median_spearman_same_group": 0.964495,
+      "median_spearman_to_others": 0.955819,
+      "outlier_flag": false,
+      "pc": {
+        "PC1": -16.0283,
+        "PC2": -2.72927,
+        "PC3": -37.5533,
+        "PC4": 2.65297,
+        "PC5": 6.3314
+      },
+      "xist_log2": 10.0604,
+      "y_score": 0.624688
+    },
+    "C5879": {
+      "age_years": 48.0,
+      "genes_detected_gt0": 16059,
+      "group": "control",
+      "inferred_sex": "female",
+      "library_sum": 32158100.0,
+      "median_spearman_same_group": 0.947047,
+      "median_spearman_to_others": 0.942474,
+      "outlier_flag": false,
+      "pc": {
+        "PC1": -3.81368,
+        "PC2": -51.6579,
+        "PC3": 10.0991,
+        "PC4": -30.5132,
+        "PC5": -11.2204
+      },
+      "xist_log2": 10.3942,
+      "y_score": 0.326112
+    },
+    "C7492": {
+      "age_years": 17.0,
+      "genes_detected_gt0": 16044,
+      "group": "control",
+      "inferred_sex": "male",
+      "library_sum": 23426000.0,
+      "median_spearman_same_group": 0.964582,
+      "median_spearman_to_others": 0.953875,
+      "outlier_flag": false,
+      "pc": {
+        "PC1": -22.6399,
+        "PC2": -3.98854,
+        "PC3": -17.4661,
+        "PC4": 26.0773,
+        "PC5": -20.705
+      },
+      "xist_log2": 0.0,
+      "y_score": 10.1778
+    },
+    "C7522": {
+      "age_years": 19.0,
+      "genes_detected_gt0": 16144,
+      "group": "control",
+      "inferred_sex": "female",
+      "library_sum": 25951800.0,
+      "median_spearman_same_group": 0.961212,
+      "median_spearman_to_others": 0.954948,
+      "outlier_flag": false,
+      "pc": {
+        "PC1": -22.7207,
+        "PC2": -29.6253,
+        "PC3": 7.87018,
+        "PC4": -3.95456,
+        "PC5": 8.8381
+      },
+      "xist_log2": 10.1155,
+      "y_score": 0.694345
+    },
+    "C7525": {
+      "age_years": 22.0,
+      "genes_detected_gt0": 16080,
+      "group": "control",
+      "inferred_sex": "female",
+      "library_sum": 24077000.0,
+      "median_spearman_same_group": 0.941147,
+      "median_spearman_to_others": 0.938049,
+      "outlier_flag": false,
+      "pc": {
+        "PC1": 18.0379,
+        "PC2": -60.1424,
+        "PC3": -6.7161,
+        "PC4": -22.614,
+        "PC5": -34.7919
+      },
+      "xist_log2": 10.0679,
+      "y_score": 0.3754
+    },
+    "C8399": {
+      "age_years": 19.0,
+      "genes_detected_gt0": 16023,
+      "group": "control",
+      "inferred_sex": "ambiguous",
+      "library_sum": 25686600.0,
+      "median_spearman_same_group": 0.958846,
+      "median_spearman_to_others": 0.950824,
+      "outlier_flag": false,
+      "pc": {
+        "PC1": -8.56326,
+        "PC2": -16.5832,
+        "PC3": -3.86433,
+        "PC4": 18.8322,
+        "PC5": -3.05595
+      },
+      "xist_log2": 9.09373,
+      "y_score": 1.35048
+    },
+    "C_UF": {
+      "age_years": 35.0,
+      "genes_detected_gt0": 16095,
+      "group": "control",
+      "inferred_sex": "female",
+      "library_sum": 25723200.0,
+      "median_spearman_same_group": 0.949355,
+      "median_spearman_to_others": 0.944398,
+      "outlier_flag": false,
+      "pc": {
+        "PC1": -37.4562,
+        "PC2": -14.3798,
+        "PC3": -8.13334,
+        "PC4": -25.0711,
+        "PC5": 26.1297
+      },
+      "xist_log2": 10.1057,
+      "y_score": 0.21495
+    },
+    "C_UM": {
+      "age_years": 39.0,
+      "genes_detected_gt0": 15959,
+      "group": "control",
+      "inferred_sex": "male",
+      "library_sum": 23636200.0,
+      "median_spearman_same_group": 0.943849,
+      "median_spearman_to_others": 0.935569,
+      "outlier_flag": false,
+      "pc": {
+        "PC1": -8.50038,
+        "PC2": -1.48739,
+        "PC3": 3.0188,
+        "PC4": 38.3531,
+        "PC5": -58.1978
+      },
+      "xist_log2": 1.10959,
+      "y_score": 8.43138
+    },
+    "F130": {
+      "age_years": 56.0,
+      "genes_detected_gt0": 16194,
+      "group": "FRDA",
+      "inferred_sex": "male",
+      "library_sum": 22599600.0,
+      "median_spearman_same_group": 0.930778,
+      "median_spearman_to_others": 0.93599,
+      "outlier_flag": false,
+      "pc": {
+        "PC1": -36.5961,
+        "PC2": -7.71898,
+        "PC3": 60.565,
+        "PC4": -2.29445,
+        "PC5": -3.14774
+      },
+      "xist_log2": 0.0,
+      "y_score": 10.2126
+    },
+    "F156": {
+      "age_years": 41.0,
+      "genes_detected_gt0": 16144,
+      "group": "FRDA",
+      "inferred_sex": "male",
+      "library_sum": 28307800.0,
+      "median_spearman_same_group": 0.926364,
+      "median_spearman_to_others": 0.928331,
+      "outlier_flag": false,
+      "pc": {
+        "PC1": -22.4202,
+        "PC2": -25.3383,
+        "PC3": 71.6248,
+        "PC4": 3.41241,
+        "PC5": 25.5758
+      },
+      "xist_log2": 0.0,
+      "y_score": 10.329
+    },
+    "F188": {
+      "age_years": 47.0,
+      "genes_detected_gt0": 16201,
+      "group": "FRDA",
+      "inferred_sex": "male",
+      "library_sum": 22594400.0,
+      "median_spearman_same_group": 0.948402,
+      "median_spearman_to_others": 0.940722,
+      "outlier_flag": false,
+      "pc": {
+        "PC1": 55.1871,
+        "PC2": 28.231,
+        "PC3": 1.12927,
+        "PC4": -3.88101,
+        "PC5": -2.05704
+      },
+      "xist_log2": 0.887176,
+      "y_score": 9.93408
+    },
+    "F203": {
+      "age_years": 31.0,
+      "genes_detected_gt0": 16004,
+      "group": "FRDA",
+      "inferred_sex": "female",
+      "library_sum": 22959000.0,
+      "median_spearman_same_group": 0.9531,
+      "median_spearman_to_others": 0.952577,
+      "outlier_flag": false,
+      "pc": {
+        "PC1": 9.92527,
+        "PC2": 22.875,
+        "PC3": -18.0639,
+        "PC4": -3.01276,
+        "PC5": -27.3234
+      },
+      "xist_log2": 8.94512,
+      "y_score": 0.68938
+    },
+    "F281": {
+      "age_years": 19.0,
+      "genes_detected_gt0": 16051,
+      "group": "FRDA",
+      "inferred_sex": "male",
+      "library_sum": 25109600.0,
+      "median_spearman_same_group": 0.950132,
+      "median_spearman_to_others": 0.957827,
+      "outlier_flag": false,
+      "pc": {
+        "PC1": -7.77176,
+        "PC2": 11.8942,
+        "PC3": 13.8093,
+        "PC4": 30.8881,
+        "PC5": -0.535506
+      },
+      "xist_log2": 0.0,
+      "y_score": 10.0947
+    },
+    "F3665": {
+      "age_years": 13.0,
+      "genes_detected_gt0": 16186,
+      "group": "FRDA",
+      "inferred_sex": "female",
+      "library_sum": 24570000.0,
+      "median_spearman_same_group": 0.939642,
+      "median_spearman_to_others": 0.943053,
+      "outlier_flag": false,
+      "pc": {
+        "PC1": -12.0686,
+        "PC2": 3.22415,
+        "PC3": -4.74919,
+        "PC4": -52.4728,
+        "PC5": -15.5538
+      },
+      "xist_log2": 9.8695,
+      "y_score": 0.0
+    },
+    "F4078": {
+      "age_years": 30.0,
+      "genes_detected_gt0": 15932,
+      "group": "FRDA",
+      "inferred_sex": "male",
+      "library_sum": 21884200.0,
+      "median_spearman_same_group": 0.93037,
+      "median_spearman_to_others": 0.927254,
+      "outlier_flag": false,
+      "pc": {
+        "PC1": 64.9096,
+        "PC2": 1.34524,
+        "PC3": -36.8531,
+        "PC4": 1.48197,
+        "PC5": 29.1327
+      },
+      "xist_log2": 2.56878,
+      "y_score": 9.85221
+    },
+    "F4192": {
+      "age_years": 33.0,
+      "genes_detected_gt0": 16132,
+      "group": "FRDA",
+      "inferred_sex": "male",
+      "library_sum": 22034600.0,
+      "median_spearman_same_group": 0.927202,
+      "median_spearman_to_others": 0.923382,
+      "outlier_flag": false,
+      "pc": {
+        "PC1": -19.0418,
+        "PC2": 72.9795,
+        "PC3": 19.1482,
+        "PC4": -26.2539,
+        "PC5": -0.709208
+      },
+      "xist_log2": 4.25112,
+      "y_score": 9.79881
+    },
+    "F4230": {
+      "age_years": 28.0,
+      "genes_detected_gt0": 16143,
+      "group": "FRDA",
+      "inferred_sex": "ambiguous",
+      "library_sum": 23452400.0,
+      "median_spearman_same_group": 0.948402,
+      "median_spearman_to_others": 0.949648,
+      "outlier_flag": false,
+      "pc": {
+        "PC1": -7.1954,
+        "PC2": 14.7824,
+        "PC3": -2.06853,
+        "PC4": -24.2132,
+        "PC5": -26.4508
+      },
+      "xist_log2": 9.92369,
+      "y_score": 1.37241
+    },
+    "F4259": {
+      "age_years": 37.0,
+      "genes_detected_gt0": 16146,
+      "group": "FRDA",
+      "inferred_sex": "male",
+      "library_sum": 24006900.0,
+      "median_spearman_same_group": 0.949366,
+      "median_spearman_to_others": 0.943674,
+      "outlier_flag": false,
+      "pc": {
+        "PC1": 53.6215,
+        "PC2": 0.226283,
+        "PC3": 14.4927,
+        "PC4": -5.30623,
+        "PC5": -7.85027
+      },
+      "xist_log2": 0.0,
+      "y_score": 10.0094
+    },
+    "F4497": {
+      "age_years": 44.0,
+      "genes_detected_gt0": 16282,
+      "group": "FRDA",
+      "inferred_sex": "female",
+      "library_sum": 22572100.0,
+      "median_spearman_same_group": 0.949204,
+      "median_spearman_to_others": 0.945221,
+      "outlier_flag": false,
+      "pc": {
+        "PC1": 45.2019,
+        "PC2": -9.06468,
+        "PC3": 11.4456,
+        "PC4": -14.4156,
+        "PC5": -0.819972
+      },
+      "xist_log2": 10.4634,
+      "y_score": 0.720818
+    },
+    "F4509": {
+      "age_years": 36.0,
+      "genes_detected_gt0": 16242,
+      "group": "FRDA",
+      "inferred_sex": "male",
+      "library_sum": 22714000.0,
+      "median_spearman_same_group": 0.950471,
+      "median_spearman_to_others": 0.951192,
+      "outlier_flag": false,
+      "pc": {
+        "PC1": -9.38161,
+        "PC2": 47.802,
+        "PC3": 9.16552,
+        "PC4": 13.512,
+        "PC5": -7.26221
+      },
+      "xist_log2": 0.884713,
+      "y_score": 10.0455
+    },
+    "F4627": {
+      "age_years": 50.0,
+      "genes_detected_gt0": 16046,
+      "group": "FRDA",
+      "inferred_sex": "female",
+      "library_sum": 27219000.0,
+      "median_spearman_same_group": 0.949892,
+      "median_spearman_to_others": 0.958477,
+      "outlier_flag": false,
+      "pc": {
+        "PC1": -17.4515,
+        "PC2": 4.79514,
+        "PC3": 3.64156,
+        "PC4": -5.07298,
+        "PC5": 4.58194
+      },
+      "xist_log2": 9.78188,
+      "y_score": 0.0
+    },
+    "F4654": {
+      "age_years": 19.0,
+      "genes_detected_gt0": 16087,
+      "group": "FRDA",
+      "inferred_sex": "male",
+      "library_sum": 22663500.0,
+      "median_spearman_same_group": 0.935739,
+      "median_spearman_to_others": 0.93283,
+      "outlier_flag": false,
+      "pc": {
+        "PC1": 56.3714,
+        "PC2": -28.7419,
+        "PC3": 28.8706,
+        "PC4": 2.13947,
+        "PC5": 20.255
+      },
+      "xist_log2": 0.0,
+      "y_score": 9.84844
+    },
+    "F4675": {
+      "age_years": 28.0,
+      "genes_detected_gt0": 16140,
+      "group": "FRDA",
+      "inferred_sex": "male",
+      "library_sum": 22250100.0,
+      "median_spearman_same_group": 0.950471,
+      "median_spearman_to_others": 0.936097,
+      "outlier_flag": false,
+      "pc": {
+        "PC1": 58.9109,
+        "PC2": 25.3116,
+        "PC3": 9.73984,
+        "PC4": 23.3164,
+        "PC5": -3.5083
+      },
+      "xist_log2": 0.0,
+      "y_score": 9.8916
+    },
+    "F66": {
+      "age_years": 70.0,
+      "genes_detected_gt0": 16134,
+      "group": "FRDA",
+      "inferred_sex": "male",
+      "library_sum": 22964900.0,
+      "median_spearman_same_group": 0.945663,
+      "median_spearman_to_others": 0.945465,
+      "outlier_flag": false,
+      "pc": {
+        "PC1": -6.92153,
+        "PC2": 50.9507,
+        "PC3": 12.04,
+        "PC4": 14.6227,
+        "PC5": 16.9371
+      },
+      "xist_log2": 0.0,
+      "y_score": 10.1674
+    },
+    "F68": {
+      "age_years": 21.0,
+      "genes_detected_gt0": 16137,
+      "group": "FRDA",
+      "inferred_sex": "female",
+      "library_sum": 21357300.0,
+      "median_spearman_same_group": 0.943388,
+      "median_spearman_to_others": 0.937363,
+      "outlier_flag": false,
+      "pc": {
+        "PC1": -10.8749,
+        "PC2": 59.5339,
+        "PC3": -1.30622,
+        "PC4": -23.7193,
+        "PC5": -7.65496
+      },
+      "xist_log2": 10.2797,
+      "y_score": 0.215717
+    },
+    "F88": {
+      "age_years": 50.0,
+      "genes_detected_gt0": 16050,
+      "group": "FRDA",
+      "inferred_sex": "female",
+      "library_sum": 23553900.0,
+      "median_spearman_same_group": 0.94652,
+      "median_spearman_to_others": 0.939247,
+      "outlier_flag": false,
+      "pc": {
+        "PC1": 57.4972,
+        "PC2": -5.07665,
+        "PC3": 3.06053,
+        "PC4": -1.87376,
+        "PC5": 15.5877
+      },
+      "xist_log2": 10.2168,
+      "y_score": 0.614658
+    }
+  },
+  "sex_check": {
+    "by_group": {
+      "FRDA": {
+        "ambiguous": 1,
+        "female": 6,
+        "male": 11
+      },
+      "control": {
+        "ambiguous": 1,
+        "female": 9,
+        "male": 7
+      }
+    },
+    "counts": {
+      "ambiguous": 2,
+      "female": 15,
+      "male": 18
+    },
+    "genes_found": {
+      "DDX3Y": "DDX3Y",
+      "EIF1AY": "EIF1AY",
+      "KDM5D": "KDM5D",
+      "RPS4Y1": "RPS4Y1",
+      "UTY": "UTY",
+      "XIST": "XIST"
+    },
+    "rule": "y_score = mean log2(x+1) of ['RPS4Y1', 'DDX3Y', 'KDM5D', 'UTY', 'EIF1AY']; male >= 3.0, female < 1.0, else ambiguous",
+    "xist_in_matrix": true
+  }
+}
