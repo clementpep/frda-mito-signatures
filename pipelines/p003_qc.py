@@ -25,6 +25,7 @@ import numpy as np  # noqa: E402
 import pandas as pd  # noqa: E402
 from scipy import stats  # noqa: E402
 
+from frda.hashing import sha256_file  # noqa: E402
 from frda.io import load_matrix  # noqa: E402
 from frda.provenance import write_json, write_run  # noqa: E402
 
@@ -32,8 +33,8 @@ MIN_MEDIAN = 10.0
 IQR_K = 3.0
 MALE_MIN, FEMALE_MAX = 3.0, 1.0
 Y_GENES = ["RPS4Y1", "DDX3Y", "KDM5D", "UTY", "EIF1AY"]
-# Ensembl gene ids of the sex genes (for GSE145115, indexed by Ensembl id). Ids are not
-# asserted from memory alone: the report checks the Y/XIST pattern is internally coherent.
+# Ensembl gene ids of the sex genes (for GSE145115, indexed by Ensembl id). They were written
+# from memory and NOT confirmed against Ensembl: to be checked by the verifier.
 ENSEMBL = {
     "XIST": "ENSG00000229807",
     "RPS4Y1": "ENSG00000129824",
@@ -43,6 +44,7 @@ ENSEMBL = {
     "EIF1AY": "ENSG00000198692",
 }
 DATASETS = ["GSE104288", "GSE145115"]
+P001 = Path(__file__).resolve().parents[1] / "results/P-001-sample-metadata/GSE104288_samples.json"
 
 
 def sex_genes(df: pd.DataFrame) -> dict[str, str]:
@@ -87,7 +89,10 @@ def qc_dataset(dataset: str, out: Path, ages: dict[str, float]) -> tuple[dict, l
     scores, var = pca(lk.to_numpy().T)
     # sex
     sg = sex_genes(df)
-    ycols = [sg[g] for g in Y_GENES if g in sg]
+    missing = [g for g in Y_GENES if g not in sg]
+    if missing:
+        raise SystemExit(f"{dataset}: Y genes not found in matrix: {missing}")
+    ycols = [sg[g] for g in Y_GENES]
     yscore = logd.loc[ycols].mean(axis=0)
     xist = (
         logd.loc[sg["XIST"]] if "XIST" in sg else None
@@ -126,10 +131,10 @@ def qc_dataset(dataset: str, out: Path, ages: dict[str, float]) -> tuple[dict, l
     for j in range(scores.shape[1]):
         row = {"variance_explained": float(var[j])}
         ug = sorted(set(grp))
-        if len(ug) > 1:
+        if len(ug) > 1 and all(g.independent_units >= 3 for g in manifest.groups):
             row["kruskal_p_group"] = float(stats.kruskal(*[scores[grp == g, j] for g in ug]).pvalue)
         us = sorted(set(sx) - {"ambiguous"})
-        if len(us) == 2:
+        if len(us) == 2 and all(g.independent_units >= 3 for g in manifest.groups):
             row["mannwhitney_p_inferred_sex"] = float(
                 stats.mannwhitneyu(
                     scores[sx == us[0], j], scores[sx == us[1], j], alternative="two-sided"
@@ -256,7 +261,7 @@ def main() -> None:
         {
             "dataset": "GSE104288",
             "file": "results/P-001-sample-metadata/GSE104288_samples.json",
-            "sha256": "",
+            "sha256": sha256_file(P001),
         }
     )
     write_run(

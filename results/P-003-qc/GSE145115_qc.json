@@ -19,23 +19,18 @@
   },
   "pca_associations": {
     "PC1": {
-      "kruskal_p_group": 0.0144776,
       "variance_explained": 0.439196
     },
     "PC2": {
-      "kruskal_p_group": 0.243225,
       "variance_explained": 0.125327
     },
     "PC3": {
-      "kruskal_p_group": 0.595166,
       "variance_explained": 0.0644217
     },
     "PC4": {
-      "kruskal_p_group": 0.00422944,
       "variance_explained": 0.0579277
     },
     "PC5": {
-      "kruskal_p_group": 0.71187,
       "variance_explained": 0.0349841
     }
   },
