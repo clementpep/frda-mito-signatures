@@ -228,7 +228,7 @@ tasks:
   - id: T-002
     title: Quality control of both matrices
     milestone: M1
-    status: in_review
+    status: changes_requested
     priority: 2
     kind: qc
     track: main
@@ -239,6 +239,8 @@ tasks:
       - Sex check — XIST and Y-linked genes (e.g. RPS4Y1, DDX3Y) versus declared sex from T-001; every discordance listed.
       - Outlier rule stated before looking (e.g. median correlation < Q1 − 3·IQR) and applied; flagged samples listed, none silently removed.
       - docs/datasets/*.md updated with a QC section and a decision per flagged sample.
+    attempts: 1
+    verification: autonomy/verifications/T-002-5e2821c.md
 
   - id: T-003
     title: Extract reproduction targets from the two seed publications
@@ -865,3 +867,17 @@ tasks:
       - Record treated/untreated and control status of the 8 samples, and state the relevance to the mitochondrial focus.
     notes:
       - "Source autonomy/digests/W-2026-W45.md and data-manifests/candidates.yaml (GSE337925, GSE313540 seen 2026-11-02; GEO pdat 2026-10-26)."
+
+  - id: T-002b
+    title: Amend T-002 acceptance (pipeline id P-003; sex check without declared sex)
+    milestone: M1
+    status: proposed
+    priority: 2
+    kind: qc
+    track: main
+    goal: Align T-002 acceptance text with what is feasible, by supervision decision (RD), not by the worker.
+    acceptance:
+      - T-002 criterion 1 names pipelines/p003_qc.py and results/P-003-qc/ (P-002 is taken by T-026a).
+      - T-002 criterion 2 states that GEO declares no sex (35/35 not provided in P-001) and that the check is inferred sex plus consistency with the C_UF/C_UM title suffix, with an RD recording the change.
+    notes:
+      - "Source autonomy/verifications/T-002-5e2821c.md, blocking finding 2. Non-blocking follow-ups: GSE145115 outlier score pooled over two lines is poorly suited (report within-line score as a deviation, not a rule change); joint Y+XIST sex rule for downstream sensitivity; sex plot with XIST absent draws x=0."
