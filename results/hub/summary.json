@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-08T05:57:42+00:00",
-  "commit": "207e264386374f4a325697805ba450f88f6235c7",
+  "generated_at": "2026-11-09T06:43:20+00:00",
+  "commit": "7f4760870788e442c498a70402440a07a5798175",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -699,6 +699,16 @@
     }
   },
   "news": [
+    {
+      "id": "N-20261109-semaine-w2026-w46",
+      "date": "2026-11-09",
+      "kind": "weekly",
+      "title": "Semaine calme : aucun nouvel article, 9 cibles de reproduction fixées",
+      "body": "**Ce qu'on a fait**\nLa veille bibliographique n'a trouvé aucun nouvel article cette semaine : les 4 trouvés par la recherche étaient déjà dans la\nfile de tri (1287 articles). Aucun nouveau jeu de données public n'est apparu. Côté travail, 9 résultats chiffrés d'une étude\npubliée sur des cellules de patients (Nachun et al., 2018) ont été relevés mot pour mot : ce sont les valeurs que le projet\nessaiera de retrouver avec ses propres calculs.\n\n**Ce que ça veut dire**\nLe projet se prépare à vérifier qu'il sait refaire un résultat déjà publié avant de proposer quoi que ce soit de nouveau.\n\n**Ce que ça ne veut pas dire**\nIl n'y a toujours aucun résultat scientifique du projet : rien n'a encore été recalculé, aucun article n'a été trié. Le projet\nne produit pas de traitement. Aucun conseil médical.\n\n**Et ensuite**\nUne correction demandée par la vérification sur une tâche en cours, puis le tri des articles et la première reproduction.",
+      "evidence": null,
+      "evidence_plain": null,
+      "claims": []
+    },
     {
       "id": "N-20261102-semaine-w2026-w45",
       "date": "2026-11-02",
