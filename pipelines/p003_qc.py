@@ -33,8 +33,9 @@ MIN_MEDIAN = 10.0
 IQR_K = 3.0
 MALE_MIN, FEMALE_MAX = 3.0, 1.0
 Y_GENES = ["RPS4Y1", "DDX3Y", "KDM5D", "UTY", "EIF1AY"]
-# Ensembl gene ids of the sex genes (for GSE145115, indexed by Ensembl id). They were written
-# from memory and NOT confirmed against Ensembl: to be checked by the verifier.
+# Ensembl gene ids of the sex genes (for GSE145115, indexed by Ensembl id). Confirmed by the
+# verifier on 2026-11-09 through NCBI Gene (allowlisted ncbi-eutils): all on the expected
+# chromosome (XIST on X, the five others on Y). Not an Ensembl GRCh38 v98 lookup.
 ENSEMBL = {
     "XIST": "ENSG00000229807",
     "RPS4Y1": "ENSG00000129824",
