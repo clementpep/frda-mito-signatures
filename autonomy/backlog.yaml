@@ -239,8 +239,8 @@ tasks:
       - Sex check — XIST and Y-linked genes (e.g. RPS4Y1, DDX3Y) versus declared sex from T-001; every discordance listed.
       - Outlier rule stated before looking (e.g. median correlation < Q1 − 3·IQR) and applied; flagged samples listed, none silently removed.
       - docs/datasets/*.md updated with a QC section and a decision per flagged sample.
-    attempts: 1
-    verification: autonomy/verifications/T-002-5e2821c.md
+    attempts: 2
+    verification: autonomy/verifications/T-002-7b19596.md
 
   - id: T-003
     title: Extract reproduction targets from the two seed publications
