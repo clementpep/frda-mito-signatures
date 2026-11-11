@@ -239,8 +239,8 @@ tasks:
       - Sex check — XIST and Y-linked genes (e.g. RPS4Y1, DDX3Y) versus declared sex from T-001; every discordance listed.
       - Outlier rule stated before looking (e.g. median correlation < Q1 − 3·IQR) and applied; flagged samples listed, none silently removed.
       - docs/datasets/*.md updated with a QC section and a decision per flagged sample.
-    attempts: 2
-    verification: autonomy/verifications/T-002-7b19596.md
+    attempts: 3
+    verification: autonomy/verifications/T-002-4b5c410.md
 
   - id: T-003
     title: Extract reproduction targets from the two seed publications
@@ -881,3 +881,4 @@ tasks:
       - T-002 criterion 2 states that GEO declares no sex (35/35 not provided in P-001) and that the check is inferred sex plus consistency with the C_UF/C_UM title suffix, with an RD recording the change.
     notes:
       - "Source autonomy/verifications/T-002-5e2821c.md, blocking finding 2. Non-blocking follow-ups: GSE145115 outlier score pooled over two lines is poorly suited (report within-line score as a deviation, not a rule change); joint Y+XIST sex rule for downstream sensitivity; sex plot with XIST absent draws x=0."
+      - "From autonomy/verifications/T-002-4b5c410.md (attempt 3, non-blocking): mark the attempt-1 acceptance table of the run report superseded; 'none with age' -> card wording (PC3 vs age p = 0.095); label the GSE104288 Bonferroni threshold 0.0033 '(post hoc)'; fix missing verb in the GSE145115 outliers bullet; p003_qc.py: raise instead of empty sha256, call check_columns; supervision: frame this as a replacement task with an RD (S5), and reconcile worker.md STEP 2a with P8/RD-003."

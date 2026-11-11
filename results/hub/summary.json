@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-11T01:51:28+00:00",
-  "commit": "0e45416933b5929264eab70c3012a1fd62aa9ddc",
+  "generated_at": "2026-11-11T05:56:57+00:00",
+  "commit": "4b5c410f50b87037a156614026a84ff463689d68",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",
@@ -504,6 +504,15 @@
   "claims": [],
   "verifications": [
     {
+      "task": "T-002",
+      "date": "2026-11-11",
+      "verdict": "CHANGES_REQUESTED",
+      "summary": "No content change since attempt 2 (merge of main + run-report section); acceptance criteria 1-2 still not met as written, no RD amends them",
+      "attempt": 3,
+      "acceptance_met": "2/4",
+      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/T-002-4b5c410.md"
+    },
+    {
       "task": "W-2026-W46",
       "date": "2026-11-10",
       "verdict": "PASS",
@@ -673,15 +682,6 @@
       "attempt": 1,
       "acceptance_met": "3/4",
       "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/L-002-bd88fc5.md"
-    },
-    {
-      "task": "L-001",
-      "date": "2026-10-18",
-      "verdict": "PASS",
-      "summary": "Protocol queries, window counts and seed claims re-verified live against Europe PMC; nothing added to the corpus; no blocking finding",
-      "attempt": 1,
-      "acceptance_met": "4/4",
-      "report_url": "https://github.com/clementpep/frda-mito-signatures/blob/main/autonomy/verifications/L-001-85c1208.md"
     }
   ],
   "research": {
