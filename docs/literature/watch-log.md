@@ -64,3 +64,8 @@ Relevance lines are from titles and the query hit, not from a reading of the ful
 (branch `auto/W-2026-W44`, not on main when this run started) are not repeated here; the window start 2026-10-24 does not reach back to them in full.
 Novelty: no overlap with a claim or lead (no claim, no idea, empty synthesis).
 
+
+## W-2026-W46 (FIRST_PDATE 2026-10-24 -> 2026-11-09, 16-day window overlapping W45 for index lag)
+Both arms run (protocol arm and preprint arm, A1), Q1, Q2, Q3, Q5a, Q5b (`research/search-logs/2026-11-09-watch-w-2026-w46-*.json`).
+Hits: Q1 1, Q2 2, Q5b 1, others 0; preprint arm 0 on all five. All 4 hits were already in the corpus (the four papers added by W-2026-W45): 0 new papers, corpus unchanged at 1287.
+Novelty: no overlap with a claim or lead (0 claims, 0 ideas, empty synthesis).
