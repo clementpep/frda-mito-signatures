@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-11T05:56:57+00:00",
-  "commit": "4b5c410f50b87037a156614026a84ff463689d68",
+  "generated_at": "2026-11-12T01:50:57+00:00",
+  "commit": "b16628f4e95a2a3d1b679fd6394b0f50b42e266c",
   "project": {
     "id": "frda-mito-signatures",
     "title": "FRDA mitochondrial signatures",

@@ -255,7 +255,9 @@ def main() -> None:
         write_json(args.out / f"{ds}_qc.json", res)
         outputs += [f"{ds}_qc.json", *files]
         _, m = load_matrix(ds)
-        inputs.append({"dataset": ds, "file": m.files[0].name, "sha256": m.files[0].sha256 or ""})
+        if not m.files[0].sha256:
+            raise SystemExit(f"{ds}: manifest file {m.files[0].name} has no sha256")
+        inputs.append({"dataset": ds, "file": m.files[0].name, "sha256": m.files[0].sha256})
         for g in m.groups:
             units[f"{ds}:{g.name}"] = g.independent_units
     inputs.append(
