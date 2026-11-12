@@ -228,7 +228,7 @@ tasks:
   - id: T-002
     title: Quality control of both matrices
     milestone: M1
-    status: changes_requested
+    status: needs_human
     priority: 2
     kind: qc
     track: main
@@ -239,8 +239,8 @@ tasks:
       - Sex check — XIST and Y-linked genes (e.g. RPS4Y1, DDX3Y) versus declared sex from T-001; every discordance listed.
       - Outlier rule stated before looking (e.g. median correlation < Q1 − 3·IQR) and applied; flagged samples listed, none silently removed.
       - docs/datasets/*.md updated with a QC section and a decision per flagged sample.
-    attempts: 3
-    verification: autonomy/verifications/T-002-4b5c410.md
+    attempts: 4
+    verification: autonomy/verifications/T-002-14ff557.md
 
   - id: T-003
     title: Extract reproduction targets from the two seed publications
@@ -882,3 +882,4 @@ tasks:
     notes:
       - "Source autonomy/verifications/T-002-5e2821c.md, blocking finding 2. Non-blocking follow-ups: GSE145115 outlier score pooled over two lines is poorly suited (report within-line score as a deviation, not a rule change); joint Y+XIST sex rule for downstream sensitivity; sex plot with XIST absent draws x=0."
       - "From autonomy/verifications/T-002-4b5c410.md (attempt 3, non-blocking): mark the attempt-1 acceptance table of the run report superseded; 'none with age' -> card wording (PC3 vs age p = 0.095); label the GSE104288 Bonferroni threshold 0.0033 '(post hoc)'; fix missing verb in the GSE145115 outliers bullet; p003_qc.py: raise instead of empty sha256, call check_columns; supervision: frame this as a replacement task with an RD (S5), and reconcile worker.md STEP 2a with P8/RD-003."
+      - "From autonomy/verifications/T-002-14ff557.md (attempt 4, NEEDS_HUMAN for max_attempts, supervision arbitration): run report l.26 PC1-PC3 wording vs card (only PC2/PC3 pass post hoc Bonferroni); p003_qc.py validate all manifest sha256 before writing outputs; check_columns, XIST-absent x=0 plot, stale run.json code_sha still open."
