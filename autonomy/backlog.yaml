@@ -243,7 +243,7 @@ tasks:
   - id: T-003
     title: Extract reproduction targets from the two seed publications
     milestone: M1
-    status: ready
+    status: in_review
     priority: 2  # RD-002: the patient line (T-026, T-027) goes first
     kind: reproduction
     track: main

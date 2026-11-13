@@ -1,4 +1,4 @@
-# Published results we try to reproduce (filled by T-003, completed by T-027). One entry per target:
+# Published results we try to reproduce (T-027: RT-001..009; T-003: RT-010..016). One entry per target:
 #   - id: RT-001
 #     pmid: '29125828'
 #     location: Figure / table / section
@@ -7,7 +7,8 @@
 #     dataset: GSE104288
 #     expected_gap: written BEFORE reproducing
 #   columns_needed: data columns the reproduction needs (added by T-027)
-# Source for all RT-*: Nachun et al. 2018, Hum Mol Genet, PMC6097013 (CC BY-NC), full text read through Europe PMC 2026-11-07.
+# Source for RT-001..009: Nachun et al. 2018, Hum Mol Genet, PMC6097013 (CC BY-NC), full text read through Europe PMC 2026-11-07.
+# Source for RT-010..013: Napierala et al. 2017, Dis Model Mech, PMC5719256 (CC BY); RT-014..016: Vilema-Enríquez et al. 2020, J Biol Chem, PMC7939392 (CC BY); full texts read through Europe PMC 2026-11-13.
 targets:
 - id: RT-001
   pmid: '29790959'
@@ -293,3 +294,332 @@ targets:
     module with negative association with FDS (log BF > 0.5) whose top enriched terms include the same
     category (respiratory chain complex for yellow; mitochondrial translation for red). Anything else
     is ''not reproduced'', reported as such.'
+- id: RT-010
+  pmid: '29125828'
+  location: Results, 'RNA sequencing identifies differentially expressed genes in CTRL and FRDA primary
+    fibroblasts' (paragraph 2; Table S1 cited)
+  published_value: FXN expression is significantly decreased ∼2.3-fold in FRDA samples relative to CTRL
+    samples (P=4×10−12)
+  authors_method: 'RNA-seq of 35 primary skin fibroblast lines, one per donor (18 FRDA, 17 CTRL); TopHat
+    2.0.7 / bowtie2 2.1.0 to hg19; fragments per RefSeq gene counted with htseq-count 0.5.3p9; differential
+    expression with R/Bioconductor DESeq 1.10.1 (Anders and Huber 2010) on the fragment counts, cutoff
+    FDR <= 0.05 (Results also write FDR<0.05). Log2 ratio, Methods verbatim: ''The normalized DESeq counts
+    for each sample were used to calculate average log2 expression values for the CTRL and FRDA groups.
+    The log2 ratio values for each gene were then calculated as the average log2 expression value for
+    the FRDA sample group subtracted by the average log2 expression value for the CTRL sample group.''
+    Two readings fit this sentence: (G) mean over samples of log2 normalised counts, FRDA minus CTRL;
+    (A) log2 of the arithmetic group mean of normalised counts, FRDA minus CTRL (= log2 of DESeq 1.x foldChange,
+    baseMeanB/baseMeanA). Which one the authors used is not settled by the text (rule to decide it: RT-013).
+    Gene filter stated three ways: Results ''16,531 transcripts were detected using a threshold of ≥10
+    tags in at least one sample''; Methods ''Only genes with more than 10 fragments in all the samples'';
+    GEO (P-001 metadata) ''Genes with less than 10 fragments in all the samples were removed''. The GEO
+    matrix has 16,531 rows, matching the Results wording. Groups ''matched for sex and age of sampling''
+    (7 F / 11 M FRDA, 9 F / 8 M CTRL, paper; sex is not a GEO field). No outliers removed (Fig. S1). The
+    sentence opens with ''As previously published'' (Li et al. 2015b, same RNA-seq data); neither paper
+    text read here states how the ~2.3-fold or P=4x10^-12 for FXN was computed (DESeq test assumed, not
+    stated).'
+  dataset: GSE104288
+  columns_needed: 'GSE104288_DESeq_counts.txt.gz: row gene == ''FXN'' (present, read 2026-11-13); 35 sample
+    columns, group from the manifest (18 F*, 17 C* titles, matched to GSMs by P-001)'
+  expected_gap: 'Written before reproducing. (1) Input: GEO provides DESeq-normalised, non-integer values
+    only (16,531 genes x 35 donors), not the htseq counts; DESeq 1.10.1 (negative binomial, per-condition
+    dispersions) cannot be re-run on the paper''s input. Our test will differ (e.g. a test on log2 normalised
+    values, or a count model on rounded normalised values or on recount3 counts if T-023 allowlists them:
+    those are a different aligner/annotation, hence a further gap). P-values and FDRs are therefore not
+    expected to match; group means of the normalised values are (same matrix). (2) The gene filter wording
+    is inconsistent (see method); we use the GEO matrix as provided (16,531 rows). (3) Sex is not in GEO,
+    so no sex adjustment is possible; the paper did not adjust either (two-group DESeq). (4) Age: the
+    paper did not adjust; we do not adjust for the reproduction (age-adjusted sensitivity is a separate,
+    labelled analysis). (5) Annotation: RefSeq symbols of March 2013; symbols renamed since may not match
+    current names. Specific to FXN: the fold computation is not stated. Log2-ratio definition rule (fixed
+    now, applies to RT-010, RT-011 and RT-013): compute the SLC25A3 log2 ratio under reading (G) (no pseudo-count;
+    if any sample is 0 the value is undefined and reported as such) and reading (A); the reading that
+    equals -0.41693 when rounded to 5 decimals is declared the authors'' definition and used for RT-010
+    and RT-011(c). If both or neither match, reading (A) is primary (it is what the authors'' DESeq 1.x
+    reports as foldChange) and the ambiguity is reported; (G) is reported alongside in every case. Fold
+    = 2^-ratio under the declared reading. Pass criterion (set now): FXN lower in FRDA and the fold (declared
+    reading) within [2.0, 2.6] (published ~2.3, ''∼'' read as rounded/approximate; the window is our judgement
+    call) = reproduced; lower but outside the window = ''direction reproduced, magnitude not''; otherwise
+    not reproduced. P-value: our test differs, so P is reported, and P < 1e-6 is called ''consistent''
+    (an unanchored judgement call, fixed before looking); equality with 4e-12 is not expected. The neonatal
+    control C21808 stays in (the paper used all 35); a without-C21808 value is reported as sensitivity.'
+- id: RT-011
+  pmid: '29125828'
+  location: Results, 'RNA sequencing identifies differentially expressed genes in CTRL and FRDA primary
+    fibroblasts' (Fig. 1B, Fig. 2A; list in Table S2)
+  published_value: Expression levels of approximately 23% (3788) of all genes were significantly changed
+    [false discovery rate (FDR)<0.05] between FRDA and CTRL groups (Fig. 1B, red dots) and ∼16% of these
+    genes had a ≥two-fold change in expression (624 genes) | 2015 are upregulated (Fig. 2A, red) and 1773
+    are downregulated (Fig. 2A, green) in the FRDA cohort
+  authors_method: 'RNA-seq of 35 primary skin fibroblast lines, one per donor (18 FRDA, 17 CTRL); TopHat
+    2.0.7 / bowtie2 2.1.0 to hg19; fragments per RefSeq gene counted with htseq-count 0.5.3p9; differential
+    expression with R/Bioconductor DESeq 1.10.1 (Anders and Huber 2010) on the fragment counts, cutoff
+    FDR <= 0.05 (Results also write FDR<0.05). Log2 ratio, Methods verbatim: ''The normalized DESeq counts
+    for each sample were used to calculate average log2 expression values for the CTRL and FRDA groups.
+    The log2 ratio values for each gene were then calculated as the average log2 expression value for
+    the FRDA sample group subtracted by the average log2 expression value for the CTRL sample group.''
+    Two readings fit this sentence: (G) mean over samples of log2 normalised counts, FRDA minus CTRL;
+    (A) log2 of the arithmetic group mean of normalised counts, FRDA minus CTRL (= log2 of DESeq 1.x foldChange,
+    baseMeanB/baseMeanA). Which one the authors used is not settled by the text (rule to decide it: RT-013).
+    Gene filter stated three ways: Results ''16,531 transcripts were detected using a threshold of ≥10
+    tags in at least one sample''; Methods ''Only genes with more than 10 fragments in all the samples'';
+    GEO (P-001 metadata) ''Genes with less than 10 fragments in all the samples were removed''. The GEO
+    matrix has 16,531 rows, matching the Results wording. Groups ''matched for sex and age of sampling''
+    (7 F / 11 M FRDA, 9 F / 8 M CTRL, paper; sex is not a GEO field). No outliers removed (Fig. S1).'
+  dataset: GSE104288
+  columns_needed: 'GSE104288_DESeq_counts.txt.gz: all 16,531 gene rows x 35 sample columns; group per
+    column from the manifest. Gene-level overlap needs the published list (Table S2, supplementary file
+    of PMC5719256): not yet retrieved; it must enter through a manifest (P5.1) before use'
+  expected_gap: 'Written before reproducing. (1) Input: GEO provides DESeq-normalised, non-integer values
+    only (16,531 genes x 35 donors), not the htseq counts; DESeq 1.10.1 (negative binomial, per-condition
+    dispersions) cannot be re-run on the paper''s input. Our test will differ (e.g. a test on log2 normalised
+    values, or a count model on rounded normalised values or on recount3 counts if T-023 allowlists them:
+    those are a different aligner/annotation, hence a further gap). P-values and FDRs are therefore not
+    expected to match; group means of the normalised values are (same matrix). (2) The gene filter wording
+    is inconsistent (see method); we use the GEO matrix as provided (16,531 rows). (3) Sex is not in GEO,
+    so no sex adjustment is possible; the paper did not adjust either (two-group DESeq). (4) Age: the
+    paper did not adjust; we do not adjust for the reproduction (age-adjusted sensitivity is a separate,
+    labelled analysis). (5) Annotation: RefSeq symbols of March 2013; symbols renamed since may not match
+    current names. Specific: old DESeq (1.10.1) dispersion handling is generally more conservative than
+    DESeq2 or log-scale tests, so we expect a different count, direction of the difference not predicted.
+    Pass criterion (set now): (a) DE count at FDR <= 0.05 (Benjamini-Hochberg) within a factor 1.5 of
+    3788 (2526-5682) = ''same order'', otherwise ''not reproduced''; (b) fraction up-regulated, reported
+    descriptively against the published 2015/3788 (53.2%, our arithmetic) and not used for the verdict
+    (a +/- window around 53% would include a 50/50 split, so it is uninformative); (c) number with |log2
+    ratio| >= 1 (declared reading, rule in RT-013) among our DE genes within a factor 1.5 of 624 (416-936);
+    (d) overlap with Table S2: Jaccard >= 0.5 and sign concordance >= 0.95 on shared genes (same normalised
+    matrix, different test, so higher than the 0.3 used for RT-001; judgement calls without calibration);
+    if Table S2 cannot be obtained, (d) is ''not assessable'' and the target is NOT counted as reproduced.
+    All four reported; ''reproduced'' needs (a) and (d); (c) is reported as same order or not.'
+- id: RT-012
+  pmid: '29125828'
+  location: Results, 'GO and expression enrichment analyses define molecules and processes perturbed in
+    FRDA fibroblasts' (Fig. 3A,C,D; Table 1)
+  published_value: Expression of genes mapped to the GO categories translation (GO:0006412; P=1.91E–11)
+    and rRNA metabolic process (GO:0016072; P=1.11E–03) under the term of biological process is significantly
+    downregulated in FRDA | MRPL and MRPS family members, which are nuclear-encoded genes that produce
+    mitochondrial 39S and 28S ribosomal proteins, respectively, are also significantly under-expressed
+    in FRDA fibroblasts (Fig. 3C,D)
+  authors_method: 'PANTHER statistical enrichment test (Mann-Whitney U / Wilcoxon rank-sum) on the 3788
+    DE genes (FDR<0.05) with their log2 ratios (FRDA/CTRL), default settings, PANTHER version 11.1 (annotation
+    released 10/24/2016; test released 10/20/2016), Bonferroni correction per test; GO-slim ontologies.
+    Heatmaps (Fig. 3C,D) from normalised DESeq counts. The MRPL/MRPS statement is read from heatmaps of
+    the translation / RNA binding categories; no per-family statistic is given in the text. RNA-seq of
+    35 primary skin fibroblast lines, one per donor (18 FRDA, 17 CTRL); TopHat 2.0.7 / bowtie2 2.1.0 to
+    hg19; fragments per RefSeq gene counted with htseq-count 0.5.3p9; differential expression with R/Bioconductor
+    DESeq 1.10.1 (Anders and Huber 2010) on the fragment counts, cutoff FDR <= 0.05 (Results also write
+    FDR<0.05). Log2 ratio, Methods verbatim: ''The normalized DESeq counts for each sample were used to
+    calculate average log2 expression values for the CTRL and FRDA groups. The log2 ratio values for each
+    gene were then calculated as the average log2 expression value for the FRDA sample group subtracted
+    by the average log2 expression value for the CTRL sample group.'' Two readings fit this sentence:
+    (G) mean over samples of log2 normalised counts, FRDA minus CTRL; (A) log2 of the arithmetic group
+    mean of normalised counts, FRDA minus CTRL (= log2 of DESeq 1.x foldChange, baseMeanB/baseMeanA).
+    Which one the authors used is not settled by the text (rule to decide it: RT-013). Gene filter stated
+    three ways: Results ''16,531 transcripts were detected using a threshold of ≥10 tags in at least one
+    sample''; Methods ''Only genes with more than 10 fragments in all the samples''; GEO (P-001 metadata)
+    ''Genes with less than 10 fragments in all the samples were removed''. The GEO matrix has 16,531 rows,
+    matching the Results wording. Groups ''matched for sex and age of sampling'' (7 F / 11 M FRDA, 9 F
+    / 8 M CTRL, paper; sex is not a GEO field). No outliers removed (Fig. S1).'
+  dataset: GSE104288
+  columns_needed: Our RT-011 DE gene set with log2 ratios; gene symbols (column 'gene'); MRPL/MRPS family
+    = symbols matching ^MRP[LS][0-9] (our operational definition, no external annotation). GO:0006412
+    / GO:0016072 membership needs a GO annotation source, none is allowlisted yet (a source task is required;
+    PANTHER 11.1 itself is a web service outside the allowlist)
+  expected_gap: 'Written before reproducing. (1) Annotation: PANTHER 11.1 GO-slim of 2016 is not available
+    to us; any current GO annotation has a different membership, so P-values will differ and only direction
+    is compared. (2) Input set: our DE set (RT-011) differs from the published 3788, which changes the
+    background distribution. (3) MRPL/MRPS: the paper gives no test; ours is operational. Pass criterion
+    (set now): (a1) translation (GO:0006412) and (a2) rRNA metabolic process (GO:0016072), biological
+    process, from an allowlisted annotation once available: the genes of each category in our DE set have
+    lower log2 ratios than the other DE genes, one-sided rank-sum P < 0.025 (0.05 Bonferroni-corrected
+    over the two published categories) = reproduced for that category, reported per category; if no annotation
+    source is allowlisted by then, ''not assessable''. (b) MRPL/MRPS: among all detected MRPL/MRPS genes,
+    median log2 ratio < 0, and a two-sided rank-sum test vs all other genes P < 0.05 = reproduced; the
+    number of MRPL/MRPS genes in our DE set and their up/down split are reported.'
+- id: RT-013
+  pmid: '29125828'
+  location: Results, 'GO and expression enrichment analyses define molecules and processes perturbed in
+    FRDA fibroblasts' (Fig. 4C)
+  published_value: the most significantly changed SLC gene in FRDA cells is SLC25A3 (log2 ratio=−0.41693;
+    P=1.38E–14) | the expression of SLC25A3 is highly correlated with FXN expression across all 35 samples
+    [Pearson correlation coefficient (R)=0.721]
+  authors_method: 'RNA-seq of 35 primary skin fibroblast lines, one per donor (18 FRDA, 17 CTRL); TopHat
+    2.0.7 / bowtie2 2.1.0 to hg19; fragments per RefSeq gene counted with htseq-count 0.5.3p9; differential
+    expression with R/Bioconductor DESeq 1.10.1 (Anders and Huber 2010) on the fragment counts, cutoff
+    FDR <= 0.05 (Results also write FDR<0.05). Log2 ratio, Methods verbatim: ''The normalized DESeq counts
+    for each sample were used to calculate average log2 expression values for the CTRL and FRDA groups.
+    The log2 ratio values for each gene were then calculated as the average log2 expression value for
+    the FRDA sample group subtracted by the average log2 expression value for the CTRL sample group.''
+    Two readings fit this sentence: (G) mean over samples of log2 normalised counts, FRDA minus CTRL;
+    (A) log2 of the arithmetic group mean of normalised counts, FRDA minus CTRL (= log2 of DESeq 1.x foldChange,
+    baseMeanB/baseMeanA). Which one the authors used is not settled by the text (rule to decide it: RT-013).
+    Gene filter stated three ways: Results ''16,531 transcripts were detected using a threshold of ≥10
+    tags in at least one sample''; Methods ''Only genes with more than 10 fragments in all the samples'';
+    GEO (P-001 metadata) ''Genes with less than 10 fragments in all the samples were removed''. The GEO
+    matrix has 16,531 rows, matching the Results wording. Groups ''matched for sex and age of sampling''
+    (7 F / 11 M FRDA, 9 F / 8 M CTRL, paper; sex is not a GEO field). No outliers removed (Fig. S1). Pearson
+    R across all 35 samples (both groups pooled); the scale (normalised counts or log2) is not stated.'
+  dataset: GSE104288
+  columns_needed: 'GSE104288_DESeq_counts.txt.gz: rows gene == ''SLC25A3'' and ''FXN'' (both present,
+    read 2026-11-13), 35 sample columns'
+  expected_gap: 'Written before reproducing. Log2-ratio definition rule (fixed now, applies to RT-010,
+    RT-011 and RT-013): compute the SLC25A3 log2 ratio under reading (G) (no pseudo-count; if any sample
+    is 0 the value is undefined and reported as such) and reading (A); the reading that equals -0.41693
+    when rounded to 5 decimals is declared the authors'' definition and used for RT-010 and RT-011(c).
+    If both or neither match, reading (A) is primary (it is what the authors'' DESeq 1.x reports as foldChange)
+    and the ambiguity is reported; (G) is reported alongside in every case. The log2 ratio is defined
+    in the Methods on the normalised DESeq counts, which GEO provides, so it should match closely; the
+    P-value is a DESeq test we cannot re-run (see RT-010). Internal tension, recorded not resolved: the
+    same paragraph says eight SLC25 genes are ''upregulated in the FRDA group'', while SLC25A3 is given
+    with a negative log2 ratio; T-004 reports the sign it obtains. Pass criterion (set now): (a) the log2-ratio
+    rule above: reproduced if one reading equals -0.41693 at 5 decimals (this target is also what decides
+    the reading, so a match on one of two readings is a declared fork, counted as such in the report),
+    ''close'' if within 0.005 under the declared reading, otherwise not reproduced; (b) Pearson R pooled
+    over 35 samples, primary on normalised counts, within 0.01 of 0.721; R on log2 values is reported
+    as secondary, and a match only on the secondary scale is reported as ''reproduced on an alternative
+    scale'' (a second declared fork); (c) P reported, not compared. A correlation pooled over both groups
+    is driven by the group difference; R within each group is reported alongside.'
+- id: RT-014
+  pmid: '33028632'
+  location: Results, 'Transcriptional perturbation after treatment with A-196 was concentration-dependent
+    and limited to between 1 and 8% of protein-coding genes' (Fig. 5A)
+  published_value: We first assessed FXN mRNA expression, confirming an increase in expression (Fig. 5A)
+  authors_method: 'RNA-seq of one FRDA fibroblast line (GM04078) and one control line (GM03440), 24 libraries,
+    3 replicates per condition (GEO: ''Three cell culture replicates of each condition''; the paper: ''technical
+    replicates''), 6 days of treatment (A-196 at 1, 5 and 10 μm; inactive analog SGC2043; DMSO vehicle;
+    untreated; the control line untreated and DMSO only). Kallisto 0.46.0 to Ensembl GRCh38 v98 cDNA,
+    Tximport 1.12.3 to gene level, DESeq2 1.24.0, ''excluding genes with fewer than 10 counts average
+    across all samples'', FDR cutoff <= 0.01 for differential expression; no fold-change threshold stated.
+    ''Two GM03440 samples and one GM04078 sample were classed as outliers ... and were therefore excluded
+    from further analysis (Fig. S9)''; which samples is not stated in the text. Figure 5 legend: ''The
+    data are relative to the vehicle'' (DMSO), n = 3, one-way ANOVA followed by Bonferroni test; the Discussion
+    compares ''compound-treated and control samples''. The reference group of the DEG counts is therefore
+    read as DMSO (our reading, a choice). The DESeq2 design (one model on all samples or GM04078 only)
+    is not stated. Fig. 5A: ''relative abundance of FXN mRNA in A-196 and SGC2043-treated samples'', relative
+    to vehicle; no numeric fold for the RNA-seq is given in the text. Numeric FXN effects in the paper
+    come from other assays (Western blot, AlphaLISA, qRT-PCR in PBMCs ''∼2-fold''; abstract ''up to 2-fold'')
+    and are not targets for GSE145115.'
+  dataset: GSE145115
+  columns_needed: 'GSE145115_counts_all_samples_normalised.txt.gz: row ENSG00000165060 (FXN; Ensembl id
+    from NCBI Gene 2395 record, E-utilities 2026-11-13; present in the matrix); columns GM78dmso1-3 (reference),
+    GM781A1-3, GM785A1-3, GM7810A1-3 (1/5/10 μm A-196), GM7810S1-3 (SGC2043), GM78unt1-3'
+  expected_gap: 'Written before reproducing. (1) Input: GEO provides DESeq2-normalised, non-integer counts
+    (14,177 Ensembl genes x 24 libraries, filter as in the paper), not the tximport counts; DESeq2 needs
+    integer counts, so any count model runs on rounded normalised values with size factors fixed to 1
+    (an approximation) or on a test of log2 values. (2) Outliers: 3 libraries were excluded by the authors
+    but are not identified in the text; GEO still has 24 columns. Main analysis keeps all 24 libraries;
+    if T-002 QC flags exactly 3 libraries as isolated from their replicates on a PCA (2 GM40*, 1 GM78*),
+    a sensitivity analysis excludes them; any other outcome is reported, never tuned to match. Whether
+    the GEO size factors were computed with or without the 3 excluded libraries is unknown (a further
+    gap). (3) Design: not stated; primary = DESeq2-style model on GM04078 libraries only, contrast each
+    A-196 dose vs DMSO; sensitivity = one model on all 24 libraries with a condition factor; reference
+    = DMSO (vehicle, per the Fig. 5 legend), and ''vs untreated'' is a reported-only sensitivity. FDR
+    family (fixed now): Benjamini-Hochberg over all tested genes, without independent filtering or Cook''s-distance
+    NA; DESeq2 defaults (which remove genes from the family and set some padj to NA at n = 3) reported
+    as sensitivity. (4) Units: the 3 replicates per condition are culture replicates of one line, not
+    independent individuals: every result is a within-line, exploratory result (P6), whatever its p-value;
+    the paper''s statistics are on the same replicates, so the reproduction reproduces their computation,
+    not a population inference. Specific: the published value is a direction only (no number in the text;
+    bar heights are not read from the figure). Pass criterion (set now), reproducing the paper''s stated
+    computation (Fig. 5 legend: relative to vehicle, one-way ANOVA followed by Bonferroni): on GM04078
+    libraries, FXN normalised counts divided by the DMSO mean; one-way ANOVA over DMSO, A-196 1, 5 and
+    10 μm and SGC2043; Bonferroni-corrected comparisons vs DMSO (4 comparisons, alpha 0.05). Reproduced
+    = FXN higher than DMSO with corrected P < 0.05 at 10 μm (the highest dose; the text names no dose,
+    so we require at least the one where an effect is most expected); 1 and 5 μm reported, not required.
+    Fold vs DMSO per dose reported with a 95% interval (Welch interval on log2 values, 3 vs 3 replicates
+    of one line: within-line, exploratory) and the DESeq2 Wald FDR from the RT-015 primary model as secondary.
+    SGC2043 vs DMSO reported descriptively. Expected magnitude, a judgement not a criterion: modest; the
+    Discussion states ''In fibroblasts and lymphocytes, the up-regulation is by ∼1.5-fold'' (assays other
+    than this RNA-seq), PBMCs ''∼2-fold''.'
+- id: RT-015
+  pmid: '33028632'
+  location: Results, 'Transcriptional perturbation after treatment with A-196 was concentration-dependent
+    and limited to between 1 and 8% of protein-coding genes' (Fig. 5C); Abstract
+  published_value: The lowest concentration of A-196 is responsible for 193 DEGs (of ∼14,000 genes measured),
+    5 μm A-196 for 626 DEGs, and 10 μm A-196 for 1098 DEGs (Fig. 5C) | only modest (1.4–7.8%) perturbation
+    in genome-wide expression was observed
+  authors_method: 'RNA-seq of one FRDA fibroblast line (GM04078) and one control line (GM03440), 24 libraries,
+    3 replicates per condition (GEO: ''Three cell culture replicates of each condition''; the paper: ''technical
+    replicates''), 6 days of treatment (A-196 at 1, 5 and 10 μm; inactive analog SGC2043; DMSO vehicle;
+    untreated; the control line untreated and DMSO only). Kallisto 0.46.0 to Ensembl GRCh38 v98 cDNA,
+    Tximport 1.12.3 to gene level, DESeq2 1.24.0, ''excluding genes with fewer than 10 counts average
+    across all samples'', FDR cutoff <= 0.01 for differential expression; no fold-change threshold stated.
+    ''Two GM03440 samples and one GM04078 sample were classed as outliers ... and were therefore excluded
+    from further analysis (Fig. S9)''; which samples is not stated in the text. Figure 5 legend: ''The
+    data are relative to the vehicle'' (DMSO), n = 3, one-way ANOVA followed by Bonferroni test; the Discussion
+    compares ''compound-treated and control samples''. The reference group of the DEG counts is therefore
+    read as DMSO (our reading, a choice). The DESeq2 design (one model on all samples or GM04078 only)
+    is not stated.'
+  dataset: GSE145115
+  columns_needed: 'GSE145115_counts_all_samples_normalised.txt.gz: all 14,177 gene rows; GM78dmso1-3 vs
+    GM781A1-3 / GM785A1-3 / GM7810A1-3; GM40* columns only for the all-sample sensitivity model. The DEG
+    lists are not in the text (overlap not assessable unless a supplementary list is found and enters
+    through a manifest)'
+  expected_gap: 'Written before reproducing. (1) Input: GEO provides DESeq2-normalised, non-integer counts
+    (14,177 Ensembl genes x 24 libraries, filter as in the paper), not the tximport counts; DESeq2 needs
+    integer counts, so any count model runs on rounded normalised values with size factors fixed to 1
+    (an approximation) or on a test of log2 values. (2) Outliers: 3 libraries were excluded by the authors
+    but are not identified in the text; GEO still has 24 columns. Main analysis keeps all 24 libraries;
+    if T-002 QC flags exactly 3 libraries as isolated from their replicates on a PCA (2 GM40*, 1 GM78*),
+    a sensitivity analysis excludes them; any other outcome is reported, never tuned to match. Whether
+    the GEO size factors were computed with or without the 3 excluded libraries is unknown (a further
+    gap). (3) Design: not stated; primary = DESeq2-style model on GM04078 libraries only, contrast each
+    A-196 dose vs DMSO; sensitivity = one model on all 24 libraries with a condition factor; reference
+    = DMSO (vehicle, per the Fig. 5 legend), and ''vs untreated'' is a reported-only sensitivity. FDR
+    family (fixed now): Benjamini-Hochberg over all tested genes, without independent filtering or Cook''s-distance
+    NA; DESeq2 defaults (which remove genes from the family and set some padj to NA at n = 3) reported
+    as sensitivity. (4) Units: the 3 replicates per condition are culture replicates of one line, not
+    independent individuals: every result is a within-line, exploratory result (P6), whatever its p-value;
+    the paper''s statistics are on the same replicates, so the reproduction reproduces their computation,
+    not a population inference. Specific: with n = 3 vs 3 per contrast, DEG counts at FDR <= 0.01 are
+    very sensitive to the dispersion model and to the 3 excluded libraries, so a large count gap is plausible.
+    Pass criterion (set now; factor 2 is an unanchored judgement call): (a) ordering 1 < 5 < 10 μm in
+    DEG count (published) and (b) each count within a factor 2 of 193 / 626 / 1098 (97-386, 313-1252,
+    549-2196) = reproduced; (a) only = ''dose ordering reproduced, counts not''; neither = not reproduced.
+    The 1.4-7.8% of the abstract equals 193/14,000 and 1098/14,000 to one decimal (our arithmetic, consistent
+    with the ~14,000 denominator); we report our counts over our tested genes the same way.'
+- id: RT-016
+  pmid: '33028632'
+  location: Results, 'Transcriptional perturbation after treatment with A-196 was concentration-dependent
+    and limited to between 1 and 8% of protein-coding genes' (Table S2)
+  published_value: Only two of these genes were differentially expressed using 10 μm A-196 (CDK1 and CCNB1),
+    with no significant perturbation at 5 and 1 μm
+  authors_method: 'RNA-seq of one FRDA fibroblast line (GM04078) and one control line (GM03440), 24 libraries,
+    3 replicates per condition (GEO: ''Three cell culture replicates of each condition''; the paper: ''technical
+    replicates''), 6 days of treatment (A-196 at 1, 5 and 10 μm; inactive analog SGC2043; DMSO vehicle;
+    untreated; the control line untreated and DMSO only). Kallisto 0.46.0 to Ensembl GRCh38 v98 cDNA,
+    Tximport 1.12.3 to gene level, DESeq2 1.24.0, ''excluding genes with fewer than 10 counts average
+    across all samples'', FDR cutoff <= 0.01 for differential expression; no fold-change threshold stated.
+    ''Two GM03440 samples and one GM04078 sample were classed as outliers ... and were therefore excluded
+    from further analysis (Fig. S9)''; which samples is not stated in the text. Figure 5 legend: ''The
+    data are relative to the vehicle'' (DMSO), n = 3, one-way ANOVA followed by Bonferroni test; the Discussion
+    compares ''compound-treated and control samples''. The reference group of the DEG counts is therefore
+    read as DMSO (our reading, a choice). The DESeq2 design (one model on all samples or GM04078 only)
+    is not stated. ''17 key genes that represent affected pathways in this monomethylated state (Table
+    S2)''; only CDK1 and CCNB1 are named in the text; direction of their change not stated in the text.'
+  dataset: GSE145115
+  columns_needed: 'Rows ENSG00000170312 (CDK1, NCBI Gene 983) and ENSG00000134057 (CCNB1, NCBI Gene 891),
+    Ensembl ids from NCBI Gene records (E-utilities, 2026-11-13); the other 15 genes need Table S2 (supplementary,
+    not retrieved): not assessable until it enters through a manifest'
+  expected_gap: 'Written before reproducing. (1) Input: GEO provides DESeq2-normalised, non-integer counts
+    (14,177 Ensembl genes x 24 libraries, filter as in the paper), not the tximport counts; DESeq2 needs
+    integer counts, so any count model runs on rounded normalised values with size factors fixed to 1
+    (an approximation) or on a test of log2 values. (2) Outliers: 3 libraries were excluded by the authors
+    but are not identified in the text; GEO still has 24 columns. Main analysis keeps all 24 libraries;
+    if T-002 QC flags exactly 3 libraries as isolated from their replicates on a PCA (2 GM40*, 1 GM78*),
+    a sensitivity analysis excludes them; any other outcome is reported, never tuned to match. Whether
+    the GEO size factors were computed with or without the 3 excluded libraries is unknown (a further
+    gap). (3) Design: not stated; primary = DESeq2-style model on GM04078 libraries only, contrast each
+    A-196 dose vs DMSO; sensitivity = one model on all 24 libraries with a condition factor; reference
+    = DMSO (vehicle, per the Fig. 5 legend), and ''vs untreated'' is a reported-only sensitivity. FDR
+    family (fixed now): Benjamini-Hochberg over all tested genes, without independent filtering or Cook''s-distance
+    NA; DESeq2 defaults (which remove genes from the family and set some padj to NA at n = 3) reported
+    as sensitivity. (4) Units: the 3 replicates per condition are culture replicates of one line, not
+    independent individuals: every result is a within-line, exploratory result (P6), whatever its p-value;
+    the paper''s statistics are on the same replicates, so the reproduction reproduces their computation,
+    not a population inference. Specific: a per-gene call at FDR <= 0.01 depends on the multiple-testing
+    family (fixed above; DESeq2 default independent filtering and Cook''s flagging would change it) and
+    on the dispersion estimate; borderline genes flip easily at n = 3. Pass criterion (set now): CDK1
+    and CCNB1 both at FDR <= 0.01 vs DMSO at 10 μm and neither at 1 or 5 μm, within our RT-015 primary
+    model = reproduced; partial agreement reported per gene and per dose; direction reported (not compared,
+    unstated in the text). The remaining 15 genes are ''not assessable'' without Table S2.'
