@@ -243,7 +243,7 @@ tasks:
   - id: T-003
     title: Extract reproduction targets from the two seed publications
     milestone: M1
-    status: in_review
+    status: changes_requested
     priority: 2  # RD-002: the patient line (T-026, T-027) goes first
     kind: reproduction
     track: main
@@ -255,6 +255,10 @@ tasks:
       - Targets include the FXN difference FRDA vs control (GSE104288) and the A-196 effect on FXN expression (GSE145115), plus one genome-wide result (e.g. number of DE genes at the paper's thresholds or the highlighted gene families).
       - For each target, the expected gap from method differences (e.g. normalised vs raw counts) is written down BEFORE reproducing.
       - If the full text is not open access, say so and use only what the abstract/figures legally available state.
+    notes:
+      - "2026-11-13 verification (autonomy/verifications/T-003-d35d01a.md), non-blocking to address with the blocking ones: MRPL/MRPS regex also matches MRPL23-AS1, MRPL42P5, MRPL45P2, MRPS31P5 (tighten, e.g. ^MRP[LS]\\d+[A-Z]?$); RT-015 outcome when (b) holds but (a) does not, and ties, unclassified; RT-014 Bonferroni post-hoc form (pooled ANOVA variance vs separate tests, sidedness) unstated; outlier rule 'isolated on a PCA' undefined; NA rows in the BH family; '(DMSO)' gloss on the Fig. 5 legend should cite GEO / Fig. 1 wording; Fig. 5 legend n = 3 vs the paper's outlier exclusion; RT-013(a) self-selecting reading not independent support; RT-012(b) gene set (all genes vs the paper's DE-gene heatmaps); 'one per donor' is an inference; group by P-001 metadata, not column prefix."
+    attempts: 1
+    verification: autonomy/verifications/T-003-d35d01a.md
 
   - id: T-004
     title: Reproduce the GSE104288 headline results
